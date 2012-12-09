@@ -5,8 +5,11 @@
 #include <map>
 #include "matrice.h"
 
-int main()
+int main(int argc, char **argv)
 {
+  if (argc != 2) {
+    fprintf(stderr, "Usage: %s <file.py>\n", argv[0]);
+  }
 
   Py_Initialize();
 
@@ -16,7 +19,7 @@ int main()
       boost::python::object main = boost::python::import("__main__"); 
       boost::python::object py_ = main.attr("__dict__"); 
   
-      exec_file("test.py", py_, py_);
+      exec_file(argv[1], py_, py_);
      
       //Joseph for memory
       // boost::python::object func = py_["func"];
