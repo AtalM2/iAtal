@@ -55,6 +55,9 @@ if test "x$nodebug" = "xno"; then
    AC_SUBST(DEBUG_CXXFLAGS)
 fi
 
+# Boost configuration
+BOOST_REQUIRE
+BOOST_PYTHON
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

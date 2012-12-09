@@ -1,19 +1,20 @@
-lib_LTLIBRARIES += \
-	elements.la \
+lib_LTLIBRARIES +=		\
+	elements.la			\
 	$(NULL)
 
-elements_la_CPPFLAGS = \
-	$(python_CFLAGS) \
+elements_la_CPPFLAGS =	\
+	$(python_CFLAGS)	\
+    $(BOOST_CPPFLAGS)	\
 	$(NULL)
 
-elements_la_LDFLAGS = \
-	$(python_LIBS) \
-	-module \
-	-shared \
-	-avoid-version \
-	-lboost_python-py32 \
+elements_la_LDFLAGS =			\
+	$(python_LIBS)				\
+	-module						\
+	-shared						\
+	-avoid-version				\
+	$(BOOST_PYTHON_LDFLAGS)		\
 	$(NULL)
 
-elements_la_SOURCES = \
-	src/python/matrice.cpp \
+elements_la_SOURCES =			\
+	src/python/matrice.cpp		\
 	$(NULL)
