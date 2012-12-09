@@ -12,7 +12,8 @@ AM_CXXFLAGS =			\
 include src/model/model.mk
 include src/ui/ui.mk
 include src/python/elements.mk
-include src/test/model/test.mk
-include src/test/python/test.mk
-include src/test/tmx/test.mk
-include src/test/ui/test.mk
+
+include test/model/test.mk
+include test/python/test.mk
+include test/tmx/test.mk
+include test/ui/test.mk

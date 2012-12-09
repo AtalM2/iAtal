@@ -8,6 +8,6 @@ model_tests_LDFLAGS =	\
 	$(CPPUNIT_LIBS)		\
 	$(NULL)
 
-model_tests_SOURCES =			\
-	src/test/model/main.cpp		\
+model_tests_SOURCES =	\
+	test/model/main.cpp	\
 	$(NULL)

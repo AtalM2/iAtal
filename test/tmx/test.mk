@@ -8,6 +8,6 @@ tmx_tests_LDFLAGS =		\
 	$(CPPUNIT_LIBS)		\
 	$(NULL)
 
-tmx_tests_SOURCES =				\
-	src/test/tmx/main.cpp		\
+tmx_tests_SOURCES =		\
+	test/tmx/main.cpp	\
 	$(NULL)

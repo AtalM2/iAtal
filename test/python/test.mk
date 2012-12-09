@@ -9,5 +9,5 @@ python_tests_LDFLAGS =	\
 	$(NULL)
 
 python_tests_SOURCES =			\
-	src/test/python/main.cpp	\
+	test/python/main.cpp		\
 	$(NULL)
