@@ -8,7 +8,7 @@
 .deps/
 .libs/
 autom4te.cache/
-m4/
+m4/*
 !m4/boost.m4
 
 autoscan.log
