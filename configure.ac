@@ -44,7 +44,7 @@ AC_CHECK_FUNCS([memset strchr])
 # Turn on debugging flags by default
 AC_MSG_CHECKING([whether to deactivate debug])
 AC_ARG_ENABLE([nodebug],
-              AS_HELP_STRING([--enable-nodebug],
+              AS_HELP_STRING([--disable-debug],
                              [Deactivate debug]),
               [nodebug=$enableval
               AC_MSG_RESULT([$enableval])],
