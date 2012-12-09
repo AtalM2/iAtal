@@ -1,7 +1,7 @@
 #include <gtkmm/application.h>
 #include <glibmm/refptr.h>
 
-#include "display/mapwindow.h"
+#include "mapwindow.h"
 
 int
 main(int argc, char** argv)

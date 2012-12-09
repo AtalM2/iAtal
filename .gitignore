@@ -1,0 +1,15 @@
+config*
+!configure.ac
+Makefile*
+!Makefile.am
+*~
+.deps/
+aclocal.m4
+autom4te.cache/
+depcomp
+install-sh
+libtool
+ltmain.sh
+m4/
+missing
+stamp-h1

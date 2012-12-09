@@ -6,9 +6,12 @@ AC_PREREQ([2.68])
 AC_INIT([iAtal],
         [0.1],
         [m1infoatal+bugreport@sympa.etu.univ-nantes.prive])
-AC_CONFIG_SRCDIR([src/main.cc])
+AC_CONFIG_SRCDIR([src/ui/main.cc])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+LT_INIT
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_LANG([C++])
 
@@ -17,7 +20,7 @@ AC_PROG_CXX
 AC_PROG_CC
 
 # Checks for libraries.
-PKG_CHECK_MODULES([iAtal], [gtkmm-3.0 >= 3.0.0])
+PKG_CHECK_MODULES([ui], [gtkmm-3.0 >= 3.0.0])
 
 # Checks for header files.
 AC_HEADER_STDBOOL

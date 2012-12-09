@@ -4,12 +4,12 @@ MapWindow::MapWindow()
   : button("Go"),
     dxl("dx : "),
     dyl("dy : "),
-    area("img/red.png",
-	 "img/black.png",
-	 "img/white.png")
+    area("src/ui/img/red.png",
+	 "src/ui/img/black.png",
+	 "src/ui/img/white.png")
 {
   set_title("Map experimentations");
-  set_icon_from_file("img/icon.png");
+  set_icon_from_file("src/ui/img/icon.png");
   
   // Button stuff
   button
