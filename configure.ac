@@ -62,6 +62,9 @@ BOOST_PYTHON
 # CPPUNIT configuration
 AM_PATH_CPPUNIT
 
+# Doxygen configuration
+DX_INIT_DOXYGEN([iatal], docs/doxygen.cfg)
+
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
 AM_PROG_LIBTOOL

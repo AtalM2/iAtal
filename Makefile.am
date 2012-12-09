@@ -17,3 +17,5 @@ include test/model/test.mk
 include test/python/test.mk
 include test/tmx/test.mk
 include test/ui/test.mk
+
+include docs/doxygen.mk
