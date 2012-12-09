@@ -12,11 +12,6 @@ ui_CPPFLAGS = \
 	$(gtk_CFLAGS) \
 	$(NULL)
 
-ui_CXXFLAGS = \
-	-std=c++0x \
-	$(DEBUG_CXXFLAGS) \
-	$(NULL)
-
 ui_LDFLAGS = \
 	$(gtk_LIBS) \
 	$(NULL)
