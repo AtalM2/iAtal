@@ -26,7 +26,7 @@ std::string Matrix::getElement() const{
 
   int xdiff = orientation.first;
   int ydiff = orientation.second;
-  std::pair<int,int> askedCase (x_robot + xdiff,y_robot + ydiff);
+  std::pair<unsigned int,unsigned int> askedCase (x_robot + xdiff,y_robot + ydiff);
 
   if (askedCase.first >= mat.size() || askedCase.second >= mat[askedCase.first].size())
     {
