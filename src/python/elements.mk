@@ -4,7 +4,7 @@ lib_LTLIBRARIES +=		\
 
 elements_la_CPPFLAGS =	\
 	$(python_CFLAGS)	\
-    $(BOOST_CPPFLAGS)	\
+	$(BOOST_CPPFLAGS)	\
 	$(NULL)
 
 elements_la_LDFLAGS =			\
@@ -17,4 +17,24 @@ elements_la_LDFLAGS =			\
 
 elements_la_SOURCES =			\
 	src/python/matrice.cpp		\
+	$(NULL)
+
+bin_PROGRAMS +=	\
+	test_python	\
+	$(NULL)
+
+test_python_SOURCES =			\
+	src/python/main.cpp			\
+	src/python/matrice.cpp		\
+	$(NULL)
+
+test_python_CPPFLAGS =	\
+	$(python_CFLAGS)	\
+	$(BOOST_CPPFLAGS)	\
+	$(NULL)
+
+test_python_LDFLAGS =			\
+	$(python_LIBS)				\
+	$(BOOST_PYTHON_LDFLAGS)		\
+	-lboost_python-py32			\
 	$(NULL)
