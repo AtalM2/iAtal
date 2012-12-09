@@ -1,16 +1,22 @@
 bin_PROGRAMS += \
-	ui
+	ui \
+	$(NULL)
 
 ui_SOURCES = \
 	src/ui/main.cc \
 	src/ui/maparea.cc \
-	src/ui/mapwindow.cc
+	src/ui/mapwindow.cc \
+	$(NULL)
 
-AM_CPPFLAGS = \
-	$(ui_CFLAGS)
+ui_CPPFLAGS = \
+	$(gtk_CFLAGS) \
+	$(NULL)
 
 ui_CXXFLAGS = \
-	-std=c++0x $(DEBUG_CXXFLAGS)
+	-std=c++0x \
+	$(DEBUG_CXXFLAGS) \
+	$(NULL)
 
-ui_LDADD = \
-	$(ui_LIBS)
+ui_LDFLAGS = \
+	$(gtk_LIBS) \
+	$(NULL)
