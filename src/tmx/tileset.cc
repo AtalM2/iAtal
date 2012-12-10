@@ -16,9 +16,9 @@ Tileset::Tileset(XMLElement* xml) {
 	if (source == "") {
 		tileset = xml;
 	} else {
-		tsx.LoadFile(string("resources/" + source).c_str());
+		tsx.LoadFile(string("src/tmx/resources/" + source).c_str());
 		if (tsx.ErrorID() != XML_SUCCESS) {
-			cout << "Impossible de charger le fichier tsx : " << tsx.ErrorID() << endl;
+		  cout << "Impossible de charger le fichier tsx : " << (int) tsx.ErrorID() << endl;
 			success = 0;
 		}
 		if (success == 1) {

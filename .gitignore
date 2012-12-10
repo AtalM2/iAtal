@@ -23,7 +23,12 @@ ltmain.sh
 Makefile*
 !Makefile.am
 missing
+model
+!model/
 stamp-h1
+test_python
+tmx
+!tmx/
 ui
 !ui/
 

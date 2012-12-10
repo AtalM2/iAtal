@@ -8,7 +8,7 @@
 #ifndef TILESET_H
 #define	TILESET_H
 
-#include "tile.h"
+#include "src/model/tile.h"
 #include <string>
 #include "tinyxml2.h"
 

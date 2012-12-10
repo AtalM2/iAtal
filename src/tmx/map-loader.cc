@@ -13,39 +13,42 @@
 using namespace tinyxml2;
 using namespace std;
 
-Map MapLoader::getMap(string tmxPath) {
+Map MapLoader::getMap(string tmxPath)
+{
 	Map map(10, 10);
 	XMLDocument tmx;
 	// Chargement du fichier tmx
 	tmx.LoadFile(tmxPath.c_str());
-	if (tmx.ErrorID() != XML_SUCCESS) {
-		cout << "Impossible de charger le fichier tmx : " << tmx.ErrorID() << endl;
-		return map;
-	}
+	if (tmx.ErrorID() != XML_SUCCESS)
+	  {
+	    cout << "Impossible de charger le fichier tmx : " << (int) tmx.ErrorID() << endl;
+	    return map;
+	  }
 
 	// Récupération des tilesets
-	XMLElement* tilsetSurface = tmx.FirstChildElement("map")->FirstChildElement("tileset");
+	XMLElement* tilsetSurface =
+	  tmx.FirstChildElement("map")->FirstChildElement("tileset");
 	XMLElement* tilsetObjet = tilsetSurface->NextSiblingElement("tileset");
 	XMLElement* tilsetProfond = tilsetObjet->NextSiblingElement("tileset");
 
-	int surfaceFirstgid = tilsetSurface->IntAttribute("firstgid");
+	// int surfaceFirstgid = tilsetSurface->IntAttribute("firstgid");
 	Tileset surface(tilsetSurface);
 
-	int objetFirstgid = tilsetObjet->IntAttribute("firstgid");
+	// int objetFirstgid = tilsetObjet->IntAttribute("firstgid");
 	Tileset objet(tilsetObjet);
 
-	int profondFirstgid = tilsetProfond->IntAttribute("firstgid");
+	// int profondFirstgid = tilsetProfond->IntAttribute("firstgid");
 	Tileset profond(tilsetProfond);
 
 	cout << "Spacing : " << profond.GetSpacing() << endl;
 
 	// Récupération des layers
-	XMLElement* layer;
-	XMLElement* layerSurface;
-	XMLElement* layerObjet;
-	XMLElement* layerProfond;
+	XMLElement* layer =
+	  tmx.FirstChildElement("map")->FirstChildElement("layer");
+	XMLElement* layerSurface = NULL;
+	XMLElement* layerObjet = NULL;
+	XMLElement* layerProfond = NULL;
 
-	layer = tmx.FirstChildElement("map")->FirstChildElement("layer");
 	for (int i = 0; i < 3; i++) {
 		string name = layer->Attribute("name");
 		if (name == "Profond") {

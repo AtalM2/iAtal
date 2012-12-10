@@ -9,7 +9,7 @@
 #define	MAPLOADER_H
 
 #include <string>
-#include "map.h"
+#include "src/model/map.h"
 
 using namespace std;
 
