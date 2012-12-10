@@ -8,32 +8,34 @@
 #ifndef TILESET_H
 #define	TILESET_H
 
-#include "src/model/tile.h"
+//#include "src/model/tile.h"
+#include "tile.h"
 #include <string>
-#include "tinyxml2.h"
 
 using namespace std;
-using namespace tinyxml2;
 
 class Tileset {
 public:
-	Tileset(XMLElement* xmlElement);
+	Tileset();
 	virtual ~Tileset();
-
-	void SetSpacing(unsigned int spacing);
-	unsigned int GetSpacing() const;
-	void SetTileHeight(unsigned int tileHeight);
-	unsigned int GetTileHeight() const;
-	void SetTileWidth(unsigned int tileWidth);
-	unsigned int GetTileWidth() const;
-	void SetName(string name);
-	string GetName() const;
+	void setSpacing(unsigned int spacing);
+	unsigned int getSpacing() const;
+	void setTileHeight(unsigned int tileHeight);
+	unsigned int getTileHeight() const;
+	void setTileWidth(unsigned int tileWidth);
+	unsigned int getTileWidth() const;
+	void setName(string name);
+	string getName() const;
+	void setImage(string image);
+	string getImage() const;
+	
 
 private:
 	string name_;
 	unsigned int tileWidth_;
 	unsigned int tileHeight_;
 	unsigned int spacing_;
+	string image_;
 
 };
 

@@ -9,13 +9,18 @@
 #define	MAPLOADER_H
 
 #include <string>
-#include "src/model/map.h"
+#include "map.h"
+#include "tinyxml2.h"
+//#include "src/model/map.h"
 
 using namespace std;
+using namespace tinyxml2;
 
 class MapLoader {
 public:
-	static Map getMap(string tmxPath);
+	static Map loadTmx(string tmxPath) throw(string);
+private:
+	static XMLElement* loadTsx(XMLElement* tsxElement) throw(string);
 
 };
 

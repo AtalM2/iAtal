@@ -8,63 +8,50 @@
 #include "tileset.h"
 #include <iostream>
 
-Tileset::Tileset(XMLElement* xml) {
-	int success = 1;
-	string source = xml->Attribute("source");
-	XMLElement* tileset;
-	XMLDocument tsx;
-	if (source == "") {
-		tileset = xml;
-	} else {
-		tsx.LoadFile(string("src/tmx/resources/" + source).c_str());
-		if (tsx.ErrorID() != XML_SUCCESS) {
-		  cout << "Impossible de charger le fichier tsx : " << (int) tsx.ErrorID() << endl;
-			success = 0;
-		}
-		if (success == 1) {
-			tileset = tsx.FirstChildElement("tileset");
-		}
-	}
-	if (success == 1) {
-		name_ = tileset->Attribute("name");
-		tileHeight_ = tileset->IntAttribute("tileheight");
-		tileWidth_ = tileset->IntAttribute("tilewidth");
-		spacing_ = tileset->IntAttribute("spacing");
-	}
+Tileset::Tileset() {
+
 }
 
 Tileset::~Tileset() {
 
 }
 
-void Tileset::SetSpacing(unsigned int spacing) {
-	spacing_ = spacing;
+void Tileset::setSpacing(unsigned int spacing) {
+	this->spacing_ = spacing;
 }
 
-unsigned int Tileset::GetSpacing() const {
+unsigned int Tileset::getSpacing() const {
 	return spacing_;
 }
 
-void Tileset::SetTileHeight(unsigned int tileHeight) {
+void Tileset::setTileHeight(unsigned int tileHeight) {
 	this->tileHeight_ = tileHeight;
 }
 
-unsigned int Tileset::GetTileHeight() const {
+unsigned int Tileset::getTileHeight() const {
 	return tileHeight_;
 }
 
-void Tileset::SetTileWidth(unsigned int tileWidth) {
+void Tileset::setTileWidth(unsigned int tileWidth) {
 	this->tileWidth_ = tileWidth;
 }
 
-unsigned int Tileset::GetTileWidth() const {
+unsigned int Tileset::getTileWidth() const {
 	return tileWidth_;
 }
 
-void Tileset::SetName(string name) {
+void Tileset::setName(string name) {
 	this->name_ = name;
 }
 
-string Tileset::GetName() const {
+string Tileset::getName() const {
 	return name_;
+}
+
+void Tileset::setImage(string image) {
+	image_ = image;
+}
+
+string Tileset::getImage() const {
+	return image_;
 }
