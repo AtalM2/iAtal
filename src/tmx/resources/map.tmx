@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="surface.tsx"/>
  <tileset firstgid="3" source="objet.tsx"/>
  <tileset firstgid="7" source="profond.tsx"/>
- <layer name="Profond" width="10" height="10">
+ <layer name="basement" width="10" height="10">
   <data encoding="csv">
 17,17,17,17,17,17,17,17,17,17,
 17,17,17,17,17,17,17,17,17,17,
@@ -17,7 +17,7 @@
 35,35,35,35,35,14,14,14,14,14
 </data>
  </layer>
- <layer name="Surface" width="10" height="10">
+ <layer name="ground" width="10" height="10">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,2,
 1,1,1,1,1,1,1,1,2,2,
@@ -31,7 +31,7 @@
 1,1,2,1,1,1,1,1,1,1
 </data>
  </layer>
- <layer name="Objet" width="10" height="10">
+ <layer name="object" width="10" height="10">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,3,0,0,0,0,0,0,0,0,

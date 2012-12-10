@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="objet" tilewidth="16" tileheight="16" spacing="1">
+<tileset name="object" tilewidth="16" tileheight="16" spacing="1">
  <image source="objet.png" trans="ffffff" width="67" height="16"/>
  <tile id="0">
   <properties>

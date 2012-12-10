@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="profond" tilewidth="16" tileheight="16" spacing="1">
+<tileset name="basement" tilewidth="16" tileheight="16" spacing="1">
  <image source="profond.png" width="101" height="101"/>
  <tile id="7">
   <properties>
