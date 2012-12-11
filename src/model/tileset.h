@@ -15,6 +15,7 @@ class Tileset {
   void setImage(string tile, string image);
   
  private:
+
   map<string, string> tilesList_;
 };
 
