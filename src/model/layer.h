@@ -4,8 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "tile.h"
-#include "tmx/tileset.h"
+#include "tileset.h"
 
 class Layer {
 public:
@@ -13,13 +12,13 @@ public:
 	Layer(unsigned int width, unsigned int height);
 	virtual ~Layer();
 
-	Tile getTile(unsigned int x, unsigned int y) const;
-	void setTile(unsigned int x, unsigned int y, Tile tile);
+	std::string getTile(unsigned int x, unsigned int y) const;
+	void setTile(unsigned int x, unsigned int y, std::string tile);
 
 	Tileset getTileset() const;
 
 private:
-	std::vector< std::vector< Tile > > tiles_;
+	std::vector< std::vector< std::string > > tiles_;
 	Tileset tileset_;
 
 };

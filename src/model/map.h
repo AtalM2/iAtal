@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <map>
-#include <glibmm/ustring.h>
+#include <string>
 
 #include "map-utils.h"
 #include "layer.h"
@@ -32,8 +32,7 @@ public:
     \param layer An integer which denotes the level choosen.
     \return The selected Layer.
   */
-  Layer getLayer(int layer) const;
-  
+  Layer& getLayer(int layer) const;  
   
   /*!
     \brief Default deconstructor.
