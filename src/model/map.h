@@ -33,7 +33,7 @@ public:
     \param layer An integer which denotes the chosen level.
     \return The selected Layer.
   */
-  Layer& getLayer(int layer) const;  
+  Layer& getLayer(Layer::Level level) const;  
   
   /*!
     \brief Default destructor.

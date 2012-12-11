@@ -76,6 +76,19 @@ public:
   */
   Tileset & getTileset() const;
 
+  /*!
+    \brief An an enumeration used to select a Layer in a Map.
+
+  */
+  typedef enum
+  {
+    Underground,
+    Ground,
+    Air,
+    Object
+  } Level;
+
+
 private:
   std::vector< std::vector< Glib::ustring > > tiles_; //!< The matrix of tiles.
   Tileset tileset_; //!< The Tileset attached to the Layer.

@@ -20,8 +20,14 @@ Map::~Map()
 }
 
 Layer&
-Map::getLayer(int layer)
+Map::getLayer(Layer::Level level)
   const
 {
-  return (Layer &) layers_.at(layer);
+  return (Layer &) layers_.at(level);
 }
+
+
+
+
+
+
