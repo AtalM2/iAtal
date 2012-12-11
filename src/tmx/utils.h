@@ -17,7 +17,7 @@ class Utils {
 public:
 	static vector<string> stringExplode(string str, string separator);
 	static string intToString(int i);
-	static string stringReplace(string str, string oldStr, char newStr);
+	static int stringToInt(string s);
 private:
 
 };

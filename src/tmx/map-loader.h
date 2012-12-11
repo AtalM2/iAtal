@@ -1,16 +1,9 @@
-/* 
- * File:   MapLoader.h
- * Author: Noemi
- *
- * Created on 9 décembre 2012, 23:07
- */
-
-#ifndef MAPLOADER_H
-#define	MAPLOADER_H
+#ifndef MAP_LOADER_H
+#define	MAP_LOADER_H
 
 #include <string>
 #include "tinyxml2.h"
-#include "model/map.h"
+#include "map.h"
 
 using namespace std;
 using namespace tinyxml2;
@@ -23,5 +16,5 @@ private:
 
 };
 
-#endif	/* MAPLOADER_H */
+#endif	/* MAP_LOADER_H */
 

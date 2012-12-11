@@ -38,23 +38,15 @@ string Utils::intToString(int i) {
 }
 
 /**
- * Permet de remplacer des caractères d'une chaine par un autre caractère
+ * Permet de convertir un string en int
  * 
- * @param str La chaine dans laquelle on veut effectuer le remplacement
- * @param oldStr La liste des caractères à remplacer
- * @param newStr Le caractère de remplacement
- * @return Une nouvelle chaine avec les remplacements effectués
+ * @param i La string à convertir
+ * @return L'int correspondant à la string
  */
-string Utils::stringReplace(string str, string oldStr, char newStr) {
-	string results(str);
-	size_t found;
-
-	found = results.find_first_of(oldStr);
-	while (found != string::npos) {
-		results[found] = newStr;
-		found = str.find_first_of(oldStr, found + 1);
-	}
-
-	return results;
+int Utils::stringToInt(string s) {
+    std::istringstream iss(s);
+    int number;
+    iss >> number;
+	return number;
 }
 

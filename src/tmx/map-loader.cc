@@ -1,16 +1,11 @@
-/* 
- * File:   MapLoader.cpp
- * Author: Noemi
- * 
- * Created on 9 décembre 2012, 23:07
- */
-
 #include "map-loader.h"
 #include <iostream>
 #include "tinyxml2.h"
 #include "tileset.h"
+#include "tmx-tileset.h"
 #include <vector>
 #include "utils.h"
+#include <algorithm>
 
 using namespace tinyxml2;
 using namespace std;
@@ -52,17 +47,16 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	Layer basementLayer = map.getLayer(0);
 	Layer groundLayer = map.getLayer(1);
 	Layer objectLayer = map.getLayer(2);
+	TmxTileset basementTmxTileset;
+	TmxTileset groundTmxTileset;
+	TmxTileset objectTmxTileset;
 
 	// Récupération des tilesets	
-	// TODO: utiliser les variables qui suivent :D
-	// unsigned int basementFirstgid = 0;
-	// unsigned int groundFirstgid = 0;
-	// unsigned int objectFirstgid = 0;
 	XMLElement* xmlElement = tmx->FirstChildElement("tileset");
 	while (xmlElement) {
 		bool ok = true;
 		XMLElement* xmlTilesetTmp;
-		// unsigned int firstgid = xmlElement->IntAttribute("firstgid");
+		unsigned int firstGid = xmlElement->IntAttribute("firstgid");
 		string source = xmlElement->Attribute("source");
 
 		// Récupération du type de tileset (externe ou interne)
@@ -70,7 +64,7 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 		if (source == "") {
 			xmlTilesetTmp = xmlElement;
 		} else {
-			tsxDoc.LoadFile(string("src/tmx/resources/" + source).c_str());
+			tsxDoc.LoadFile(string("resources/" + source).c_str());
 			if (tsxDoc.ErrorID() != XML_SUCCESS) {
 				if (tsxDoc.ErrorID() == XML_ERROR_FILE_NOT_FOUND) {
 					throw string("Le fichier TSX " + source + " est introuvable");
@@ -85,35 +79,32 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 
 		// On vérifie le name du tileset pour savoir à quel layer il correspond
 		Tileset tileset;
+		TmxTileset* tmxTileset;
 		if (string(xmlTilesetTmp->Attribute("name")) == "basement") {
 			tileset = basementLayer.getTileset();
-			// basementFirstgid = firstgid;
+			tmxTileset = &basementTmxTileset;
 		} else if (string(xmlTilesetTmp->Attribute("name")) == "ground") {
 			tileset = groundLayer.getTileset();
-			// groundFirstgid = firstgid;
+			tmxTileset = &groundTmxTileset;
 		} else if (string(xmlTilesetTmp->Attribute("name")) == "object") {
 			tileset = objectLayer.getTileset();
-			// objectFirstgid = firstgid;
+			tmxTileset = &objectTmxTileset;
 		} else {
 			ok = false;
 		}
 		if (ok) { // Si le tileset appartient bien à un layer
-			tileset.setName(xmlTilesetTmp->Attribute("name"));
-			tileset.setSpacing(xmlTilesetTmp->IntAttribute("spacing"));
-			tileset.setTileHeight(xmlTilesetTmp->IntAttribute("tileheight"));
-			tileset.setTileWidth(xmlTilesetTmp->IntAttribute("tilewidth"));
+			tmxTileset->setFirstGid(firstGid);
+			tmxTileset->setSpacing(xmlTilesetTmp->IntAttribute("spacing"));
+			tmxTileset->setTileHeight(xmlTilesetTmp->IntAttribute("tileheight"));
+			tmxTileset->setTileWidth(xmlTilesetTmp->IntAttribute("tilewidth"));
 			XMLElement* element = xmlTilesetTmp->FirstChildElement("image");
-			tileset.setImage(element->Attribute("source"));
+			tmxTileset->setImage(element->Attribute("source"));
 			element = xmlTilesetTmp->FirstChildElement("tile");
 			while (element) { // Parcourt de la liste des tiles définies dans le tileset
-				Tile tile;
-				tile = Tile();
-				tile.setType(element->Attribute("id"));
+				string id = element->Attribute("id");
+				unsigned int idInt = (unsigned int) Utils::stringToInt(id);
 				XMLElement* xmlTile = element->FirstChildElement("properties")->FirstChildElement("property");
-				while (xmlTile) { // Parcourt de la liste des properties de la tile
-					tile.setProp(xmlTile->Attribute("name"), xmlTile->Attribute("value"));
-					xmlTile = xmlTile->NextSiblingElement("property");
-				}
+				tmxTileset->setProperty(idInt, string(xmlTile->Attribute("name")) + ":" + string(xmlTile->Attribute("value")));
 				element = element->NextSiblingElement("tile");
 			}
 		}
@@ -123,26 +114,27 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	// Récupération des layers
 	xmlElement = tmx->FirstChildElement("layer");
 	while (xmlElement) {
+		TmxTileset* tmxTileset;
 		Layer layer;
 		bool ok = true;
 		// unsigned int firstgid = 0;
 		// On vérifie le name du layer
 		if (string(xmlElement->Attribute("name")) == "basement") {
 			layer = basementLayer;
-			// firstgid = basementFirstgid;
+			tmxTileset = &basementTmxTileset;
 		} else if (string(xmlElement->Attribute("name")) == "ground") {
 			layer = groundLayer;
-			// firstgid = groundFirstgid;
+			tmxTileset = &groundTmxTileset;
 		} else if (string(xmlElement->Attribute("name")) == "object") {
 			layer = objectLayer;
-			// firstgid = objectFirstgid;
+			tmxTileset = &objectTmxTileset;
 		} else {
 			ok = false;
 		}
 		if (ok) { // Si le name correspond
 			// On vérifie que la taille est cohérente
-		  if ((unsigned int) xmlElement->IntAttribute("height") != height
-		      || (unsigned int) xmlElement->IntAttribute("width") != width) {
+			if ((unsigned int) xmlElement->IntAttribute("height") != height
+					|| (unsigned int) xmlElement->IntAttribute("width") != width) {
 				throw string("Il y a une incohérence entre la taille d'un layer et la taille de la map");
 			}
 			XMLElement* xmlData = xmlElement->FirstChildElement("data");
@@ -151,16 +143,28 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 				throw string("L'encodage " + string(xmlData->Attribute("encoding")) + " d'un layer n'est pas supporté");
 			}
 			string data = xmlData->GetText();
-			data = Utils::stringReplace(data,"\n ", '\0');
-			vector<string> dataVector = Utils::stringExplode(data,",");
+			
+			// Suppression des \n et des espaces
+			string tmp;
+			tmp.resize(data.size());
+			std::remove_copy(data.begin(), data.end(), tmp.begin(), '\n');
+			std::remove_copy(tmp.begin(), tmp.end(), data.begin(), ' ');
+			
+			vector<string> dataVector = Utils::stringExplode(data, ",");
 			size_t size = dataVector.size();
-			for (size_t i = 0; i<size ;i++) {
-				cout << dataVector.at(i) << endl;
-			}			
+			for (size_t i = 0; i < size; i++) {
+				unsigned int y = i / width;
+				unsigned int x = i % width;
+				string id = dataVector.at(i);
+				unsigned int idInt = (unsigned int) Utils::stringToInt(id);
+				idInt = idInt - tmxTileset->getFirstGid();
+				string property = tmxTileset->getProperty(idInt);
+				cout << i << " -> x:" << x << " y:" << y << " property:" << property << endl;
+				layer.setTile(x, y, property);
+			}
 		}
 		xmlElement = xmlElement->NextSiblingElement("layer");
 	}
-
 
 	return map;
 }
