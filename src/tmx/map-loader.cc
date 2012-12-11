@@ -12,13 +12,6 @@
 using namespace std;
 using namespace tinyxml2;
 
-/**
- * Permet de créer et de renvoyer une Map générée à partir d'un
- * fichier TMX
- * 
- * @param tmxPath Le chemin du fichier TMX
- * @return La Map générée
- */
 Map MapLoader::loadTmx(string tmxPath) throw (string) {
   // Charger le fichier TMX	
   XMLDocument tmxDoc;

@@ -12,9 +12,18 @@ using namespace std;
 using namespace tinyxml2;
 
 class MapLoader {
- public:
+public:
+
+  /*!
+    \brief Permet de créer et de renvoyer une Map générée à partir d'un
+    fichier TMX
+
+    \param tmxPath Le chemin du fichier TMX.
+    \return La Map générée.
+  */
   static Map loadTmx(string tmxPath) throw(string);
- private:
+
+private:
   static XMLElement* loadTsx(XMLElement* tsxElement) throw(string);
 
 };
