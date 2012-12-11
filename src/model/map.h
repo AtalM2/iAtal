@@ -30,7 +30,7 @@ public:
   /*!
     \brief Returns the Layer at the given level.
 
-    \param layer An integer which denotes the level choosen.
+    \param layer An integer which denotes the chosen level.
     \return The selected Layer.
   */
   Layer& getLayer(int layer) const;  
