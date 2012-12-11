@@ -2,8 +2,11 @@
 #ifndef LAYER_H
 #define LAYER_H
 
+#include <algorithm>
 #include <string>
 #include <vector>
+
+#include <glibmm/ustring.h>
 
 #include "tileset.h"
 
@@ -13,10 +16,10 @@ public:
   Layer(unsigned int width, unsigned int height);
   virtual ~Layer();
 
-  std::string getTile(unsigned int x, unsigned int y) const;
+  Glib::ustring getTile(unsigned int x, unsigned int y) const;
   void setTile(unsigned int x, unsigned int y, std::string tile);
 
-  Tileset getTileset() const;
+  Tileset & getTileset() const;
 
 private:
   std::vector< std::vector< std::string > > tiles_;
