@@ -1,14 +1,6 @@
-/* 
- * File:   tileset.h
- * Author: Noemi
- *
- * Created on 10 décembre 2012, 00:35
- */
-
 #ifndef TILESET_H
 #define	TILESET_H
 
-//#include "src/model/tile.h"
 #include "tile.h"
 #include <string>
 

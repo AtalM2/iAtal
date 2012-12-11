@@ -54,14 +54,15 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	Layer objectLayer = map.getLayer(2);
 
 	// Récupération des tilesets	
-	unsigned int basementFirstgid = 0;
-	unsigned int groundFirstgid = 0;
-	unsigned int objectFirstgid = 0;
+	// TODO: utiliser les variables qui suivent :D
+	// unsigned int basementFirstgid = 0;
+	// unsigned int groundFirstgid = 0;
+	// unsigned int objectFirstgid = 0;
 	XMLElement* xmlElement = tmx->FirstChildElement("tileset");
 	while (xmlElement) {
 		bool ok = true;
 		XMLElement* xmlTilesetTmp;
-		unsigned int firstgid = xmlElement->IntAttribute("firstgid");
+		// unsigned int firstgid = xmlElement->IntAttribute("firstgid");
 		string source = xmlElement->Attribute("source");
 
 		// Récupération du type de tileset (externe ou interne)
@@ -69,7 +70,7 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 		if (source == "") {
 			xmlTilesetTmp = xmlElement;
 		} else {
-			tsxDoc.LoadFile(string("resources/" + source).c_str());
+			tsxDoc.LoadFile(string("src/tmx/resources/" + source).c_str());
 			if (tsxDoc.ErrorID() != XML_SUCCESS) {
 				if (tsxDoc.ErrorID() == XML_ERROR_FILE_NOT_FOUND) {
 					throw string("Le fichier TSX " + source + " est introuvable");
@@ -86,13 +87,13 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 		Tileset tileset;
 		if (string(xmlTilesetTmp->Attribute("name")) == "basement") {
 			tileset = basementLayer.getTileset();
-			basementFirstgid = firstgid;
+			// basementFirstgid = firstgid;
 		} else if (string(xmlTilesetTmp->Attribute("name")) == "ground") {
 			tileset = groundLayer.getTileset();
-			groundFirstgid = firstgid;
+			// groundFirstgid = firstgid;
 		} else if (string(xmlTilesetTmp->Attribute("name")) == "object") {
 			tileset = objectLayer.getTileset();
-			objectFirstgid = firstgid;
+			// objectFirstgid = firstgid;
 		} else {
 			ok = false;
 		}
@@ -124,23 +125,24 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	while (xmlElement) {
 		Layer layer;
 		bool ok = true;
-		unsigned int firstgid = 0;
+		// unsigned int firstgid = 0;
 		// On vérifie le name du layer
 		if (string(xmlElement->Attribute("name")) == "basement") {
 			layer = basementLayer;
-			firstgid = basementFirstgid;
+			// firstgid = basementFirstgid;
 		} else if (string(xmlElement->Attribute("name")) == "ground") {
 			layer = groundLayer;
-			firstgid = groundFirstgid;
+			// firstgid = groundFirstgid;
 		} else if (string(xmlElement->Attribute("name")) == "object") {
 			layer = objectLayer;
-			firstgid = objectFirstgid;
+			// firstgid = objectFirstgid;
 		} else {
 			ok = false;
 		}
 		if (ok) { // Si le name correspond
 			// On vérifie que la taille est cohérente
-			if (xmlElement->IntAttribute("height") != height || xmlElement->IntAttribute("width") != width) {
+		  if ((unsigned int) xmlElement->IntAttribute("height") != height
+		      || (unsigned int) xmlElement->IntAttribute("width") != width) {
 				throw string("Il y a une incohérence entre la taille d'un layer et la taille de la map");
 			}
 			XMLElement* xmlData = xmlElement->FirstChildElement("data");
@@ -149,10 +151,10 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 				throw string("L'encodage " + string(xmlData->Attribute("encoding")) + " d'un layer n'est pas supporté");
 			}
 			string data = xmlData->GetText();
-			data = Utils::stringReplace(data,"\n ",NULL);
+			data = Utils::stringReplace(data,"\n ", '\0');
 			vector<string> dataVector = Utils::stringExplode(data,",");
 			size_t size = dataVector.size();
-			for (int i = 0; i<size ;i++) {
+			for (size_t i = 0; i<size ;i++) {
 				cout << dataVector.at(i) << endl;
 			}			
 		}

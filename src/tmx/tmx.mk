@@ -10,10 +10,12 @@ tmx_SOURCES = \
 	src/tmx/map-loader.cc \
 	src/tmx/tileset.cc \
 	src/tmx/tinyxml2.cc \
+	src/tmx/utils.cc \
 	$(NULL)
 
 tmx_CPPFLAGS = \
 	$(gtk_CFLAGS) \
+	-Isrc/model/ \
 	$(NULL)
 
 tmx_LDFLAGS = \

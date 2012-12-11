@@ -1,7 +1,12 @@
 #include "map-loader.h"
+#include <iostream>
 
 int
 main() {
-  MapLoader::getMap("src/tmx/resources/map.tmx");
+  try {
+  MapLoader::loadTmx("src/tmx/resources/map.tmx");
+  } catch(std::string s) {
+    std::cout << s << std::endl;
+  }
   return 0;
 }

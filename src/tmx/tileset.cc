@@ -1,10 +1,3 @@
-/* 
- * File:   tileset.cpp
- * Author: Noemi
- * 
- * Created on 10 décembre 2012, 00:35
- */
-
 #include "tileset.h"
 #include <iostream>
 

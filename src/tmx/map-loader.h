@@ -9,9 +9,8 @@
 #define	MAPLOADER_H
 
 #include <string>
-#include "map.h"
 #include "tinyxml2.h"
-//#include "src/model/map.h"
+#include "map.h"
 
 using namespace std;
 using namespace tinyxml2;
