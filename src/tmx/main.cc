@@ -1,4 +1,4 @@
-#include "tmx/map-loader.h"
+#include "map-loader.h"
 #include <iostream>
 
 int

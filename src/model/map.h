@@ -5,8 +5,8 @@
 #include <map>
 #include <glibmm/ustring.h>
 
-#include "model/map-utils.h"
-#include "model/layer.h"
+#include "map-utils.h"
+#include "layer.h"
 
 /*!
   \brief A Map is made of zero or more Layer.

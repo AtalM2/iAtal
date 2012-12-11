@@ -4,9 +4,15 @@ check_PROGRAMS = $(NULL)
 
 ACLOCAL_AMFLAGS = -I m4
 
-AM_CXXFLAGS = \
-	-std=c++0x \
-	$(DEBUG_CXXFLAGS) \
+AM_CXXFLAGS =			\
+	-std=c++0x			\
+	$(DEBUG_CXXFLAGS)	\
+	$(NULL)
+
+# The Automake documentation is wrong, INCLUDES isn't equivalent to
+# AM_CPPFLAGS. Don't use it and don't ask me why.
+INCLUDES =				\
+	-I$(srcdir)/src		\
 	$(NULL)
 
 include src/model/model.mk

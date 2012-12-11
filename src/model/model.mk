@@ -1,18 +1,17 @@
 bin_PROGRAMS += \
-	model \
+	model		\
 	$(NULL)
 
-model_SOURCES = \
-	src/model/main.cc \
-	src/model/map.cc \
-	src/model/layer.cc \
-	src/model/tile.cc \
-	src/tmx/tileset.cc \
+model_SOURCES =			\
+	src/model/main.cc	\
+	src/model/map.cc	\
+	src/model/layer.cc	\
+	src/model/tile.cc	\
+	src/tmx/tileset.cc	\
 	$(NULL)
 
-model_CPPFLAGS = \
-	$(gtk_CFLAGS) \
-	-Isrc/ \
+model_CPPFLAGS =		\
+	$(gtk_CFLAGS)		\
 	$(NULL)
 
 model_LDFLAGS = \

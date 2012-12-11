@@ -1,4 +1,4 @@
-#include "tmx/tileset.h"
+#include "tileset.h"
 #include <iostream>
 
 Tileset::Tileset() {
