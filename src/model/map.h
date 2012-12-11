@@ -36,7 +36,7 @@ public:
   Layer& getLayer(int layer) const;  
   
   /*!
-    \brief Default deconstructor.
+    \brief Default destructor.
 
   */
   virtual ~Map();

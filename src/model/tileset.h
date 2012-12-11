@@ -24,7 +24,7 @@ public:
   Tileset();
   
   /*!
-    \brief Default deconstructor.
+    \brief Default destructor.
 
   */
   virtual ~Tileset();
