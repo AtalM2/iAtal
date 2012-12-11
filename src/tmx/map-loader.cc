@@ -55,9 +55,9 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 
   // Création de l'objet Map
   Map map(width, height);
-  Layer basementLayer = map.getLayer(0);
-  Layer groundLayer = map.getLayer(1);
-  Layer objectLayer = map.getLayer(2);
+  Layer basementLayer = map.getLayer(Layer::Underground);
+  Layer groundLayer = map.getLayer(Layer::Ground);
+  Layer objectLayer = map.getLayer(Layer::Object);
   TmxTileset basementTmxTileset;
   TmxTileset groundTmxTileset;
   TmxTileset objectTmxTileset;
