@@ -77,8 +77,8 @@ public:
   Tileset & getTileset() const;
 
 private:
-  std::vector< std::vector< Glib::ustring > > tiles_;
-  Tileset tileset_;
+  std::vector< std::vector< Glib::ustring > > tiles_; //!< The matrix of tiles.
+  Tileset tileset_; //!< The Tileset attached to the Layer.
 
 };
 
