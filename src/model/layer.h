@@ -15,8 +15,8 @@
 
   Each tile of the matrix is a reference to a tile in the Tileset.
 
-  Thus, the real properties are attached to the tile in the Tileset
-  and not in the matrix itself.
+  Thus, the real properties are stored in the Tileset rather than in
+  the matrix itself.
 
   There are two reasons to do so:
   - That's how TMX stores data so it's easier to do it the same way.
