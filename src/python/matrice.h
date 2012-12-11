@@ -1,3 +1,4 @@
+// -*- c-basic-offset: 2; -*-
 #include <vector>
 #include <string>
 #include <map>
