@@ -6,6 +6,11 @@ namespace iatal
 {
   namespace map
   {
+
+    /*!
+      \brief An an enumeration used to select a Layer in a Map.
+
+      */
     typedef enum
     {
       UNDERGROUND,
