@@ -44,7 +44,7 @@ public:
 protected:
   
 private:
-  std::vector< Layer > layers_;
+  std::vector< Layer > layers_; //!< The set of Layer
 };
 
 #endif // MAP_H
