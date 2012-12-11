@@ -1,4 +1,4 @@
-#include "map.h"
+#include "model/map.h"
 
 Map::Map(unsigned int width,
 	 unsigned int height)

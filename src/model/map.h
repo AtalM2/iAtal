@@ -5,8 +5,8 @@
 #include <map>
 #include <glibmm/ustring.h>
 
-#include "map-utils.h"
-#include "layer.h"
+#include "model/map-utils.h"
+#include "model/layer.h"
 
 class Map
 {

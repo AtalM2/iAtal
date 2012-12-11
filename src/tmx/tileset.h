@@ -1,7 +1,7 @@
 #ifndef TILESET_H
 #define	TILESET_H
 
-#include "tile.h"
+#include "model/tile.h"
 #include <string>
 
 using namespace std;

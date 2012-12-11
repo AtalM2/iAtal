@@ -15,7 +15,7 @@ tmx_SOURCES = \
 
 tmx_CPPFLAGS = \
 	$(gtk_CFLAGS) \
-	-Isrc/model/ \
+	-Isrc/ \
 	$(NULL)
 
 tmx_LDFLAGS = \

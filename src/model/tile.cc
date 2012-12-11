@@ -1,4 +1,4 @@
-#include "tile.h"
+#include "model/tile.h"
 
 const Tile Tile::EMPTY;
 

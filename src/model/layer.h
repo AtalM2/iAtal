@@ -4,8 +4,8 @@
 #include <string>
 #include <vector>
 
-#include "tile.h"
-#include "tileset.h"
+#include "model/tile.h"
+#include "tmx/tileset.h"
 
 class Layer {
 public:

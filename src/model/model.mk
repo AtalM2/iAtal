@@ -7,10 +7,12 @@ model_SOURCES = \
 	src/model/map.cc \
 	src/model/layer.cc \
 	src/model/tile.cc \
+	src/tmx/tileset.cc \
 	$(NULL)
 
 model_CPPFLAGS = \
 	$(gtk_CFLAGS) \
+	-Isrc/ \
 	$(NULL)
 
 model_LDFLAGS = \

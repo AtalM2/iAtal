@@ -5,12 +5,12 @@
  * Created on 9 décembre 2012, 23:07
  */
 
-#include "map-loader.h"
+#include "tmx/map-loader.h"
 #include <iostream>
 #include "tinyxml2.h"
-#include "tileset.h"
+#include "tmx/tileset.h"
 #include <vector>
-#include "utils.h"
+#include "tmx/utils.h"
 
 using namespace tinyxml2;
 using namespace std;

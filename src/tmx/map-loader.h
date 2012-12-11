@@ -10,7 +10,7 @@
 
 #include <string>
 #include "tinyxml2.h"
-#include "map.h"
+#include "model/map.h"
 
 using namespace std;
 using namespace tinyxml2;
