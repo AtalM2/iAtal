@@ -1,3 +1,4 @@
+// -*- c-basic-offset: 2; -*-
 #ifndef MAP_H
 #define MAP_H
 
@@ -37,7 +38,7 @@ public:
   /*!
     \brief Default deconstructor.
 
-    */
+  */
   virtual ~Map();
 
 protected:

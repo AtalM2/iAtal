@@ -1,3 +1,4 @@
+// -*- c-basic-offset: 2; -*-
 #ifndef TILESET_H
 #define	TILESET_H
 
@@ -8,13 +9,13 @@ using namespace std;
 
 class Tileset {
 public:
-	Tileset();
-	virtual ~Tileset();
-	string getImage(string tile) const throw (string);
-	void setImage(string tile, string image);
+  Tileset();
+  virtual ~Tileset();
+  string getImage(string tile) const throw (string);
+  void setImage(string tile, string image);
 
 private:
-	map<string, string> tilesList_;
+  map<string, string> tilesList_;
 };
 
 #endif	/* TILESET_H */
