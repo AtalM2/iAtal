@@ -1,10 +1,9 @@
-#include "map-loader.h"
+#include "tmx/map-loader.h"
 #include <iostream>
-#include "tinyxml2.h"
-#include "tileset.h"
-#include "tmx-tileset.h"
+#include "model/tileset.h"
+#include "tmx/tmx-tileset.h"
 #include <vector>
-#include "utils.h"
+#include "tmx/utils.h"
 #include <algorithm>
 
 using namespace tinyxml2;

@@ -1,22 +1,22 @@
 bin_PROGRAMS += \
-	tmx			\
+	tmx \
 	$(NULL)
 
-tmx_SOURCES =					\
-	src/model/map.cc			\
-	src/model/layer.cc			\
-	src/model/tile.cc			\
-	src/tmx/main.cc				\
-	src/tmx/map-loader.cc		\
-	src/tmx/tileset.cc			\
-	src/tmx/tinyxml2.cc			\
-	src/tmx/utils.cc			\
+tmx_SOURCES = \
+	src/model/map.cc \
+	src/model/layer.cc \
+	src/tmx/main.cc \
+	src/tmx/map-loader.cc \
+	src/tmx/tileset.cc \
+	src/tmx/tmx-tileset.cc \
+	src/tmx/tinyxml2.cc \
+	src/tmx/utils.cc \
 	$(NULL)
 
-tmx_CPPFLAGS =			\
-	$(gtk_CFLAGS)		\
+tmx_CPPFLAGS = \
+	$(gtk_CFLAGS) \
 	$(NULL)
 
-tmx_LDFLAGS =	\
+tmx_LDFLAGS = \
 	$(gtk_LIBS) \
 	$(NULL)

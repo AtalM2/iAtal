@@ -2,8 +2,8 @@
 #define	MAP_LOADER_H
 
 #include <string>
-#include "tinyxml2.h"
-#include "map.h"
+#include "tmx/tinyxml2.h"
+#include "model/map.h"
 
 using namespace std;
 using namespace tinyxml2;
@@ -17,4 +17,3 @@ private:
 };
 
 #endif	/* MAP_LOADER_H */
-

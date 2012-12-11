@@ -6,7 +6,6 @@ model_SOURCES =			\
 	src/model/main.cc	\
 	src/model/map.cc	\
 	src/model/layer.cc	\
-	src/model/tile.cc	\
 	src/tmx/tileset.cc	\
 	$(NULL)
 
