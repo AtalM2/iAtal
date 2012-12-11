@@ -67,7 +67,7 @@ public:
     \param y The y-coordinate or ordinate.
     \param tile The new reference of the current tile.
   */
-  void setTile(unsigned int x, unsigned int y, std::string tile);
+  void setTile(unsigned int x, unsigned int y, Glib::ustring tile);
 
   /*!
     \brief Returns the Tileset of the Layer.
@@ -77,7 +77,7 @@ public:
   Tileset & getTileset() const;
 
 private:
-  std::vector< std::vector< std::string > > tiles_;
+  std::vector< std::vector< Glib::ustring > > tiles_;
   Tileset tileset_;
 
 };

@@ -11,12 +11,12 @@ Layer::Layer(unsigned int width,
   : tiles_(height),
     tileset_()
 {
-  std::vector< std::vector < std::string > >::iterator it =
+  std::vector< std::vector < Glib::ustring > >::iterator it =
     tiles_.begin();
   for(; it != tiles_.end(); it++)
     {
       it->resize(width);
-      std::vector< std::string >::iterator it2 = it->begin();
+      std::vector< Glib::ustring >::iterator it2 = it->begin();
       for(; it2 != it->end(); it2++)
 	{
 	  *it2 = "";
@@ -40,7 +40,7 @@ Layer::getTile(unsigned int x,
 void
 Layer::setTile(unsigned int x,
                unsigned int y,
-               std::string tile)
+               Glib::ustring tile)
 {
   tiles_.at(x).at(y) = tile;
 }
