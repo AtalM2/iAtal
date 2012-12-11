@@ -48,10 +48,11 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
   unsigned int tileWidth = tmx->IntAttribute("tilewidth");
   unsigned int tileHeight = tmx->IntAttribute("tileheight");
   // Vérification que tous les attributs sont présents
-  if (!height || !width || !tileWidth || !tileHeight) {
-    throw string("Un attribut est mal valorisé dans ")
-      + string("l'élément MAP du TMX");
-  }
+  if (!height || !width || !tileWidth || !tileHeight)
+    {
+      throw string("Un attribut est mal valorisé dans ")
+	+ string("l'élément MAP du TMX");
+    }
   // Vérification que la map est de type orthogonal
   if (string(tmx->Attribute("orientation")) != "orthogonal")
     {
@@ -106,9 +107,11 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	    }
 	  xmlTilesetTmp = tsxDoc.FirstChildElement("tileset");
 	}
-      // Une fois sortie, que le tileset soit interne ou externe, on manipule xmlTilesetTmp pareil
+      // Une fois sortie, que le tileset soit interne ou externe,
+      // on manipule xmlTilesetTmp pareil
 
-      // On vérifie le name du tileset pour savoir à quel layer il correspond
+      // On vérifie le name du tileset pour savoir à quel layer
+      // il correspond
       Tileset tileset;
       TmxTileset* tmxTileset;
       if (string(xmlTilesetTmp->Attribute("name")) == "basement")
