@@ -15,29 +15,35 @@ using namespace std;
 
 namespace Utils {
 
-    /**
-     * Permet de découper une chaine selon un séparateur pour la stocker dans un tableau
-     * 
-     * @param str La chaine à découper
-     * @param separator Le séparateur
-     * @return Un tableau de chaines de caractères
-     */
+    /*!
+      \brief Split a string according to a given sepator.
+
+      Example:
+      @verbatim
+      stringExplode("this;is;a;test", ";");
+      → ["this", "is", "a", "test"]
+      @endverbatim
+      
+      \param str The string to split.
+      \param separator The separator to be used.
+      \return A vector of strings.
+    */
     vector<string> stringExplode(string str, string separator);
 
-    /**
-     * Permet de convertir un int en string
-     * 
-     * @param i L'entier à convertir
-     * @return La string correspondante à l'int
-     */
+    /*!
+      \brief Convert an int to a string
+
+      \param i The int to be converted.
+      \return A string representing i.
+    */
     string intToString(int i);
     
-    /**
-     * Permet de convertir un string en int
-     * 
-     * @param i La string à convertir
-     * @return L'int correspondant à la string
-     */
+    /*!
+      \brief Convert a string to an int.
+
+      \param s The string to be converted.
+      \return A int representing s.
+    */
     int stringToInt(string s);
 };
 
