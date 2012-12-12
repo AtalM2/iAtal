@@ -57,7 +57,10 @@ void TmxTileset::setProperty(unsigned int id, string value) {
   propertiesList_[id] = value;
 }
 
-string TmxTileset::getProperty(unsigned int id) const throw (string) {
+string TmxTileset::getProperty(unsigned int id) const
+{
+  if(!id)
+    return "";
   std::map<unsigned int, string>::const_iterator it = propertiesList_.find(id);
   if (it != propertiesList_.end()) {
     return it->second;

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 
+#include <boost/algorithm/string.hpp>
+
 #include "model/tileset.h"
 #include "model/layer.h"
 
@@ -156,7 +158,8 @@ Map MapLoader::loadTmx(string tmxPath) {
 	    {
 	      string id = element->Attribute("id");
 	      unsigned int idInt =
-		(unsigned int) Utils::stringToInt(id);
+		static_cast<unsigned int>(std::stoi(id)) + 1;
+	      std::cout << idInt << std::endl;
 	      XMLElement* xmlTile =
 		element
 		->FirstChildElement("properties")
@@ -225,19 +228,29 @@ Map MapLoader::loadTmx(string tmxPath) {
 	  string data = xmlData->GetText();
 	  
 	  // Suppression des \n et des espaces
-	  std::remove(data.begin(), data.end(), '\n');
-	  std::remove(data.begin(), data.end(), ' ');
+	  std::string temp;
+	  std::remove_copy(data.begin(),
+			   data.end(),
+			   temp.begin(),
+			   '\n');
+	  std::remove_copy(temp.begin(),
+			   temp.end(),
+			   data.begin(),
+			   ' ');
 	  
-	  vector<string> dataVector = Utils::stringExplode(data,
-							   ",");
+	  std::vector< string > dataVector;
+	  boost::split(dataVector, data, boost::is_any_of(","));
+	  
 	  for(size_t i = 0, size = dataVector.size(); i < size; i++)
 	    {
 	      unsigned int y = i / map.width;
 	      unsigned int x = i % map.width;
 	      string id = dataVector.at(i);
 	      unsigned int idInt =
-		static_cast<unsigned int>(Utils::stringToInt(id));
-	      idInt = idInt - tmxTileset->getFirstGid();
+		static_cast<unsigned int>(std::stoi(id));
+	      idInt = idInt
+		? idInt - tmxTileset->getFirstGid() + 1
+		: idInt;
 	      string property = tmxTileset->getProperty(idInt);
 	      cout << i
 		   << " -> x:" << x
