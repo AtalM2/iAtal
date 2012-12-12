@@ -7,8 +7,8 @@
 class FileNotFoundException : public Exception 
 {
 public:
-  FileNotFoundException(const Glib::ustring & complement) throw() :
-    Exception("File not found: " + complement) {}
+  FileNotFoundException(const Glib::ustring & complement) throw()
+    : Exception("File not found: " + complement) {}
   virtual ~FileNotFoundException() throw () {}
 };
 

@@ -7,16 +7,16 @@
 
 class Exception : public std::exception
 {
- public:
-	virtual ~Exception() throw() {}
+public:
+  virtual ~Exception() throw() {}
 
-	const char* what() const throw() { return message_.c_str(); }
+  const char* what() const throw() { return message_.c_str(); }
 
- protected:
-	Exception(const Glib::ustring & m) throw() : message_(m) {}
+protected:
+  Exception(const Glib::ustring & m) throw() : message_(m) {}
 	
- private:
-	const Glib::ustring message_;
+private:
+  const Glib::ustring message_;
 };
 
 #endif // EXCEPTION_H

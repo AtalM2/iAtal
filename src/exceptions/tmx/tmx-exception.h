@@ -7,8 +7,8 @@
 class TmxException : public Exception 
 {
 public:
-  TmxException(const Glib::ustring & complement) throw() :
-    Exception("TMX error: " + complement) {}
+  TmxException(const Glib::ustring & complement) throw()
+    : Exception("TMX error: " + complement) {}
   virtual ~TmxException() throw () {}
 };
 
