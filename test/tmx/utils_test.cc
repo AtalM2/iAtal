@@ -31,3 +31,58 @@ UtilsTest::stringExplodeTest()
     CPPUNIT_ASSERT(ret.size() == 1);
 
 }
+
+void
+UtilsTest::intToStringTest()
+{
+    CPPUNIT_ASSERT(Utils::intToString(0) == "0");
+    CPPUNIT_ASSERT(Utils::intToString(10) == "10");
+    CPPUNIT_ASSERT(Utils::intToString(-42) == "-42");
+}
+
+void
+UtilsTest::stringToIntTest()
+{
+    CPPUNIT_ASSERT(Utils::stringToInt("0") == 0);
+    CPPUNIT_ASSERT(Utils::stringToInt("12") == 12);
+    CPPUNIT_ASSERT(Utils::stringToInt("-42") == -42);
+}
+
+void
+UtilsTest::stringToIntTestException1()
+{
+    Utils::stringToInt("pwet");
+}
+
+void
+UtilsTest::stringToIntTestException2()
+{
+    Utils::stringToInt("12.0");
+}
+
+void
+UtilsTest::stringToIntTestException3()
+{
+    Utils::stringToInt("--12");
+}
+
+void
+UtilsTest::stringToIntTestException4()
+{
+    Utils::stringToInt("-1)");
+}
+
+void
+UtilsTest::stringToIntTestException5()
+{
+    Utils::stringToInt("a0");
+}
+
+
+
+
+
+
+
+
+
