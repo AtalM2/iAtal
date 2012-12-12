@@ -22,6 +22,16 @@ Model::~Model()
 
 }
 
+
+Glib::ustring Model::getItem(Layer::Level level, unsigned int range)
+{
+  int xTarget = posXRobot + range*direction.first;
+  int yTarget = posYRobot + range*direction.second;
+
+  return map.getLayer(level).getTile(xTarget,yTarget);
+
+}
+
 void Model::turnLeft()
 {
   if (direction.first == 0)
@@ -36,8 +46,14 @@ void Model::turnLeft()
     }
 }
 
+void Model::goOn()
+{
+  posXRobot += direction.first;
+  posYRobot += direction.second;
+}
+
 void Model::tempDisplay()
 {
-  std::cout << posXRobot << std::endl;
+  std::cout << "pos : " << posXRobot << "," << posYRobot << std::endl;
   std::cout << "dir : " << direction.first << "," << direction.second << std::endl;
 }

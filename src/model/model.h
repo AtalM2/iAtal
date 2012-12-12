@@ -42,11 +42,23 @@ class Model
   */
   Glib::ustring getItem(Layer::Level level, unsigned int range);
 
+  /*!
+    \brief Changes the direction of the robot by turning him 90° left.
+  */
   void turnLeft();
 
+  /*
+    \brief The robot makes one step in its current direction.
+  */
+  void goOn();
+
+  /*!
+    \brief should disappear. Just displaying some info.
+   */
   void tempDisplay();
 
   /*
+    enum doesn't work with pairs. Only int. :/
   typedef enum
   {
     North = std::pair<int,int>(0,1), //!< Facing north
@@ -60,10 +72,10 @@ class Model
   ~Model();
 
  private:
-  unsigned int posXRobot;
-  unsigned int posYRobot;
-  std::pair<int,int> direction;
-  Map map;
+  unsigned int posXRobot; //!< the x postion of the robot
+  unsigned int posYRobot; //!< the y position of the robot
+  std::pair<int,int> direction; //!< the direction of the robot
+  Map map; //!< the map
 
 
 
