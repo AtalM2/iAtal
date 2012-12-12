@@ -62,18 +62,6 @@ public:
   static constexpr auto West = std::pair< int, int >(-1,0); //!< Facing west
   static constexpr auto East = std::pair< int, int >(1,0); //!< Facing east
 
-  /*
-    enum Doesn't work with pairs. Only int. :/
-    typedef enum
-    {
-    North = std::pair<int,int>(0,1), //!< Facing north.
-    South = std::pair<int,int>(0,-1), //!< Facing south.
-    West = std::pair<int,int>(-1,0), //!< Facing west.
-    East = std::pair<int,int>(1,0) //!< Facing east.
-
-    }Direction;
-  */
-
   ~Model();
 
 private:
