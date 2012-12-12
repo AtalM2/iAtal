@@ -13,13 +13,10 @@
 
 using namespace std;
 
-class Utils {
-public:
-	static vector<string> stringExplode(string str, string separator);
-	static string intToString(int i);
-	static int stringToInt(string s);
-private:
-
+namespace Utils {
+    vector<string> stringExplode(string str, string separator);
+    string intToString(int i);
+    int stringToInt(string s);
 };
 
 #endif	/* UTILS_H */
