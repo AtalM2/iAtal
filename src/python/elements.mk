@@ -25,6 +25,9 @@ bin_PROGRAMS += \
 test_python_SOURCES = \
 	src/python/main.cc \
 	src/python/matrice.cc \
+	src/model/map.cc \
+	src/model/layer.cc \
+	src/model/tileset.cc \
 	$(NULL)
 
 test_python_CXXFLAGS = \

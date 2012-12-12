@@ -4,6 +4,7 @@ compteur = 0
 
 #stratégie python
 def strat(case_avant):
+	#case_avant = controller.getCaseAvant()
 	if case_avant == "herbe":
 		return "avance"
 	else:

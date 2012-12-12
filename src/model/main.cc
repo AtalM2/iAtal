@@ -1,12 +1,15 @@
 // -*- c-basic-offset: 2; -*-
-#include "map.h"
+#include "model.h"
 
 #include <iostream>
 
 int
 main()
 {
-  Map map(10, 20, 10, 10);
-  map.getLayer(Layer::Underground).getTile(5, 5);
+  Model m(0,0,std::pair<int,int>(0,1),10,20,10,10);
+  m.tempDisplay();
+  
+  //  Map map(10, 20, 10, 10);
+  //map.getLayer(Layer::Underground).getTile(5, 5);
   return 0;
 }

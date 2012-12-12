@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include "matrice.h"
+#include "model/map.h"
 
 int main(int argc, char **argv)
 {
@@ -36,16 +37,19 @@ int main(int argc, char **argv)
       
       boost::python::object strat = py_["strat"];
       boost::python::object isEnded = py_["isEnded"];
-	
+
+      Map amap(5,5, 3, 3);
+      std::cout << "toto : " << amap.getLayer(Layer::Underground).getTile(4,4);
+
       Matrix mat = Matrix();
 
       boost::python::object endTestRes = isEnded();
       bool endTest = boost::python::extract<bool>(endTestRes);
       std::cout << endTest << std::endl;
 
-      while (!endTest)
-	{
-	  //getElement regarde la case devant le robot et renvoie son type
+      while (!endTest){
+	  //getElement regarde la case devant le robot et renvoie son
+	  //type
 	  std::string a = mat.getElement();
 
 
