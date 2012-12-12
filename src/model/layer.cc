@@ -1,27 +1,12 @@
 // -*- c-basic-offset: 2; -*-
 #include "layer.h"
 
-Layer::Layer()
-{
-
-}
-
 Layer::Layer(unsigned int width,
              unsigned int height)
-  : tiles_(height),
+  : tiles_(height, std::vector< Glib::ustring >(width, "")),
     tileset_()
 {
-  std::vector< std::vector < Glib::ustring > >::iterator it =
-    tiles_.begin();
-  for(; it != tiles_.end(); it++)
-    {
-      it->resize(width);
-      std::vector< Glib::ustring >::iterator it2 = it->begin();
-      for(; it2 != it->end(); it2++)
-	{
-	  *it2 = "";
-	}
-    }
+  
 }
 
 Layer::~Layer()

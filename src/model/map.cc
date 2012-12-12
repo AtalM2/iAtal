@@ -3,15 +3,9 @@
 
 Map::Map(unsigned int width,
          unsigned int height)
-  : layers_(3)
+  : layers_(3, Layer(width, height))
 {
-  std::vector< Layer >::iterator it = layers_.begin();
-  while(it != layers_.end())
-  {
-    Layer l(width, height);
-    *it = l;
-    it++;
-  }
+  
 }
 
 Map::~Map()

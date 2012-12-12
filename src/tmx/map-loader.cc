@@ -4,6 +4,7 @@
 #include <vector>
 
 #include "model/tileset.h"
+#include "model/layer.h"
 
 #include "tmx/map-loader.h"
 #include "tmx/tmx-tileset.h"
@@ -79,7 +80,7 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	}
       else
 	{
-	  tsxDoc.LoadFile(string("resources/"
+	  tsxDoc.LoadFile(string("src/tmx/resources/"
 				 + source).c_str());
 	  if (tsxDoc.ErrorID() != XML_SUCCESS)
 	    {
@@ -166,24 +167,24 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
   xmlElement = tmx->FirstChildElement("layer");
   while (xmlElement)
     {
-      TmxTileset* tmxTileset;
-      Layer layer;
+      TmxTileset* tmxTileset = NULL;
+      Layer* layer = NULL;
       bool ok = true;
       // unsigned int firstgid = 0;
       // On vérifie le name du layer
       if (string(xmlElement->Attribute("name")) == "basement")
 	{
-	  layer = basementLayer;
+	  layer = &basementLayer;
 	  tmxTileset = &basementTmxTileset;
 	}
       else if (string(xmlElement->Attribute("name")) == "ground")
 	{
-	  layer = groundLayer;
+	  layer = &groundLayer;
 	  tmxTileset = &groundTmxTileset;
 	}
       else if (string(xmlElement->Attribute("name")) == "object")
 	{
-	  layer = objectLayer;
+	  layer = &objectLayer;
 	  tmxTileset = &objectTmxTileset;
 	}
       else
@@ -240,7 +241,7 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 		   << " y:" << y
 		   << " property:" << property
 		   << endl;
-	      layer.setTile(x, y, property);
+	      layer->setTile(x, y, property);
 	    }
 	}
       xmlElement = xmlElement->NextSiblingElement("layer");

@@ -26,12 +26,6 @@ class Layer {
 public:
 
   /*!
-    \brief Construct an empty Layer.
-
-  */
-  Layer();
-
-  /*!
     \brief Construct a Layer of the given size.
 
     \param width The width of the Layer.
