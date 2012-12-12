@@ -7,37 +7,37 @@
 
 
 /*
-  \brief The model, containing the robot, the map and useful methods
+  \brief The Model, containing the robot, the Map and useful methods.
 
 */
 class Model
 {
 
- public:
+public:
 
   /*!  
-    \brief Initialize a model with a robot on the given position and a
-    map of the given size.
+    \brief Initialize a Model with a robot on the given position and a
+    Map of the given size.
 
-    \param posXRobot the x position of the Robot.
-    \param posYRobot the y position of the Robot.
-    \param direction the direction of the Robot
-    \param width the width of the map.
-    \param height the height of the map.
+    \param posXRobot The x position of the robot.
+    \param posYRobot The y position of the robot.
+    \param direction The direction of the robot.
+    \param width The width of the Map.
+    \param height The height of the map.
   */
   Model(unsigned int posXRobot,
-	unsigned int posYRobot,
-	std::pair<int,int> direction,
-	unsigned int width,
-	unsigned int height,
-	unsigned int tileWidth,
-	unsigned int tileHeight);
+        unsigned int posYRobot,
+        std::pair<int,int> direction,
+        unsigned int width,
+        unsigned int height,
+        unsigned int tileWidth,
+        unsigned int tileHeight);
 
   /*!
     \brief Gets a tile value.
 
-    \param level an integer wich denotes the chosen level.
-    \param range the number of tiles between the robot and the target
+    \param level An integer wich denotes the chosen Level.
+    \param range The number of tiles between the robot and the target
     tile.
   */
   Glib::ustring getItem(Layer::Level level, unsigned int range);
@@ -53,31 +53,29 @@ class Model
   void goOn();
 
   /*!
-    \brief should disappear. Just displaying some info.
-   */
+    \brief Should disappear. Just displaying some info.
+  */
   void tempDisplay();
 
   /*
-    enum doesn't work with pairs. Only int. :/
-  typedef enum
-  {
-    North = std::pair<int,int>(0,1), //!< Facing north
-    South = std::pair<int,int>(0,-1), //!< Facing south
-    West = std::pair<int,int>(-1,0), //!< Facing west
-    East = std::pair<int,int>(1,0) //!< Facing east
+    enum Doesn't work with pairs. Only int. :/
+    typedef enum
+    {
+    North = std::pair<int,int>(0,1), //!< Facing north.
+    South = std::pair<int,int>(0,-1), //!< Facing south.
+    West = std::pair<int,int>(-1,0), //!< Facing west.
+    East = std::pair<int,int>(1,0) //!< Facing east.
 
-  }Direction;
+    }Direction;
   */
 
   ~Model();
 
- private:
-  unsigned int posXRobot; //!< the x postion of the robot
-  unsigned int posYRobot; //!< the y position of the robot
-  std::pair<int,int> direction; //!< the direction of the robot
-  Map map; //!< the map
-
-
+private:
+  unsigned int posXRobot; //!< The x postion of the robot.
+  unsigned int posYRobot; //!< The y position of the robot.
+  std::pair<int,int> direction; //!< The direction of the robot.
+  Map map; //!< The Map.
 
 };
 
