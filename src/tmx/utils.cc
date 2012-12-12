@@ -1,6 +1,7 @@
 // -*- c-basic-offset: 2; -*-
 
 #include "utils.h"
+#include "exceptions/tmx/utils-exceptions.h"
 #include <sstream>
 
 namespace Utils {
@@ -31,6 +32,9 @@ namespace Utils {
     std::istringstream iss(s);
     int number;
     iss >> number;
+    if (iss.rdstate() == ios_base::failbit) {
+      throw ConversionException(s + " to int");
+    }
     return number;
   }
 }
