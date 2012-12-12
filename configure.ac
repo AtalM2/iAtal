@@ -55,12 +55,14 @@ if test "x$nodebug" = "xno"; then
    AC_SUBST(DEBUG_CXXFLAGS)
 fi
 
+# CPPUNIT configuration
+PKG_CHECK_MODULES([cppunit], [cppunit >= 1.12.1])
+m4_pattern_allow([AM_PATH_CPPUNIT])
+AM_PATH_CPPUNIT
+
 # Boost configuration
 BOOST_REQUIRE
 BOOST_PYTHON
-
-# CPPUNIT configuration
-AM_PATH_CPPUNIT
 
 # Doxygen configuration
 DX_INIT_DOXYGEN([iatal], docs/doxygen.cfg)
