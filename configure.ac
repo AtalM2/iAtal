@@ -51,7 +51,7 @@ AC_ARG_ENABLE([nodebug],
               [nodebug=no
               AC_MSG_RESULT([no])])
 if test "x$nodebug" = "xno"; then
-   DEBUG_CXXFLAGS="-g -Wall -Wextra -Wstrict-null-sentinel -Wno-non-template-friend -Wno-pmf-conversions -Wsign-promo -Werror"
+   DEBUG_CXXFLAGS="-ggdb -Wall -Wextra -Wstrict-null-sentinel -Wno-non-template-friend -Wno-pmf-conversions -Wsign-promo -Werror"
    AC_SUBST(DEBUG_CXXFLAGS)
 fi
 
