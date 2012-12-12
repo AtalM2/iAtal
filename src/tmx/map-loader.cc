@@ -114,21 +114,23 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 
       // On vérifie le name du tileset pour savoir à quel layer
       // il correspond
-      Tileset tileset;
-      TmxTileset* tmxTileset;
-      if (string(xmlTilesetTmp->Attribute("name")) == "basement")
+      // Tileset * tileset = NULL;
+      TmxTileset * tmxTileset = NULL;
+      Glib::ustring name =
+	Glib::ustring(xmlTilesetTmp->Attribute("name"));
+      if(name == "basement")
 	{
-	  tileset = basementLayer.getTileset();
+	  // tileset = &basementLayer.getTileset();
 	  tmxTileset = &basementTmxTileset;
 	}
-      else if (string(xmlTilesetTmp->Attribute("name")) == "ground")
+      else if(name == "ground")
 	{
-	  tileset = groundLayer.getTileset();
+	  // tileset = &groundLayer.getTileset();
 	  tmxTileset = &groundTmxTileset;
 	}
-      else if (string(xmlTilesetTmp->Attribute("name")) == "object")
+      else if(name == "object")
 	{
-	  tileset = objectLayer.getTileset();
+	  // tileset = &objectLayer.getTileset();
 	  tmxTileset = &objectTmxTileset;
 	}
       else
