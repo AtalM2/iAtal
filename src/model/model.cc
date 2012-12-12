@@ -54,3 +54,10 @@ void Model::tempDisplay()
   std::cout << "pos : " << posXRobot << ", " << posYRobot << std::endl;
   std::cout << "dir : " << direction.first << ", " << direction.second << std::endl;
 }
+
+// http://stackoverflow.com/a/272965/1069569
+// Static fields has to be allocated.
+constexpr std::pair< int, int > Model::North;
+constexpr std::pair< int, int > Model::South;
+constexpr std::pair< int, int > Model::West;
+constexpr std::pair< int, int > Model::East;
