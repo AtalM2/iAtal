@@ -2,9 +2,13 @@
 #include "map.h"
 
 Map::Map(unsigned int width,
-         unsigned int height)
+         unsigned int height,
+	 unsigned int tileWidth,
+         unsigned int tileHeight)
   : height(height),
     width(width),
+    tileHeight(tileHeight),
+    tileWidth(tileWidth),
     layers_(Layer::Level::LastLevel + 1, Layer(width, height))
 {
   

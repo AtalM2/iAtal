@@ -4,6 +4,7 @@
 
 #include <string>
 
+#include "exceptions/model/bad-parameters-exception.h"
 #include "exceptions/tmx/file-not-found-exception.h"
 #include "exceptions/tmx/tmx-exception.h"
 
@@ -24,13 +25,12 @@ public:
     \param tmxPath Le chemin du fichier TMX.
     \return La Map générée.
   */
-  static Map loadTmx(string tmxPath) throw(string);
+  static Map loadTmx(string tmxPath);
 
 private:
   static void loadTMXFile(XMLDocument & tmxDoc,
-		   const Glib::ustring & filepath)
-    throw (FileNotFoundException, TmxException);
-  static XMLElement* loadTsx(XMLElement* tsxElement) throw(string);
+			  const Glib::ustring & filepath);
+  static XMLElement* loadTsx(XMLElement* tsxElement);
 
 };
 

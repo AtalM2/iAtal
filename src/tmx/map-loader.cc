@@ -17,7 +17,6 @@ using namespace tinyxml2;
 void
 MapLoader::loadTMXFile(XMLDocument & tmxDoc,
 		       const Glib::ustring & filePath)
-  throw (FileNotFoundException, TmxException)
 {
   tmxDoc.LoadFile(filePath.c_str());
   if (tmxDoc.ErrorID() != XML_SUCCESS)
@@ -40,51 +39,54 @@ MapLoader::loadTMXFile(XMLDocument & tmxDoc,
     }
 }
 
-Map MapLoader::loadTmx(string tmxPath) throw (string) {
+
+Map MapLoader::loadTmx(string tmxPath) {
   // Charger le fichier TMX	
   XMLDocument tmxDoc;
   try
     {
       loadTMXFile(tmxDoc, tmxPath);
     }
-  catch(exception e)
+  catch(Exception e)
     {
-      std::cout << e.what() << std::endl;
-      exit(EXIT_FAILURE);
+      throw e;
     }
 
   // Récupération des informations générales
   XMLElement* tmx = tmxDoc.FirstChildElement("map");
-  unsigned int height = tmx->IntAttribute("height");
-  unsigned int width = tmx->IntAttribute("width");
-  unsigned int tileWidth = tmx->IntAttribute("tilewidth");
-  unsigned int tileHeight = tmx->IntAttribute("tileheight");
-  // Vérification que tous les attributs sont présents
-  if (!height || !width || !tileWidth || !tileHeight)
+  unsigned int width = tmx->IntAttribute("width"),
+    height = tmx->IntAttribute("height"),
+    tileWidth = tmx->IntAttribute("tilewidth"),
+    tileHeight = tmx->IntAttribute("tileheight");
+
+  if(!width || !height || !tileWidth || !tileHeight)
     {
-      throw string("Un attribut est mal valorisé dans ")
-	+ string("l'élément MAP du TMX");
+      ostringstream oss;
+      oss << "One of the map height, width, "
+	  << "tileHeight or tileWidth parsed was zero. "
+	  << "The map creation can go smoothly only if "
+	  << "this doesn't happen.";
+	throw BadParametersException(oss.str());
     }
+
   // Vérification que la map est de type orthogonal
   if (string(tmx->Attribute("orientation")) != "orthogonal")
     {
-      throw string("L'orientation du TMX doit être de ")
-	+ string("style orthogonal");
+      throw TmxException(
+	"The TMX orientation must be orthogonal.");
     }
 
   // Création de l'objet Map
-  Map map(width, height);
-  Layer basementLayer = map.getLayer(Layer::Underground);
-  Layer groundLayer = map.getLayer(Layer::Ground);
-  Layer objectLayer = map.getLayer(Layer::Object);
+  Map map(width, height, tileWidth, tileHeight);
+
   TmxTileset basementTmxTileset;
   TmxTileset groundTmxTileset;
   TmxTileset objectTmxTileset;
 
-  // Récupération des tilesets	
+  // Récupération des tilesets
   XMLElement* xmlElement = tmx->FirstChildElement("tileset");
   while (xmlElement)
-    {
+   {
       bool ok = true;
       XMLElement* xmlTilesetTmp;
       unsigned int firstGid = xmlElement->IntAttribute("firstgid");
@@ -102,10 +104,9 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	    {
 	      loadTMXFile(tsxDoc, "src/tmx/resources/" + source);
 	    }
-	  catch(exception e)
+	  catch(Exception e)
 	    {
-	      std::cout << e.what() << std::endl;
-	      exit(EXIT_FAILURE);
+	      throw e;
 	    }
 	  xmlTilesetTmp = tsxDoc.FirstChildElement("tileset");
 	}
@@ -185,17 +186,17 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
       string name = string(xmlElement->Attribute("name"));
       if(name == "basement")
 	{
-	  layer = &basementLayer;
+	  layer = &map.getLayer(Layer::Underground);
 	  tmxTileset = &basementTmxTileset;
 	}
       else if(name == "ground")
 	{
-	  layer = &groundLayer;
+	  layer = &map.getLayer(Layer::Ground);
 	  tmxTileset = &groundTmxTileset;
 	}
       else if(name == "object")
 	{
-	  layer = &objectLayer;
+	  layer = &map.getLayer(Layer::Object);
 	  tmxTileset = &objectTmxTileset;
 	}
       else

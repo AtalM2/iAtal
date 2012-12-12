@@ -4,6 +4,8 @@
 
 #include <vector>
 
+#include <glibmm/ustring.h>
+
 #include "layer.h"
 
 /*!
@@ -22,11 +24,17 @@ public:
     \param height the height of the map.
   */
   Map(unsigned int width,
-      unsigned int height);
+      unsigned int height,
+      unsigned int tileWidth,
+      unsigned int tileHeight);
 
   const unsigned int height; //!< The height of the map in cells
 
   const unsigned int width; //!< The width of the map in cells
+
+  const unsigned int tileHeight; //!< The height of the cells
+
+  const unsigned int tileWidth; //!< The width of the cells
 
   /*!
     \brief Returns the Layer at the given level.

@@ -6,7 +6,7 @@
 int
 main()
 {
-  Map map(10, 20);
+  Map map(10, 20, 10, 10);
   map.getLayer(Layer::Underground).getTile(5, 5);
   return 0;
 }
