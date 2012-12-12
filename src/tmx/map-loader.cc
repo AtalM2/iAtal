@@ -1,5 +1,6 @@
 // -*- c-basic-offset: 2; -*-
 #include <algorithm>
+#include <cstdlib>
 #include <iostream>
 #include <vector>
 
@@ -49,6 +50,7 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
   catch(exception e)
     {
       std::cout << e.what() << std::endl;
+      exit(EXIT_FAILURE);
     }
 
   // Récupération des informations générales
@@ -96,24 +98,14 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	}
       else
 	{
-	  tsxDoc.LoadFile(string("src/tmx/resources/"
-				 + source).c_str());
-	  if (tsxDoc.ErrorID() != XML_SUCCESS)
+	  try
 	    {
-	      if (tsxDoc.ErrorID() == XML_ERROR_FILE_NOT_FOUND)
-		{
-		  throw string("Le fichier TSX "
-			       + source
-			       + " est introuvable");
-		}
-	      else
-		{
-		  string error = Utils::intToString(tsxDoc.ErrorID());
-		  throw string("Impossible de charger le fichier TSX "
-			       + source
-			       + " - Erreur "
-			       + error);
-		}
+	      loadTMXFile(tsxDoc, "src/tmx/resources/" + source);
+	    }
+	  catch(exception e)
+	    {
+	      std::cout << e.what() << std::endl;
+	      exit(EXIT_FAILURE);
 	    }
 	  xmlTilesetTmp = tsxDoc.FirstChildElement("tileset");
 	}
