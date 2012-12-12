@@ -9,5 +9,5 @@ model_tests_LDFLAGS =	\
 	$(NULL)
 
 model_tests_SOURCES =	\
-	test/model/main.cpp	\
+	test/model/main.cc	\
 	$(NULL)

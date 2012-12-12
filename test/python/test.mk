@@ -8,6 +8,6 @@ python_tests_LDFLAGS =	\
 	$(CPPUNIT_LIBS)		\
 	$(NULL)
 
-python_tests_SOURCES =			\
-	test/python/main.cpp		\
+python_tests_SOURCES =	\
+	test/python/main.cc \
 	$(NULL)

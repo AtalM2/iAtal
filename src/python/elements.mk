@@ -16,7 +16,7 @@ elements_la_LDFLAGS =			\
 	$(NULL)
 
 elements_la_SOURCES =			\
-	src/python/matrice.cpp		\
+	src/python/matrice.cc		\
 	$(NULL)
 
 bin_PROGRAMS +=	\
@@ -24,8 +24,8 @@ bin_PROGRAMS +=	\
 	$(NULL)
 
 test_python_SOURCES =			\
-	src/python/main.cpp			\
-	src/python/matrice.cpp		\
+	src/python/main.cc			\
+	src/python/matrice.cc		\
 	$(NULL)
 
 test_python_CPPFLAGS =	\

@@ -9,5 +9,5 @@ ui_tests_LDFLAGS =		\
 	$(NULL)
 
 ui_tests_SOURCES =		\
-	test/ui/main.cpp	\
+	test/ui/main.cc		\
 	$(NULL)

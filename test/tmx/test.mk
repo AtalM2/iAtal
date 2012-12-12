@@ -9,5 +9,5 @@ tmx_tests_LDFLAGS =		\
 	$(NULL)
 
 tmx_tests_SOURCES =		\
-	test/tmx/main.cpp	\
+	test/tmx/main.cc	\
 	$(NULL)
