@@ -77,10 +77,10 @@ public:
   
   /*
    * If you modify this enum by adding or removing Level, DO NOT
-   * FORGET TO UPDATE FirstLevel and LastLevel if needed.
+   * FORGET TO UPDATE LastLevel if needed.
    *
    * Moreover, the elements have to be in the ascending order withtout
-   * "holes", and the first element has to be 1.
+   * "holes", and the first element has to be 0.
    */
   typedef enum
   {
