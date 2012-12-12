@@ -5,14 +5,22 @@ check_PROGRAMS = $(NULL)
 ACLOCAL_AMFLAGS = -I m4
 
 AM_CXXFLAGS = \
+	-I$(srcdir)/src \
 	-std=c++0x \
 	$(DEBUG_CXXFLAGS) \
-	-I$(srcdir)/src \
 	$(gtk_CFLAGS) \
+	$(python_CFLAGS)
 	$(NULL)
 
 AM_LDFLAGS = \
 	$(gtk_LIBS) \
+	$(python_LIBS) \
+	$(BOOST_PYTHON_LDFLAGS) \
+	-lboost_python-py32 \
+	$(NULL)
+
+AM_CPPFLAGS = \
+	$(BOOST_CPPFLAGS) \
 	$(NULL)
 
 include src/model/model.mk

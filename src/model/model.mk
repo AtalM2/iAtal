@@ -9,10 +9,6 @@ model_SOURCES =			\
 	src/model/tileset.cc \
 	$(NULL)
 
-model_CPPFLAGS =		\
-	$(gtk_CFLAGS)		\
-	$(NULL)
-
-model_LDFLAGS = \
-	$(gtk_LIBS) \
+model_CXXFLAGS = \
+	$(AM_CXXFLAGS) \
 	$(NULL)

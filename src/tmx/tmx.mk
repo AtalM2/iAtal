@@ -13,10 +13,6 @@ tmx_SOURCES = \
 	src/tmx/utils.cc \
 	$(NULL)
 
-tmx_CPPFLAGS = \
-	$(gtk_CFLAGS) \
-	$(NULL)
-
-tmx_LDFLAGS = \
-	$(gtk_LIBS) \
+tmx_CXXFLAGS = \
+	$(AM_CXXFLAGS) \
 	$(NULL)

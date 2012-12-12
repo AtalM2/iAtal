@@ -9,10 +9,6 @@ ui_SOURCES = \
 	src/tmx/utils.cc \
 	$(NULL)
 
-ui_CPPFLAGS = \
-	$(gtk_CFLAGS) \
-	$(NULL)
-
-ui_LDFLAGS = \
-	$(gtk_LIBS) \
+ui_CXXFLAGS = \
+	$(AM_CXXFLAGS) \
 	$(NULL)
