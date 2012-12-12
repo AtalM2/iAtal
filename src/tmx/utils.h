@@ -1,12 +1,5 @@
 // -*- c-basic-offset: 2; -*-
 
-/* 
- * File:   utils.h
- * Author: Noemi
- *
- * Created on 10 décembre 2012, 19:13
- */
-
 #ifndef UTILS_H
 #define	UTILS_H
 
