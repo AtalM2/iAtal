@@ -3,7 +3,9 @@
 
 Map::Map(unsigned int width,
          unsigned int height)
-  : layers_(Layer::Level::LastLevel + 1, Layer(width, height))
+  : height(height),
+    width(width),
+    layers_(Layer::Level::LastLevel + 1, Layer(width, height))
 {
   
 }

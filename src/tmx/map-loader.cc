@@ -206,9 +206,9 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 	{ // Si le name correspond
 	  // On vérifie que la taille est cohérente
 	  if ((unsigned int) xmlElement->IntAttribute("height")
-	      != height
+	      != map.height
 	      || (unsigned int) xmlElement->IntAttribute("width")
-	      != width)
+	      != map.width)
 	    {
 	      throw string("Il y a une incohérence entre la taille ")
 		+ string("d'un layer et la taille de la map");
@@ -231,8 +231,8 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 							   ",");
 	  for(size_t i = 0, size = dataVector.size(); i < size; i++)
 	    {
-	      unsigned int y = i / width;
-	      unsigned int x = i % width;
+	      unsigned int y = i / map.width;
+	      unsigned int x = i % map.width;
 	      string id = dataVector.at(i);
 	      unsigned int idInt =
 		static_cast<unsigned int>(Utils::stringToInt(id));

@@ -24,6 +24,10 @@ public:
   Map(unsigned int width,
       unsigned int height);
 
+  const unsigned int height; //!< The height of the map in cells
+
+  const unsigned int width; //!< The width of the map in cells
+
   /*!
     \brief Returns the Layer at the given level.
 
