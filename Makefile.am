@@ -4,10 +4,15 @@ check_PROGRAMS = $(NULL)
 
 ACLOCAL_AMFLAGS = -I m4
 
-AM_CXXFLAGS =			\
-	-std=c++0x			\
-	$(DEBUG_CXXFLAGS)	\
-	-I$(srcdir)/src		\
+AM_CXXFLAGS = \
+	-std=c++0x \
+	$(DEBUG_CXXFLAGS) \
+	-I$(srcdir)/src \
+	$(gtk_CFLAGS) \
+	$(NULL)
+
+AM_LDFLAGS = \
+	$(gtk_LIBS) \
 	$(NULL)
 
 include src/model/model.mk
