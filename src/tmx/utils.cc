@@ -32,7 +32,7 @@ namespace Utils {
     std::istringstream iss(s);
     int number;
     iss >> number;
-    if (iss.rdstate() == ios_base::failbit) {
+    if (iss.rdstate() != ios_base::eofbit) {
       throw ConversionException(s + " to int");
     }
     return number;
