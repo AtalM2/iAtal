@@ -74,12 +74,22 @@ public:
     \brief An an enumeration used to select a Layer in a Map.
 
   */
+  
+  /*
+   * If you modify this enum by adding or removing Level, DO NOT
+   * FORGET TO UPDATE FirstLevel and LastLevel if needed.
+   *
+   * Moreover, the elements have to be in the ascending order withtout
+   * "holes", and the first element has to be 1.
+   */
   typedef enum
   {
-    Underground,
-    Ground,
-    Air,
-    Object
+    Underground = 1,          //!< The Underground Level
+    Ground = 2,               //!< The Ground Level
+    Air = 3,                  //!< The Air Level
+    Object = 4,               //!< The Object Level
+    FirstLevel = Underground, //!< Equal to the first level of the enum
+    LastLevel = Object        //!< Equal to the last level of the enum
   } Level;
 
 
