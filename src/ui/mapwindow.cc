@@ -1,4 +1,5 @@
 #include "mapwindow.h"
+#include "tmx/utils.h"
 
 MapWindow::MapWindow()
   : button("Go"),
@@ -41,8 +42,8 @@ MapWindow::on_button_clicked()
   int dy_int = 0;
   try
     {
-      dx_int = std::stoi(dx.get_text());
-      dy_int = std::stoi(dy.get_text());
+        dx_int = Utils::stringToInt(dx.get_text());
+      dy_int = Utils::stringToInt(dy.get_text());
     }
   catch ( std::exception ex )
     {
