@@ -57,6 +57,11 @@ public:
   */
   void tempDisplay();
 
+  static constexpr std::pair<int,int> North = std::pair<int,int>(0,1); //!< Facing north
+  static constexpr std::pair<int,int> South = std::pair<int,int>(0,-1); //!< Facing south
+  static constexpr std::pair<int,int> West = std::pair<int,int>(-1,0); //!< Facing west
+  static constexpr std::pair<int,int> East = std::pair<int,int>(1,0); //!< Facing east
+
   /*
     enum Doesn't work with pairs. Only int. :/
     typedef enum
