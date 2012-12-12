@@ -13,26 +13,42 @@
 using namespace std;
 using namespace tinyxml2;
 
-Map MapLoader::loadTmx(string tmxPath) throw (string) {
-  // Charger le fichier TMX	
-  XMLDocument tmxDoc;
-  tmxDoc.LoadFile(tmxPath.c_str());
+void
+MapLoader::loadTMXFile(XMLDocument & tmxDoc,
+		       const Glib::ustring & filePath)
+  throw (FileNotFoundException, TmxException)
+{
+  tmxDoc.LoadFile(filePath.c_str());
   if (tmxDoc.ErrorID() != XML_SUCCESS)
     {
       if (tmxDoc.ErrorID() == XML_ERROR_FILE_NOT_FOUND)
 	{
-	  throw string("Le fichier TMX "
-		       + tmxPath
-		       + " est introuvable");
+	  throw FileNotFoundException("The TMX file "
+				      + filePath
+				      + " was not found.");
 	}
       else
 	{
-	  string error = Utils::intToString(tmxDoc.ErrorID());
-	  throw string("Impossible de charger le fichier TMX "
-		       + tmxPath
-		       + " - Erreur "
-		       + error);
+	  ostringstream error;
+	  error << "The loading of the TMX file failed. "
+		<< "The TMX error number is: "
+		<< static_cast<int>(tmxDoc.ErrorID())
+		<< ".";
+	  throw TmxException(error.str());
 	}
+    }
+}
+
+Map MapLoader::loadTmx(string tmxPath) throw (string) {
+  // Charger le fichier TMX	
+  XMLDocument tmxDoc;
+  try
+    {
+      loadTMXFile(tmxDoc, tmxPath);
+    }
+  catch(exception e)
+    {
+      std::cout << e.what() << std::endl;
     }
 
   // Récupération des informations générales
@@ -172,17 +188,18 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
       bool ok = true;
       // unsigned int firstgid = 0;
       // On vérifie le name du layer
-      if (string(xmlElement->Attribute("name")) == "basement")
+      string name = string(xmlElement->Attribute("name"));
+      if(name == "basement")
 	{
 	  layer = &basementLayer;
 	  tmxTileset = &basementTmxTileset;
 	}
-      else if (string(xmlElement->Attribute("name")) == "ground")
+      else if(name == "ground")
 	{
 	  layer = &groundLayer;
 	  tmxTileset = &groundTmxTileset;
 	}
-      else if (string(xmlElement->Attribute("name")) == "object")
+      else if(name == "object")
 	{
 	  layer = &objectLayer;
 	  tmxTileset = &objectTmxTileset;
@@ -211,29 +228,20 @@ Map MapLoader::loadTmx(string tmxPath) throw (string) {
 			   + " d'un layer n'est pas supporté");
 	    }
 	  string data = xmlData->GetText();
-	
+	  
 	  // Suppression des \n et des espaces
-	  string tmp;
-	  tmp.resize(data.size());
-	  std::remove_copy(data.begin(),
-			   data.end(),
-			   tmp.begin(),
-			   '\n');
-	  std::remove_copy(tmp.begin(),
-			   tmp.end(),
-			   data.begin(),
-			   ' ');
-	
+	  std::remove(data.begin(), data.end(), '\n');
+	  std::remove(data.begin(), data.end(), ' ');
+	  
 	  vector<string> dataVector = Utils::stringExplode(data,
 							   ",");
-	  size_t size = dataVector.size();
-	  for (size_t i = 0; i < size; i++)
+	  for(size_t i = 0, size = dataVector.size(); i < size; i++)
 	    {
 	      unsigned int y = i / width;
 	      unsigned int x = i % width;
 	      string id = dataVector.at(i);
 	      unsigned int idInt =
-		(unsigned int) Utils::stringToInt(id);
+		static_cast<unsigned int>(Utils::stringToInt(id));
 	      idInt = idInt - tmxTileset->getFirstGid();
 	      string property = tmxTileset->getProperty(idInt);
 	      cout << i

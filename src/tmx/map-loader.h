@@ -4,6 +4,9 @@
 
 #include <string>
 
+#include "exceptions/tmx/file-not-found-exception.h"
+#include "exceptions/tmx/tmx-exception.h"
+
 #include "model/map.h"
 
 #include "tmx/tinyxml2.h"
@@ -24,6 +27,9 @@ public:
   static Map loadTmx(string tmxPath) throw(string);
 
 private:
+  static void loadTMXFile(XMLDocument & tmxDoc,
+		   const Glib::ustring & filepath)
+    throw (FileNotFoundException, TmxException);
   static XMLElement* loadTsx(XMLElement* tsxElement) throw(string);
 
 };
