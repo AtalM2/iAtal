@@ -1,5 +1,4 @@
-tmx_SOURCES += \
-	src/lib/tinyxpath/htmlutil.cpp \
+tmx2_SOURCES += \
 	src/lib/tinyxpath/tinystr.cpp \
 	src/lib/tinyxpath/tinyxml.cpp \
 	src/lib/tinyxpath/tinyxmlerror.cpp \
