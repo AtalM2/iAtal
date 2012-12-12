@@ -84,11 +84,10 @@ public:
    */
   typedef enum
   {
-    Underground = 1,          //!< The Underground Level
-    Ground = 2,               //!< The Ground Level
-    Air = 3,                  //!< The Air Level
-    Object = 4,               //!< The Object Level
-    FirstLevel = Underground, //!< Equal to the first level of the enum
+    Underground = 0,          //!< The Underground Level
+    Ground = 1,               //!< The Ground Level
+    Air = 2,                  //!< The Air Level
+    Object = 3,               //!< The Object Level
     LastLevel = Object        //!< Equal to the last level of the enum
   } Level;
 

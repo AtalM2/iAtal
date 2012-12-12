@@ -3,7 +3,7 @@
 
 Map::Map(unsigned int width,
          unsigned int height)
-  : layers_(Layer::LastLevel, Layer(width, height))
+  : layers_(Layer::Level::LastLevel + 1, Layer(width, height))
 {
   
 }
@@ -15,13 +15,6 @@ Map::~Map()
 
 Layer&
 Map::getLayer(Layer::Level level)
-  const
 {
-  return (Layer &) layers_.at(level);
+  return layers_.at(static_cast<unsigned int>(level));
 }
-
-
-
-
-
-

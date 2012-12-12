@@ -3,10 +3,7 @@
 #define MAP_H
 
 #include <vector>
-#include <map>
-#include <string>
 
-#include "map-utils.h"
 #include "layer.h"
 
 /*!
@@ -33,7 +30,7 @@ public:
     \param layer An integer which denotes the chosen level.
     \return The selected Layer.
   */
-  Layer& getLayer(Layer::Level level) const;  
+  Layer& getLayer(Layer::Level level);  
   
   /*!
     \brief Default destructor.
