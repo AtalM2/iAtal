@@ -33,7 +33,7 @@ namespace Utils {
     int number;
     iss >> number;
     if (iss.rdstate() != ios_base::eofbit) {
-      throw ConversionException(s + " to int");
+      throw ConversionException("cannot convert string " + s + " to int");
     }
     return number;
   }

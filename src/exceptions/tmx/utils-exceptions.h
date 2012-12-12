@@ -8,7 +8,7 @@ class ConversionException : public Exception
 {
 public:
   ConversionException(const Glib::ustring & complement) throw()
-    : Exception("Cannot convert " + complement) {}
+    : Exception("Conversion error: " + complement) {}
   virtual ~ConversionException() throw () {}
 };
 
