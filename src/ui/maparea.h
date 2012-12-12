@@ -1,3 +1,5 @@
+// -*- c-basic-offset: 2; -*-
+
 #ifndef MAPAREA_H
 #define MAPAREA_H
 
@@ -10,8 +12,8 @@ class MapArea : public Gtk::DrawingArea
 
 public:
   MapArea(Glib::ustring file_path1,
-	  Glib::ustring file_path2,
-	  Glib::ustring file_path3);
+          Glib::ustring file_path2,
+          Glib::ustring file_path3);
   void move(int dx, int dy);
   virtual ~MapArea();
 

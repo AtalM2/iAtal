@@ -1,3 +1,5 @@
+// -*- c-basic-offset: 2; -*-
+
 #include <gtkmm/application.h>
 #include <glibmm/refptr.h>
 
@@ -8,8 +10,8 @@ main(int argc, char** argv)
 {
   Glib::RefPtr<Gtk::Application> app =
     Gtk::Application::create(argc,
-			     argv,
-			     "org.gtkmm.example");
+                             argv,
+                             "org.gtkmm.example");
 
   MapWindow window;
   

@@ -1,3 +1,5 @@
+// -*- c-basic-offset: 2; -*-
+
 #include <cairomm/context.h>
 #include <gdkmm/general.h> // set_source_pixbuf()
 #include <gdkmm/pixbufanimation.h>
@@ -7,25 +9,20 @@
 #include "maparea.h"
 
 MapArea::MapArea(Glib::ustring file_path1,
-		 Glib::ustring file_path2,
-		 Glib::ustring file_path3)
+                 Glib::ustring file_path2,
+                 Glib::ustring file_path3)
   : x(3),
     y(3)
 {
-  try
-    {
-      m_image1 = Gdk::Pixbuf::create_from_file(file_path1);
-      m_image2 = Gdk::Pixbuf::create_from_file(file_path2);
-      m_image3 = Gdk::Pixbuf::create_from_file(file_path3);
-    }
-  catch (const Glib::FileError& ex)
-    {
-      std::cerr << "FileError: " << ex.what() << std::endl;
-    }
-  catch (const Gdk::PixbufError& ex)
-    {
-      std::cerr << "PixbufError: " << ex.what() << std::endl;
-    }
+  try {
+    m_image1 = Gdk::Pixbuf::create_from_file(file_path1);
+    m_image2 = Gdk::Pixbuf::create_from_file(file_path2);
+    m_image3 = Gdk::Pixbuf::create_from_file(file_path3);
+  } catch (const Glib::FileError& ex) {
+    std::cerr << "FileError: " << ex.what() << std::endl;
+  } catch (const Gdk::PixbufError& ex) {
+    std::cerr << "PixbufError: " << ex.what() << std::endl;
+  }
 
   set_size_request(500, 500);
 }
@@ -39,26 +36,27 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
   if (!m_image1)
     return false;
   bool even = true;
-  for (int i = 0; i < 500; i += 20)
-      for (int j = 0; j < 500; j += 10)
-	{
+  for (int i = 0; i < 500; i += 20) {
+    for (int j = 0; j < 500; j += 10) {
 	  Gdk::Cairo::set_source_pixbuf(cr,
-					even ? m_image1 : m_image2,
-					i,
-					j);
+                                    even ? m_image1 : m_image2,
+                                    i,
+                                    j);
 	  cr->paint();
 	  
 	  Gdk::Cairo::set_source_pixbuf(cr,
-					even ? m_image2 : m_image1,
-					i + 10,
-					j);
+                                    even ? m_image2 : m_image1,
+                                    i + 10,
+                                    j);
 	  cr->paint(); 
 	  even = !even;
 	}
-  Gdk::Cairo::set_source_pixbuf(cr,
-				m_image3,
-				x,
-				y);
+    Gdk::Cairo::set_source_pixbuf(cr,
+                                  m_image3,
+                                  x,
+                                  y);
+  }
+  
   cr->paint(); 
   
   return true;

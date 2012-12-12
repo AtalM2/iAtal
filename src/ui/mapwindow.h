@@ -1,3 +1,5 @@
+// -*- c-basic-offset: 2; -*-
+
 #ifndef MAPWINDOW_H
 #define MAPWINDOW_H
 
@@ -15,11 +17,11 @@
 class MapWindow : public Gtk::Window
 {
 
- public:
+public:
   MapWindow();
   virtual ~MapWindow();
   
- protected:
+protected:
   void on_button_clicked();
   Gtk::Fixed layout;
   Gtk::HBox hbox;

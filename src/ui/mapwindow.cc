@@ -1,3 +1,5 @@
+// -*- c-basic-offset: 2; -*-
+
 #include "mapwindow.h"
 #include "tmx/utils.h"
 
@@ -6,8 +8,8 @@ MapWindow::MapWindow()
     dxl("dx : "),
     dyl("dy : "),
     area("src/ui/img/red.png",
-	 "src/ui/img/black.png",
-	 "src/ui/img/white.png")
+         "src/ui/img/black.png",
+         "src/ui/img/white.png")
 {
   set_title("Map experimentations");
   set_icon_from_file("src/ui/img/icon.png");
@@ -16,7 +18,7 @@ MapWindow::MapWindow()
   button
     .signal_clicked()
     .connect(sigc::mem_fun(*this,
-			   &MapWindow::on_button_clicked));
+                           &MapWindow::on_button_clicked));
   
   // Layout things
   hbox.pack_start(dxl);
@@ -40,14 +42,12 @@ MapWindow::on_button_clicked()
 {
   int dx_int = 0;
   int dy_int = 0;
-  try
-    {
-        dx_int = Utils::stringToInt(dx.get_text());
-      dy_int = Utils::stringToInt(dy.get_text());
-    }
-  catch ( std::exception ex )
-    {
-      std::cout << "Mauvaises valeurs pour les deltas !" << std::endl;
-    }
+  try {
+    dx_int = Utils::stringToInt(dx.get_text());
+    dy_int = Utils::stringToInt(dy.get_text());
+  } catch ( std::exception ex ) {
+    std::cout << "Mauvaises valeurs pour les deltas !" << std::endl;
+  }
+  
   area.move(dx_int, dy_int);
 }
