@@ -2,10 +2,17 @@
 
 #include <iostream>
 
+#include <gtkmm/application.h>
+
 #include "map-loader.h"
 
 int
-main() {
+main(int argc, char *argv[])
+{
+  Glib::RefPtr<Gtk::Application> app =
+    Gtk::Application::create(argc,
+                             argv,
+                             "fr.univnantes.atal");
   try
     {
       MapLoader::loadTmx("src/tmx/resources/map.tmx");

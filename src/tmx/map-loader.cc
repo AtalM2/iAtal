@@ -159,12 +159,12 @@ Map MapLoader::loadTmx(string tmxPath) {
 	    + element->Attribute("source"));
 	  element = xmlTilesetTmp->FirstChildElement("tile");
 	  // Parcourt de la liste des tiles définies dans le tileset
+	  std::cout << "<tileset>";
 	  while (element)
 	    {
 	      string id = element->Attribute("id");
 	      unsigned int idInt =
-            boost::lexical_cast<unsigned int>(id) + 1;
-	      std::cout << idInt << std::endl;
+		boost::lexical_cast<unsigned int>(id) + 1;
 	      XMLElement* xmlTile =
 		element
 		->FirstChildElement("properties")
@@ -178,6 +178,8 @@ Map MapLoader::loadTmx(string tmxPath) {
 	      element =
 		element->NextSiblingElement("tile");
 	    }
+	  std::cout << "</tileset>"
+		    << std::endl;
 	}
       xmlElement = xmlElement->NextSiblingElement("tileset");
     }
@@ -245,7 +247,8 @@ Map MapLoader::loadTmx(string tmxPath) {
 	  
 	  std::vector< string > dataVector;
 	  boost::split(dataVector, data, boost::is_any_of(","));
-	  
+	  std::cout << "<layer>";
+
 	  for(size_t i = 0, size = dataVector.size(); i < size; i++)
 	    {
 	      unsigned int y = i / map.width;
@@ -264,6 +267,7 @@ Map MapLoader::loadTmx(string tmxPath) {
 		   << endl;
 	      layer->setTile(x, y, property);
 	    }
+	  std::cout << "</layer>" << std::endl;
 	}
       xmlElement = xmlElement->NextSiblingElement("layer");
     }
