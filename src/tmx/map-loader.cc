@@ -5,13 +5,13 @@
 #include <vector>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include "model/tileset.h"
 #include "model/layer.h"
 
 #include "tmx/map-loader.h"
 #include "tmx/tmx-tileset.h"
-#include "tmx/utils.h"
 
 using namespace std;
 using namespace tinyxml2;
@@ -158,7 +158,7 @@ Map MapLoader::loadTmx(string tmxPath) {
 	    {
 	      string id = element->Attribute("id");
 	      unsigned int idInt =
-		static_cast<unsigned int>(std::stoi(id)) + 1;
+            boost::lexical_cast<unsigned int>(id) + 1;
 	      std::cout << idInt << std::endl;
 	      XMLElement* xmlTile =
 		element
@@ -247,7 +247,7 @@ Map MapLoader::loadTmx(string tmxPath) {
 	      unsigned int x = i % map.width;
 	      string id = dataVector.at(i);
 	      unsigned int idInt =
-		static_cast<unsigned int>(std::stoi(id));
+            boost::lexical_cast<unsigned int>(id);
 	      idInt = idInt
 		? idInt - tmxTileset->getFirstGid() + 1
 		: idInt;

@@ -6,7 +6,6 @@ ui_SOURCES = \
 	src/ui/main.cc \
 	src/ui/maparea.cc \
 	src/ui/mapwindow.cc \
-	src/tmx/utils.cc \
 	$(NULL)
 
 ui_CXXFLAGS = \

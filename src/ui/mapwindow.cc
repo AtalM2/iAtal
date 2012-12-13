@@ -1,7 +1,7 @@
 // -*- c-basic-offset: 2; -*-
 
 #include "mapwindow.h"
-#include "tmx/utils.h"
+#include <boost/lexical_cast.hpp>
 
 MapWindow::MapWindow()
   : button("Go"),
@@ -43,8 +43,8 @@ MapWindow::on_button_clicked()
   int dx_int = 0;
   int dy_int = 0;
   try {
-    dx_int = Utils::stringToInt(dx.get_text());
-    dy_int = Utils::stringToInt(dy.get_text());
+    dx_int = boost::lexical_cast<int>(dx.get_text());
+    dy_int = boost::lexical_cast<int>(dy.get_text());
   } catch ( std::exception ex ) {
     std::cout << "Mauvaises valeurs pour les deltas !" << std::endl;
   }
