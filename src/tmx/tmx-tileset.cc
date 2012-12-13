@@ -37,6 +37,22 @@ unsigned int TmxTileset::getTileWidth() const {
   return tileWidth_;
 }
 
+void TmxTileset::setHeight(unsigned int height) {
+  this->height_ = height;
+}
+
+unsigned int TmxTileset::getHeight() const {
+  return height_;
+}
+
+void TmxTileset::setWidth(unsigned int width) {
+  this->width_ = width;
+}
+
+unsigned int TmxTileset::getWidth() const {
+  return width_;
+}
+
 void TmxTileset::setImage(string image) {
   image_ = image;
 }
@@ -67,4 +83,11 @@ string TmxTileset::getProperty(unsigned int id) const
   } else {
     throw string("prop non existing");
   }
+}
+
+const map< unsigned int, string > &
+TmxTileset::getProperties()
+  const
+{
+  return propertiesList_;
 }

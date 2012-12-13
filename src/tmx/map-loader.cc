@@ -1,4 +1,6 @@
 // -*- c-basic-offset: 2; -*-
+#include "tmx/map-loader.h"
+
 #include <algorithm>
 #include <cstdlib>
 #include <iostream>
@@ -6,9 +8,10 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
+#include <gdkmm/pixbuf.h>
+#include <glibmm/fileutils.h>
 
 #include "model/tileset.h"
-#include "model/layer.h"
 
 #include "tmx/map-loader.h"
 #include "tmx/tmx-tileset.h"
@@ -117,23 +120,19 @@ Map MapLoader::loadTmx(string tmxPath) {
 
       // On vérifie le name du tileset pour savoir à quel layer
       // il correspond
-      // Tileset * tileset = NULL;
       TmxTileset * tmxTileset = NULL;
       Glib::ustring name =
 	Glib::ustring(xmlTilesetTmp->Attribute("name"));
       if(name == "basement")
 	{
-	  // tileset = &basementLayer.getTileset();
 	  tmxTileset = &basementTmxTileset;
 	}
       else if(name == "ground")
 	{
-	  // tileset = &groundLayer.getTileset();
 	  tmxTileset = &groundTmxTileset;
 	}
       else if(name == "object")
 	{
-	  // tileset = &objectLayer.getTileset();
 	  tmxTileset = &objectTmxTileset;
 	}
       else
@@ -149,9 +148,15 @@ Map MapLoader::loadTmx(string tmxPath) {
 	    xmlTilesetTmp->IntAttribute("tileheight"));
 	  tmxTileset->setTileWidth(
 	    xmlTilesetTmp->IntAttribute("tilewidth"));
+	  tmxTileset->setHeight(
+	    xmlTilesetTmp->IntAttribute("height"));
+	  tmxTileset->setWidth(
+	    xmlTilesetTmp->IntAttribute("width"));
 	  XMLElement* element =
 	    xmlTilesetTmp->FirstChildElement("image");
-	  tmxTileset->setImage(element->Attribute("source"));
+	  tmxTileset->setImage(
+	    Glib::ustring("src/tmx/resources/")
+	    + element->Attribute("source"));
 	  element = xmlTilesetTmp->FirstChildElement("tile");
 	  // Parcourt de la liste des tiles définies dans le tileset
 	  while (element)
@@ -263,6 +268,61 @@ Map MapLoader::loadTmx(string tmxPath) {
       xmlElement = xmlElement->NextSiblingElement("layer");
     }
   
+  handleTileset(map.getLayer(Layer::Level::Underground).getTileset(),
+		basementTmxTileset);
+  
   return map;
 }
 
+void
+MapLoader::handleTileset(Tileset & ts,
+			 const TmxTileset & tmxTs)
+{
+  unsigned int tileHeight = tmxTs.getTileHeight(),
+    tileWidth = tmxTs.getTileWidth(),
+    spacing = tmxTs.getSpacing(),
+    offsetX = tileWidth + spacing,
+    offsetY = tileHeight + spacing,
+    widthPix = tmxTs.getWidth(),
+    width = (widthPix == tileWidth
+	     ? 1
+	     : (widthPix + 1) / tileWidth);
+
+  Glib::RefPtr<Gdk::Pixbuf> image;
+  try
+    {
+      image = Gdk::Pixbuf::create_from_file(tmxTs.getImage());
+    }
+  catch (const Glib::FileError & ex)
+    {
+      std::cerr << "FileError: " << ex.what() << std::endl;
+    }
+  catch (const Gdk::PixbufError & ex)
+    {
+      std::cerr << "PixbufError: " << ex.what() << std::endl;
+    }
+
+  
+  std::cout << tmxTs.getImage() << std::endl;
+  
+  std::map< unsigned int, std::string > props =
+    tmxTs.getProperties();
+  std::for_each(
+    props.begin(),
+    props.end(),
+    [image, & ts, offsetX, offsetY, width, tileWidth, tileHeight]
+    (std::pair< unsigned int, std::string > p)
+    {
+      unsigned int index = p.first;
+      Glib::ustring property = p.second;
+      std::cout << p.first << p.second << std::endl;
+      Glib::RefPtr< Gdk::Pixbuf > tile =
+	Gdk::Pixbuf::create_subpixbuf(image,
+				      (index % width) * offsetX,
+				      (index / width) * offsetY,
+				      tileWidth,
+				      tileHeight);
+      ts.setImage(property, tile);
+    });
+  
+}

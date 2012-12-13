@@ -8,19 +8,26 @@ Tileset::Tileset() :
 }
 
 Tileset::~Tileset() {
-
+  
 }
 
-string Tileset::getImage(string tile) const throw (string) {
-  std::map< string, string >::const_iterator it =
-    tilesList_.find(tile);
+Glib::RefPtr< Gdk::Pixbuf >
+Tileset::getImage(string tile) {
+  Glib::RefPtr< Gdk::Pixbuf > p;
+  std::map< string,
+	    Glib::RefPtr< Gdk::Pixbuf >
+	    >::const_iterator it = tilesList_.find(tile);
   if (it != tilesList_.end()) {
-    return it->second;
+    p = it->second;
   } else {
     throw string("prop non existing");
   }
+  return p;
 }
 
-void Tileset::setImage(string tile, string image) {
+void
+Tileset::setImage(string tile,
+		  Glib::RefPtr< Gdk::Pixbuf > image)
+{
   tilesList_[tile] = image;
 }

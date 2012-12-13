@@ -55,9 +55,7 @@ void Model::tempDisplay()
   std::cout << "dir : " << direction.first << ", " << direction.second << std::endl;
 }
 
-// http://stackoverflow.com/a/272965/1069569
-// Static fields has to be allocated.
-constexpr std::pair< int, int > Model::North;
-constexpr std::pair< int, int > Model::South;
-constexpr std::pair< int, int > Model::West;
-constexpr std::pair< int, int > Model::East;
+const std::pair< int, int > Model::North(0, 1);
+const std::pair< int, int > Model::East(1, 0);
+const std::pair< int, int > Model::West(-1, 0);
+const std::pair< int, int > Model::South(0, -1);

@@ -21,6 +21,12 @@ public:
   void setTileWidth(unsigned int tileWidth);
   unsigned int getTileWidth() const;
 
+  void setHeight(unsigned int height);
+  unsigned int getHeight() const;
+
+  void setWidth(unsigned int width);
+  unsigned int getWidth() const;
+
   void setName(string name);
   string getName() const;
 
@@ -32,12 +38,16 @@ public:
 
   void setProperty(unsigned int id, string value);
   string getProperty(unsigned int id) const;
+  
+  const map< unsigned int, string > & getProperties() const;
 
 private:
   map<unsigned int, string> propertiesList_;
   unsigned int firstGid_,
     tileWidth_,
     tileHeight_,
+    width_,
+    height_,
     spacing_;
   string image_;
 

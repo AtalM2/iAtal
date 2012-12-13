@@ -8,9 +8,11 @@
 #include "exceptions/tmx/file-not-found-exception.h"
 #include "exceptions/tmx/tmx-exception.h"
 
+#include "model/tileset.h"
 #include "model/map.h"
 
 #include "tmx/tinyxml2.h"
+#include "tmx/tmx-tileset.h"
 
 using namespace std;
 using namespace tinyxml2;
@@ -30,6 +32,8 @@ public:
 private:
   static void loadTMXFile(XMLDocument & tmxDoc,
 			  const Glib::ustring & filepath);
+  static void handleTileset(Tileset & ts,
+			    const TmxTileset & tmxTs);
   static XMLElement* loadTsx(XMLElement* tsxElement);
 
 };

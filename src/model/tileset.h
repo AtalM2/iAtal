@@ -5,6 +5,8 @@
 #include <string>
 #include <map>
 
+#include <gdkmm/pixbuf.h>
+
 using namespace std;
 
 /*!
@@ -35,7 +37,7 @@ public:
     \param tile The reference of a tile in the Tileset.
     \return The image of the tile referenced.
   */
-  string getImage(string tile) const throw (string);
+Glib::RefPtr< Gdk::Pixbuf > getImage(string tile);
 
   
   /*!
@@ -44,11 +46,12 @@ public:
     \param tile The reference of a tile in the Tileset.
     \param image The new image of the selected tile.
   */
-  void setImage(string tile, string image);
+void setImage(string tile,
+	      Glib::RefPtr< Gdk::Pixbuf > image);
   
 private:
 
-  map<string, string> tilesList_; //!< map<reference, image>
+map<string, Glib::RefPtr< Gdk::Pixbuf > > tilesList_; //!< map<reference, image>
 };
 
 #endif	/* TILESET_H */

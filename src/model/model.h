@@ -57,10 +57,10 @@ public:
   */
   void tempDisplay();
 
-  static constexpr auto North = std::pair< int, int >(0, 1); //!< Facing north.
-  static constexpr auto South = std::pair< int, int >(0,-1); //!< Facing south.
-  static constexpr auto West = std::pair< int, int >(-1,0); //!< Facing west.
-  static constexpr auto East = std::pair< int, int >(1,0); //!< Facing east.
+  static const std::pair< int, int > North, //!< Facing north.
+    South, //!< Facing south.
+    West, //!< Facing west.
+    East; //!< Facing east.
 
   /*!
     \brief Default destructor.
