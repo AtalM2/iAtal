@@ -1,6 +1,4 @@
 // -*- c-basic-offset: 2; -*-
-#include <map>
-
 #include "tileset.h"
 
 Tileset::Tileset() :
@@ -11,23 +9,28 @@ Tileset::~Tileset() {
   
 }
 
-Glib::RefPtr< Gdk::Pixbuf >
-Tileset::getImage(string tile) {
-  Glib::RefPtr< Gdk::Pixbuf > p;
-  std::map< string,
-	    Glib::RefPtr< Gdk::Pixbuf >
+Glib::RefPtr< const Gdk::Pixbuf >
+Tileset::getImage(Glib::ustring tile)
+const
+{
+  Glib::RefPtr< const Gdk::Pixbuf > p;
+  std::map< Glib::ustring,
+	    Glib::RefPtr< const Gdk::Pixbuf >
 	    >::const_iterator it = tilesList_.find(tile);
-  if (it != tilesList_.end()) {
+  if (it != tilesList_.end())
+    {
     p = it->second;
-  } else {
+    }
+  else
+    {
     throw string("prop non existing");
-  }
+    }
   return p;
 }
 
 void
-Tileset::setImage(string tile,
-		  Glib::RefPtr< Gdk::Pixbuf > image)
+Tileset::setImage(Glib::ustring tile,
+		  Glib::RefPtr< const Gdk::Pixbuf > image)
 {
   tilesList_[tile] = image;
 }

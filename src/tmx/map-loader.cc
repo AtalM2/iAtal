@@ -252,15 +252,15 @@ Map MapLoader::loadTmx(string tmxPath) {
 	      unsigned int x = i % map.width;
 	      string id = dataVector.at(i);
 	      unsigned int idInt =
-            boost::lexical_cast<unsigned int>(id);
+		static_cast<unsigned int>(std::stoi(id));
 	      idInt = idInt
 		? idInt - tmxTileset->getFirstGid() + 1
 		: idInt;
 	      string property = tmxTileset->getProperty(idInt);
-	      cout << i
-		   << " -> x:" << x
-		   << " y:" << y
-		   << " property:" << property
+	      cout << i << (i < 10 ? " " : "")
+		   << " (" << x
+		   << ", " << y
+		   << " ) " << property
 		   << endl;
 	      layer->setTile(x, y, property);
 	    }
@@ -310,13 +310,13 @@ MapLoader::handleTileset(Tileset & ts,
   std::for_each(
     props.begin(),
     props.end(),
-    [image, & ts, offsetX, offsetY, width, tileWidth, tileHeight]
+    [& image, & ts, offsetX, offsetY, width, tileWidth, tileHeight]
     (std::pair< unsigned int, std::string > p)
     {
       unsigned int index = p.first;
       Glib::ustring property = p.second;
       std::cout << p.first << p.second << std::endl;
-      Glib::RefPtr< Gdk::Pixbuf > tile =
+      Glib::RefPtr< const Gdk::Pixbuf > tile =
 	Gdk::Pixbuf::create_subpixbuf(image,
 				      (index % width) * offsetX,
 				      (index / width) * offsetY,
