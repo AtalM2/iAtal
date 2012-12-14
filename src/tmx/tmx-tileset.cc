@@ -78,7 +78,7 @@ Glib::ustring TmxTileset::getProperty(unsigned int id) const
 {
   if(!id)
     return "";
-  std::map<unsigned int, Glib::ustring>::const_iterator it = propertiesList_.find(id);
+  TmxTileset::map::const_iterator it = propertiesList_.find(id);
   if (it != propertiesList_.end()) {
     return it->second;
   } else {
@@ -86,7 +86,7 @@ Glib::ustring TmxTileset::getProperty(unsigned int id) const
   }
 }
 
-const std::map< unsigned int, Glib::ustring > &
+const TmxTileset::map &
 TmxTileset::getProperties()
   const
 {

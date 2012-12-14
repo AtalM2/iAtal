@@ -7,6 +7,9 @@
 
 class TmxTileset {
 public:
+
+  typedef std::map< unsigned int, Glib::ustring > map;
+  
   TmxTileset();
   virtual ~TmxTileset();
 
@@ -37,10 +40,10 @@ public:
   void setProperty(unsigned int id, Glib::ustring value);
   Glib::ustring getProperty(unsigned int id) const;
   
-  const std::map< unsigned int, Glib::ustring > & getProperties() const;
+  const map & getProperties() const;
 
 private:
-  std::map<unsigned int, Glib::ustring> propertiesList_;
+  map propertiesList_;
   unsigned int firstGid_,
     tileWidth_,
     tileHeight_,

@@ -313,7 +313,7 @@ MapLoader::handleTileset(Tileset & ts,
   
   std::cout << tmxTs.getImage() << std::endl;
   
-  std::map< unsigned int, Glib::ustring > props =
+  TmxTileset::map props =
     tmxTs.getProperties();
   std::for_each(
     props.begin(),
