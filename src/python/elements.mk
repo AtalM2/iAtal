@@ -15,7 +15,7 @@ elements_la_LDFLAGS = \
 	$(NULL)
 
 elements_la_SOURCES = \
-	src/python/matrice.cc \
+	src/model/model.cc
 	$(NULL)
 
 bin_PROGRAMS += \

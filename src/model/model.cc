@@ -1,6 +1,16 @@
 // -*- c-basic-offset: 2; -*-
 #include "model.h"
 
+
+
+
+BOOST_PYTHON_MODULE(model) 
+{
+  boost::python::class_<Model>("Model")
+    //.def("goOn" , &Model::goOn)
+  .def("affiche", &Model::tempDisplay);
+}
+
 Model::Model(unsigned int posXRobot,
              unsigned int posYRobot,
              std::pair<int,int> direction,
@@ -13,6 +23,15 @@ Model::Model(unsigned int posXRobot,
     map(width, height, tileWidth, tileHeight)
 {
   this->direction = direction;
+}
+
+Model::Model(): posXRobot(0),
+    posYRobot(0),
+    map(10,10,10,10)
+{
+  direction = std::pair<int,int>(0,0);
+  
+
 }
 
 Model::~Model()
@@ -59,3 +78,4 @@ const std::pair< int, int > Model::North(0, 1);
 const std::pair< int, int > Model::East(1, 0);
 const std::pair< int, int > Model::West(-1, 0);
 const std::pair< int, int > Model::South(0, -1);
+

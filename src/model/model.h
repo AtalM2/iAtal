@@ -4,8 +4,8 @@
 
 #include "map.h"
 #include <iostream>
-
-
+#include <Python.h>
+#include <boost/python.hpp>
 /*
   \brief The Model, containing the robot, the Map and useful methods.
 
@@ -32,6 +32,8 @@ public:
         unsigned int height,
         unsigned int tileWidth,
         unsigned int tileHeight);
+
+Model();
 
   /*!
     \brief Gets a tile value.

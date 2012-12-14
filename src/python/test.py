@@ -1,9 +1,13 @@
+import model
+
 #globals
 ended = False
 compteur = 0
 
 #stratégie python
-def strat(case_avant):
+def strat(model):
+	model.affiche()
+'''
 	#case_avant = controller.getCaseAvant()
 	if case_avant == "herbe":
 		return "avance"
@@ -14,7 +18,7 @@ def strat(case_avant):
 			global ended
 			ended = True
 		return "tourne_gauche"
-
+'''
 #sert à savoir si la strat est finie ou non
 def isEnded():
 	return ended;

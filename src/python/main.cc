@@ -38,8 +38,8 @@ int main(int argc, char **argv)
       boost::python::object strat = py_["strat"];
       boost::python::object isEnded = py_["isEnded"];
 
-      Map amap(5,5, 3, 3);
-      std::cout << "toto : " << amap.getLayer(Layer::Underground).getTile(4,4);
+      //Model creation. Robot in 0,0 , facing north
+      Model *aModel = new Model(0,0,std::pair<int,int>(0,1), 3, 3, 15,15);
 
       Matrix mat = Matrix();
 
@@ -50,15 +50,20 @@ int main(int argc, char **argv)
       while (!endTest){
 	  //getElement regarde la case devant le robot et renvoie son
 	  //type
-	  std::string a = mat.getElement();
 
+	boost::shared_ptr<Model> aModel;
+        strat(boost::python::ptr(o.get()));
 
-	  py_["case_avant"] = boost::python::object(a);
-	  boost::python::object res = strat(a);
-
-	  std::string result = boost::python::extract<std::string>(res);
-	  //std::cout << "result = " << result << std::endl;
-
+	/*
+	std::string a = mat.getElement();
+	
+	
+	py_["case_avant"] = boost::python::object(a);
+	boost::python::object res = strat(a);
+	
+	std::string result = boost::python::extract<std::string>(res);
+	//std::cout << "result = " << result << std::endl;
+	
 	  if (result == "avance")
 	    {
 	      mat.avance();
@@ -69,7 +74,7 @@ int main(int argc, char **argv)
 	      mat.turnLeft();
 	      std::cout << "tourne" << std::endl;
 	    }
-
+	*/
 
 	  endTestRes = isEnded();
 	  endTest = boost::python::extract<bool>(endTestRes);
