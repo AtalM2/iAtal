@@ -1,17 +1,19 @@
 #include "Python.h"
 #include <boost/python.hpp>
 
-#include <string>
+#include "python_hello.h"
 
-using namespace std;
-
-struct World
+void
+World::set(std::string msg)
 {
-    void set(string msg) { this->msg = msg; }
-    string greet() { return msg; }
-    string msg;
-    
-};
+    this->msg = msg;
+}
+
+const std::string
+World::greet() const
+{
+    return this->msg;
+}
 
 // BOOST_PYTHON_MODULE(MODULE_NAME)
 // 
