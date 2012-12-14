@@ -16,7 +16,6 @@
 #include "tmx/map-loader.h"
 #include "tmx/tmx-tileset.h"
 
-using namespace std;
 using namespace tinyxml2;
 
 void
@@ -314,7 +313,7 @@ MapLoader::handleTileset(Tileset & ts,
   
   std::cout << tmxTs.getImage() << std::endl;
   
-  std::map< unsigned int, std::string > props =
+  std::map< unsigned int, Glib::ustring > props =
     tmxTs.getProperties();
   std::for_each(
     props.begin(),

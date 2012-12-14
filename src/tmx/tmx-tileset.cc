@@ -53,11 +53,11 @@ unsigned int TmxTileset::getWidth() const {
   return width_;
 }
 
-void TmxTileset::setImage(string image) {
+void TmxTileset::setImage(Glib::ustring image) {
   image_ = image;
 }
 
-string TmxTileset::getImage() const {
+Glib::ustring TmxTileset::getImage() const {
   return image_;
 }
 
@@ -69,23 +69,23 @@ unsigned int TmxTileset::getFirstGid() const {
   return firstGid_;
 }
 
-void TmxTileset::setProperty(unsigned int id, string value) {
+void TmxTileset::setProperty(unsigned int id, Glib::ustring value) {
   propertiesList_[id] = value;
 }
 
-string TmxTileset::getProperty(unsigned int id) const
+Glib::ustring TmxTileset::getProperty(unsigned int id) const
 {
   if(!id)
     return "";
-  std::map<unsigned int, string>::const_iterator it = propertiesList_.find(id);
+  std::map<unsigned int, Glib::ustring>::const_iterator it = propertiesList_.find(id);
   if (it != propertiesList_.end()) {
     return it->second;
   } else {
-    throw string("prop non existing");
+    throw Glib::ustring("prop non existing");
   }
 }
 
-const map< unsigned int, string > &
+const std::map< unsigned int, Glib::ustring > &
 TmxTileset::getProperties()
   const
 {

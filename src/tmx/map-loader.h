@@ -14,7 +14,6 @@
 #include "tmx/tinyxml2.h"
 #include "tmx/tmx-tileset.h"
 
-using namespace std;
 using namespace tinyxml2;
 
 class MapLoader {

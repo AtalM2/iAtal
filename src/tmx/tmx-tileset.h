@@ -3,9 +3,7 @@
 #ifndef TMX_TILESET_H
 #define	TMX_TILESET_H
 
-#include <string>
-
-using namespace std;
+#include <gtkmm/application.h>
 
 class TmxTileset {
 public:
@@ -27,29 +25,29 @@ public:
   void setWidth(unsigned int width);
   unsigned int getWidth() const;
 
-  void setName(string name);
-  string getName() const;
+  void setName(Glib::ustring name);
+  Glib::ustring getName() const;
 
-  void setImage(string image);
-  string getImage() const;
+  void setImage(Glib::ustring image);
+  Glib::ustring getImage() const;
 
   void setFirstGid(unsigned int firstGid);
   unsigned int getFirstGid() const;
 
-  void setProperty(unsigned int id, string value);
-  string getProperty(unsigned int id) const;
+  void setProperty(unsigned int id, Glib::ustring value);
+  Glib::ustring getProperty(unsigned int id) const;
   
-  const map< unsigned int, string > & getProperties() const;
+  const std::map< unsigned int, Glib::ustring > & getProperties() const;
 
 private:
-  map<unsigned int, string> propertiesList_;
+  std::map<unsigned int, Glib::ustring> propertiesList_;
   unsigned int firstGid_,
     tileWidth_,
     tileHeight_,
     width_,
     height_,
     spacing_;
-  string image_;
+  Glib::ustring image_;
 
 };
 
