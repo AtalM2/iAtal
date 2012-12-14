@@ -3,14 +3,16 @@
 #ifndef MAPWINDOW_H
 #define MAPWINDOW_H
 
+#include <iostream>
+#include <memory>
+#include <string>
+
 #include <glibmm/ustring.h>
 #include <gtkmm/window.h>
 #include <gtkmm/fixed.h>
 #include <gtkmm/box.h>
 #include <gtkmm/button.h>
 #include <gtkmm/entry.h>
-#include <iostream>
-#include <string>
 
 #include "maparea.h"
 
@@ -18,7 +20,7 @@ class MapWindow : public Gtk::Window
 {
 
 public:
-  MapWindow();
+  MapWindow(const std::shared_ptr< Map > & map);
   virtual ~MapWindow();
   
 protected:

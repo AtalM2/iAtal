@@ -3,13 +3,11 @@
 #include "mapwindow.h"
 #include <boost/lexical_cast.hpp>
 
-MapWindow::MapWindow()
+MapWindow::MapWindow(const std::shared_ptr< Map > & map)
   : button("Go"),
     dxl("dx : "),
     dyl("dy : "),
-    area("src/ui/img/red.png",
-         "src/ui/img/black.png",
-         "src/ui/img/white.png")
+    area(map)
 {
   set_title("Map experimentations");
   set_icon_from_file("src/ui/img/icon.png");
@@ -40,14 +38,14 @@ MapWindow::~MapWindow()
 void
 MapWindow::on_button_clicked()
 {
-  int dx_int = 0;
-  int dy_int = 0;
-  try {
-    dx_int = boost::lexical_cast<int>(dx.get_text());
-    dy_int = boost::lexical_cast<int>(dy.get_text());
-  } catch ( std::exception ex ) {
-    std::cout << "Mauvaises valeurs pour les deltas !" << std::endl;
-  }
+  // int dx_int = 0;
+  // int dy_int = 0;
+  // try {
+  //   dx_int = boost::lexical_cast<int>(dx.get_text());
+  //   dy_int = boost::lexical_cast<int>(dy.get_text());
+  // } catch ( std::exception ex ) {
+  //   std::cout << "Mauvaises valeurs pour les deltas !" << std::endl;
+  // }
   
-  area.move(dx_int, dy_int);
+  //  area.move(dx_int, dy_int);
 }
