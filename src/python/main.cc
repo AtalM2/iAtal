@@ -6,6 +6,7 @@
 #include <map>
 #include "matrice.h"
 #include "model/map.h"
+#include "model/model.h"
 
 int main(int argc, char **argv)
 {
@@ -51,8 +52,8 @@ int main(int argc, char **argv)
 	  //getElement regarde la case devant le robot et renvoie son
 	  //type
 
-	boost::shared_ptr<Model> aModel;
-        strat(boost::python::ptr(o.get()));
+	boost::shared_ptr<Model> ptr(aModel);
+        strat(boost::python::ptr(ptr));
 
 	/*
 	std::string a = mat.getElement();
