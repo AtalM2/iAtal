@@ -2,10 +2,16 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+/*
+ * Python.h must be included before any standard headers.
+ * http://docs.python.org/2/c-api/intro.html#includes
+ */
+#include <Python.h>
+
+#include <boost/python.hpp>
+
 #include "map.h"
 #include <iostream>
-#include <Python.h>
-#include <boost/python.hpp>
 /*
   \brief The Model, containing the robot, the Map and useful methods.
 

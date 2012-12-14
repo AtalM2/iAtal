@@ -1,5 +1,10 @@
 // -*- c-basic-offset: 2; -*-
+/*
+ * Python.h must be included before any standard headers.
+ * http://docs.python.org/2/c-api/intro.html#includes
+ */
 #include <Python.h>
+
 #include <boost/python.hpp>
 #include <vector>
 #include <string>
