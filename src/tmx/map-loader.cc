@@ -158,7 +158,6 @@ Map MapLoader::loadTmx(string tmxPath) {
 	    element->IntAttribute("width"));
 	  element = xmlTilesetTmp->FirstChildElement("tile");
 	  // Parcourt de la liste des tiles définies dans le tileset
-	  std::cout << "<tileset>";
 	  while (element)
 	    {
 	      string id = element->Attribute("id");
@@ -177,8 +176,6 @@ Map MapLoader::loadTmx(string tmxPath) {
 	      element =
 		element->NextSiblingElement("tile");
 	    }
-	  std::cout << "</tileset>"
-		    << std::endl;
 	}
       xmlElement = xmlElement->NextSiblingElement("tileset");
     }
@@ -262,20 +259,18 @@ Map MapLoader::loadTmx(string tmxPath) {
 		? idInt - tmxTileset->getFirstGid() + 1
 		: idInt;
 	      string property = tmxTileset->getProperty(idInt);
-	      cout << i << (i < 10 ? " " : "")
-		   << " (" << x
-		   << ", " << y
-		   << " ) " << property
-		   << endl;
 	      layer->setTile(x, y, property);
 	    }
-	  std::cout << "</layer>" << std::endl;
 	}
       xmlElement = xmlElement->NextSiblingElement("layer");
     }
   
   handleTileset(map.getLayer(Layer::Level::Underground).getTileset(),
 		basementTmxTileset);
+  handleTileset(map.getLayer(Layer::Level::Ground).getTileset(),
+		groundTmxTileset);
+  handleTileset(map.getLayer(Layer::Level::Object).getTileset(),
+		objectTmxTileset);
   
   return map;
 }
@@ -294,8 +289,6 @@ MapLoader::handleTileset(Tileset & ts,
 	     ? 1
 	     : (widthPix + 1) / tileWidth);
 
-  std::cout << widthPix << '-' << width << '-' << tileWidth << std::endl;
-  
   Glib::RefPtr<Gdk::Pixbuf> image;
   try
     {
@@ -323,11 +316,10 @@ MapLoader::handleTileset(Tileset & ts,
     {
       unsigned int index = p.first;
       Glib::ustring property = p.second;
-      std::cout << p.first << p.second << std::endl;
       Glib::RefPtr< const Gdk::Pixbuf > tile =
 	Gdk::Pixbuf::create_subpixbuf(image,
-				      (index % width) * offsetX,
-				      (index / width) * offsetY,
+				      ((index - 1) % width) * offsetX,
+				      ((index - 1) / width) * offsetY,
 				      tileWidth,
 				      tileHeight);
       ts.setImage(property, tile);

@@ -20,24 +20,38 @@ MapArea::~MapArea()
 
 bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 {
-  Layer layer = map_->getLayer(Layer::Level::Underground);
-  Tileset tileset = layer.getTileset();
-  for(unsigned int x = 0; x < map_->width; x++)
+  std::vector< Layer > layers = {
+    map_->getLayer(Layer::Level::Underground),
+    map_->getLayer(Layer::Level::Ground),
+    map_->getLayer(Layer::Level::Object),    
+  };
+  std::for_each(
+    layers.begin(),
+    layers.end(),
+    [this, & cr] (const Layer & layer)
     {
-      for(unsigned int y = 0; y < map_->height; y++)
+      Tileset tileset = layer.getTileset();
+      for(unsigned int x = 0; x < map_->width; x++)
 	{
-	  Glib::ustring id = layer.getTile(x, y);
-	  Glib::RefPtr< const Gdk::Pixbuf > image =
-	    tileset.getImage(id);
-  	  Gdk::Cairo::set_source_pixbuf(
-	    cr,
-	    Glib::RefPtr< Gdk::Pixbuf >::cast_const(image),
-	    x * map_->tileWidth,
-	    y * map_->tileHeight);
-  	  cr->paint();
-	  
+	  for(unsigned int y = 0; y < map_->height; y++)
+	    {
+	      Glib::ustring id = layer.getTile(x, y);
+	      if(id != "")
+		{
+		  std::cout << x << "-" << y << "-" << id << std::endl;
+		  Glib::RefPtr< const Gdk::Pixbuf > image =
+		    tileset.getImage(id);
+		  Gdk::Cairo::set_source_pixbuf(
+		    cr,
+		    Glib::RefPtr< Gdk::Pixbuf >::cast_const(image),
+		    x * map_->tileWidth,
+		    y * map_->tileHeight);
+		  cr->paint();
+		}
+	    }
 	}
     }
+  );
   // if (!m_image1)
   //   return false;
   // bool even = true;
