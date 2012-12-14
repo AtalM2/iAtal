@@ -1,6 +1,7 @@
 #include "Python.h"
 #include <boost/python.hpp>
 
+#include "python_hello.h"
 #include <string>
 
 int main()
@@ -13,6 +14,9 @@ int main()
         boost::python::object main_namespace = main_module.attr("__dict__");
         exec_file("cpp_hello_python.py",
                   main_namespace);
+
+        World world = boost::python::extract< World >(main_namespace["world"]);
+        std::cout << world.greet() << std::endl;
     } catch (boost::python::error_already_set) {
         PyErr_Print();
     }
