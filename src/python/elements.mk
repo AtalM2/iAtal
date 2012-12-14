@@ -1,6 +1,5 @@
 lib_LTLIBRARIES += \
 	elements.la \
-	python_hello.la \
 	$(NULL)
 
 elements_la_CXXFLAGS = \
@@ -35,6 +34,10 @@ test_python_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
 	$(NULL)
 
+lib_LTLIBRARIES += \
+	python_hello.la \
+	$(NULL)
+
 python_hello_la_SOURCES =		\
 	src/python/python_hello.cc	\
 	$(NULL)
@@ -45,3 +48,10 @@ python_hello_la_LDFLAGS =		\
 	-module						\
 	$(NULL)
 
+bin_PROGRAMS += \
+	cpp_hello	\
+	$(NULL)
+
+cpp_hello_SOURCES =				\
+	src/python/cpp_hello.cc		\
+	$(NULL)
