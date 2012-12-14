@@ -5,6 +5,7 @@
 #include <gtkmm/application.h>
 #include <glibmm/refptr.h>
 
+#include "controllers/strategy-controller.h"
 #include "mapwindow.h"
 #include "model/map.h"
 #include "tmx/map-loader.h"
@@ -18,10 +19,12 @@ main(int argc, char** argv)
                              "org.gtkmm.example");
   try
     {
+      
       std::shared_ptr< Map > map(
 	new Map(MapLoader::loadTmx("src/tmx/resources/map.tmx")));
-      
-      MapWindow window(map);
+StrategyController sc;
+MapWindow window(map,
+		   sc);
       
       return app->run(window);
     }

@@ -11,7 +11,8 @@
 MapArea::MapArea(const std::shared_ptr< Map > & map)
   : map_(map)
 {
-  set_size_request(500, 500);
+  set_size_request(map->width * map->tileWidth,
+		   map->height * map->tileHeight);
 }
 
 MapArea::~MapArea()
@@ -23,7 +24,7 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
   std::vector< Layer > layers = {
     map_->getLayer(Layer::Level::Underground),
     map_->getLayer(Layer::Level::Ground),
-    map_->getLayer(Layer::Level::Object),    
+    map_->getLayer(Layer::Level::Object),
   };
   std::for_each(
     layers.begin(),
@@ -38,7 +39,6 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 	      Glib::ustring id = layer.getTile(x, y);
 	      if(id != "")
 		{
-		  std::cout << x << "-" << y << "-" << id << std::endl;
 		  Glib::RefPtr< const Gdk::Pixbuf > image =
 		    tileset.getImage(id);
 		  Gdk::Cairo::set_source_pixbuf(
@@ -52,31 +52,7 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 	}
     }
   );
-  // if (!m_image1)
-  //   return false;
-  // bool even = true;
-  // for (int i = 0; i < 500; i += 20) {
-  //   for (int j = 0; j < 500; j += 10) {
-  // 	  Gdk::Cairo::set_source_pixbuf(cr,
-  //                                   even ? m_image1 : m_image2,
-  //                                   i,
-  //                                   j);
-  // 	  cr->paint();
-	  
-  // 	  Gdk::Cairo::set_source_pixbuf(cr,
-  //                                   even ? m_image2 : m_image1,
-  //                                   i + 10,
-  //                                   j);
-  // 	  cr->paint(); 
-  // 	  even = !even;
-  // 	}
-  //   Gdk::Cairo::set_source_pixbuf(cr,
-  //                                 m_image3,
-  //                                 x,
-  //                                 y);
-  // }
-  
-  // cr->paint(); 
+  std::cout << "<redraw/>" << std::endl;
   return true;
 }
 
