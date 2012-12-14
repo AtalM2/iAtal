@@ -3,6 +3,7 @@
 #include <map>
 
 #include "tmx-tileset.h"
+#include "exceptions/tmx/tmx-exception.h"
 
 TmxTileset::TmxTileset() :
   propertiesList_() {
@@ -81,7 +82,7 @@ Glib::ustring TmxTileset::getProperty(unsigned int id) const
   if (it != propertiesList_.end()) {
     return it->second;
   } else {
-    throw Glib::ustring("prop non existing");
+    throw TmxException("prop non existing");
   }
 }
 
