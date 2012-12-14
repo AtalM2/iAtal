@@ -148,15 +148,15 @@ Map MapLoader::loadTmx(string tmxPath) {
 	    xmlTilesetTmp->IntAttribute("tileheight"));
 	  tmxTileset->setTileWidth(
 	    xmlTilesetTmp->IntAttribute("tilewidth"));
-	  tmxTileset->setHeight(
-	    xmlTilesetTmp->IntAttribute("height"));
-	  tmxTileset->setWidth(
-	    xmlTilesetTmp->IntAttribute("width"));
 	  XMLElement* element =
 	    xmlTilesetTmp->FirstChildElement("image");
 	  tmxTileset->setImage(
 	    Glib::ustring("src/tmx/resources/")
 	    + element->Attribute("source"));
+	  tmxTileset->setHeight(
+	    element->IntAttribute("height"));
+	  tmxTileset->setWidth(
+	    element->IntAttribute("width"));
 	  element = xmlTilesetTmp->FirstChildElement("tile");
 	  // Parcourt de la liste des tiles définies dans le tileset
 	  std::cout << "<tileset>";
@@ -228,18 +228,21 @@ Map MapLoader::loadTmx(string tmxPath) {
 	  // On vérifie que l'encodage est supporté
 	  if (string(xmlData->Attribute("encoding")) != "csv")
 	    {
-	      throw string("L'encodage "
-			   + string(xmlData->Attribute("encoding"))
-			   + " d'un layer n'est pas supporté");
+	      throw std::string("L'encodage "
+				+ std::string(xmlData->Attribute("encoding"))
+				+ " d'un layer n'est pas supporté");
 	    }
-	  string data = xmlData->GetText();
+	  std::string data = xmlData->GetText();
 	  
 	  // Suppression des \n et des espaces
 	  std::string temp;
+	  temp.resize(data.size());
+	  
 	  std::remove_copy(data.begin(),
 			   data.end(),
 			   temp.begin(),
 			   '\n');
+
 	  std::remove_copy(temp.begin(),
 			   temp.end(),
 			   data.begin(),
@@ -247,8 +250,8 @@ Map MapLoader::loadTmx(string tmxPath) {
 	  
 	  std::vector< string > dataVector;
 	  boost::split(dataVector, data, boost::is_any_of(","));
-	  std::cout << "<layer>";
-
+	  
+	  
 	  for(size_t i = 0, size = dataVector.size(); i < size; i++)
 	    {
 	      unsigned int y = i / map.width;
@@ -292,6 +295,8 @@ MapLoader::handleTileset(Tileset & ts,
 	     ? 1
 	     : (widthPix + 1) / tileWidth);
 
+  std::cout << widthPix << '-' << width << '-' << tileWidth << std::endl;
+  
   Glib::RefPtr<Gdk::Pixbuf> image;
   try
     {
