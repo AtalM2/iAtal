@@ -16,6 +16,4 @@ tmx_test_CPPFLAGS =		\
 
 tmx_tests_SOURCES =				\
 	test/tmx/main.cc			\
-	test/tmx/utils_test.cc		\
-	src/tmx/utils.cc			\
 	$(NULL)
