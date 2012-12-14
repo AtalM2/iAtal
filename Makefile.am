@@ -28,11 +28,11 @@ include src/ui/ui.mk
 include src/python/elements.mk
 include src/tmx/tmx.mk
 
-if test "x$HAVE_CPPUNIT" = "xyes"; then
+if HAVE_CPPUNIT
 include test/model/test.mk
 include test/python/test.mk
 include test/tmx/test.mk
 include test/ui/test.mk
-fi
+endif
 
 include docs/doxygen.mk

@@ -58,10 +58,12 @@ fi
 # CPPUNIT configuration
 m4_pattern_allow([AM_PATH_CPPUNIT])
 PKG_CHECK_MODULES([cppunit], [cppunit >= 1.12.1],
-                  [AC_SUBST(HAVE_CPPUNIT, [yes])
+                  [HAVE_CPPUNIT=yes
                   AM_PATH_CPPUNIT],
-                  [AC_SUBST(HAVE_CPPUNIT, [no])
+                  [HAVE_CPPUNIT=no
                   AC_MSG_WARN([CPPUNIT not found. You won't be able to run the tests suites.])])
+AM_CONDITIONAL([HAVE_CPPUNIT], [test "x$HAVE_CPPUNIT" = "xyes"])
+    
 
 # Boost configuration
 BOOST_REQUIRE
