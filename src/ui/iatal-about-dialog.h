@@ -11,6 +11,11 @@ class IAtalAboutDialog : public Gtk::AboutDialog
   IAtalAboutDialog();
   virtual ~IAtalAboutDialog();
   
+ private:
+  std::vector< Glib::ustring > authors_,
+    documenters_,
+    artists_;
+
 };
 
 #endif // IATAL_ABOUT_DIALOG_H
