@@ -11,6 +11,7 @@
 #include <gtkmm.h>
 
 #include "ui/iatal-ui-manager.h"
+#include "ui/status-hbox.h"
 
 class MapWindow : public Gtk::Window
 {
@@ -30,11 +31,9 @@ public:
 			  bool sensitivity);
   
  private:
-  bool mapLoaded;
-  Gtk::VBox vBox;
-  Gtk::Image mapImage, strategyImage;
-  Gtk::Label mapStatus, strategyStatus;
-  Gtk::HBox hBox;
+  bool mapLoaded_;
+  Gtk::VBox vBox_;
+  StatusHBox hBox_;
   Glib::RefPtr< IAtalUIManager > uiManager_;
   MapArea area_;
 };

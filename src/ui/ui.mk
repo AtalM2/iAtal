@@ -12,12 +12,13 @@ ui_SOURCES = \
 	src/tmx/map-loader.cc \
 	src/tmx/tinyxml2.cc \
 	src/tmx/tmx-tileset.cc \
+	src/ui/iatal-ui-manager.cc \
 	src/ui/main.cc \
 	src/ui/map-area.cc \
 	src/ui/map-window.cc \
 	src/ui/python-chooser-dialog.cc \
+	src/ui/status-hbox.cc \
 	src/ui/tmx-chooser-dialog.cc \
-	src/ui/iatal-ui-manager.cc \
 	$(NULL)
 
 ui_CXXFLAGS = \
