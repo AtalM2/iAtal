@@ -27,6 +27,7 @@ include src/model/model.mk
 include src/ui/ui.mk
 include src/python/elements.mk
 include src/tmx/tmx.mk
+include src/tmx3/tmx3.mk
 
 if HAVE_CPPUNIT
 include test/model/test.mk
