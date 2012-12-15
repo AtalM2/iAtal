@@ -4,7 +4,7 @@
 BOOST_PYTHON_MODULE(elements)
 {
   boost::python::class_<Map>("Map")
-  .def("hello", &Map::getItem)
+  .def("getItem", &Map::getItem)
   .def("hello", &Map::getHello);
 }
 
