@@ -46,15 +46,11 @@ int main(int argc, char **argv)
     //Model creation. Robot in 0,0 , facing north
     boost::shared_ptr<Map> aMap(new Map(0 ,0 ,std::pair< int, int >(0, 1), 3, 3, 15, 15));
 
-    Matrix mat = Matrix();
-
     boost::python::object endTestRes = isEnded();
     bool endTest = boost::python::extract<bool>(endTestRes);
     std::cout << endTest << std::endl;
 
     while (!endTest){
-	  //getElement regarde la case devant le robot et renvoie son
-	  //type
 
       strat(boost::python::ptr(aMap.get()));
 

@@ -10,8 +10,10 @@ ended = False
 compteur = 0
 
 #stratégie python
-def strat(model):
-	model.affiche()
+def strat(aMap):
+	print (aMap.hello())
+	global ended
+	ended = True
 '''
 	#case_avant = controller.getCaseAvant()
 	if case_avant == "herbe":
