@@ -30,8 +30,6 @@ protected:
   //Signal handlers:
   void onMenuQuit();
   void on_menu_others();
-  void onMenuOpenMap();
-  void onMenuOpenStrategy();
 
   //Child widgets:
 

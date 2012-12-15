@@ -3,6 +3,7 @@ bin_PROGRAMS += \
 	$(NULL)
 
 ui_SOURCES = \
+	src/controllers/app-controller.cc \
 	src/controllers/map-controller.cc \
 	src/controllers/strategy-controller.cc \
 	src/model/layer.cc \

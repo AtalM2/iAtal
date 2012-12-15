@@ -1,7 +1,10 @@
 // -*- c-basic-offset: 2; -*-
-
 #ifndef STRATEGY_CONTROLLER_H
 #define STRATEGY_CONTROLLER_H
+
+#include <memory>
+
+class MapWindow;
 
 class StrategyController
 {
@@ -12,11 +15,16 @@ class StrategyController
     return instance;
   }
   
+  void setWindow(const std::shared_ptr< MapWindow > & window);
+
+  void loadStrategy();
   void nextStep();
   void autoStepsOn();
   void autoStepsOff();
   
  private:
+  std::shared_ptr< MapWindow > window_;
+
   StrategyController();
 
   // Don't Implement, singleton

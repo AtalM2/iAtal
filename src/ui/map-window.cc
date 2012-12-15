@@ -61,11 +61,6 @@ MapWindow::~MapWindow()
 {
 }
 
-void MapWindow::onMenuQuit()
-{
-  hide();
-}
-
 void MapWindow::on_menu_others()
 {
   std::cout << "A menu item was selected." << std::endl;
@@ -81,23 +76,4 @@ void MapWindow::displayWarning(const Glib::ustring & title,
 			     Gtk::BUTTONS_CLOSE);
   warning.set_secondary_text(text);
   warning.run();
-}
-
-void MapWindow::onMenuOpenStrategy()
-{
-  PythonChooserDialog dialog;
-  dialog.set_transient_for(*this);
-
-  //Show the dialog and wait for a user response:
-  int result = dialog.run();
-
-  //Handle the response:
-  if(result == Gtk::RESPONSE_OK)
-    {
-      std::cout << "Open clicked." << std::endl;
-      
-      //Notice that this is a std::string, not a Glib::ustring.
-      std::string filename = dialog.get_filename();
-      std::cout << "File selected: " <<  filename << std::endl;
-    }
 }

@@ -5,6 +5,7 @@
 #include <gtkmm/application.h>
 #include <glibmm/refptr.h>
 
+#include "controllers/app-controller.h"
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
 #include "map-window.h"
@@ -20,7 +21,8 @@ main(int argc, char** argv)
                              "org.gtkmm.example");
 
   MapController & mc = MapController::getInstance();
-  // StrategyController & sc = StrategyController::getInstance();
+  StrategyController & sc = StrategyController::getInstance();
+  AppController & ac = AppController::getInstance();
   
   try
     {
@@ -30,7 +32,8 @@ main(int argc, char** argv)
       auto window =
 	std::make_shared< MapWindow >();
       mc.setWindow(window);
-      
+      sc.setWindow(window);
+      ac.setWindow(window);
       return app->run(*window);
     }
   catch(exception e)

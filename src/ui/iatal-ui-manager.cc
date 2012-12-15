@@ -3,6 +3,7 @@
 
 #include "iatal-ui-manager.h"
 
+#include "controllers/app-controller.h"
 #include "controllers/strategy-controller.h"
 
 Glib::RefPtr< IAtalUIManager >
@@ -20,11 +21,13 @@ IAtalUIManager::IAtalUIManager()
 {
   MapController & mc = MapController::getInstance();
   StrategyController & sc = StrategyController::getInstance();
+  AppController & ac = AppController::getInstance();
   
-  //Create actions for menus and toolbars:
+  // Create actions for menus and toolbars:
   Glib::RefPtr< Gtk::ActionGroup > actionGroup =
     Gtk::ActionGroup::create();
 
+  // File menu:
   actionGroup->add(Gtk::Action::create("FileMenu", "File"));
 
   actionGroup->add(
@@ -34,21 +37,21 @@ IAtalUIManager::IAtalUIManager()
 			"Load a TMX map"),
     sigc::mem_fun(mc, &MapController::loadMap));
 
-  // m_refActionGroup->add(
-  //   Gtk::Action::create("FileOpenStrategy",
-  // 			Gtk::Stock::SELECT_ALL,
-  // 			"_Select a strategy",
-  // 			"Load a python strategy"),
-  //   sigc::mem_fun(*this, &MapWindow::onMenuOpenStrategy));
+  actionGroup->add(
+    Gtk::Action::create("FileOpenStrategy",
+  			Gtk::Stock::SELECT_ALL,
+  			"_Select a strategy",
+  			"Load a python strategy"),
+    sigc::mem_fun(sc, &StrategyController::loadStrategy));
 
-  // m_refActionGroup->add(
-  //   Gtk::Action::create("FileQuit",
-  // 			Gtk::Stock::QUIT,
-  // 			"Quit",
-  // 			"Quit iAtal"),
-  //   sigc::mem_fun(*this, &MapWindow::onMenuQuit));
+  actionGroup->add(
+    Gtk::Action::create("FileQuit",
+  			Gtk::Stock::QUIT,
+  			"Quit",
+  			"Quit iAtal"),
+    sigc::mem_fun(ac, &AppController::quit));
 
-  //Edit menu:
+  // Strategy menu:
   actionGroup->add(
     Gtk::Action::create("StrategyMenu", "Strategy"));
 
@@ -73,10 +76,15 @@ IAtalUIManager::IAtalUIManager()
 			"Go back to manual mode"),
     sigc::mem_fun(sc, &StrategyController::autoStepsOff));
 
-  // //Help menu:
-  // m_refActionGroup->add( Gtk::Action::create("HelpMenu", "Help") );
-  // m_refActionGroup->add( Gtk::Action::create("HelpAbout", Gtk::Stock::HELP),
-  // 			 sigc::mem_fun(*this, &MapWindow::on_menu_others) );
+  //Help menu:
+  actionGroup->add( Gtk::Action::create("HelpMenu", "Help") );
+  
+  actionGroup->add(
+    Gtk::Action::create("HelpAbout",
+			Gtk::Stock::HELP,
+			"About iAtal",
+			"Misc info about iAtal"),
+    sigc::mem_fun(ac, &AppController::help) );
 
   insert_action_group(actionGroup);
 
@@ -86,28 +94,28 @@ IAtalUIManager::IAtalUIManager()
     " <menubar name='MenuBar'>"
     "  <menu action='FileMenu'>"
     "   <menuitem action='FileOpenMap'/>"
-    // "   <menuitem action='FileOpenStrategy'/>"
+    "   <menuitem action='FileOpenStrategy'/>"
     "   <separator/>"
-    // "   <menuitem action='FileQuit'/>"
+    "   <menuitem action='FileQuit'/>"
     "  </menu>"
     "  <menu action='StrategyMenu'>"
     "   <menuitem action='StrategyNextStep'/>"
     "   <menuitem action='StrategyAutoStepsOn'/>"
     "   <menuitem action='StrategyAutoStepsOff'/>"
     "  </menu>"
-    // "  <menu action='HelpMenu'>"
-    // "   <menuitem action='HelpAbout'/>"
-    // "  </menu>"
+    "  <menu action='HelpMenu'>"
+    "   <menuitem action='HelpAbout'/>"
+    "  </menu>"
     " </menubar>"
     " <toolbar  name='ToolBar'>"
     "  <toolitem action='FileOpenMap'/>"
-    // "  <toolitem action='FileOpenStrategy'/>"
+    "  <toolitem action='FileOpenStrategy'/>"
     "  <separator/>"
     "  <toolitem action='StrategyNextStep'/>"
     "  <toolitem action='StrategyAutoStepsOn'/>"
     "  <toolitem action='StrategyAutoStepsOff'/>"
     "  <separator/>"
-    // "  <toolitem action='FileQuit'/>"
+    "  <toolitem action='FileQuit'/>"
     " </toolbar>"
     "</ui>";
 

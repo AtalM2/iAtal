@@ -22,8 +22,6 @@ class MapController
     return instance;
   }
   
-  static std::shared_ptr< Map > loadMap(std::string filepath);
-
   void setWindow(const std::shared_ptr< MapWindow > & window);
 
   void loadMap();
@@ -32,8 +30,13 @@ class MapController
   std::shared_ptr< Map > map_;
   std::shared_ptr< MapArea > mapArea_;
   std::shared_ptr< MapWindow > window_;
+  
   MapController();
-  MapController(const MapController &); // Don't Implement, singleton
-  void operator=(const MapController &); // Don't implement, singleton
+  
+  // Don't Implement, singleton
+  MapController(const MapController &);
+  
+  // Don't implement, singleton
+  void operator=(const MapController &);
 };
 #endif // MAP_CONTROLLER_H
