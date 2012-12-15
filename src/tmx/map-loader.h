@@ -2,6 +2,7 @@
 #ifndef MAP_LOADER_H
 #define	MAP_LOADER_H
 
+#include <memory>
 #include <string>
 
 #include "exceptions/model/bad-parameters-exception.h"
@@ -26,7 +27,7 @@ public:
     \param tmxPath Le chemin du fichier TMX.
     \return La Map générée.
   */
-  static Map loadTmx(string tmxPath);
+  static std::shared_ptr< Map > loadTmx(string tmxPath);
 
 private:
   static void loadTMXFile(XMLDocument & tmxDoc,

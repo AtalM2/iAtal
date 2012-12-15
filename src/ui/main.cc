@@ -5,6 +5,7 @@
 #include <gtkmm/application.h>
 #include <glibmm/refptr.h>
 
+#include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
 #include "mapwindow.h"
 #include "model/map.h"
@@ -17,16 +18,20 @@ main(int argc, char** argv)
     Gtk::Application::create(argc,
                              argv,
                              "org.gtkmm.example");
+
+  MapController & mc = MapController::getInstance();
+  
   try
     {
       
-      std::shared_ptr< Map > map(
-	new Map(MapLoader::loadTmx("src/tmx/resources/map.tmx")));
-StrategyController sc;
-MapWindow window(map,
-		   sc);
+      std::shared_ptr< Map > map =
+	MapLoader::loadTmx("src/tmx/resources/map.tmx");
+      StrategyController sc;
+      auto window =
+	std::make_shared< MapWindow >(map, sc);
+      mc.setWindow(window);
       
-      return app->run(window);
+      return app->run(*window);
     }
   catch(exception e)
     {

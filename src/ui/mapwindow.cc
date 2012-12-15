@@ -1,9 +1,12 @@
 // -*- c-basic-offset: 2; -*-
-
 #include "mapwindow.h"
+
+#include <iostream>
+
 #include <boost/lexical_cast.hpp>
 #include <gtkmm/stock.h>
-#include <iostream>
+
+#include "controllers/map-controller.h"
 
 MapWindow::MapWindow(const std::shared_ptr< Map > & map,
 		     StrategyController & sc)
@@ -12,7 +15,8 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
     strategyStatus("Strategy loaded: "),
     mapImage(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU),
     strategyImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
-    area(map)
+    area(map),
+    mc_(MapController::getInstance())
 {
   set_title("iAtal");
   set_icon_from_file("src/ui/img/icon.png");
@@ -41,7 +45,7 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
 			Gtk::Stock::OPEN,
 			"_Open a map",
 			"Load a TMX map"),
-    sigc::mem_fun(*this, &MapWindow::onMenuOpenMap));
+    sigc::mem_fun(mc_, &MapController::loadMap));
 
   m_refActionGroup->add(
     Gtk::Action::create("FileOpenStrategy",
@@ -161,43 +165,16 @@ void MapWindow::on_menu_others()
   std::cout << "A menu item was selected." << std::endl;
 }
 
-void MapWindow::onMenuOpenMap()
+void MapWindow::displayWarning(const Glib::ustring & title,
+			       const Glib::ustring & text)
 {
-  Gtk::FileChooserDialog dialog("Please choose a map file to load",
-          Gtk::FILE_CHOOSER_ACTION_OPEN);
-  dialog.set_transient_for(*this);
-
-  //Add response buttons the the dialog:
-  dialog.add_button(Gtk::Stock::CANCEL,
-		    Gtk::RESPONSE_CANCEL);
-  dialog.add_button(Gtk::Stock::OPEN,
-		    Gtk::RESPONSE_OK);
-
-  //Add filters, so that only certain file types can be selected:
-  Glib::RefPtr<Gtk::FileFilter> filter_tmx =
-    Gtk::FileFilter::create();
-  filter_tmx->set_name("TMX files");
-  filter_tmx->add_pattern("*.tmx");
-  dialog.add_filter(filter_tmx);
-  
-  Glib::RefPtr<Gtk::FileFilter> filter_any =
-    Gtk::FileFilter::create();
-  filter_any->set_name("Any files");
-  filter_any->add_pattern("*");
-  dialog.add_filter(filter_any);
-
-  //Show the dialog and wait for a user response:
-  int result = dialog.run();
-
-  //Handle the response:
-  if(result == Gtk::RESPONSE_OK)
-    {
-      std::cout << "Open clicked." << std::endl;
-      
-      //Notice that this is a std::string, not a Glib::ustring.
-      std::string filename = dialog.get_filename();
-      std::cout << "File selected: " <<  filename << std::endl;
-    }
+  Gtk::MessageDialog warning(*this,
+			     title,
+			     false,
+			     Gtk::MESSAGE_WARNING,
+			     Gtk::BUTTONS_CLOSE);
+  warning.set_secondary_text(text);
+  warning.run();
 }
 
 void MapWindow::onMenuOpenStrategy()

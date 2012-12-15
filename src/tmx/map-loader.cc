@@ -17,6 +17,7 @@
 #include "tmx/tmx-tileset.h"
 
 using namespace tinyxml2;
+using namespace std;
 
 void
 MapLoader::loadTMXFile(XMLDocument & tmxDoc,
@@ -27,15 +28,15 @@ MapLoader::loadTMXFile(XMLDocument & tmxDoc,
     {
       if (tmxDoc.ErrorID() == XML_ERROR_FILE_NOT_FOUND)
 	{
-	  throw FileNotFoundException("The TMX file "
-				      + filePath
-				      + " was not found.");
+	  throw FileNotFoundException(
+	    "TinyXML2 hasn't been able to find the TMX file "
+	    + filePath + ".");
 	}
       else
 	{
 	  ostringstream error;
-	  error << "The loading of the TMX file failed. "
-		<< "The TMX error number is: "
+	  error << "TinyXML2 hasn't been able to load the TMX"
+		<< "file. The TMX error number is: "
 		<< static_cast<int>(tmxDoc.ErrorID())
 		<< ".";
 	  throw TmxException(error.str());
@@ -44,7 +45,7 @@ MapLoader::loadTMXFile(XMLDocument & tmxDoc,
 }
 
 
-Map MapLoader::loadTmx(string tmxPath) {
+std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
   // Charger le fichier TMX	
   XMLDocument tmxDoc;
   try
@@ -81,7 +82,10 @@ Map MapLoader::loadTmx(string tmxPath) {
     }
 
   // Création de l'objet Map
-  Map map(width, height, tileWidth, tileHeight);
+  auto map = std::make_shared< Map >(width,
+				     height,
+				     tileWidth,
+				     tileHeight);
 
   TmxTileset basementTmxTileset;
   TmxTileset groundTmxTileset;
@@ -192,17 +196,17 @@ Map MapLoader::loadTmx(string tmxPath) {
       string name = string(xmlElement->Attribute("name"));
       if(name == "basement")
 	{
-	  layer = &map.getLayer(Layer::Underground);
+	  layer = &map->getLayer(Layer::Underground);
 	  tmxTileset = &basementTmxTileset;
 	}
       else if(name == "ground")
 	{
-	  layer = &map.getLayer(Layer::Ground);
+	  layer = &map->getLayer(Layer::Ground);
 	  tmxTileset = &groundTmxTileset;
 	}
       else if(name == "object")
 	{
-	  layer = &map.getLayer(Layer::Object);
+	  layer = &map->getLayer(Layer::Object);
 	  tmxTileset = &objectTmxTileset;
 	}
       else
@@ -213,20 +217,23 @@ Map MapLoader::loadTmx(string tmxPath) {
 	{ // Si le name correspond
 	  // On vérifie que la taille est cohérente
 	  if ((unsigned int) xmlElement->IntAttribute("height")
-	      != map.height
+	      != map->height
 	      || (unsigned int) xmlElement->IntAttribute("width")
-	      != map.width)
+	      != map->width)
 	    {
-	      throw string("Il y a une incohérence entre la taille ")
-		+ string("d'un layer et la taille de la map");
+	      throw TmxException(
+		"layer width and map width aren't "
+		+ std::string("equal. Aborting loading"));
 	    }
 	  XMLElement* xmlData = xmlElement->FirstChildElement("data");
 	  // On vérifie que l'encodage est supporté
 	  if (string(xmlData->Attribute("encoding")) != "csv")
 	    {
-	      throw std::string("L'encodage "
-				+ std::string(xmlData->Attribute("encoding"))
-				+ " d'un layer n'est pas supporté");
+	      throw TmxException(
+		"The encoding "
+		+ std::string(xmlData->Attribute("encoding"))
+		+ " of one of the layers isn't supported yet."
+		+ " Aborting map loading.");
 	    }
 	  std::string data = xmlData->GetText();
 	  
@@ -250,8 +257,8 @@ Map MapLoader::loadTmx(string tmxPath) {
 	  
 	  for(size_t i = 0, size = dataVector.size(); i < size; i++)
 	    {
-	      unsigned int y = i / map.width;
-	      unsigned int x = i % map.width;
+	      unsigned int y = i / map->width;
+	      unsigned int x = i % map->width;
 	      string id = dataVector.at(i);
 	      unsigned int idInt =
 		static_cast<unsigned int>(std::stoi(id));
@@ -265,11 +272,11 @@ Map MapLoader::loadTmx(string tmxPath) {
       xmlElement = xmlElement->NextSiblingElement("layer");
     }
   
-  handleTileset(map.getLayer(Layer::Level::Underground).getTileset(),
+  handleTileset(map->getLayer(Layer::Level::Underground).getTileset(),
 		basementTmxTileset);
-  handleTileset(map.getLayer(Layer::Level::Ground).getTileset(),
+  handleTileset(map->getLayer(Layer::Level::Ground).getTileset(),
 		groundTmxTileset);
-  handleTileset(map.getLayer(Layer::Level::Object).getTileset(),
+  handleTileset(map->getLayer(Layer::Level::Object).getTileset(),
 		objectTmxTileset);
   
   return map;
@@ -296,11 +303,11 @@ MapLoader::handleTileset(Tileset & ts,
     }
   catch (const Glib::FileError & ex)
     {
-      std::cerr << "FileError: " << ex.what() << std::endl;
+      throw ex;
     }
   catch (const Gdk::PixbufError & ex)
     {
-      std::cerr << "PixbufError: " << ex.what() << std::endl;
+      throw ex;
     }
 
   
