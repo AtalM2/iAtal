@@ -16,7 +16,7 @@ AM_LDFLAGS = \
 	$(gtk_LIBS) \
 	$(python_LIBS) \
 	$(BOOST_PYTHON_LDFLAGS) \
-	-lboost_python-py32 \
+	$(PYTHON_LDFLAGS)
 	$(NULL)
 
 AM_CPPFLAGS = \

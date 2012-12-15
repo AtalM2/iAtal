@@ -27,7 +27,6 @@ AC_PROG_LIBTOOL
 
 # Checks for libraries.
 PKG_CHECK_MODULES([gtk], [gtkmm-3.0 >= 3.0.0])
-PKG_CHECK_MODULES([python], [python-3.2 >= 3.2])
 
 # Checks for header files.
 AC_CHECK_HEADERS([limits.h stddef.h stdlib.h string.h])
@@ -63,7 +62,21 @@ PKG_CHECK_MODULES([cppunit], [cppunit >= 1.12.1],
                   [HAVE_CPPUNIT=no
                   AC_MSG_WARN([CPPUNIT not found. You won't be able to run the tests suites.])])
 AM_CONDITIONAL([HAVE_CPPUNIT], [test "x$HAVE_CPPUNIT" = "xyes"])
-    
+
+# Python configuration
+m4_pattern_allow([AM_PATH_PYTHON])
+PKG_CHECK_MODULES([python], [python2 >= 2.7],
+  [PYTHON_VERSION="2.7"],
+  [PKG_CHECK_MODULES([python], [python-3.2 >= 3.2]
+    [PYTHON_VERSION="3.2"],
+    [AC_MSG_ERROR([Neither Python-2.7 or Python-3.2 have been found.])])])
+AC_MSG_RESULT([using Python-$PYTHON_VERSION])
+if test "x$PYTHON_VERSION" = "x3.2"; then
+  PYTHON_LDFLAGS=-lboost_python-p32
+else
+  PYTHON_LDFLAGS=-lboost_python
+fi
+AC_SUBST(PYTHON_LDFLAGS)
 
 # Boost configuration
 BOOST_REQUIRE
