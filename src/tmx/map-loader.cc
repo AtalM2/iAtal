@@ -311,8 +311,6 @@ MapLoader::handleTileset(Tileset & ts,
     }
 
   
-  std::cout << tmxTs.getImage() << std::endl;
-  
   TmxTileset::map props =
     tmxTs.getProperties();
   std::for_each(
