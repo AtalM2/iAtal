@@ -59,6 +59,11 @@ MapController::loadMap()
     }
 }
 
+std::shared_ptr<Map> MapController::getMap()
+{
+  return map_;
+}
+
 void
 MapController::setWindow(const std::shared_ptr< MapWindow > & window)
 {

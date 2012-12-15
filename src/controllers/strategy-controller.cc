@@ -3,7 +3,7 @@
 
 #include "controllers/strategy-controller.h"
 #include "ui/python-chooser-dialog.h"
-
+#include "controllers/map-controller.h"
 #include <iostream>
 
 StrategyController::StrategyController()
@@ -23,7 +23,6 @@ StrategyController::loadStrategy()
     int result = dialog.run();
     
     //Handle the response:
-    std::shared_ptr< Map > newMap;
     if(result == Gtk::RESPONSE_OK)
       {
 	strategyPath = dialog.get_filename();
@@ -44,6 +43,7 @@ StrategyController::loadStrategy()
     strat = py_["strat"];
     
     //initialisation of the robot and map for python
+    std::shared_ptr<Map> newMap = MapController::getInstance().getMap();
     init(boost::python::ptr(newMap.get()));
     rinit();
     

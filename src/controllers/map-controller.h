@@ -25,6 +25,8 @@ class MapController
   void setWindow(const std::shared_ptr< MapWindow > & window);
 
   void loadMap();
+
+  std::shared_ptr<Map> getMap();
   
  private:
   std::shared_ptr< Map > map_;
