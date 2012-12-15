@@ -4,7 +4,7 @@
 *.o
 *.la
 *.lo
-
+.dirstamp
 .deps/
 .libs/
 autom4te.cache/
@@ -16,6 +16,8 @@ autoscan.log
 aclocal.m4
 config*
 !configure.ac
+cpp_hello
+cpp_hello_python
 depcomp
 install-sh
 libtool
@@ -29,6 +31,8 @@ stamp-h1
 test_python
 tmx
 !tmx/
+tmx3
+!tmx3/
 ui
 !ui/
 
