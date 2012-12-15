@@ -190,14 +190,13 @@ void MapWindow::onMenuOpenMap()
   int result = dialog.run();
 
   //Handle the response:
-  if(Gtk::RESPONSE_OK)
+  if(result == Gtk::RESPONSE_OK)
     {
       std::cout << "Open clicked." << std::endl;
       
       //Notice that this is a std::string, not a Glib::ustring.
       std::string filename = dialog.get_filename();
       std::cout << "File selected: " <<  filename << std::endl;
-      break;
     }
 }
 
@@ -230,13 +229,12 @@ void MapWindow::onMenuOpenStrategy()
   int result = dialog.run();
 
   //Handle the response:
-  if(Gtk::RESPONSE_OK)
+  if(result == Gtk::RESPONSE_OK)
     {
       std::cout << "Open clicked." << std::endl;
       
       //Notice that this is a std::string, not a Glib::ustring.
       std::string filename = dialog.get_filename();
       std::cout << "File selected: " <<  filename << std::endl;
-      break;
     }
 }
