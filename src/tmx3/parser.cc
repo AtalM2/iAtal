@@ -156,7 +156,7 @@ Parser::loadFile(tinyxml2::XMLDocument& tmxDoc, std::string filePath) {
 			std::ostringstream error;
 			error << "Impossible de charger le fichier TMX. "
                   << "Erreur numéro : "
-                  << tmxDoc.ErrorID()
+                  << (int) tmxDoc.ErrorID()
                   << ".";
 			throw XmlException(error.str());
 		}
