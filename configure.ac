@@ -8,7 +8,7 @@ AC_INIT([iAtal],
         [m1infoatal+bugreport@sympa.etu.univ-nantes.prive])
 AC_CONFIG_SRCDIR([src/ui/main.cc])
 AC_CONFIG_HEADERS([config.h])
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([subdir-objects])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 LT_INIT
 AC_CONFIG_MACRO_DIR([m4])
