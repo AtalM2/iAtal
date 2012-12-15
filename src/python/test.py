@@ -1,4 +1,6 @@
-import model
+import sys
+sys.path.append(".libs")
+import elements
 
 #globals
 ended = False

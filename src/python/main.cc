@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 	  //getElement regarde la case devant le robot et renvoie son
 	  //type
 
-      strat(boost::python::ptr(aModel));
+      strat(boost::python::ptr(aModel.get()));
 
       /*
         std::string a = mat.getElement();

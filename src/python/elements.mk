@@ -1,38 +1,33 @@
-lib_LTLIBRARIES += \
-	elements.la \
+lib_LTLIBRARIES +=		\
+	elements.la			\
 	$(NULL)
 
-elements_la_CXXFLAGS = \
-	$(AM_CXXFLAGS) \
+elements_la_LDFLAGS =	\
+	$(AM_LDFLAGS)		\
+	-avoid-version		\
+	-module				\
 	$(NULL)
 
-elements_la_LDFLAGS = \
-	$(python_LIBS) \
-	-module \
-	-shared \
-	-avoid-version \
-	$(BOOST_PYTHON_LDFLAGS) \
+elements_la_SOURCES =	\
+	src/model/model.cc	\
 	$(NULL)
 
-elements_la_SOURCES = \
-	src/model/model.cc
+bin_PROGRAMS += \
+	test_python \
 	$(NULL)
 
-# bin_PROGRAMS += \
-# 	test_python \
-# 	$(NULL)
+test_python_SOURCES =			\
+	src/python/main.cc			\
+	src/python/matrice.cc		\
+	src/model/map.cc			\
+	src/model/layer.cc			\
+	src/model/tileset.cc		\
+	$(NULL)
 
-# test_python_SOURCES = \
-# 	src/python/main.cc \
-# 	src/python/matrice.cc \
-# 	src/model/map.cc \
-# 	src/model/layer.cc \
-# 	src/model/tileset.cc \
-# 	$(NULL)
-
-# test_python_CXXFLAGS = \
-# 	$(AM_CXXFLAGS) \
-# 	$(NULL)
+test_python_LDFLAGS =	\
+	$(AM_LDFLAGS)		\
+	elements.la			\
+	$(NULL)
 
 lib_LTLIBRARIES += \
 	python_hello.la \
