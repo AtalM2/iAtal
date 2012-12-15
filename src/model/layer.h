@@ -2,6 +2,9 @@
 #ifndef LAYER_H
 #define LAYER_H
 
+#include <Python.h>
+#include <boost/python.hpp>
+
 #include <algorithm>
 #include <string>
 #include <vector>
@@ -70,6 +73,9 @@ public:
   */
   Tileset & getTileset() const;
 
+
+
+
   /*!
     \brief An an enumeration used to select a Layer in a Map.
 
@@ -90,6 +96,13 @@ public:
     Object = 3,               //!< The Object Level
     LastLevel = Object        //!< Equal to the last level of the enum
   } Level;
+
+	
+	/*!
+	 * get from enum
+	 * 
+	 */
+	Level identity_(Level x);
 
 
 private:
