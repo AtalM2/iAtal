@@ -6,26 +6,25 @@
 #include <boost/lexical_cast.hpp>
 #include <gtkmm/stock.h>
 
-#include "controllers/map-controller.h"
 #include "ui/python-chooser-dialog.h"
 #include "ui/iatal-ui-manager.h"
 
 MapWindow::MapWindow()
   : mapImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     strategyImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
-    mapStatus("Map loaded: "),
-    strategyStatus("Strategy loaded: "),
-    uiManager_(IAtalUIManager::create()),
-    mc_(MapController::getInstance()),
-    sc_(StrategyController::getInstance())
+    mapStatus("Map loaded:"),
+    strategyStatus("Strategy loaded:"),
+    uiManager_(IAtalUIManager::create())
 {
   set_title("iAtal");
   set_icon_from_file("src/ui/img/icon.png");
-  mapStatus.set_margin_left(5);
-  mapImage.set_margin_right(5);
-  strategyImage.set_margin_right(5);
   
   // Top hbox handling
+  hBox.set_margin_left(5);
+  hBox.set_margin_right(5);
+  hBox.set_margin_top(5);
+  hBox.set_margin_bottom(5);
+  hBox.set_spacing(5);
   hBox.pack_start(mapStatus);
   hBox.pack_start(mapImage);
   hBox.pack_start(strategyStatus);
@@ -57,6 +56,14 @@ MapWindow::MapWindow()
 
 MapWindow::~MapWindow()
 {
+}
+
+void
+MapWindow::setMap(const std::shared_ptr< Map > & map)
+{
+  area_.setMap(map);
+  vBox.pack_start(area_);
+  area_.show();
 }
 
 void

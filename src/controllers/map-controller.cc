@@ -52,19 +52,10 @@ MapController::loadMap()
 	  return;
 	}
     }
-  map_.swap(newMap);
-  auto newArea = std::make_shared< MapArea >(map_);
-  newArea->set_margin_left(5);
-  newArea->set_margin_right(5);
-  newArea->set_margin_top(5);
-  newArea->set_margin_bottom(5);
-  if(mapArea_.get())
-    window_->vBox.remove(*mapArea_);
-  window_->vBox.pack_start(*newArea);
+  window_->setMap(newMap);
   window_->resize(1, 1);
-  newArea->show();
-  mapArea_.swap(newArea);
   window_->setMapStatusOk(true);
+  map_.swap(newMap);
 }
 
 void

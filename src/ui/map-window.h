@@ -10,8 +10,6 @@
 
 #include <gtkmm.h>
 
-#include "controllers/map-controller.h"
-#include "controllers/strategy-controller.h"
 #include "ui/iatal-ui-manager.h"
 
 class MapWindow : public Gtk::Window
@@ -26,16 +24,15 @@ public:
   void setMapStatusOk(bool ok);
   void setStrategyStatusOk(bool ok);
   
-  Gtk::VBox vBox;
+  void setMap(const std::shared_ptr< Map > & map);
   
  private:
+  Gtk::VBox vBox;
   Gtk::Image mapImage, strategyImage;
+  Gtk::Label mapStatus, strategyStatus;
   Gtk::HBox hBox;
-  Gtk::Label mapStatus,
-    strategyStatus;
   Glib::RefPtr< IAtalUIManager > uiManager_;
-  MapController & mc_;
-  StrategyController & sc_;
+  MapArea area_;
 };
 
 #endif // MAP_WINDOW_H

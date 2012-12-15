@@ -8,11 +8,21 @@
 #include <gdkmm/pixbufanimation.h>
 #include <glibmm/fileutils.h>
 
-MapArea::MapArea(const std::shared_ptr< Map > & map)
-  : map_(map)
+MapArea::MapArea()
 {
-  set_size_request(map->width * map->tileWidth,
-		   map->height * map->tileHeight);
+  set_margin_left(5);
+  set_margin_right(5);
+  set_margin_top(5);
+  set_margin_bottom(5);
+}
+
+void
+MapArea::setMap(const std::shared_ptr< Map > & map)
+{
+  map_ = map;
+  if(map.get())
+    set_size_request(map->width * map->tileWidth,
+		     map->height * map->tileHeight);
 }
 
 MapArea::~MapArea()
@@ -52,18 +62,5 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 	}
     }
   );
-  std::cout << "<redraw/>" << std::endl;
   return true;
 }
-
-// void
-// MapArea::move(int dx, int dy)
-// {
-//   const Cairo::RectangleInt rect_start = {x, y, 10, 10};
-//   x += dx;
-//   y += dy;
-//   const Cairo::RectangleInt  rect_end = {x, y, 10, 10};
-//   const std::vector< Cairo::RectangleInt > rect_vector {rect_start, rect_end};
-//   Cairo::RefPtr< Cairo::Region > region = Cairo::Region::create(rect_vector);
-//   queue_draw_region(region);
-// }

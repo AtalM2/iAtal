@@ -26,11 +26,8 @@ main(int argc, char** argv)
   
   try
     {
-      
-      std::shared_ptr< Map > map =
-	MapLoader::loadTmx("src/tmx/resources/map.tmx");
       auto window =
-	std::make_shared< MapWindow >();
+        std::make_shared< MapWindow >();
       mc.setWindow(window);
       sc.setWindow(window);
       ac.setWindow(window);

@@ -16,8 +16,10 @@ class MapArea : public Gtk::DrawingArea
 {
 
  public:
-  MapArea(const std::shared_ptr< Map > & map);
-  /* void move(int dx, int dy); */
+  MapArea();
+  
+  void setMap(const std::shared_ptr< Map > & map);
+
   virtual ~MapArea();
 
  protected:
