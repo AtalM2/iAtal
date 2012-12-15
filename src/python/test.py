@@ -4,7 +4,7 @@
 import sys
 sys.path.append(".libs")
 import elements
-#import enums
+import enums
 
 #globals
 ended = False
