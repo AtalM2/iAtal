@@ -1,3 +1,6 @@
+#include <gtkmm/application.h>
+#include <glibmm/refptr.h>
+
 #include <iostream>
 #include <string>
 
@@ -5,7 +8,13 @@
 #include "exception.h"
 
 int
-main() {
+main(int argc, char **argv)
+{
+    Glib::RefPtr<Gtk::Application> app =
+        Gtk::Application::create(argc,
+                                 argv,
+                                 "org.gtkmm.example");
+
 	Map map;
 	try {
 		map = Parser::parseFile("resources/map.tmx");

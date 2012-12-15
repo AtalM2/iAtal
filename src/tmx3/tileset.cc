@@ -12,11 +12,11 @@ Tileset::~Tileset() {
 }
 
 void
-Tileset::setImage(Image image) {
+Tileset::setImage(Glib::RefPtr< const Gdk::Pixbuf > image) {
 	image_ = image;
 }
 
-Image
+Glib::RefPtr< const Gdk::Pixbuf >
 Tileset::getImage() const {
 	return image_;
 }

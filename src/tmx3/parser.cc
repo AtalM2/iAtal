@@ -81,15 +81,17 @@ Parser::parseFile(std::string filePath) {
 		tileset.setTileWidth(xmlTilesetTmp->IntAttribute("tilewidth"));
 
 		XMLElement* element = xmlTilesetTmp->FirstChildElement("image");
-		Image image;
 
-		source = element->Attribute("source");
-		image.setPath(tsxFileDirectory + "/" + source);
+        source = element->Attribute("source");
 
-		image.setHeight((unsigned int) element->IntAttribute("height"));
-		image.setWidth((unsigned int) element->IntAttribute("width"));
-		const char* attributeTmp = element->Attribute("trans");
-		image.setTransparency(attributeTmp ? std::string(attributeTmp) : "");
+		Glib::RefPtr< const Gdk::Pixbuf > image =
+            Gdk::Pixbuf::create_from_file(
+                tsxFileDirectory + "/" + source,
+                element->IntAttribute("width"),
+                element->IntAttribute("height"));
+
+		// const char* attributeTmp = element->Attribute("trans");
+		// image.setTransparency(attributeTmp ? std::string(attributeTmp) : "");
 
 		tileset.setImage(image);
 

@@ -3,7 +3,7 @@
 
 #include <glibmm/ustring.h>
 #include <map>
-#include "image.h"
+#include <gdkmm/pixbuf.h>
 #include "tile.h"
 #include <iostream>
 
@@ -12,8 +12,8 @@ public:
 	Tileset();
 	virtual ~Tileset();
 
-	void setImage(Image image);
-	Image getImage() const;
+	void setImage(Glib::RefPtr< const Gdk::Pixbuf > image);
+	Glib::RefPtr< const Gdk::Pixbuf > getImage() const;
 
 	void setSpacing(unsigned int spacing);
 	unsigned int getSpacing() const;
@@ -42,7 +42,7 @@ private:
 	unsigned int tileWidth_;
 	unsigned int tileHeight_;
 	unsigned int spacing_;
-	Image image_;
+	Glib::RefPtr< const Gdk::Pixbuf > image_;
 	std::map<unsigned int, Tile> tiles_;
 };
 
