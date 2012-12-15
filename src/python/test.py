@@ -15,10 +15,14 @@ def init(aMap):
 	global map_ 
 	map_ = aMap
 
+def robot_init():
+	global undergroundSensor 
+	undergroundSensor = sensor(enums.Level.Underground, 1)
+	global bibiActuator 
+	bibiActuator = actuator(enums.Level.Underground, 1, "bibi")
+
 #stratégie python
 def strat():
-	undergroundSensor = sensor(enums.Level.Underground, 1)
-	bibiActuator = actuator(enums.Level.Underground, 1, "bibi")
 	print(undergroundSensor.activate())
 	bibiActuator.activate()
 	print(undergroundSensor.activate())
