@@ -4,10 +4,6 @@
 
 #include "map-area.h"
 
-#include <iostream>
-#include <memory>
-#include <string>
-
 #include <gtkmm.h>
 
 #include "ui/iatal-ui-manager.h"

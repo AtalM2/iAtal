@@ -10,7 +10,11 @@ class IAtalUIManager : public Gtk::UIManager
 public:
   static Glib::RefPtr< IAtalUIManager > create();
   virtual ~IAtalUIManager();
-  
+
+  Gtk::Widget & getMenuBar();
+  Gtk::Widget & getToolBar();
+
+  void getWidget(const Glib::ustring & path);
   void setPathSensitivity(const Glib::ustring & path,
 			  bool sensitivity);
 

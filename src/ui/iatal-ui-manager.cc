@@ -5,6 +5,7 @@
 
 #include "controllers/app-controller.h"
 #include "controllers/strategy-controller.h"
+#include "exceptions/model/bad-parameters-exception.h"
 
 Glib::RefPtr< IAtalUIManager >
 IAtalUIManager::create()
@@ -133,6 +134,18 @@ IAtalUIManager::IAtalUIManager()
   setPathSensitivity("/ToolBar/StrategyAutoStepsOn", false);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOff", false);
   
+}
+
+Gtk::Widget &
+IAtalUIManager::getMenuBar()
+{
+  return *get_widget("/MenuBar");
+}
+
+Gtk::Widget &
+IAtalUIManager::getToolBar()
+{
+  return *get_widget("/ToolBar");
 }
 
 void
