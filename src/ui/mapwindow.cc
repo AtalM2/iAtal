@@ -14,7 +14,7 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
     strategyImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     area(map)
 {
-  set_title("Map experimentations");
+  set_title("iAtal");
   set_icon_from_file("src/ui/img/icon.png");
   mapStatus.set_margin_left(5);
   mapImage.set_margin_right(5);
@@ -52,7 +52,9 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
 
   m_refActionGroup->add(
     Gtk::Action::create("FileQuit",
-			Gtk::Stock::QUIT),
+			Gtk::Stock::QUIT,
+			"Quit",
+			"Quit iAtal"),
     sigc::mem_fun(*this, &MapWindow::on_menu_file_quit));
 
   //Edit menu:
@@ -83,7 +85,7 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
   //Help menu:
   m_refActionGroup->add( Gtk::Action::create("HelpMenu", "Help") );
   m_refActionGroup->add( Gtk::Action::create("HelpAbout", Gtk::Stock::HELP),
-          sigc::mem_fun(*this, &MapWindow::on_menu_others) );
+			 sigc::mem_fun(*this, &MapWindow::on_menu_others) );
 
   m_refUIManager = Gtk::UIManager::create();
   m_refUIManager->insert_action_group(m_refActionGroup);
@@ -92,43 +94,43 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
 
   //Layout the actions in a menubar and toolbar:
   Glib::ustring ui_info =
-        "<ui>"
-        "  <menubar name='MenuBar'>"
-        "    <menu action='FileMenu'>"
-        "      <menuitem action='FileOpenMap'/>"
-        "      <menuitem action='FileOpenStrategy'/>"
-        "      <separator/>"
-        "      <menuitem action='FileQuit'/>"
-        "    </menu>"
-        "    <menu action='StrategyMenu'>"
-        "      <menuitem action='StrategyNextStep'/>"
-        "      <menuitem action='StrategyAutoStepsOn'/>"
-        "      <menuitem action='StrategyAutoStepsOff'/>"
-        "    </menu>"
-        "    <menu action='HelpMenu'>"
-        "      <menuitem action='HelpAbout'/>"
-        "    </menu>"
-        "  </menubar>"
-        "  <toolbar  name='ToolBar'>"
-        "    <toolitem action='FileOpenMap'/>"
-        "    <toolitem action='FileOpenStrategy'/>"
-        "    <separator/>"
-        "    <toolitem action='StrategyNextStep'/>"
-        "    <toolitem action='StrategyAutoStepsOn'/>"
-        "    <toolitem action='StrategyAutoStepsOff'/>"
-        "    <separator/>"
-        "    <toolitem action='FileQuit'/>"
-        "  </toolbar>"
-        "</ui>";
+    "<ui>"
+    " <menubar name='MenuBar'>"
+    "  <menu action='FileMenu'>"
+    "   <menuitem action='FileOpenMap'/>"
+    "   <menuitem action='FileOpenStrategy'/>"
+    "   <separator/>"
+    "   <menuitem action='FileQuit'/>"
+    "  </menu>"
+    "  <menu action='StrategyMenu'>"
+    "   <menuitem action='StrategyNextStep'/>"
+    "   <menuitem action='StrategyAutoStepsOn'/>"
+    "   <menuitem action='StrategyAutoStepsOff'/>"
+    "  </menu>"
+    "  <menu action='HelpMenu'>"
+    "   <menuitem action='HelpAbout'/>"
+    "  </menu>"
+    " </menubar>"
+    " <toolbar  name='ToolBar'>"
+    "  <toolitem action='FileOpenMap'/>"
+    "  <toolitem action='FileOpenStrategy'/>"
+    "  <separator/>"
+    "  <toolitem action='StrategyNextStep'/>"
+    "  <toolitem action='StrategyAutoStepsOn'/>"
+    "  <toolitem action='StrategyAutoStepsOff'/>"
+    "  <separator/>"
+    "  <toolitem action='FileQuit'/>"
+    " </toolbar>"
+    "</ui>";
 
   try
-  {
-    m_refUIManager->add_ui_from_string(ui_info);
-  }
+    {
+      m_refUIManager->add_ui_from_string(ui_info);
+    }
   catch(const Glib::Error& ex)
-  {
-    std::cerr << "building menus failed: " <<  ex.what();
-  }
+    {
+      std::cerr << "building menus failed: " <<  ex.what();
+    }
 
   //Get the menubar and toolbar widgets, and add them to a container widget:
   Gtk::Widget* pMenubar = m_refUIManager->get_widget("/MenuBar");
