@@ -69,6 +69,9 @@ public:
 
   //tmp shit
   std::string getHello();
+  
+  Glib::ustring getItem(Layer::Level level, unsigned int range);
+  
   Map();
   
   /*!

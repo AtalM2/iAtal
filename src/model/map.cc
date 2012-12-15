@@ -4,6 +4,7 @@
 BOOST_PYTHON_MODULE(elements)
 {
   boost::python::class_<Map>("Map")
+  .def("hello", &Map::getItem)
   .def("hello", &Map::getHello);
 }
 
@@ -49,6 +50,15 @@ Map::Map()
 std::string Map::getHello()
 {
   return "Hello";
+}
+
+Glib::ustring Map::getItem(Layer::Level level, unsigned int range)
+{
+  int xTarget = (posXRobot + range) * direction.first;
+  int yTarget = (posYRobot + range) * direction.second;
+
+  return map.getLayer(level).getTile(xTarget, yTarget);
+
 }
 
 Map::~Map()
