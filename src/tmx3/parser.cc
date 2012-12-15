@@ -180,12 +180,7 @@ Parser::getFileDirectory(std::string filePath) {
 std::vector<unsigned int>
 Parser::parseCsv(std::string data) {
 
-	std::vector<std::string> stringVector;
-    boost::split(stringVector, data, boost::is_any_of(","));
-    
-    std::cerr << "|" << data << "|" << std::endl;
 	std::vector<unsigned int> intVector;
-
     int acc = 0;
     for(std::string::iterator it = data.begin();
         it != data.end();
