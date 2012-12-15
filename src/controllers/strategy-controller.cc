@@ -23,11 +23,12 @@ StrategyController::loadStrategy()
     int result = dialog.run();
     
     //Handle the response:
-    if(result == Gtk::RESPONSE_OK)
+    if(result != Gtk::RESPONSE_OK)
       {
-	strategyPath = dialog.get_filename();
+	return;
       }
     
+    strategyPath = dialog.get_filename();    
     
     //loads the python
     Py_Initialize();
