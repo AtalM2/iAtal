@@ -1,6 +1,3 @@
-#include "Python.h"
-#include <boost/python.hpp>
-
 #include "python_hello.h"
 #include <string>
 
