@@ -10,7 +10,7 @@
 
 #include "tmx/map-loader.h"
 #include "model/map.h"
-#include "ui/maparea.h"
+#include "ui/map-area.h"
 
 class MapWindow;
 

@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "ui/mapwindow.h"
-#include "ui/maparea.h"
+#include "ui/map-window.h"
+#include "ui/map-area.h"
 
 MapController::MapController()
 {

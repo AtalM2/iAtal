@@ -12,8 +12,8 @@ ui_SOURCES = \
 	src/tmx/tinyxml2.cc \
 	src/tmx/tmx-tileset.cc \
 	src/ui/main.cc \
-	src/ui/maparea.cc \
-	src/ui/mapwindow.cc \
+	src/ui/map-area.cc \
+	src/ui/map-window.cc \
 	$(NULL)
 
 ui_CXXFLAGS = \

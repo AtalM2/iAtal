@@ -7,7 +7,7 @@
 
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
-#include "mapwindow.h"
+#include "map-window.h"
 #include "model/map.h"
 #include "tmx/map-loader.h"
 
