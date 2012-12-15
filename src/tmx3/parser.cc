@@ -5,6 +5,7 @@
 #include "tileset.h"
 #include "layer.h"
 #include "utils.h"
+#include <boost/algorithm/string.hpp>
 
 using namespace tinyxml2;
 
@@ -181,7 +182,8 @@ Parser::parseCsv(std::string data) {
 	temp.resize(data.length());
 	std::remove_copy(data.begin(), data.end(), temp.begin(), '\n');
 	std::remove_copy(temp.begin(), temp.end(), data.begin(), ' ');
-	std::vector<std::string> stringVector = Utils::stringExplode(data, ",");
+	std::vector<std::string> stringVector;
+    boost::split(stringVector, data, boost::is_any_of(","));
 	std::vector<unsigned int> intVector;
 	for (size_t i = 0; i < stringVector.size(); i++) {
 		intVector.push_back(Utils::stringToInt(stringVector.at(i)));

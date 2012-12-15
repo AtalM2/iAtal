@@ -13,7 +13,6 @@
 
 class Utils {
 public:
-	static std::vector<std::string> stringExplode(std::string str, std::string separator);
 	static std::string intToString(int i);
 	static int stringToInt(std::string s);
 	static std::string stringReplace(std::string str, std::string oldStr, char newStr);

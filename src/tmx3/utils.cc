@@ -2,31 +2,6 @@
 #include <sstream>
 
 /**
- * Permet de découper une chaine selon un séparateur pour la stocker dans un tableau
- * 
- * @param str La chaine à découper
- * @param separator Le séparateur
- * @return Un tableau de chaines de caractères
- */
-std::vector<std::string>
-Utils::stringExplode(std::string str, std::string separator) {
-	size_t found;
-	std::vector<std::string> results;
-	found = str.find_first_of(separator);
-	while (found < str.length() && found < std::string::npos) {
-		if (found > 0) {
-			results.push_back(str.substr(0, found));
-		}
-		str = str.substr(found + 1);
-		found = str.find_first_of(separator);
-	}
-	if (str.length() > 0) {
-		results.push_back(str);
-	}
-	return results;
-}
-
-/**
  * Permet de convertir un int en string
  * 
  * @param i L'entier à convertir
