@@ -1,16 +1,18 @@
 // -*- c-basic-offset: 2; -*-
 #ifndef MAP_WINDOW_H
 #define MAP_WINDOW_H
+
 #include "map-area.h"
+
 #include <iostream>
 #include <memory>
 #include <string>
 
 #include <gtkmm.h>
 
-
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
+#include "ui/iatal-ui-manager.h"
 
 class MapWindow : public Gtk::Window
 {
@@ -23,21 +25,11 @@ public:
   Gtk::VBox vBox;
   Gtk::Image mapImage, strategyImage;
   
-protected:
+ private:
   Gtk::HBox hBox;
   Gtk::Label mapStatus,
     strategyStatus;
-  //Signal handlers:
-  void onMenuQuit();
-  void on_menu_others();
-
-  //Child widgets:
-
-  Glib::RefPtr<Gtk::UIManager> m_refUIManager;
-  Glib::RefPtr<Gtk::ActionGroup> m_refActionGroup;
-  Glib::RefPtr<Gtk::RadioAction> m_refChoiceOne, m_refChoiceTwo;
-
- private:
+  Glib::RefPtr< IAtalUIManager > uiManager_;
   MapController & mc_;
   StrategyController & sc_;
 };

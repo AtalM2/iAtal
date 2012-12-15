@@ -15,6 +15,7 @@ MapWindow::MapWindow()
     strategyImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     mapStatus("Map loaded: "),
     strategyStatus("Strategy loaded: "),
+    uiManager_(IAtalUIManager::create()),
     mc_(MapController::getInstance()),
     sc_(StrategyController::getInstance())
 {
@@ -32,22 +33,19 @@ MapWindow::MapWindow()
 
   add(vBox); // put a MenuBar at the top of the box and other stuff below it.
 
-  Glib::RefPtr< IAtalUIManager > uiManager =
-    IAtalUIManager::create();
-  
-  add_accel_group(uiManager->get_accel_group());
+  add_accel_group(uiManager_->get_accel_group());
   
   //Get the menubar and toolbar widgets, and add them to a container widget:
-  Gtk::Widget* pMenubar = uiManager->get_widget("/MenuBar");
+  Gtk::Widget* pMenubar = uiManager_->get_widget("/MenuBar");
   if(pMenubar)
     vBox.pack_start(*pMenubar, Gtk::PACK_SHRINK);
 
-  Gtk::Widget* pToolbar = uiManager->get_widget("/ToolBar") ;
+  Gtk::Widget* pToolbar = uiManager_->get_widget("/ToolBar") ;
   if(pToolbar)
     vBox.pack_start(*pToolbar, Gtk::PACK_SHRINK);
   
   Glib::RefPtr< Gtk::Action > ac =
-    uiManager->get_action("/ToolBar/StrategyAutoStepsOff");
+    uiManager_->get_action("/ToolBar/StrategyAutoStepsOff");
   
   if(ac)
     ac->set_sensitive(false);
@@ -59,11 +57,6 @@ MapWindow::MapWindow()
 
 MapWindow::~MapWindow()
 {
-}
-
-void MapWindow::on_menu_others()
-{
-  std::cout << "A menu item was selected." << std::endl;
 }
 
 void MapWindow::displayWarning(const Glib::ustring & title,
