@@ -1,13 +1,11 @@
 #ifndef TILESET_H
 #define	TILESET_H
 
-#include <string>
+#include <glibmm/ustring.h>
 #include <map>
 #include "image.h"
 #include "tile.h"
 #include <iostream>
-
-using namespace std;
 
 class Tileset {
 public:
@@ -26,8 +24,8 @@ public:
 	void setTileWidth(unsigned int tileWidth);
 	unsigned int getTileWidth() const;
 
-	void setName(std::string name);
-	std::string getName() const;
+	void setName(Glib::ustring name);
+	Glib::ustring getName() const;
 
 	void setFirstgid(unsigned int firstgid);
 	unsigned int getFirstgid() const;
@@ -40,7 +38,7 @@ public:
 
 private:
 	unsigned int firstgid_;
-	std::string name_;
+	Glib::ustring name_;
 	unsigned int tileWidth_;
 	unsigned int tileHeight_;
 	unsigned int spacing_;

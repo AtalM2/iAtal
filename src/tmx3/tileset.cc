@@ -52,11 +52,11 @@ Tileset::getTileWidth() const {
 }
 
 void
-Tileset::setName(std::string name) {
+Tileset::setName(Glib::ustring name) {
 	name_ = name;
 }
 
-std::string
+Glib::ustring
 Tileset::getName() const {
 	return name_;
 }
