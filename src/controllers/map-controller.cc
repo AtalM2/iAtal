@@ -51,12 +51,12 @@ MapController::loadMap()
 	    "Please see the supported format in the manual");
 	  return;
 	}
+      window_->setMap(newMap);
+      window_->resize(1, 1);
+      window_->setMapStatusOk(true);
+      window_->setPathSensitivity("/ToolBar/FileOpenStrategy", true);
+      map_.swap(newMap);
     }
-  window_->setMap(newMap);
-  window_->resize(1, 1);
-  window_->setMapStatusOk(true);
-  window_->setPathSensitivity("/ToolBar/FileOpenStrategy", true);
-  map_.swap(newMap);
 }
 
 void
