@@ -44,12 +44,6 @@ MapWindow::MapWindow()
   if(pToolbar)
     vBox.pack_start(*pToolbar, Gtk::PACK_SHRINK);
   
-  Glib::RefPtr< Gtk::Action > ac =
-    uiManager_->get_action("/ToolBar/StrategyAutoStepsOff");
-  
-  if(ac)
-    ac->set_sensitive(false);
-  
   vBox.pack_start(hBox);
   show_all_children();
 }
