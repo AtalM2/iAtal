@@ -12,9 +12,8 @@ compteur = 0
 
 #stratégie python
 def strat(aMap):
-#	print (aMap.hello())
-
-	print(elements.getItem(layer.level.Underground,0))
+	print (aMap.hello())
+	print(aMap.getItem(enums.layer.level.Underground,0))
 	global ended
 	ended = True
 '''

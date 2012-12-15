@@ -11,6 +11,7 @@ enums_la_LDFLAGS =		\
 	
 enums_la_SOURCES =	\
 	src/model/layer.cc	\
+	src/model/tileset.cc \
 	$(NULL)
 
 
@@ -31,7 +32,6 @@ bin_PROGRAMS += \
 test_python_SOURCES =			\
 	src/python/main.cc			\
 	src/python/matrice.cc		\
-	src/model/tileset.cc		\
 	$(NULL)
 
 test_python_LDFLAGS =	\

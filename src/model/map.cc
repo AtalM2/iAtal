@@ -57,7 +57,7 @@ Glib::ustring Map::getItem(Layer::Level level, unsigned int range)
   int xTarget = (posXRobot + range) * direction.first;
   int yTarget = (posYRobot + range) * direction.second;
 
-  return map.getLayer(level).getTile(xTarget, yTarget);
+  return this->getLayer(level).getTile(xTarget, yTarget);
 
 }
 
