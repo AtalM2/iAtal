@@ -40,14 +40,14 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
     Gtk::Action::create("FileOpenMap",
 			Gtk::Stock::OPEN,
 			"_Open a map",
-			"Loads a TMX map"),
+			"Load a TMX map"),
     sigc::mem_fun(*this, &MapWindow::on_menu_others));
 
   m_refActionGroup->add(
     Gtk::Action::create("FileOpenStrategy",
 			Gtk::Stock::SELECT_ALL,
 			"_Select a strategy",
-			"Loads a python strategy"),
+			"Load a python strategy"),
     sigc::mem_fun(*this, &MapWindow::on_menu_others));
 
   m_refActionGroup->add(
@@ -79,7 +79,7 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
     Gtk::Action::create("StrategyAutoStepsOff",
 			Gtk::Stock::MEDIA_PAUSE,
 			"Turn _off Auto mode",
-			"Goes back to manual mode"),
+			"Go back to manual mode"),
     sigc::mem_fun(sc, &StrategyController::autoStepsOff));
 
   //Help menu:
