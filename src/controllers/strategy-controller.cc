@@ -3,6 +3,11 @@
 
 #include <iostream>
 
+StrategyController::StrategyController()
+{
+  
+}
+
 void
 StrategyController::nextStep()
 {

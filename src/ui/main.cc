@@ -20,15 +20,15 @@ main(int argc, char** argv)
                              "org.gtkmm.example");
 
   MapController & mc = MapController::getInstance();
+  // StrategyController & sc = StrategyController::getInstance();
   
   try
     {
       
       std::shared_ptr< Map > map =
 	MapLoader::loadTmx("src/tmx/resources/map.tmx");
-      StrategyController sc;
       auto window =
-	std::make_shared< MapWindow >(map, sc);
+	std::make_shared< MapWindow >(map);
       mc.setWindow(window);
       
       return app->run(*window);

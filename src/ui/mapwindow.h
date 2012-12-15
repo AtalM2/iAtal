@@ -17,14 +17,12 @@ class MapWindow : public Gtk::Window
 {
 
 public:
-  MapWindow(const std::shared_ptr< Map > & map,
-	    StrategyController & sc);
+  MapWindow(const std::shared_ptr< Map > & map);
   virtual ~MapWindow();
   void displayWarning(const Glib::ustring & title,
 		      const Glib::ustring & text);
   
 protected:
-  StrategyController sc;
   Gtk::HBox hBox;
   Gtk::VBox vBox;
   Gtk::Label mapStatus,
@@ -45,6 +43,7 @@ protected:
 
  private:
   MapController & mc_;
+  StrategyController & sc_;
 };
 
 #endif // MAPWINDOW_H

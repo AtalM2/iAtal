@@ -8,15 +8,14 @@
 
 #include "controllers/map-controller.h"
 
-MapWindow::MapWindow(const std::shared_ptr< Map > & map,
-		     StrategyController & sc)
-  : sc(sc),
-    mapStatus("Map loaded: "),
+MapWindow::MapWindow(const std::shared_ptr< Map > & map)
+  : mapStatus("Map loaded: "),
     strategyStatus("Strategy loaded: "),
     mapImage(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU),
     strategyImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     area(map),
-    mc_(MapController::getInstance())
+    mc_(MapController::getInstance()),
+    sc_(StrategyController::getInstance())
 {
   set_title("iAtal");
   set_icon_from_file("src/ui/img/icon.png");
@@ -70,21 +69,21 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
 			Gtk::Stock::MEDIA_PLAY,
 			"_Next step",
 			"Execute the next step of the strategy"),
-    sigc::mem_fun(sc, &StrategyController::nextStep));
+    sigc::mem_fun(sc_, &StrategyController::nextStep));
 
   m_refActionGroup->add(
     Gtk::Action::create("StrategyAutoStepsOn",
 			Gtk::Stock::MEDIA_FORWARD,
 			"Turn on _Auto mode",
 			"Execute steps automatically"),
-    sigc::mem_fun(sc, &StrategyController::autoStepsOn));
+    sigc::mem_fun(sc_, &StrategyController::autoStepsOn));
 
   m_refActionGroup->add(
     Gtk::Action::create("StrategyAutoStepsOff",
 			Gtk::Stock::MEDIA_PAUSE,
 			"Turn _off Auto mode",
 			"Go back to manual mode"),
-    sigc::mem_fun(sc, &StrategyController::autoStepsOff));
+    sigc::mem_fun(sc_, &StrategyController::autoStepsOff));
 
   //Help menu:
   m_refActionGroup->add( Gtk::Action::create("HelpMenu", "Help") );

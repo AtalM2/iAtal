@@ -6,8 +6,24 @@
 class StrategyController
 {
  public:
+  static StrategyController & getInstance()
+  {
+    static StrategyController instance;
+    return instance;
+  }
+  
   void nextStep();
   void autoStepsOn();
   void autoStepsOff();
+  
+ private:
+  StrategyController();
+
+  // Don't Implement, singleton
+  StrategyController(const StrategyController &);
+
+  // Don't Implement, singleton
+  void operator=(const StrategyController &); // Don't implement, singleton
+
 };
 #endif // STRATEGY_CONTROLLER_H
