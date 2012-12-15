@@ -26,7 +26,7 @@ class MapController
 
   void loadMap();
 
-  std::shared_ptr<Map> getMap();
+  const std::shared_ptr<Map> & getMap();
   
  private:
   std::shared_ptr< Map > map_;

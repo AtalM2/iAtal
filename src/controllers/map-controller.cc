@@ -59,7 +59,8 @@ MapController::loadMap()
     }
 }
 
-std::shared_ptr<Map> MapController::getMap()
+const std::shared_ptr<Map> &
+MapController::getMap()
 {
   return map_;
 }
