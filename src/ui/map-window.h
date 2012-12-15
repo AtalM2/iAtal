@@ -27,6 +27,7 @@ public:
   void setMap(const std::shared_ptr< Map > & map);
   
  private:
+  bool mapLoaded;
   Gtk::VBox vBox;
   Gtk::Image mapImage, strategyImage;
   Gtk::Label mapStatus, strategyStatus;

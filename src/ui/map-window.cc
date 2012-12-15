@@ -10,7 +10,8 @@
 #include "ui/iatal-ui-manager.h"
 
 MapWindow::MapWindow()
-  : mapImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
+  : mapLoaded(false),
+    mapImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     strategyImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     mapStatus("Map loaded:"),
     strategyStatus("Strategy loaded:"),
@@ -62,8 +63,12 @@ void
 MapWindow::setMap(const std::shared_ptr< Map > & map)
 {
   area_.setMap(map);
-  vBox.pack_start(area_);
-  area_.show();
+  if(!mapLoaded)
+    {
+      vBox.pack_start(area_);
+      area_.show();
+      mapLoaded = true;
+    }
 }
 
 void
