@@ -10,6 +10,9 @@ class IAtalUIManager : public Gtk::UIManager
 public:
   static Glib::RefPtr< IAtalUIManager > create();
   virtual ~IAtalUIManager();
+  
+  void setPathSensitivity(const Glib::ustring & path,
+			  bool sensitivity);
 
 protected:
   IAtalUIManager();

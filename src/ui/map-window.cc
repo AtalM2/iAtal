@@ -72,6 +72,13 @@ MapWindow::setMap(const std::shared_ptr< Map > & map)
 }
 
 void
+MapWindow::setPathSensitivity(const Glib::ustring & path,
+			      bool sensitivity)
+{
+  uiManager_->setPathSensitivity(path, sensitivity);
+}
+
+void
 MapWindow::setStrategyStatusOk(bool ok)
 {
   if(ok)

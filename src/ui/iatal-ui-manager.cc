@@ -128,4 +128,19 @@ IAtalUIManager::IAtalUIManager()
       std::cerr << "building menus failed: " <<  ex.what();
     }
 
+  setPathSensitivity("/ToolBar/FileOpenStrategy", false);
+  setPathSensitivity("/ToolBar/StrategyNextStep", false);
+  setPathSensitivity("/ToolBar/StrategyAutoStepsOn", false);
+  setPathSensitivity("/ToolBar/StrategyAutoStepsOff", false);
+  
+}
+
+void
+IAtalUIManager::setPathSensitivity(const Glib::ustring & path,
+				   bool sensitivity)
+{
+    Glib::RefPtr< Gtk::Action > ac = get_action(path);
+  
+  if(ac)
+    ac->set_sensitive(sensitivity);
 }

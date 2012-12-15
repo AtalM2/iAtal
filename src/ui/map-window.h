@@ -26,6 +26,9 @@ public:
   
   void setMap(const std::shared_ptr< Map > & map);
   
+  void setPathSensitivity(const Glib::ustring & path,
+			  bool sensitivity);
+  
  private:
   bool mapLoaded;
   Gtk::VBox vBox;
