@@ -14,6 +14,8 @@ ui_SOURCES = \
 	src/ui/main.cc \
 	src/ui/map-area.cc \
 	src/ui/map-window.cc \
+	src/ui/tmx-chooser-dialog.cc \
+	src/ui/python-chooser-dialog.cc \
 	$(NULL)
 
 ui_CXXFLAGS = \

@@ -7,6 +7,7 @@
 #include <gtkmm/stock.h>
 
 #include "controllers/map-controller.h"
+#include "ui/python-chooser-dialog.h"
 
 MapWindow::MapWindow()
   : mapImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
@@ -178,28 +179,8 @@ void MapWindow::displayWarning(const Glib::ustring & title,
 
 void MapWindow::onMenuOpenStrategy()
 {
-  Gtk::FileChooserDialog dialog("Please choose a strategy file to load",
-				Gtk::FILE_CHOOSER_ACTION_OPEN);
+  PythonChooserDialog dialog;
   dialog.set_transient_for(*this);
-
-  //Add response buttons the the dialog:
-  dialog.add_button(Gtk::Stock::CANCEL,
-		    Gtk::RESPONSE_CANCEL);
-  dialog.add_button(Gtk::Stock::OPEN,
-		    Gtk::RESPONSE_OK);
-
-  //Add filters, so that only certain file types can be selected:
-  Glib::RefPtr<Gtk::FileFilter> filter_py =
-    Gtk::FileFilter::create();
-  filter_py->set_name("Python files");
-  filter_py->add_pattern("*.py");
-  dialog.add_filter(filter_py);
-  
-  Glib::RefPtr<Gtk::FileFilter> filter_any =
-    Gtk::FileFilter::create();
-  filter_any->set_name("Any files");
-  filter_any->add_pattern("*");
-  dialog.add_filter(filter_any);
 
   //Show the dialog and wait for a user response:
   int result = dialog.run();

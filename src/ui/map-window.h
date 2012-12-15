@@ -1,5 +1,4 @@
 // -*- c-basic-offset: 2; -*-
-
 #ifndef MAP_WINDOW_H
 #define MAP_WINDOW_H
 #include "map-area.h"
