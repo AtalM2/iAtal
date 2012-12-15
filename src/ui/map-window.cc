@@ -63,23 +63,18 @@ void
 MapWindow::setStrategyStatusOk(bool ok)
 {
   hBox_.setStrategyStatusOk(ok);
+  setPathSensitivity("/ToolBar/StrategyAutoStepsOn",
+		     true);
+  setPathSensitivity("/ToolBar/StrategyAutoStepsOff",
+		     false);
+  setPathSensitivity("/ToolBar/StrategyNextStep",
+		     true);
 }
 
 void
 MapWindow::setMapStatusOk(bool ok)
 {
   hBox_.setMapStatusOk(ok);
-}
-
-void
-MapWindow::displayWarning(const Glib::ustring & title,
-			       const Glib::ustring & text)
-{
-  Gtk::MessageDialog warning(*this,
-			     title,
-			     false,
-			     Gtk::MESSAGE_WARNING,
-			     Gtk::BUTTONS_CLOSE);
-  warning.set_secondary_text(text);
-  warning.run();
+  setPathSensitivity("/ToolBar/FileOpenStrategy",
+		     true);
 }

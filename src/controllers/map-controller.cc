@@ -6,6 +6,7 @@
 #include "ui/map-window.h"
 #include "ui/map-area.h"
 #include "ui/tmx-chooser-dialog.h"
+#include "ui/warning-dialog.h"
 
 MapController::MapController()
 {
@@ -34,19 +35,24 @@ MapController::loadMap()
       catch(const exception & e)
 	{
 	  dialog.hide();
-	  window_->displayWarning("Map loading failed.", e.what());
+	  WarningDialog(*window_,
+			"Map loading failed.",
+			e.what());
 	  return;
 	}
       catch(const Glib::Exception & e)
 	{
 	  dialog.hide();
-	  window_->displayWarning("Map loading failed.", e.what());
+	  WarningDialog(*window_,
+			"Map loading failed.",
+			e.what());
 	  return;
 	}
       catch(...)
 	{
 	  dialog.hide();
-	  window_->displayWarning(
+	  WarningDialog(
+	    *window_,
 	    "Map loading failed.",
 	    "Please see the supported format in the manual");
 	  return;
@@ -54,7 +60,6 @@ MapController::loadMap()
       window_->setMap(newMap);
       window_->resize(1, 1);
       window_->setMapStatusOk(true);
-      window_->setPathSensitivity("/ToolBar/FileOpenStrategy", true);
       map_.swap(newMap);
     }
 }

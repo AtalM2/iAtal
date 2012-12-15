@@ -20,6 +20,7 @@ ui_SOURCES = \
 	src/ui/python-chooser-dialog.cc \
 	src/ui/status-hbox.cc \
 	src/ui/tmx-chooser-dialog.cc \
+	src/ui/warning-dialog.cc \
 	$(NULL)
 
 ui_CXXFLAGS = \
