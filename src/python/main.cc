@@ -42,9 +42,12 @@ int main(int argc, char **argv)
       
     boost::python::object strat = py_["strat"];
     boost::python::object isEnded = py_["isEnded"];
+    boost::python::object init = py_["init"];
 
     //Model creation. Robot in 0,0 , facing north
     boost::shared_ptr<Map> aMap(new Map(0 ,0 ,std::pair< int, int >(0, 1), 3, 3, 15, 15));
+
+    init(boost::python::ptr(aMap.get()));
 
     boost::python::object endTestRes = isEnded();
     bool endTest = boost::python::extract<bool>(endTestRes);
@@ -52,7 +55,7 @@ int main(int argc, char **argv)
 
     while (!endTest){
 
-      strat(boost::python::ptr(aMap.get()));
+      strat();
 
       /*
         std::string a = mat.getElement();

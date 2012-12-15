@@ -9,34 +9,37 @@ import enums
 #globals
 ended = False
 compteur = 0
+map_ = False
+
+def init(aMap):
+	global map_ 
+	map_ = aMap
 
 #stratégie python
-def strat(aMap):
-	print (aMap.hello())
-	print(aMap.getItem(enums.Level.Underground,0))
-	global ended
-	ended = True
-'''
-	#case_avant = controller.getCaseAvant()
-	if case_avant == "herbe":
-		return "avance"
-	else:
-		global compteur
-		compteur += 1
-		if compteur > 10:
-			global ended
-			ended = True
-		return "tourne_gauche"
-'''
+def strat():
+	undergroundSensor = sensor(enums.Level.Underground, 1)
+	print(mysens.activate())
+
 #sert à savoir si la strat est finie ou non
 def isEnded():
 	return ended;
 
+#Defines a sensor.
+class sensor:
+	def __init__(self,level_, range_):
+		self.map_ = map_
+		self.level_ = level_
+		self.range_ = range_
+	def activate(self):
+		return map_.getItem(self.level_ , self.range_)
 
-#pour mémoire
-def func(a) :
-	if a == "herbe":
-		x = "vas y roule"
-	else:
-		x = "n'y va pas !"
-	return (x)
+#defines an actuator
+class actuator:
+	def __init__(self, level_, range_,newcontent_):
+		self.map_ = map_
+		self.level_ = level_
+		self.range_ = range_
+		self.newcontent_ = newcontent_
+	
+	def activate(self, aMap):
+		pass
