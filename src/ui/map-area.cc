@@ -3,10 +3,10 @@
 
 #include <iostream>
 
-#include <cairomm/context.h>
 #include <gdkmm/general.h> // set_source_pixbuf()
-#include <gdkmm/pixbufanimation.h>
+#include <gdkmm/pixbuf.h>
 #include <glibmm/fileutils.h>
+#include <glibmm/ustring.h>
 
 MapArea::MapArea()
 {
