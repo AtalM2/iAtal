@@ -96,7 +96,8 @@ MapWindow::setMapStatusOk(bool ok)
     mapImage.set(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU);    
 }
 
-void MapWindow::displayWarning(const Glib::ustring & title,
+void
+MapWindow::displayWarning(const Glib::ustring & title,
 			       const Glib::ustring & text)
 {
   Gtk::MessageDialog warning(*this,
