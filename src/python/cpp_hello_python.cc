@@ -15,8 +15,14 @@ int main()
         exec_file("cpp_hello_python.py",
                   main_namespace);
 
-        World world = boost::python::extract< World >(main_namespace["world"]);
-        std::cout << world.greet() << std::endl;
+        boost::shared_ptr<World> world(new World());
+        world->set("This is SPARTA!");
+
+        main_namespace["world"] = boost::python::ptr(world.get());
+
+        exec("print(world.greet())\n",
+             main_namespace);
+        
     } catch (boost::python::error_already_set) {
         PyErr_Print();
     }
