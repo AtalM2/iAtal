@@ -10,6 +10,5 @@ tmx3_SOURCES =					\
 	src/tmx3/tile.cc			\
 	src/tmx3/tileset.cc			\
 	src/tmx3/tinyxml2.cc		\
-	src/tmx3/utils.cc			\
 	$(NULL)
 

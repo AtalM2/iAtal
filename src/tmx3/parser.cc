@@ -4,7 +4,6 @@
 #include "parser.h"
 #include "tileset.h"
 #include "layer.h"
-#include "utils.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
