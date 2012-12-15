@@ -8,12 +8,11 @@
 
 #include "controllers/map-controller.h"
 
-MapWindow::MapWindow(const std::shared_ptr< Map > & map)
-  : mapStatus("Map loaded: "),
-    strategyStatus("Strategy loaded: "),
-    mapImage(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU),
+MapWindow::MapWindow()
+  : mapImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     strategyImage(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
-    area(map),
+    mapStatus("Map loaded: "),
+    strategyStatus("Strategy loaded: "),
     mc_(MapController::getInstance()),
     sc_(StrategyController::getInstance())
 {
@@ -22,10 +21,6 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map)
   mapStatus.set_margin_left(5);
   mapImage.set_margin_right(5);
   strategyImage.set_margin_right(5);
-  area.set_margin_left(5);
-  area.set_margin_right(5);
-  area.set_margin_bottom(5);
-  area.set_margin_top(5);
   
   // Top hbox handling
   hBox.pack_start(mapStatus);
@@ -145,7 +140,6 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map)
     vBox.pack_start(*pToolbar, Gtk::PACK_SHRINK);
 
   vBox.pack_start(hBox);
-  vBox.pack_start(area);
   show_all_children();
 }
 

@@ -17,18 +17,17 @@ class MapWindow : public Gtk::Window
 {
 
 public:
-  MapWindow(const std::shared_ptr< Map > & map);
+  MapWindow();
   virtual ~MapWindow();
   void displayWarning(const Glib::ustring & title,
 		      const Glib::ustring & text);
+  Gtk::VBox vBox;
+  Gtk::Image mapImage, strategyImage;
   
 protected:
   Gtk::HBox hBox;
-  Gtk::VBox vBox;
   Gtk::Label mapStatus,
     strategyStatus;
-  Gtk::Image mapImage, strategyImage;
-  MapArea area;
   //Signal handlers:
   void onMenuQuit();
   void on_menu_others();

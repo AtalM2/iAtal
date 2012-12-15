@@ -9,8 +9,8 @@
 #include <gtkmm.h>
 
 #include "tmx/map-loader.h"
-
 #include "model/map.h"
+#include "ui/maparea.h"
 
 class MapWindow;
 
@@ -31,6 +31,7 @@ class MapController
   
  private:
   std::shared_ptr< Map > map_;
+  std::shared_ptr< MapArea > mapArea_;
   std::shared_ptr< MapWindow > window_;
   MapController();
   MapController(const MapController &); // Don't Implement, singleton
