@@ -61,3 +61,4 @@ Map::getLayer(Layer::Level level)
 {
   return layers_.at(static_cast<unsigned int>(level));
 }
+

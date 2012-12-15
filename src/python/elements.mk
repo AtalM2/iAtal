@@ -1,6 +1,18 @@
 lib_LTLIBRARIES +=		\
 	elements.la			\
+	enums.la			\
 	$(NULL)
+	
+enums_la_LDFLAGS =		\
+	$(AM_LDFLAGS)		\
+	-avoid-version		\
+	-module				\
+	$(NULL)
+	
+enums_la_SOURCES =	\
+	src/model/layer.cc	\
+	$(NULL)
+
 
 elements_la_LDFLAGS =	\
 	$(AM_LDFLAGS)		\
@@ -19,7 +31,6 @@ bin_PROGRAMS += \
 test_python_SOURCES =			\
 	src/python/main.cc			\
 	src/python/matrice.cc		\
-	src/model/layer.cc			\
 	src/model/tileset.cc		\
 	$(NULL)
 
