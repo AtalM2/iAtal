@@ -5,7 +5,9 @@
 #include "tileset.h"
 #include "layer.h"
 #include "utils.h"
+
 #include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
 
 using namespace tinyxml2;
 
@@ -186,7 +188,7 @@ Parser::parseCsv(std::string data) {
     boost::split(stringVector, data, boost::is_any_of(","));
 	std::vector<unsigned int> intVector;
 	for (size_t i = 0; i < stringVector.size(); i++) {
-		intVector.push_back(Utils::stringToInt(stringVector.at(i)));
+		intVector.push_back(boost::lexical_cast<unsigned int>(stringVector.at(i)));
 	}
 	return intVector;
 }

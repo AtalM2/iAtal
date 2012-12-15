@@ -2,33 +2,6 @@
 #include <sstream>
 
 /**
- * Permet de convertir un int en string
- * 
- * @param i L'entier à convertir
- * @return La chaîne correspondante à l'entier
- */
-std::string
-Utils::intToString(int i) {
-	std::ostringstream oss;
-	oss << i;
-	return oss.str();
-}
-
-/**
- * Permet de convertir une string en int
- * 
- * @param s La chaîne à convertir
- * @return L'entier correspondante à la chaîne
- */
-int
-Utils::stringToInt(std::string s) {
-	std::istringstream iss(s);
-	int number;
-	iss >> number;
-	return number;
-}
-
-/**
  * Permet de remplacer des caractères d'une chaine par un autre caractère
  * 
  * @param str La chaine dans laquelle on veut effectuer le remplacement
