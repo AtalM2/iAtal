@@ -4,7 +4,8 @@
 #include "parser.h"
 #include "exception.h"
 
-int main() {
+int
+main() {
 	Map map;
 	try {
 		map = Parser::parseFile("resources/map.tmx");

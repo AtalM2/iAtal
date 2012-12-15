@@ -6,15 +6,18 @@ Tile::Tile() {
 Tile::~Tile() {
 }
 
-std::map<std::string, std::string> Tile::getProperties() const {
+std::map<std::string, std::string>
+Tile::getProperties() const {
 	return properties_;
 }
 
-void Tile::setProperty(std::string key, std::string value) {
+void
+Tile::setProperty(std::string key, std::string value) {
 	properties_[key] = value;
 }
 
-std::string Tile::getProperty(std::string key) const {
+std::string
+Tile::getProperty(std::string key) const {
 	if (key == "") {
 		return "";
 	}
@@ -26,16 +29,18 @@ std::string Tile::getProperty(std::string key) const {
 	}
 }
 
-void Tile::display(std::ostream & out) const {
+void
+Tile::display(std::ostream & out) const {
 	out << "Tile : " << std::endl
-			<< "Properties : " << std::endl;
+        << "Properties : " << std::endl;
 	std::map<std::string, std::string>::const_iterator it;
 	for (it = properties_.begin(); it != properties_.end(); ++it) {
 		out << it->first << " - " << it->second << std::endl;
 	}
 }
 
-std::ostream & operator<<(std::ostream &out, const Tile & tile) {
+std::ostream &
+operator<<(std::ostream &out, const Tile & tile) {
 	tile.display(out);
 	return out;
 }

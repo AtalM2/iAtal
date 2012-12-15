@@ -7,7 +7,7 @@ class ConversionException : public Exception {
 public:
 
 	ConversionException(const std::string & complement) throw ()
-	: Exception("Conversion error: " + complement) {
+        : Exception("Conversion error: " + complement) {
 	}
 
 	virtual ~ConversionException() throw () {

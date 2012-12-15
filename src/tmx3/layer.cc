@@ -1,16 +1,17 @@
 #include "layer.h"
 
 Layer::Layer(unsigned int height, unsigned int width) :
-width_(width),
-height_(height),
-tiles_(height, std::vector<unsigned int>(width, 0)),
-properties_() {
+    width_(width),
+    height_(height),
+    tiles_(height, std::vector<unsigned int>(width, 0)),
+    properties_() {
 }
 
 Layer::~Layer() {
 }
 
-void Layer::setTile(unsigned int x, unsigned int y, unsigned int id) {
+void
+Layer::setTile(unsigned int x, unsigned int y, unsigned int id) {
 	if (x < width_ && y < height_) {
 		tiles_.at(x).at(y) = id;
 	} else {
@@ -18,7 +19,8 @@ void Layer::setTile(unsigned int x, unsigned int y, unsigned int id) {
 	}
 }
 
-unsigned int Layer::getTile(unsigned int x, unsigned int y) const {
+unsigned int
+Layer::getTile(unsigned int x, unsigned int y) const {
 	if (x < width_ && y < height_) {
 		return tiles_.at(x).at(y);
 	} else {
@@ -26,15 +28,18 @@ unsigned int Layer::getTile(unsigned int x, unsigned int y) const {
 	}
 }
 
-std::map<std::string, std::string> Layer::getProperties() const {
+std::map<std::string, std::string>
+Layer::getProperties() const {
 	return properties_;
 }
 
-void Layer::setProperty(std::string key, std::string value) {
+void
+Layer::setProperty(std::string key, std::string value) {
 	properties_[key] = value;
 }
 
-std::string Layer::getProperty(std::string key) const {
+std::string
+Layer::getProperty(std::string key) const {
 	if (key == "") {
 		return "";
 	}
@@ -46,28 +51,33 @@ std::string Layer::getProperty(std::string key) const {
 	}
 }
 
-unsigned int Layer::getHeight() const {
+unsigned int
+Layer::getHeight() const {
 	return height_;
 }
 
-unsigned int Layer::getWidth() const {
+unsigned int
+Layer::getWidth() const {
 	return width_;
 }
 
-void Layer::setName(std::string name) {
+void
+Layer::setName(std::string name) {
 	name_ = name;
 }
 
-std::string Layer::getName() const {
+std::string
+Layer::getName() const {
 	return name_;
 }
 
-void Layer::display(std::ostream & out) const {
+void
+Layer::display(std::ostream & out) const {
 	out << "Layer : " << std::endl
-			<< "Name : " << name_
-			<< " - Height : " << height_
-			<< " - Width : " << width_ << std::endl
-			<< "Properties : " << std::endl;
+        << "Name : " << name_
+        << " - Height : " << height_
+        << " - Width : " << width_ << std::endl
+        << "Properties : " << std::endl;
 	std::map<std::string, std::string>::const_iterator it;
 	for (it = properties_.begin(); it != properties_.end(); ++it) {
 		out << it->first << " - " << it->second << std::endl;
@@ -81,7 +91,8 @@ void Layer::display(std::ostream & out) const {
 	}
 }
 
-std::ostream & operator<<(std::ostream &out, const Layer & layer) {
+std::ostream &
+operator<<(std::ostream &out, const Layer & layer) {
 	layer.display(out);
 	return out;
 }

@@ -1,27 +1,31 @@
 #include "map.h"
 
 Map::Map() :
-properties_(),
-tilesets_(),
-layers_() {
+    properties_(),
+    tilesets_(),
+    layers_() {
 }
 
 Map::~Map() {
 }
 
-std::vector<Layer>* Map::getLayers() {
+std::vector<Layer>*
+Map::getLayers() {
 	return &layers_;
 }
 
-std::vector<Tileset>* Map::getTilesets() {
+std::vector<Tileset>*
+Map::getTilesets() {
 	return &tilesets_;
 }
 
-std::map<std::string, std::string> Map::getProperties() const {
+std::map<std::string, std::string>
+Map::getProperties() const {
 	return properties_;
 }
 
-std::string Map::getProperty(std::string key) const {
+std::string
+Map::getProperty(std::string key) const {
 	if (key == "") {
 		return "";
 	}
@@ -33,58 +37,70 @@ std::string Map::getProperty(std::string key) const {
 	}
 }
 
-void Map::setProperty(std::string key, std::string value) {
+void
+Map::setProperty(std::string key, std::string value) {
 	properties_[key] = value;
 }
 
-void Map::setTileHeight(unsigned int tileHeight) {
+void
+Map::setTileHeight(unsigned int tileHeight) {
 	tileHeight_ = tileHeight;
 }
 
-unsigned int Map::getTileHeight() const {
+unsigned int
+Map::getTileHeight() const {
 	return tileHeight_;
 }
 
-void Map::setTileWidth(unsigned int tileWidth) {
+void
+Map::setTileWidth(unsigned int tileWidth) {
 	tileWidth_ = tileWidth;
 }
 
-unsigned int Map::getTileWidth() const {
+unsigned int
+Map::getTileWidth() const {
 	return tileWidth_;
 }
 
-void Map::setHeight(unsigned int height) {
+void
+Map::setHeight(unsigned int height) {
 	height_ = height;
 }
 
-unsigned int Map::getHeight() const {
+unsigned int
+Map::getHeight() const {
 	return height_;
 }
 
-void Map::setWidth(unsigned int width) {
+void
+Map::setWidth(unsigned int width) {
 	width_ = width;
 }
 
-unsigned int Map::getWidth() const {
+unsigned int
+Map::getWidth() const {
 	return width_;
 }
 
-void Map::setOrientation(std::string orientation) {
+void
+Map::setOrientation(std::string orientation) {
 	orientation_ = orientation;
 }
 
-std::string Map::getOrientation() const {
+std::string
+Map::getOrientation() const {
 	return orientation_;
 }
 
-void Map::display(std::ostream & out) const {
+void
+Map::display(std::ostream & out) const {
 	out << "Map : " << std::endl
-			<< "Orientation : " << orientation_
-			<< " - Height : " << height_
-			<< " - Width : " << width_
-			<< " - TileHeight : " << tileHeight_
-			<< " - TileWidth : " << tileWidth_ << std::endl
-			<< "Properties : " << std::endl;
+        << "Orientation : " << orientation_
+        << " - Height : " << height_
+        << " - Width : " << width_
+        << " - TileHeight : " << tileHeight_
+        << " - TileWidth : " << tileWidth_ << std::endl
+        << "Properties : " << std::endl;
 	std::map<std::string, std::string>::const_iterator it;
 	for (it = properties_.begin(); it != properties_.end(); ++it) {
 		out << it->first << " - " << it->second << std::endl;
@@ -99,7 +115,8 @@ void Map::display(std::ostream & out) const {
 	}
 }
 
-std::ostream & operator<<(std::ostream &out, const Map & map) {
+std::ostream &
+operator<<(std::ostream &out, const Map & map) {
 	map.display(out);
 	return out;
 }

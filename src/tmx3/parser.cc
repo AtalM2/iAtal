@@ -8,7 +8,8 @@
 
 using namespace tinyxml2;
 
-Map Parser::parseFile(std::string filePath) {
+Map
+Parser::parseFile(std::string filePath) {
 	Map map;
 
 	// Charger le fichier TMX	
@@ -26,14 +27,14 @@ Map Parser::parseFile(std::string filePath) {
 	XMLElement* tmx = tmxDoc.FirstChildElement("map");
 	std::string orientation = tmx->Attribute("orientation");
 	unsigned int width = tmx->IntAttribute("width"),
-			height = tmx->IntAttribute("height"),
-			tileWidth = tmx->IntAttribute("tilewidth"),
-			tileHeight = tmx->IntAttribute("tileheight");
+        height = tmx->IntAttribute("height"),
+        tileWidth = tmx->IntAttribute("tilewidth"),
+        tileHeight = tmx->IntAttribute("tileheight");
 
 	if (!width || !height || !tileWidth || !tileHeight) {
 		std::ostringstream oss;
 		oss << "L'un des attributs (height, width, tileheight, tilewidth) est égal à 0. "
-				<< "La map ne peut pas être créée dans ces conditions";
+            << "La map ne peut pas être créée dans ces conditions";
 		throw BadParametersException(oss.str());
 	}
 
@@ -126,8 +127,8 @@ Map Parser::parseFile(std::string filePath) {
 		} else {
 			std::ostringstream oss;
 			oss << "L'encodage "
-					<< xmlData->Attribute("encoding")
-					<< " d'un layer n'est pas supporté";
+                << xmlData->Attribute("encoding")
+                << " d'un layer n'est pas supporté";
 			throw BadParametersException(oss.str());
 		}
 
@@ -143,25 +144,27 @@ Map Parser::parseFile(std::string filePath) {
 	return map;
 }
 
-void Parser::loadFile(tinyxml2::XMLDocument& tmxDoc, std::string filePath) {
+void
+Parser::loadFile(tinyxml2::XMLDocument& tmxDoc, std::string filePath) {
 	tmxDoc.LoadFile(filePath.c_str());
 	if (tmxDoc.ErrorID() != XML_SUCCESS) {
 		if (tmxDoc.ErrorID() == XML_ERROR_FILE_NOT_FOUND) {
 			throw FileNotFoundException("Le fichier TMX "
-					+ filePath
-					+ " n'a pas été trouvé.");
+                                        + filePath
+                                        + " n'a pas été trouvé.");
 		} else {
 			std::ostringstream error;
 			error << "Impossible de charger le fichier TMX. "
-					<< "Erreur numéro : "
-					<< tmxDoc.ErrorID()
-					<< ".";
+                  << "Erreur numéro : "
+                  << tmxDoc.ErrorID()
+                  << ".";
 			throw XmlException(error.str());
 		}
 	}
 }
 
-std::string Parser::getFileDirectory(std::string filePath) {
+std::string
+Parser::getFileDirectory(std::string filePath) {
 	size_t pos = filePath.find_last_of("\\/");
 	if (std::string::npos == pos) {
 		return "";
@@ -170,7 +173,8 @@ std::string Parser::getFileDirectory(std::string filePath) {
 	}
 }
 
-std::vector<unsigned int> Parser::parseCsv(std::string data) {
+std::vector<unsigned int>
+Parser::parseCsv(std::string data) {
 	std::string temp;
 	temp.resize(data.length());
 	std::remove_copy(data.begin(), data.end(), temp.begin(), '\n');

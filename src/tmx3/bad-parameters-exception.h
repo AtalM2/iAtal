@@ -8,7 +8,7 @@ class BadParametersException : public Exception {
 public:
 
 	BadParametersException(const std::string & complement) throw ()
-	: Exception("Bad parameters: " + complement) {
+        : Exception("Bad parameters: " + complement) {
 	}
 
 	virtual ~BadParametersException() throw () {

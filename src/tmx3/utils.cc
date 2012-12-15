@@ -8,7 +8,8 @@
  * @param separator Le séparateur
  * @return Un tableau de chaines de caractères
  */
-std::vector<std::string> Utils::stringExplode(std::string str, std::string separator) {
+std::vector<std::string>
+Utils::stringExplode(std::string str, std::string separator) {
 	size_t found;
 	std::vector<std::string> results;
 	found = str.find_first_of(separator);
@@ -31,7 +32,8 @@ std::vector<std::string> Utils::stringExplode(std::string str, std::string separ
  * @param i L'entier à convertir
  * @return La chaîne correspondante à l'entier
  */
-std::string Utils::intToString(int i) {
+std::string
+Utils::intToString(int i) {
 	std::ostringstream oss;
 	oss << i;
 	return oss.str();
@@ -43,7 +45,8 @@ std::string Utils::intToString(int i) {
  * @param s La chaîne à convertir
  * @return L'entier correspondante à la chaîne
  */
-int Utils::stringToInt(std::string s) {
+int
+Utils::stringToInt(std::string s) {
 	std::istringstream iss(s);
 	int number;
 	iss >> number;
@@ -58,7 +61,8 @@ int Utils::stringToInt(std::string s) {
  * @param newStr Le caractère de remplacement
  * @return Une nouvelle chaine avec les remplacements effectués
  */
-std::string Utils::stringReplace(std::string str, std::string oldStr, char newStr) {
+std::string
+Utils::stringReplace(std::string str, std::string oldStr, char newStr) {
 	std::string results(str);
 	size_t found;
 

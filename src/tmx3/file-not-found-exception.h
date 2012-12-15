@@ -7,7 +7,7 @@ class FileNotFoundException : public Exception {
 public:
 
 	FileNotFoundException(const std::string & complement) throw ()
-	: Exception("FileNotFound: " + complement) {
+        : Exception("FileNotFound: " + complement) {
 	}
 
 	virtual ~FileNotFoundException() throw () {
