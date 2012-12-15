@@ -83,7 +83,7 @@ AS_IF([test "x$PYTHON_VERSION" != "x3.2"],
       
 AC_MSG_RESULT([using Python-$PYTHON_VERSION])
 if test "x$PYTHON_VERSION" = "x3.2"; then
-  PYTHON_LDFLAGS=-lboost_python-p32
+  PYTHON_LDFLAGS=-lboost_python-py32
 else
   PYTHON_LDFLAGS=-lboost_python
 fi
