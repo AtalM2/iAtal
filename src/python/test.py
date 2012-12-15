@@ -18,7 +18,12 @@ def init(aMap):
 #stratégie python
 def strat():
 	undergroundSensor = sensor(enums.Level.Underground, 1)
-	print(mysens.activate())
+	bibiActuator = actuator(enums.Level.Underground, 1, "bibi")
+	print(undergroundSensor.activate())
+	bibiActuator.activate()
+	print(undergroundSensor.activate())
+	global ended
+	ended = True
 
 #sert à savoir si la strat est finie ou non
 def isEnded():
@@ -35,11 +40,11 @@ class sensor:
 
 #defines an actuator
 class actuator:
-	def __init__(self, level_, range_,newcontent_):
+	def __init__(self, level_, range_,newContent_):
 		self.map_ = map_
 		self.level_ = level_
 		self.range_ = range_
-		self.newcontent_ = newcontent_
+		self.newContent_ = newContent_
 	
-	def activate(self, aMap):
-		pass
+	def activate(self):
+		self.map_.setItem(self.level_, self.range_, self.newContent_)

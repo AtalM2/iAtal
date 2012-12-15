@@ -71,6 +71,7 @@ public:
   std::string getHello();
   
   std::string getItem(Layer::Level level, unsigned int range);
+  void setItem(Layer::Level level, unsigned int range, std::string newTile);
   
   Map();
   
