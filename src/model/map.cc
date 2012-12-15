@@ -1,6 +1,31 @@
 // -*- c-basic-offset: 2; -*-
 #include "map.h"
 
+BOOST_PYTHON_MODULE(elements)
+{
+  boost::python::class_<Map>("Map")
+  .def("hello", &Map::getHello);
+}
+
+Map::Map(unsigned int posXRobot,
+	 unsigned int posYRobot,
+	 std::pair<int,int> direction,
+	 unsigned int width,
+         unsigned int height,
+	 unsigned int tileWidth,
+         unsigned int tileHeight)
+  : height(height),
+    width(width),
+    tileHeight(tileHeight),
+    tileWidth(tileWidth),
+    posXRobot(posXRobot),
+    posYRobot(posYRobot),
+    direction(direction),
+    layers_(Layer::Level::LastLevel + 1, Layer(width, height))
+{
+  
+}
+
 Map::Map(unsigned int width,
          unsigned int height,
 	 unsigned int tileWidth,
@@ -12,6 +37,18 @@ Map::Map(unsigned int width,
     layers_(Layer::Level::LastLevel + 1, Layer(width, height))
 {
   
+}
+Map::Map()
+  : height(10),
+    width(10),
+    tileHeight(10),
+    tileWidth(10)
+{
+}
+
+std::string Map::getHello()
+{
+  return "Hello";
 }
 
 Map::~Map()

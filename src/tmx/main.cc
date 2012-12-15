@@ -1,10 +1,10 @@
 // -*- c-basic-offset: 2; -*-
-
+#include "map-loader.h"
 #include <iostream>
 
 #include <gtkmm/application.h>
 
-#include "map-loader.h"
+
 
 int
 main(int argc, char *argv[])

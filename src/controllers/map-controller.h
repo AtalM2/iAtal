@@ -3,14 +3,13 @@
 #ifndef MAP_CONTROLLER_H
 #define MAP_CONTROLLER_H
 
+#include "model/map.h"
 #include <memory>
 #include <string>
-
 #include <gtkmm.h>
-
 #include "tmx/map-loader.h"
-#include "model/map.h"
 #include "ui/map-area.h"
+
 
 class MapWindow;
 

@@ -1,5 +1,5 @@
 // -*- c-basic-offset: 2; -*-
-
+#include "model/map.h"
 #include <memory>
 
 #include <gtkmm/application.h>
@@ -8,7 +8,7 @@
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
 #include "map-window.h"
-#include "model/map.h"
+
 #include "tmx/map-loader.h"
 
 int

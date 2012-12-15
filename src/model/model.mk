@@ -7,7 +7,6 @@ model_SOURCES =			\
 	src/model/map.cc	\
 	src/model/layer.cc	\
 	src/model/tileset.cc \
-	src/model/model.cc \
 	$(NULL)
 
 model_CXXFLAGS = \

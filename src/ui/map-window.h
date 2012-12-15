@@ -2,14 +2,14 @@
 
 #ifndef MAP_WINDOW_H
 #define MAP_WINDOW_H
-
+#include "map-area.h"
 #include <iostream>
 #include <memory>
 #include <string>
 
 #include <gtkmm.h>
 
-#include "map-area.h"
+
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
 

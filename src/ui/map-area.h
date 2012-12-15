@@ -2,14 +2,14 @@
 
 #ifndef MAP_AREA_H
 #define MAP_AREA_H
-
+#include "model/map.h"
 #include <memory>
 
 #include <glibmm/ustring.h>
 #include <gtkmm/drawingarea.h>
 #include <gdkmm/pixbuf.h>
 
-#include "model/map.h"
+
 #include "model/tileset.h"
 
 class MapArea : public Gtk::DrawingArea

@@ -2,6 +2,7 @@
 #ifndef MAP_LOADER_H
 #define	MAP_LOADER_H
 
+#include "model/map.h"
 #include <memory>
 #include <string>
 
@@ -10,7 +11,6 @@
 #include "exceptions/tmx/tmx-exception.h"
 
 #include "model/tileset.h"
-#include "model/map.h"
 
 #include "tmx/tinyxml2.h"
 #include "tmx/tmx-tileset.h"

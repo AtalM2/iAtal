@@ -9,7 +9,7 @@ elements_la_LDFLAGS =	\
 	$(NULL)
 
 elements_la_SOURCES =	\
-	src/model/model.cc	\
+	src/model/map.cc	\
 	$(NULL)
 
 bin_PROGRAMS += \
@@ -19,7 +19,6 @@ bin_PROGRAMS += \
 test_python_SOURCES =			\
 	src/python/main.cc			\
 	src/python/matrice.cc		\
-	src/model/map.cc			\
 	src/model/layer.cc			\
 	src/model/tileset.cc		\
 	$(NULL)

@@ -11,7 +11,6 @@
 #include <map>
 #include "matrice.h"
 #include "model/map.h"
-#include "model/model.h"
 
 int main(int argc, char **argv)
 {
@@ -45,7 +44,7 @@ int main(int argc, char **argv)
     boost::python::object isEnded = py_["isEnded"];
 
     //Model creation. Robot in 0,0 , facing north
-    boost::shared_ptr<Model> aModel(new Model(0 ,0 ,std::pair< int, int >(0, 1), 3, 3, 15, 15));
+    boost::shared_ptr<Map> aMap(new Map(0 ,0 ,std::pair< int, int >(0, 1), 3, 3, 15, 15));
 
     Matrix mat = Matrix();
 
@@ -57,7 +56,7 @@ int main(int argc, char **argv)
 	  //getElement regarde la case devant le robot et renvoie son
 	  //type
 
-      strat(boost::python::ptr(aModel.get()));
+      strat(boost::python::ptr(aMap.get()));
 
       /*
         std::string a = mat.getElement();

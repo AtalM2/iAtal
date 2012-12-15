@@ -2,6 +2,13 @@
 #ifndef MAP_H
 #define MAP_H
 
+/*
+ * Python.h must be included before any standard headers.
+ * http://docs.python.org/2/c-api/intro.html#includes
+ */
+#include <Python.h>
+#include <boost/python.hpp>
+
 #include <vector>
 
 #include <glibmm/ustring.h>
@@ -23,10 +30,26 @@ public:
     \param width the width of the map.
     \param height the height of the map.
   */
+  Map(unsigned int posXRobot,
+      unsigned int posYRobot,
+      std::pair<int,int> direction,
+      unsigned int width,
+      unsigned int height,
+      unsigned int tileWidth,
+      unsigned int tileHeight);
+
+
+  /*!
+    \brief Initialize an empty Map of the given size.
+
+    \param width the width of the map.
+    \param height the height of the map.
+  */
   Map(unsigned int width,
       unsigned int height,
       unsigned int tileWidth,
       unsigned int tileHeight);
+
 
   const unsigned int height; //!< The height of the map in cells
 
@@ -43,6 +66,10 @@ public:
     \return The selected Layer.
   */
   Layer& getLayer(Layer::Level level);  
+
+  //tmp shit
+  std::string getHello();
+  Map();
   
   /*!
     \brief Default destructor.
@@ -50,9 +77,21 @@ public:
   */
   virtual ~Map();
 
+  /*!
+    \brief Shortcuts for orientation
+
+   */
+  static const std::pair< int, int > North, //!< Facing north.
+    South, //!< Facing south.
+    West, //!< Facing west.
+    East; //!< Facing east.
+
 protected:
   
-private:
+ private:
+  unsigned int posXRobot; //!< The x postion of the robot.
+  unsigned int posYRobot; //!< The y position of the robot.
+  std::pair<int,int> direction; //!< The direction of the robot.
   std::vector< Layer > layers_; //!< The set of Layer
 };
 
