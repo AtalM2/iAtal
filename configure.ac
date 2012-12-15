@@ -64,12 +64,23 @@ PKG_CHECK_MODULES([cppunit], [cppunit >= 1.12.1],
 AM_CONDITIONAL([HAVE_CPPUNIT], [test "x$HAVE_CPPUNIT" = "xyes"])
 
 # Python configuration
+AC_ARG_WITH([python-3.2], AS_HELP_STRING([--with-python-3.2], [Use python-3.2 instead of python-2.7 if both are present]),
+            [force_py32=yes], [force_py32=no])
+
 m4_pattern_allow([AM_PATH_PYTHON])
-PKG_CHECK_MODULES([python], [python2 >= 2.7],
-  [PYTHON_VERSION="2.7"],
-  [PKG_CHECK_MODULES([python], [python-3.2 >= 3.2]
+if test "x$force_py32" = "xyes"; then
+  PKG_CHECK_MODULES([python], [python-3.2 >= 3.2],
     [PYTHON_VERSION="3.2"],
-    [AC_MSG_ERROR([Neither Python-2.7 or Python-3.2 have been found.])])])
+    [AC_MSG_WARN([You've ask to use Python-3.2 but it can not be found.])])
+fi
+
+AS_IF([test "x$PYTHON_VERSION" != "x3.2"],
+  [PKG_CHECK_MODULES([python], [python2 >= 2.7],
+    [PYTHON_VERSION="2.7"],
+    [PKG_CHECK_MODULES([python], [python-3.2 >= 3.2],
+      [PYTHON_VERSION="3.2"],
+      [AC_MSG_ERROR([Neither Python-2.7 or Python-3.2 have been found.])])])])
+      
 AC_MSG_RESULT([using Python-$PYTHON_VERSION])
 if test "x$PYTHON_VERSION" = "x3.2"; then
   PYTHON_LDFLAGS=-lboost_python-p32
