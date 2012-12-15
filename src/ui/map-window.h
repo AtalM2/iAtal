@@ -22,10 +22,14 @@ public:
   virtual ~MapWindow();
   void displayWarning(const Glib::ustring & title,
 		      const Glib::ustring & text);
+  
+  void setMapStatusOk(bool ok);
+  void setStrategyStatusOk(bool ok);
+  
   Gtk::VBox vBox;
-  Gtk::Image mapImage, strategyImage;
   
  private:
+  Gtk::Image mapImage, strategyImage;
   Gtk::HBox hBox;
   Gtk::Label mapStatus,
     strategyStatus;

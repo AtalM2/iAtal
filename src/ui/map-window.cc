@@ -59,6 +59,24 @@ MapWindow::~MapWindow()
 {
 }
 
+void
+MapWindow::setStrategyStatusOk(bool ok)
+{
+  if(ok)
+    strategyImage.set(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU);
+  else
+    strategyImage.set(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU);      
+}
+
+void
+MapWindow::setMapStatusOk(bool ok)
+{
+  if(ok)
+    mapImage.set(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU);
+  else
+    mapImage.set(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU);    
+}
+
 void MapWindow::displayWarning(const Glib::ustring & title,
 			       const Glib::ustring & text)
 {

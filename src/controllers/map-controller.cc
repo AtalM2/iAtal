@@ -64,7 +64,7 @@ MapController::loadMap()
   window_->resize(1, 1);
   newArea->show();
   mapArea_.swap(newArea);
-  window_->mapImage.set(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU);
+  window_->setMapStatusOk(true);
 }
 
 void
