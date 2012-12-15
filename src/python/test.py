@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
-#sys.path.append(".libs")
+sys.path.append(".libs")
 import elements
 
 #globals
