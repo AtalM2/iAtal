@@ -179,16 +179,27 @@ Parser::getFileDirectory(std::string filePath) {
 
 std::vector<unsigned int>
 Parser::parseCsv(std::string data) {
-	std::string temp;
-	temp.resize(data.length());
-	std::remove_copy(data.begin(), data.end(), temp.begin(), '\n');
-	std::remove_copy(temp.begin(), temp.end(), data.begin(), ' ');
+
 	std::vector<std::string> stringVector;
     boost::split(stringVector, data, boost::is_any_of(","));
+    
+    std::cerr << "|" << data << "|" << std::endl;
 	std::vector<unsigned int> intVector;
-	for (size_t i = 0; i < stringVector.size(); i++) {
-		intVector.push_back(boost::lexical_cast<unsigned int>(stringVector.at(i)));
-	}
+
+    int acc = 0;
+    for(std::string::iterator it = data.begin();
+        it != data.end();
+        it++) {
+        if ((*it) >= '0' && (*it) <= '9') {
+            acc = (acc * 10) + boost::lexical_cast<int>(*it);
+        } else if (*it == ',') {
+            intVector.push_back(acc);
+            acc = 0;
+        } else {
+            acc = 0;
+        }
+    }
+    
 	return intVector;
 }
 
