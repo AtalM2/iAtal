@@ -3,7 +3,6 @@ bin_PROGRAMS += \
 	$(NULL)
 
 tmx3_SOURCES =					\
-	src/tmx3/image.cc			\
 	src/tmx3/layer.cc			\
 	src/tmx3/main.cc			\
 	src/tmx3/map.cc				\
