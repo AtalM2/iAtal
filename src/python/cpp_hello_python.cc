@@ -12,7 +12,7 @@ int main()
         exec_file("cpp_hello_python.py",
                   main_namespace);
 
-        boost::shared_ptr<World> world(new World());
+        std::shared_ptr<World> world(new World());
         world->set("This is SPARTA!");
 
         main_namespace["world"] = boost::python::ptr(world.get());
