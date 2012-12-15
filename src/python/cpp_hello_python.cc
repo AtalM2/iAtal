@@ -17,8 +17,11 @@ int main()
 
         main_namespace["world"] = boost::python::ptr(world.get());
 
-        exec("print(world.greet())\n",
+        exec("print(world.greet())\n"
+             "world.set('No this is Patrick!')\n",
              main_namespace);
+
+        std::cout << world->greet() << std::endl;
         
     } catch (boost::python::error_already_set) {
         PyErr_Print();
