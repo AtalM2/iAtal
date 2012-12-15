@@ -25,6 +25,12 @@ class StrategyController
  private:
   std::shared_ptr< MapWindow > window_;
 
+  
+  std::string strategyPath;
+  boost::python::object py_;
+  boost::python::object strat;
+  boost::python::object isEnded;
+
   StrategyController();
 
   // Don't Implement, singleton

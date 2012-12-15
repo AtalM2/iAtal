@@ -14,25 +14,56 @@ StrategyController::StrategyController()
 void
 StrategyController::loadStrategy()
 {
-  PythonChooserDialog dialog;
-  dialog.set_transient_for(*window_);
+  try{
 
-  //Show the dialog and wait for a user response:
-  int result = dialog.run();
+    PythonChooserDialog dialog;
+    dialog.set_transient_for(*window_);
+    
+    //Show the dialog and wait for a user response:
+    int result = dialog.run();
+    
+    //Handle the response:
+    std::shared_ptr< Map > newMap;
+    if(result == Gtk::RESPONSE_OK)
+      {
+	strategyPath = dialog.get_filename();
+      }
+    
+    
+    //loads the python
+    Py_Initialize();
+    boost::python::object main = boost::python::import("__main__"); 
+    py_ = main.attr("__dict__"); 
+    
+    exec_file(boost::python::str(strategyPath), py_, py_);
+    
+    boost::python::object init = py_["init"];
+    boost::python::object rinit = py_["robot_init"];
+    
+    isEnded = py_["isEnded"];
+    strat = py_["strat"];
+    
+    //initialisation of the robot and map for python
+    init(boost::python::ptr(newMap.get()));
+    rinit();
+    
+    // window_->strategyImage.set(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU);
+    std::cout << "python initialisé" << std::endl;
+    window_->setStrategyStatusOk(true);
+  }
+    catch (boost::python::error_already_set)
+  {
+    std::cout << "Incoherent file. The python strategy has not been loaded" << std::endl;
+    window_->setStrategyStatusOk(false);
+    PyErr_Print();
+  }
 
-  //Handle the response:
-  std::shared_ptr< Map > newMap;
-  if(result == Gtk::RESPONSE_OK)
-    {
-      std::string filename = dialog.get_filename();
-    }
-  
-  // window_->strategyImage.set(Gtk::Stock::YES, Gtk::ICON_SIZE_MENU);
 }
 
 void
 StrategyController::nextStep()
 {
+  strat();
   std::cout << "<appel à nextStep() du controlleur stratégie/>"
 	    << std::endl;
 }
