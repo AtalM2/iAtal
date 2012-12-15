@@ -41,21 +41,21 @@ MapWindow::MapWindow(const std::shared_ptr< Map > & map,
 			Gtk::Stock::OPEN,
 			"_Open a map",
 			"Load a TMX map"),
-    sigc::mem_fun(*this, &MapWindow::on_menu_others));
+    sigc::mem_fun(*this, &MapWindow::onMenuOpenMap));
 
   m_refActionGroup->add(
     Gtk::Action::create("FileOpenStrategy",
 			Gtk::Stock::SELECT_ALL,
 			"_Select a strategy",
 			"Load a python strategy"),
-    sigc::mem_fun(*this, &MapWindow::on_menu_others));
+    sigc::mem_fun(*this, &MapWindow::onMenuOpenStrategy));
 
   m_refActionGroup->add(
     Gtk::Action::create("FileQuit",
 			Gtk::Stock::QUIT,
 			"Quit",
 			"Quit iAtal"),
-    sigc::mem_fun(*this, &MapWindow::on_menu_file_quit));
+    sigc::mem_fun(*this, &MapWindow::onMenuQuit));
 
   //Edit menu:
   m_refActionGroup->add(
@@ -151,7 +151,7 @@ MapWindow::~MapWindow()
 {
 }
 
-void MapWindow::on_menu_file_quit()
+void MapWindow::onMenuQuit()
 {
   hide();
 }
@@ -159,4 +159,84 @@ void MapWindow::on_menu_file_quit()
 void MapWindow::on_menu_others()
 {
   std::cout << "A menu item was selected." << std::endl;
+}
+
+void MapWindow::onMenuOpenMap()
+{
+  Gtk::FileChooserDialog dialog("Please choose a map file to load",
+          Gtk::FILE_CHOOSER_ACTION_OPEN);
+  dialog.set_transient_for(*this);
+
+  //Add response buttons the the dialog:
+  dialog.add_button(Gtk::Stock::CANCEL,
+		    Gtk::RESPONSE_CANCEL);
+  dialog.add_button(Gtk::Stock::OPEN,
+		    Gtk::RESPONSE_OK);
+
+  //Add filters, so that only certain file types can be selected:
+  Glib::RefPtr<Gtk::FileFilter> filter_tmx =
+    Gtk::FileFilter::create();
+  filter_tmx->set_name("TMX files");
+  filter_tmx->add_pattern("*.tmx");
+  dialog.add_filter(filter_tmx);
+  
+  Glib::RefPtr<Gtk::FileFilter> filter_any =
+    Gtk::FileFilter::create();
+  filter_any->set_name("Any files");
+  filter_any->add_pattern("*");
+  dialog.add_filter(filter_any);
+
+  //Show the dialog and wait for a user response:
+  int result = dialog.run();
+
+  //Handle the response:
+  if(Gtk::RESPONSE_OK)
+    {
+      std::cout << "Open clicked." << std::endl;
+      
+      //Notice that this is a std::string, not a Glib::ustring.
+      std::string filename = dialog.get_filename();
+      std::cout << "File selected: " <<  filename << std::endl;
+      break;
+    }
+}
+
+void MapWindow::onMenuOpenStrategy()
+{
+  Gtk::FileChooserDialog dialog("Please choose a strategy file to load",
+				Gtk::FILE_CHOOSER_ACTION_OPEN);
+  dialog.set_transient_for(*this);
+
+  //Add response buttons the the dialog:
+  dialog.add_button(Gtk::Stock::CANCEL,
+		    Gtk::RESPONSE_CANCEL);
+  dialog.add_button(Gtk::Stock::OPEN,
+		    Gtk::RESPONSE_OK);
+
+  //Add filters, so that only certain file types can be selected:
+  Glib::RefPtr<Gtk::FileFilter> filter_py =
+    Gtk::FileFilter::create();
+  filter_py->set_name("Python files");
+  filter_py->add_pattern("*.py");
+  dialog.add_filter(filter_py);
+  
+  Glib::RefPtr<Gtk::FileFilter> filter_any =
+    Gtk::FileFilter::create();
+  filter_any->set_name("Any files");
+  filter_any->add_pattern("*");
+  dialog.add_filter(filter_any);
+
+  //Show the dialog and wait for a user response:
+  int result = dialog.run();
+
+  //Handle the response:
+  if(Gtk::RESPONSE_OK)
+    {
+      std::cout << "Open clicked." << std::endl;
+      
+      //Notice that this is a std::string, not a Glib::ustring.
+      std::string filename = dialog.get_filename();
+      std::cout << "File selected: " <<  filename << std::endl;
+      break;
+    }
 }

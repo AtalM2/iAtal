@@ -29,12 +29,10 @@ protected:
   Gtk::Image mapImage, strategyImage;
   MapArea area;
   //Signal handlers:
-  void on_menu_file_new_generic();
-  void on_menu_file_quit();
+  void onMenuQuit();
   void on_menu_others();
-
-  void on_menu_choices_one();
-  void on_menu_choices_two();
+  void onMenuOpenMap();
+  void onMenuOpenStrategy();
 
   //Child widgets:
 
