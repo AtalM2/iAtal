@@ -14,7 +14,6 @@ enums_la_SOURCES =	\
 	src/model/tileset.cc \
 	$(NULL)
 
-
 elements_la_LDFLAGS =	\
 	$(AM_LDFLAGS)		\
 	-avoid-version		\
@@ -37,6 +36,7 @@ test_python_SOURCES =			\
 test_python_LDFLAGS =	\
 	$(AM_LDFLAGS)		\
 	elements.la			\
+	enums.la			\
 	$(NULL)
 
 lib_LTLIBRARIES += \

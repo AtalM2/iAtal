@@ -4,7 +4,7 @@
 import sys
 sys.path.append(".libs")
 import elements
-import enums
+#import enums
 
 #globals
 ended = False
@@ -13,7 +13,7 @@ compteur = 0
 #stratégie python
 def strat(aMap):
 	print (aMap.hello())
-	print(aMap.getItem(enums.layer.level.Underground,0))
+	print(aMap.getItem(enums.Level.Underground,0))
 	global ended
 	ended = True
 '''
