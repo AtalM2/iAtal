@@ -21,9 +21,9 @@
 */
 class Map
 {
-  
+
 public:
-  
+
   /*!
     \brief Initialize an empty Map of the given size.
 
@@ -65,16 +65,18 @@ public:
     \param layer An integer which denotes the chosen level.
     \return The selected Layer.
   */
-  Layer& getLayer(Layer::Level level);  
+  Layer& getLayer(Layer::Level level);
 
   //tmp shit
   std::string getHello();
-  
+
   std::string getItem(Layer::Level level, unsigned int range);
   void setItem(Layer::Level level, unsigned int range, std::string newTile);
-  
+  // move one tile ahead
+  void goForward();
+
   Map();
-  
+
   /*!
     \brief Default destructor.
 
@@ -91,7 +93,7 @@ public:
     East; //!< Facing east.
 
 protected:
-  
+
  private:
   unsigned int posXRobot; //!< The x postion of the robot.
   unsigned int posYRobot; //!< The y position of the robot.

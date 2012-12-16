@@ -10,7 +10,7 @@
 
 StrategyController::StrategyController()
 {
-  
+
 }
 
 void
@@ -18,18 +18,18 @@ StrategyController::loadStrategy()
 {
     PythonChooserDialog dialog;
     dialog.set_transient_for(*window_);
-    
+
     //Show the dialog and wait for a user response:
     int result = dialog.run();
-    
+
     //Handle the response:
     if(result != Gtk::RESPONSE_OK)
       {
 	return;
       }
-    
+
     loadStrategyFromFile(dialog.get_filename());
-    
+
 }
 
 void
@@ -39,22 +39,22 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
     {
       //loads the python
       Py_Initialize();
-      boost::python::object main = boost::python::import("__main__"); 
-      py_ = main.attr("__dict__"); 
-  
+      boost::python::object main = boost::python::import("__main__");
+      py_ = main.attr("__dict__");
+
       exec_file(boost::python::str(filename), py_, py_);
-    
+
       boost::python::object init = py_["init"];
       boost::python::object rinit = py_["robot_init"];
-    
+
       isEnded = py_["isEnded"];
       strat = py_["strat"];
-    
+
       //initialisation of the robot and map for python
       std::shared_ptr<Map> newMap = MapController::getInstance().getMap();
       init(boost::python::ptr(newMap.get()));
       rinit();
-    
+
       std::cout << "python initialisé" << std::endl;
       window_->setStrategyStatusOk(true);
     }
