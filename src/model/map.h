@@ -51,6 +51,12 @@ public:
       unsigned int tileHeight);
 
 
+  /*!
+    \brief empty constructor
+   */
+  Map();
+
+
   const unsigned int height; //!< The height of the map in cells
 
   const unsigned int width; //!< The width of the map in cells
@@ -70,16 +76,41 @@ public:
   //tmp shit
   std::string getHello();
 
+  /*!
+    \brief Gets the item on the given layer at the given range (robot dependant)
+
+    \param level The level of the layer
+    \param range The distance from the robot
+  */
   std::string getItem(Layer::Level level, unsigned int range);
+
+  /*!
+    \brief Sets the item on the given layer at the given range (robot dependant)
+
+    \param level The level of the layer
+    \param range The distance from the robot
+    \param newTile The string defining the new tile to put.
+   */
   void setItem(Layer::Level level, unsigned int range, std::string newTile);
-  // move one tile ahead
+  
+
+  /*!
+    \brief The robot makes one step in front of himself
+
+  */
   void goForward();
 
+  /*!
+    \brief The robot turns on its left
+  */
   void robotTurnLeft();
 
+  /*!
+    \brief The robot turns on its right.
+  */
   void robotTurnRight();
 
-  Map();
+
 
   /*!
     \brief Default destructor.
