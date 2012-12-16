@@ -3,6 +3,9 @@
 #define STRATEGY_CONTROLLER_H
 
 #include <memory>
+#include <string>
+
+#include <glibmm/ustring.h>
 
 class MapWindow;
 
@@ -18,6 +21,8 @@ class StrategyController
   void setWindow(const std::shared_ptr< MapWindow > & window);
 
   void loadStrategy();
+  void loadStrategyFromFile(const std::string & filename);
+
   void nextStep();
   void autoStepsOn();
   void autoStepsOff();

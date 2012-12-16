@@ -23,45 +23,51 @@ MapController::loadMap()
   int result = dialog.run();
 
   //Handle the response:
-  std::shared_ptr< Map > newMap;
-  if(result == Gtk::RESPONSE_OK)
+  if(result != Gtk::RESPONSE_OK)
     {
-      std::string filename = dialog.get_filename();
-
-      try
-	{
-	    newMap = MapLoader::loadTmx(filename);
-	}
-      catch(const exception & e)
-	{
-	  dialog.hide();
-	  WarningDialog(*window_,
-			"Map loading failed.",
-			e.what());
-	  return;
-	}
-      catch(const Glib::Exception & e)
-	{
-	  dialog.hide();
-	  WarningDialog(*window_,
-			"Map loading failed.",
-			e.what());
-	  return;
-	}
-      catch(...)
-	{
-	  dialog.hide();
-	  WarningDialog(
-	    *window_,
-	    "Map loading failed.",
-	    "Please see the supported format in the manual");
-	  return;
-	}
-      window_->setMap(newMap);
-      window_->resize(1, 1);
-      window_->setMapStatusOk(true);
-      map_.swap(newMap);
+      return;
     }
+  
+  loadMapFromFile(dialog.get_filename());
+  
+}
+
+void
+MapController::loadMapFromFile(const Glib::ustring & filename)
+{
+  std::shared_ptr< Map > newMap;
+  try
+    {
+      newMap = MapLoader::loadTmx(filename);
+    }
+  catch(const exception & e)
+    {
+      WarningDialog(*window_,
+		    "Map loading failed.",
+		    e.what());
+      return;
+    }
+  catch(const Glib::Exception & e)
+    {
+      WarningDialog(*window_,
+		    "Map loading failed.",
+		    e.what());
+      return;
+    }
+  catch(...)
+    {
+      WarningDialog(
+	*window_,
+	"Map loading failed.",
+	"Please see the supported format in the manual");
+      return;
+    }
+  window_->setMap(newMap);
+  window_->resize(1, 1);
+  window_->setMapStatusOk(true);
+  // Now we don't know if the current strategy is ok or not.
+  window_->setStrategyStatusOk(false);
+  map_.swap(newMap);
 }
 
 const std::shared_ptr<Map> &

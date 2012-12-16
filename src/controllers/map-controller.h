@@ -25,6 +25,7 @@ class MapController
   void setWindow(const std::shared_ptr< MapWindow > & window);
 
   void loadMap();
+  void loadMapFromFile(const Glib::ustring & filename);
 
   const std::shared_ptr<Map> & getMap();
   
