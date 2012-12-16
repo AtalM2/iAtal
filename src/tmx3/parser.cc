@@ -185,12 +185,12 @@ Parser::parseCsv(std::string data) {
     for(std::string::iterator it = data.begin();
         it != data.end();
         it++) {
-        if ((*it) >= '0' && (*it) <= '9') {
+        try {
             acc = (acc * 10) + boost::lexical_cast<int>(*it);
-        } else if (*it == ',') {
-            intVector.push_back(acc);
-            acc = 0;
-        } else {
+        } catch(boost::bad_lexical_cast e) {
+            if (*it == ',') {
+                intVector.push_back(acc);
+            }
             acc = 0;
         }
     }
