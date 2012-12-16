@@ -14,7 +14,14 @@ public:
 private:
 	static void loadFile(tinyxml2::XMLDocument & tmxDoc, std::string filePath);
 	static std::string getFileDirectory(std::string filePath);
-	static std::vector<unsigned int> parseCsv(std::string data);
+
+	/*!
+      \brief Extracts numbers from the given CSV.
+
+      \param data The string that contains the CSV.
+      \return A vector of numbers found in data.
+      */
+    static std::vector<unsigned int> parseCsv(std::string data);
 
 };
 
