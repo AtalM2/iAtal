@@ -51,13 +51,13 @@ MapWindow::setPathSensitivity(const Glib::ustring & path,
 void
 MapWindow::setStrategyStatusOk(bool ok)
 {
-  hBox_.setStrategyStatusOk(ok);
+  hBox_.setMapStatusOk(ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOn",
-		     true);
+		     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOff",
 		     false);
   setPathSensitivity("/ToolBar/StrategyNextStep",
-		     true);
+		     ok);
 }
 
 void
@@ -65,5 +65,5 @@ MapWindow::setMapStatusOk(bool ok)
 {
   hBox_.setMapStatusOk(ok);
   setPathSensitivity("/ToolBar/FileOpenStrategy",
-		     true);
+		     ok);
 }
