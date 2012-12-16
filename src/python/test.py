@@ -12,6 +12,7 @@ compteur = 0
 map_ = False
 ended = False
 
+
 def walk():
 	map_.goForward()
 
@@ -72,15 +73,14 @@ def strat():
 		oSense = objectSensor.activate()
 		print(oSense)
 		if oSense!="":
-			destroyActuator.activate()
+			global ended
+			ended = True
+			print("End of strategy")
 		walk()
 	else:
 		print("change direction ! ")
 		turnLeft()
-			
-#	print(ugSense)
-	global ended
-	ended = True
+
 
 #sert à savoir si la strat est finie ou non
 def isEnded():

@@ -71,7 +71,6 @@ void Map::setItem(Layer::Level level,
 
 }
 
-
 void Map::robotTurnRight()
 {
   if (direction.first == 0)

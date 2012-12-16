@@ -41,7 +41,7 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
     {
       //loads the python, but doesn't let it handle signals.
       Py_InitializeEx(0);
-      
+
       boost::python::object main = boost::python::import("__main__");
       py_ = main.attr("__dict__");
 
@@ -96,13 +96,26 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
 void
 StrategyController::nextStep()
 {
-  strat();
+  boost::python::object endedPy = isEnded();
+  bool ended = boost::python::extract<bool>(endedPy);
+  if (!ended)
+  {
+    strat();
+  }
+
 }
 
 void
 StrategyController::autoStepsOn()
 {
-
+  boost::python::object endedPy = isEnded();
+  bool ended = boost::python::extract<bool>(endedPy);
+  while (!ended)
+  {
+    strat();
+    boost::python::object endedPy = isEnded();
+    ended = boost::python::extract<bool>(endedPy);
+  }
 }
 
 void

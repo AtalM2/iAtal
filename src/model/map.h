@@ -90,7 +90,6 @@ public:
     \param newTile The string defining the new tile to put.
    */
   void setItem(Layer::Level level, unsigned int range, std::string newTile);
-  
 
   /*!
     \brief The robot makes one step in front of himself
