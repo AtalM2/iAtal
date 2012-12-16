@@ -48,7 +48,7 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
            "sys.path.append('.libs')\n"
            "sys.path.append('src/python')\n",
            py_);
-      
+
       exec_file(boost::python::str(filename), py_, py_);
 
       boost::python::object init = py_["init"];
@@ -59,7 +59,7 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
 
       //initialisation of the robot and map for python
       std::shared_ptr< Map > newMap =
-	MapController::getInstance().getMap();
+    MapController::getInstance().getMap();
       init(boost::python::ptr(newMap.get()));
       rinit();
       std::cout << "python initialisé" << std::endl;
@@ -69,23 +69,23 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
     {
       std::ostringstream oss;
       oss << "There has been an exception during the "
-	  << "loading of the strategy file:"
-	  << std::endl
-	  << e.what()
-	  << std::endl;
+      << "loading of the strategy file:"
+      << std::endl
+      << e.what()
+      << std::endl;
       WarningDialog(
-	*window_,
-	"Strategy not loaded.",
-	oss.str());
+    *window_,
+    "Strategy not loaded.",
+    oss.str());
       window_->setStrategyStatusOk(false);
       return;
     }
   catch(const boost::python::error_already_set & e)
     {
       WarningDialog(
-	*window_,
-	"Strategy not loaded.",
-	"The strategy set isn't coherent with the map loaded.");
+    *window_,
+    "Strategy not loaded.",
+    "The strategy set isn't coherent with the map loaded.");
       window_->setStrategyStatusOk(false);
       PyErr_Print();
       return;
@@ -101,7 +101,7 @@ StrategyController::nextStep()
 void
 StrategyController::autoStepsOn()
 {
-  
+
 }
 
 void
