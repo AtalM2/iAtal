@@ -51,7 +51,7 @@ MapWindow::setPathSensitivity(const Glib::ustring & path,
 void
 MapWindow::setStrategyStatusOk(bool ok)
 {
-  hBox_.setMapStatusOk(ok);
+  hBox_.setStrategyStatusOk(ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOn",
 		     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOff",
