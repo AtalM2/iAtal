@@ -8,8 +8,7 @@ class WarningDialog : public Gtk::MessageDialog
 {
 
  public:
-  WarningDialog(Gtk::Window & parent,
-		const Glib::ustring & title,
+  WarningDialog(const Glib::ustring & title,
 		const Glib::ustring & text);
   virtual ~WarningDialog();
   

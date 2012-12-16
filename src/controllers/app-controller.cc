@@ -3,12 +3,22 @@
 
 #include "app-controller.h"
 #include "ui/iatal-about-dialog.h"
+#include "ui/warning-dialog.h"
 
 #include <iostream>
 
 AppController::AppController()
 {
   
+}
+
+int
+AppController::displayWarning(const Glib::ustring & title,
+			      const Glib::ustring & text)
+{
+  WarningDialog dialog(title,
+		       text);
+  return dialog.run();
 }
 
 void AppController::quit()

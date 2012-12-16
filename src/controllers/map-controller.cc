@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+#include "controllers/app-controller.h"
 #include "ui/map-window.h"
 #include "ui/map-area.h"
 #include "ui/tmx-chooser-dialog.h"
@@ -42,22 +43,19 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
     }
   catch(const exception & e)
     {
-      WarningDialog(*window_,
-		    "Map loading failed.",
-		    e.what());
+      AppController::displayWarning("Map loading failed.",
+				    e.what());
       return;
     }
   catch(const Glib::Exception & e)
     {
-      WarningDialog(*window_,
-		    "Map loading failed.",
-		    e.what());
+      AppController::displayWarning("Map loading failed.",
+				    e.what());
       return;
     }
   catch(...)
     {
-      WarningDialog(
-	*window_,
+      AppController::displayWarning(
 	"Map loading failed.",
 	"Please see the supported format in the manual");
       return;

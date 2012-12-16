@@ -4,6 +4,7 @@
 
 #include <iostream>
 
+#include "controllers/app-controller.h"
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
 #include "ui/python-chooser-dialog.h"
@@ -59,7 +60,7 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
 
       //initialisation of the robot and map for python
       std::shared_ptr< Map > newMap =
-    MapController::getInstance().getMap();
+	MapController::getInstance().getMap();
       init(boost::python::ptr(newMap.get()));
       rinit();
 
@@ -70,23 +71,21 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
     {
       std::ostringstream oss;
       oss << "There has been an exception during the "
-      << "loading of the strategy file:"
-      << std::endl
-      << e.what()
-      << std::endl;
-      WarningDialog(
-    *window_,
-    "Strategy not loaded.",
-    oss.str());
+	  << "loading of the strategy file:"
+	  << std::endl
+	  << e.what()
+	  << std::endl;
+      AppController::displayWarning(
+	"Strategy not loaded.",
+	oss.str());
       window_->setStrategyStatusOk(false);
       return;
     }
   catch(const boost::python::error_already_set & e)
     {
-      WarningDialog(
-    *window_,
-    "Strategy not loaded.",
-    "The strategy set isn't coherent with the map loaded.");
+      AppController::displayWarning(
+	"Strategy not loaded.",
+	"The strategy set isn't coherent with the map loaded.");
       window_->setStrategyStatusOk(false);
       PyErr_Print();
       return;
