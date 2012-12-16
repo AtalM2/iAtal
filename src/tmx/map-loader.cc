@@ -296,7 +296,7 @@ MapLoader::handleTileset(Tileset & ts,
 	     ? 1
 	     : (widthPix + spacing) / offsetX);
   
-
+  
   Glib::RefPtr<Gdk::Pixbuf> image;
   try
     {
