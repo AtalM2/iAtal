@@ -19,7 +19,6 @@ void AppController::quit()
 void AppController::help()
 {
   IAtalAboutDialog dialog;
-  dialog.run();
 }
 
 void
