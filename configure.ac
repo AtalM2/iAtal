@@ -92,6 +92,7 @@ AC_SUBST(PYTHON_LDFLAGS)
 # Boost configuration
 BOOST_REQUIRE
 BOOST_PYTHON
+BOOST_PROGRAM_OPTIONS
 
 # Doxygen configuration
 DX_INIT_DOXYGEN([iatal], docs/doxygen.cfg)
