@@ -204,7 +204,7 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
 	  layer = &map->getLayer(Layer::Ground);
 	  tmxTileset = &groundTmxTileset;
 	}
-      else if(name == "object")
+      else if(name == "objects")
 	{
 	  layer = &map->getLayer(Layer::Object);
 	  tmxTileset = &objectTmxTileset;
