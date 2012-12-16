@@ -27,12 +27,6 @@ namespace tmx
     void setTileWidth(unsigned int tileWidth);
     unsigned int getTileWidth() const;
 
-    void setHeight(unsigned int height);
-    unsigned int getHeight() const;
-
-    void setWidth(unsigned int width);
-    unsigned int getWidth() const;
-
     void setName(Glib::ustring name);
     Glib::ustring getName() const;
 
@@ -43,16 +37,12 @@ namespace tmx
     tmx::Tile getTile(unsigned int id) const;
 
     void display(std::ostream & out) const;
-    
-    unsigned int getSize() const;
 
   private:
     unsigned int firstgid_;
     Glib::ustring name_;
     unsigned int tileWidth_;
     unsigned int tileHeight_;
-    unsigned int width_;
-    unsigned int height_;
     unsigned int spacing_;
     Glib::RefPtr< const Gdk::Pixbuf > image_;
     std::map<unsigned int, tmx::Tile> tiles_;
