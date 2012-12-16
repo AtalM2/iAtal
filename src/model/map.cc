@@ -57,11 +57,11 @@ std::string Map::getHello()
 
 std::string Map::getItem(Layer::Level level, unsigned int range)
 {
-  int xTarget = (posXRobot + range) * direction.first;
-  int yTarget = (posYRobot + range) * direction.second;
+  unsigned int xTarget = (posXRobot + range) * direction.first;
+  unsigned int yTarget = (posYRobot + range) * direction.second;
   std::string res = "nothing";
   std::cout << xTarget << yTarget << std::endl;
-  if (xTarget >= 0 && yTarget >= 0)
+  if ( this->width > xTarget && this->height > yTarget )
   {
     res = this->getLayer(level).getTile(xTarget, yTarget);
   }
@@ -85,8 +85,13 @@ void Map::setDirection(int first, int second)
 
 void Map::goForward()
 {
-  posXRobot += direction.first;
-  posYRobot += direction.second;
+  unsigned int moveX = posXRobot + direction.first;
+  unsigned int moveY = posYRobot + direction.second;
+  if ( (this->width > moveX /*&& moveX >= 0*/) && (this->height > moveY /*&& moveY >= 0*/))
+  {
+    posXRobot += direction.first;
+    posYRobot += direction.second;
+  }
 
 }
 

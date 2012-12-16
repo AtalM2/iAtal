@@ -15,38 +15,34 @@ def init(aMap):
 	map_ = aMap
 
 def robot_init():
-	global northDirection
-	northDirection = direction(0,1)
-	global southDirection
-	southDirection = direction(0,-1)
-	global westDirection
-	westDirection = direction(-1,0)
-	global eastDirection
-	eastDirection = direction(0,1)
-	#direction initiale
-	eastDirection.activate()
+	map_.setDirection(0,1)
 
-
+	#sensors
 	global undergroundSensor 
 	undergroundSensor = sensor(map_,enums.Level.Underground, 1)
+	global groundSensor 
+	groundSensor = sensor(map_,enums.Level.Ground, 1)
+
+	#actuators
 	global greenActuator 
 	greenActuator = actuator(map_,enums.Level.Underground, 1, "type:vert")
 
 #stratégie python
 def strat():
-	print("debut strat")
-	ugSense = undergroundSensor.activate()
-	print(ugSense)
-	if ugSense=="type:marron" :
-		greenActuator.activate()
-		ugSense = undergroundSensor.activate()
-		print(ugSense)
-		if ugSense!="nothing" :
-			map_.goForward()
-	elif ugSense=="nothing" :
+	gSense = groundSensor.activate()
+	print(gSense)
+	if gSense=="type:herbe" :
+		map_.goForward()
+	if gSense=="nothing" :
+#		greenActuator.activate()
+#		ugSense = undergroundSensor.activate()
+#		print(ugSense)
+#		if ugSense!="nothing" :
+#			
+#	elif ugSense=="nothing" :
 		print("change direction ! ")	
 			
-	print(ugSense)
+#	print(ugSense)
 	global ended
 	ended = True
 
