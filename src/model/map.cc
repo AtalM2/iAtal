@@ -7,6 +7,7 @@ BOOST_PYTHON_MODULE(elements)
     .def("getItem", &Map::getItem)
     .def("setItem", &Map::setItem)
     .def("goForward", &Map::goForward)
+    .def("setDirection", &Map::setDirection)
     .def("turnRight", &Map::robotTurnRight)
     .def("turnLeft", &Map::robotTurnLeft);
 }
@@ -29,6 +30,13 @@ Map::Map()
     tileHeight(10),
     tileWidth(10)
 {
+}
+
+
+void Map::setDirection(int x, int y)
+{
+  direction.first = x;
+  direction.second = y;
 }
 
 
