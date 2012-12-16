@@ -51,16 +51,16 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
       for(unsigned int x = 0; x < map_->width; x++) {
         for(unsigned int y = 0; y < map_->height; y++) {
           
-	  Glib::ustring id = layer.getTile(x, y);
+          Glib::ustring id = layer.getTile(x, y);
 	  
-	  if(id != "") {
+          if(id != "") {
             Glib::RefPtr< const Gdk::Pixbuf > image;
             try {
-	      image = tileset.getImage(id);
-	    } catch(const std::exception & e) {
-	      std::ostringstream oss;
+              image = tileset.getImage(id);
+            } catch(const std::exception & e) {
+              std::ostringstream oss;
               
-	      oss << "A problem occured while "
+              oss << "A problem occured while "
                   << "drawing the map. It seems "
                   << "we're trying to draw a non "
                   << "existing tile:"
@@ -68,12 +68,12 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
                   << e.what()
                   << std::endl;
               
-	      AppController::displayWarning(
+              AppController::displayWarning(
                 "Fatal Error while drawing map",
                 oss.str());
               
-	      exit(1);
-	    }
+              exit(1);
+            }
             Gdk::Cairo::set_source_pixbuf(
               cr,
               Glib::RefPtr< Gdk::Pixbuf >::cast_const(image),
@@ -82,9 +82,9 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
             
             cr->paint();
           }
-	}
+        }
       }
     }
-  );
+    );
   return true;
 }
