@@ -2,6 +2,9 @@
 map_ = False
 ended = False
 
+def walk():
+	map_.goForward()
+
 #Defines a sensor.
 class sensor:
 	def __init__(self,map_, level_, range_):

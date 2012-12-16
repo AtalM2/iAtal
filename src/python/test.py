@@ -9,6 +9,17 @@ from classes import *
 
 #global
 compteur = 0
+map_ = False
+ended = False
+
+def walk():
+	map_.goForward()
+
+def turnLeft():
+	map_.turnLeft()
+
+def turnRight():
+	map_.turnRight()
 
 
 def init(aMap):
@@ -58,7 +69,7 @@ def strat():
 	gSense = groundSensor.activate()
 	print(gSense)
 	if gSense=="type:herbe" :
-		map_.goForward()
+		walk()
 	if gSense=="nothing" :
 #		greenActuator.activate()
 #		ugSense = undergroundSensor.activate()
@@ -67,7 +78,7 @@ def strat():
 #			
 #	elif ugSense=="nothing" :
 		print("change direction ! ")
-		map_.turnLeft()
+		turnLeft()
 			
 #	print(ugSense)
 	global ended
