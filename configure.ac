@@ -90,6 +90,7 @@ fi
 AC_SUBST(PYTHON_LDFLAGS)
 
 # Boost configuration
+# https://github.com/tsuna/boost.m4/
 BOOST_REQUIRE
 BOOST_PYTHON
 BOOST_PROGRAM_OPTIONS
