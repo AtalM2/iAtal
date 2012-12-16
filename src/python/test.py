@@ -29,6 +29,7 @@ def init(aMap):
 
 def robot_init():
 	map_.setDirection(0,1)
+	map_.setPosition(0,0)
 
 	#sensors
 	global undergroundSensor 

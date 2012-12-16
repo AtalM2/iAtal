@@ -108,6 +108,12 @@ public:
   void robotTurnRight();
 
   /*!
+    \brief sets the position of the robot
+
+  */
+  void setPosition(unsigned int x, unsigned y);
+
+  /*!
     \brief Sets the robot direction. Used in initialization.
 
   */

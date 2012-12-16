@@ -8,6 +8,7 @@ BOOST_PYTHON_MODULE(elements)
     .def("setItem", &Map::setItem)
     .def("goForward", &Map::goForward)
     .def("setDirection", &Map::setDirection)
+    .def("setPosition", &Map::setPosition)
     .def("turnRight", &Map::robotTurnRight)
     .def("turnLeft", &Map::robotTurnLeft);
 }
@@ -32,6 +33,15 @@ Map::Map()
 {
 }
 
+
+void Map::setPosition(unsigned int x, unsigned y)
+{
+  if (width > x && height > y)
+    {
+      posXRobot = x;
+      posYRobot = y;
+    }
+}
 
 void Map::setDirection(int x, int y)
 {
