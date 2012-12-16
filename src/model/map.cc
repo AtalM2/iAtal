@@ -6,6 +6,7 @@ BOOST_PYTHON_MODULE(elements)
   boost::python::class_<Map>("Map")
     .def("getItem", &Map::getItem)
     .def("setItem", &Map::setItem)
+    .def("setDirection",&Map::setDirection)
     .def("goForward", &Map::goForward)
     .def("hello", &Map::getHello);
 }
@@ -58,7 +59,12 @@ std::string Map::getItem(Layer::Level level, unsigned int range)
 {
   int xTarget = (posXRobot + range) * direction.first;
   int yTarget = (posYRobot + range) * direction.second;
-  std::string res = this->getLayer(level).getTile(xTarget, yTarget);
+  std::string res = "nothing";
+  std::cout << xTarget << yTarget << std::endl;
+  if (xTarget >= 0 && yTarget >= 0)
+  {
+    res = this->getLayer(level).getTile(xTarget, yTarget);
+  }
   return res;
 
 }
@@ -69,6 +75,12 @@ void Map::setItem(Layer::Level level, unsigned int range, std::string newTile)
   int yTarget = (posYRobot + range) * direction.second;
   this->getLayer(level).setTile(xTarget, yTarget, newTile);
 
+}
+
+void Map::setDirection(int first, int second)
+{
+  direction.first = first;
+  direction.second = second;
 }
 
 void Map::goForward()

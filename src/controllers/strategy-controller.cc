@@ -62,6 +62,10 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
     MapController::getInstance().getMap();
       init(boost::python::ptr(newMap.get()));
       rinit();
+
+      //init dir
+
+
       std::cout << "python initialisé" << std::endl;
       window_->setStrategyStatusOk(true);
     }

@@ -92,6 +92,8 @@ public:
     West, //!< Facing west.
     East; //!< Facing east.
 
+  void setDirection(int first, int second);
+
 protected:
 
  private:

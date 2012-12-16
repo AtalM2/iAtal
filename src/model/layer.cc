@@ -11,7 +11,7 @@ BOOST_PYTHON_MODULE(enums)
         .value("Air", Layer::Level::Air)
         .value("Object", Layer::Level::Object)
         .export_values();
-    
+
     boost::python::def("identity", &Layer::identity_);
 
 }
@@ -21,7 +21,7 @@ Layer::Layer(unsigned int width,
   : tiles_(height, std::vector< Glib::ustring >(width, "toto")),
     tileset_()
 {
-  
+
 }
 
 Layer::~Layer()
