@@ -20,8 +20,15 @@ class AppController
   
   void setWindow(const std::shared_ptr< MapWindow > & window);
 
+  void displayWarning(const Glib::ustring & title,
+		      const Glib::ustring & text);
+  
+  void displayError(const Glib::ustring & title,
+		    const Glib::ustring & text);
+  
+  static void displayAbout();
+  
   void quit();
-  void help();
   
  private:
   std::shared_ptr< MapWindow > window_;

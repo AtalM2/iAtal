@@ -12,6 +12,7 @@ ui_SOURCES = \
 	src/tmx/map-loader.cc \
 	src/tmx/tinyxml2.cc \
 	src/tmx/tmx-tileset.cc \
+	src/ui/error-dialog.cc \
 	src/ui/iatal-about-dialog.cc \
 	src/ui/iatal-ui-manager.cc \
 	src/ui/main.cc \
