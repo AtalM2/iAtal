@@ -2,6 +2,8 @@
 
 #include "bad-parameters-exception.h"
 
+using namespace tmx;
+
 Layer::Layer(unsigned int height, unsigned int width) :
     width_(width),
     height_(height),

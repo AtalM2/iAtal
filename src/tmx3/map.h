@@ -13,7 +13,7 @@ public:
 	Map();
 	virtual ~Map();
 
-	std::vector<Layer> & getLayers();
+	std::vector<tmx::Layer> & getLayers();
 
 	std::vector<Tileset> & getTilesets();
 
@@ -50,7 +50,7 @@ private:
 	unsigned int tileHeight_;
 	std::map<std::string, std::string> properties_;
 	std::vector<Tileset> tilesets_;
-	std::vector<Layer> layers_;
+	std::vector<tmx::Layer> layers_;
 };
 
 #endif	/* MAP_H */

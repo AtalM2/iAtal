@@ -1,5 +1,7 @@
 #include "map.h"
 
+using namespace tmx;
+
 Map::Map() :
     properties_(),
     tilesets_(),
