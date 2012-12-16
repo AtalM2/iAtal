@@ -1,4 +1,4 @@
 #!/bin/sh
 
-autoreconf -i &&
+autoreconf --force --install &&
 echo "You can now run \`./configure'."
