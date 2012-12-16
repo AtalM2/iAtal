@@ -66,12 +66,18 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
                 << std::endl
                 << e.what()
                 << std::endl;
+
+            // Do not work, I don't know why but I think it's because
+            // it's possible to use widget (i.e. others signals) while
+            // in a signal handler.
+            
+            // AppController::displayWarning(
+            //   "Fatal Error while drawing map",
+            //   oss.str());
+
+            std::cerr << oss.str();
               
-            AppController::displayWarning(
-              "Fatal Error while drawing map",
-              oss.str());
-              
-            exit(1);
+            return true;
           }
           Gdk::Cairo::set_source_pixbuf(
             cr,
