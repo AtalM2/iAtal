@@ -69,10 +69,14 @@ def strat():
 	gSense = groundSensor.activate()
 	print(gSense)
 	if gSense=="type:herbe" :
+		oSense = objectSensor.activate()
+		print(oSense)
+		if oSense!="":
+			destroyActuator.activate()
 		walk()
 	else:
 		print("change direction ! ")
-		turnRight()
+		turnLeft()
 			
 #	print(ugSense)
 	global ended

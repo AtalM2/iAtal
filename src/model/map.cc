@@ -9,7 +9,7 @@ BOOST_PYTHON_MODULE(elements)
     .def("setDirection",&Map::setDirection)
     .def("goForward", &Map::goForward)
     .def("turnRight", &Map::robotTurnRight)
-    .def("turnLeft", &Map::robotTurnLeft)
+    .def("turnLeft", &Map::robotTurnLeft);
 }
 
 Map::Map(unsigned int posXRobot,
