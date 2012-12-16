@@ -39,8 +39,9 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
 {
   try
     {
-      //loads the python
-      Py_Initialize();
+      //loads the python, but doesn't let it handle signals.
+      Py_InitializeEx(0);
+      
       boost::python::object main = boost::python::import("__main__");
       py_ = main.attr("__dict__");
 
