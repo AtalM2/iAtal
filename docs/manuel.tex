@@ -30,51 +30,59 @@ that help it to feel and understand its close environment and
 actuators that allow it to move and to interact with the map.
 
 
-  The iAtal program can deal with any map in TMX format. Those maps can be created with Tiled %TODO ref%)
-  or manually.
-  You can also create your own exploration strategy, your rover's sensors and actuators, thanks to Python.
-  Those features will be detailed further.
+The iAtal program can deal with any map in TMX format. Those maps can
+be created with Tiled %TODO ref%)
+or manually.  You can also create your own exploration strategy, your
+rover's sensors and actuators, thanks to Python.  Those features will
+be detailed further.
 
 \section{How to run iAtal}
 
-  \subsection{Requirements}
-    %TODO : Attentes de l’application en terme d’architecture machine et de logiciels pré-installés
+\subsection{Requirements}
+% TODO : Attentes de l’application en terme d’architecture machine et
+% de logiciels pré-installés
 
-  \subsection{Installing iAtal}
-    %TODO
+\subsection{Installing iAtal}
+% TODO
 
-  \subsection{Running iAtal}
-    %TODO : façons correctes de lancer iAtal...
-    There are two different ways to run the program :
-    \begin{itemize}
-      \item Whithout any option : 
+\subsection{Running iAtal}
+% TODO : façons correctes de lancer iAtal...
+There are two different ways to run the program :
+\begin{itemize}
+\item Whithout any option :
       \begin{verbatim}
 	.\ui
-      \end{verbatim}
-      The program will then start empty and you will have to set the map and the rover strategy later. (See chapter...)
+\end{verbatim}
+  The program will then start empty and you will have to set the map
+  and the rover strategy later. (See chapter...)
       
-      \item Directly with a personnalised map and/or exploration strategy :
+\item Directly with a personnalised map and/or exploration strategy :
       \begin{verbatim}
 	.\ui [-h|--help] [{-m|--map} map_path] [{-s|--strategy} strat_path]
-      \end{verbatim}
-      Description of these options :
-      \begin{itemize}
-	\item \verb!-h! or \verb!--help! : Produce help message
-	\item \verb!-m map_path! or \verb!--map map_path! : Set the path to the map to use. It must be a file in TMX format
-	(.tmx) (See chapter...)
-	\item \verb!-s strat_path! or \verb!--strategy strat_path! : Set the path to the strategy to use. It must be a file
-	in Python (.py). It requires a map to be set too. (See chapter...)
-      \end{itemize}
-    \end{itemize}
+\end{verbatim}
+  Description of these options :
+  \begin{itemize}
+  \item \verb!-h! or \verb!--help! : Produce help message
+  \item \verb!-m map_path! or \verb!--map map_path! : Set the path to
+    the map to use. It must be a file in TMX format (.tmx) (See
+    chapter...)
+  \item \verb!-s strat_path! or \verb!--strategy strat_path! : Set the
+    path to the strategy to use. It must be a file in Python (.py). It
+    requires a map to be set too. (See chapter...)
+  \end{itemize}
+\end{itemize}
 
 \section{Importing a map}
 
-  \subsection{Creating a TMX map}
-    To create your own map, it is strongly recommended to use the software Tiled (ref, doc).
-    Tiled generates XML files wich are on the TMX format, supported by iAtal. However, you should know that iAtal map loader
-    is limited to maps with 4 layers or less.
+\subsection{Creating a TMX map}
+
+To create your own map, it is strongly recommended to use the software
+Tiled (ref, doc).  Tiled generates XML files wich are on the TMX
+format, supported by iAtal. However, you should know that iAtal map
+loader is limited to maps with 4 layers or less.
     
-    Once your map created, you just have to save it, and to load it in iAtal.
+Once your map created, you just have to save it, and to load it in
+iAtal.
 
 
 
