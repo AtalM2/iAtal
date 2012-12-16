@@ -112,7 +112,7 @@ public:
     \brief Sets the robot direction. Used in initialization.
 
   */
-  void setDirection(int x, int y;);
+  void setDirection(int x, int y);
 
 
 
