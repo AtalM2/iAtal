@@ -1,5 +1,5 @@
-#ifndef PARSER_H
-#define	PARSER_H
+#ifndef TMX_PARSER_H
+#define	TMX_PARSER_H
 
 #include <string>
 #include "map.h"
@@ -30,5 +30,5 @@ namespace tmx
   };
 }
 
-#endif	/* PARSER_H */
+#endif	/* TMX_PARSER_H */
 

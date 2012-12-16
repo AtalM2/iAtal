@@ -1,5 +1,5 @@
-#ifndef EXCEPTION_H
-#define EXCEPTION_H
+#ifndef TMX_EXCEPTION_H
+#define TMX_EXCEPTION_H
 
 #include <exception>
 
@@ -26,4 +26,4 @@ namespace tmx
   };
 }
 
-#endif // EXCEPTION_H
+#endif // TMX_EXCEPTION_H

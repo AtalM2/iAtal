@@ -1,5 +1,5 @@
-#ifndef BAD_PARAMETERS_EXCEPTION_H
-#define BAD_PARAMETERS_EXCEPTION_H
+#ifndef TMX_BAD_PARAMETERS_EXCEPTION_H
+#define TMX_BAD_PARAMETERS_EXCEPTION_H
 
 #include "exception.h"
 
@@ -17,4 +17,4 @@ namespace tmx
   };
 }
 
-#endif // BAD_PARAMETERS_EXCEPTION_H
+#endif // TMX_BAD_PARAMETERS_EXCEPTION_H

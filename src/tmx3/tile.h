@@ -1,5 +1,5 @@
-#ifndef TILE_H
-#define	TILE_H
+#ifndef TMX_TILE_H
+#define	TMX_TILE_H
 
 #include <string>
 #include <map>
@@ -28,5 +28,5 @@ namespace tmx
 std::ostream & operator<<(std::ostream & out,
 			  const tmx::Tile & tile);
 
-#endif	/* TILE_H */
+#endif	/* TMX_TILE_H */
 

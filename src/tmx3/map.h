@@ -1,5 +1,5 @@
-#ifndef MAP_H
-#define	MAP_H
+#ifndef TMX_MAP_H
+#define	TMX_MAP_H
 
 #include <iostream>
 #include <map>
@@ -59,5 +59,5 @@ namespace tmx
 std::ostream & operator<<(std::ostream & out,
 			  const tmx::Map & map);
 
-#endif	/* MAP_H */
+#endif	/* TMX_MAP_H */
 

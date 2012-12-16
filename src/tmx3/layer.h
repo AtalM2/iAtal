@@ -1,5 +1,5 @@
-#ifndef LAYER_H
-#define	LAYER_H
+#ifndef TMX_LAYER_H
+#define	TMX_LAYER_H
 
 #include <map>
 #include <string>
@@ -48,5 +48,5 @@ namespace tmx
 std::ostream& operator<<(std::ostream &out,
 			 const tmx::Layer & layer);
 
-#endif	/* LAYER_H */
+#endif	/* TMX_LAYER_H */
 

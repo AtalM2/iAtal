@@ -1,5 +1,5 @@
-#ifndef FILE_NOT_FOUND_EXCEPTION_H
-#define  FILE_NOT_FOUND_EXCEPTION_H
+#ifndef TMX_FILE_NOT_FOUND_EXCEPTION_H
+#define TMX_FILE_NOT_FOUND_EXCEPTION_H
 
 #include "exception.h"
 
@@ -16,4 +16,4 @@ namespace tmx
   };
 }
 
-#endif // FILE_NOT_FOUND_EXCEPTION_H
+#endif // TMX_FILE_NOT_FOUND_EXCEPTION_H

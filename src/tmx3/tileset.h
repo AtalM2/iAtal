@@ -1,5 +1,5 @@
-#ifndef TILESET_H
-#define	TILESET_H
+#ifndef TMX_TILESET_H
+#define	TMX_TILESET_H
 
 #include <glibmm/ustring.h>
 #include <map>
@@ -53,5 +53,5 @@ std::ostream & operator<<(std::ostream &out,
 			  const tmx::Tileset & tileset);
 
 
-#endif	/* TILESET_H */
+#endif	/* TMX_TILESET_H */
 
