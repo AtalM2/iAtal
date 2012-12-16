@@ -70,15 +70,9 @@ def strat():
 	print(gSense)
 	if gSense=="type:herbe" :
 		walk()
-	if gSense=="nothing" :
-#		greenActuator.activate()
-#		ugSense = undergroundSensor.activate()
-#		print(ugSense)
-#		if ugSense!="nothing" :
-#			
-#	elif ugSense=="nothing" :
+	else:
 		print("change direction ! ")
-		turnLeft()
+		turnRight()
 			
 #	print(ugSense)
 	global ended

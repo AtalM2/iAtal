@@ -59,13 +59,17 @@ std::string Map::getHello()
 
 std::string Map::getItem(Layer::Level level, unsigned int range)
 {
-  unsigned int xTarget = posXRobot + (range * direction.first);
-  unsigned int yTarget = posYRobot + (range * direction.second);
   std::string res = "nothing";
-  std::cout << xTarget << yTarget << std::endl;
-  if ( this->width > xTarget && this->height > yTarget )
+  if ((int)(posXRobot + (range * direction.first)) >= 0 && (int)(posYRobot + (range * direction.second)) >= 0)
   {
-    res = this->getLayer(level).getTile(xTarget, yTarget);
+    unsigned int xTarget = posXRobot + (range * direction.first);
+    unsigned int yTarget = posYRobot + (range * direction.second);
+
+    std::cout << xTarget << yTarget << std::endl;
+    if ( this->width > xTarget && this->height > yTarget )
+    {
+      res = this->getLayer(level).getTile(xTarget, yTarget);
+    }
   }
   return res;
 
@@ -85,7 +89,7 @@ void Map::setDirection(int first, int second)
   direction.second = second;
 }
 
-void Map::robotTurnLeft()
+void Map::robotTurnRight()
 {
   if (direction.first == 0)
     {
@@ -99,7 +103,7 @@ void Map::robotTurnLeft()
     }
 }
 
-void Map::robotTurnRight()
+void Map::robotTurnLeft()
 {
   if (direction.first == 0)
     {
@@ -115,12 +119,16 @@ void Map::robotTurnRight()
 
 void Map::goForward()
 {
-  unsigned int moveX = posXRobot + direction.first;
-  unsigned int moveY = posYRobot + direction.second;
-  if ( (this->width > moveX ) && (this->height > moveY ))
+  if ((int)(direction.first + posXRobot) >= 0 && (int)(direction.second + posYRobot) >= 0)
   {
-    posXRobot += direction.first;
-    posYRobot += direction.second;
+    unsigned int moveX = posXRobot + direction.first;
+    unsigned int moveY = posYRobot + direction.second;
+
+    if ( (this->width > moveX ) && (this->height > moveY ))
+    {
+      posXRobot += direction.first;
+      posYRobot += direction.second;
+    }
   }
 }
 
