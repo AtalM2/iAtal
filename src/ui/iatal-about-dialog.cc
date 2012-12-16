@@ -27,6 +27,8 @@ IAtalAboutDialog::IAtalAboutDialog()
   set_authors(authors_);
   set_documenters(documenters_);
   set_artists(artists_);
+  
+  run();
 }
 
 IAtalAboutDialog::~IAtalAboutDialog()
