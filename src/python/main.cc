@@ -25,7 +25,14 @@ int main(int argc, char **argv)
   {
 
     boost::python::object main = boost::python::import("__main__"); 
-    boost::python::object py_ = main.attr("__dict__"); 
+    boost::python::object py_ = main.attr("__dict__");
+
+    // Makes visible the libraries exposing the C++ API and the python classes
+    exec("import sys\n"
+         "sys.path.append('.libs')\n"
+         "sys.path.append('src/python')\n",
+         py_);
+
   
     exec_file(argv[1], py_, py_);
      
