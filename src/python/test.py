@@ -19,12 +19,12 @@ def robot_init():
 	global undergroundSensor 
 	undergroundSensor = sensor(enums.Level.Underground, 1)
 	global bibiActuator 
-	bibiActuator = actuator(enums.Level.Underground, 1, "bibi")
+	greenActuator = actuator(enums.Level.Underground, 1, "type:vert")
 
 #stratégie python
 def strat():
 	print(undergroundSensor.activate())
-	bibiActuator.activate()
+	greenActuator.activate()
 	print(undergroundSensor.activate())
 	global ended
 	ended = True
