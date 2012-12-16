@@ -1,0 +1,113 @@
+'\" t
+.\"     Title: iAtal
+.\"    Author: 	Agathe Molle   <agathe.molle@etu.univ-nantes.fr>
+.\"		Gregoire Jadi  <gregoire.jadi@etu.univ-nantes.fr>
+.\"		Hugo Mougard   <hugo.mougard@etu.univ-nantes.fr>
+.\"		Joseph Lark    <joseph.lark@etu.univ-nantes.fr>
+.\"		Loic Jankowiak <loic.jankowiak@etu.univ-nantes.fr>
+.\"		Noemi Salaun   <noemi.salaun@etu.univ-nantes.fr>
+.\"		Remi Bois      <remi.bois@etu.univ-nantes.fr>
+.\"      Date: 12/16/2012
+.\"  Language: English
+.\"
+.TH IATAL 1 "December 17, 2012" "iAtal Version 1.0"
+.SH NAME
+iAtal \- Rovers behaviour simulation platform.
+.SH SYNOPSIS
+.B iAtal
+[-h | --help] [{-m | --help}
+.I MapPath
+] [{-s | --strategy}
+.I StrategyPath
+]
+.SH DESCRIPTION
+.PP
+.B iAtal
+is a program which simulates rovers behaviour\&. The main features :
+.PP
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Loads any TMX-format map
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Loads exploration strategies written in Python
+.RE
+.sp
+.RS 4
+.ie n \{\
+\h'-04'\(bu\h'+03'\c
+.\}
+.el \{\
+.sp -1
+.IP \(bu 2.3
+.\}
+Simulation of the rover behaviour step by step, automatically, or manually.
+.RE
+.sp
+.SH OPTIONS
+.PP
+The program follows the usual GNU command line syntax, with long options starting with two dashes (\-)\&. A summary of options is included below\&.
+.PP
+.B \-h
+,
+.B \-\-help
+.RS 4
+Produce help message\&.
+.RE
+.PP
+.B \-m
+,
+.B \-\-map
+.RS 4
+Set the path to the map to use\&.
+.RE
+.PP
+.B \-s
+,
+.B \-\-strategy
+.RS 4
+Set the path to the strategy to use. Requires a map to be set too\&.
+.RE
+.SH AUTHORS
+.PP
+.B Agathe Molle
+<\&agathe.molle@etu.univ-nantes\&.fr\&>
+.PP
+.B Gregoire Jadi
+<\&gregoire.jadi@etu.univ-nantes\&.fr\&>
+.PP
+.B Hugo Mougard
+<\&hugo.mougard@etu.univ-nantes\&.fr\&>
+.PP
+.B Joseph Lark
+<\&joseph.lark@etu.univ-nantes\&.fr\&>
+.PP
+.B Loic Jankowiak
+<\&loic.jankowiak@etu.univ-nantes\&.fr\&>
+.PP
+.B Noemi Salaun
+<\&noemi.salaun@etu.univ-nantes\&.fr\&>
+.PP
+.B Remi Bois
+<\&remi.bois@etu.univ-nantes\&.fr\&>
+.RE
+.SH COPYRIGHT
+Copyright (C) YEAR Free Software Foundation, Inc.
+.PP
+Copying and distribution of this file, with or without modification, are
+permitted in any medium without royalty provided the copyright notice and this notice are preserved.
