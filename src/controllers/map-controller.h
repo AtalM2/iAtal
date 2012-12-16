@@ -27,6 +27,8 @@ class MapController
   void loadMap();
   void loadMapFromFile(const Glib::ustring & filename);
 
+  void unloadMap();
+
   const std::shared_ptr<Map> & getMap();
   
  private:

@@ -79,3 +79,9 @@ MapController::setWindow(const std::shared_ptr< MapWindow > & window)
 {
   window_ = window;
 }
+
+void
+MapController::unloadMap()
+{
+  window_->setMapStatusOk(false);
+}

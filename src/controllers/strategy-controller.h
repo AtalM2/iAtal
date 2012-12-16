@@ -23,6 +23,8 @@ class StrategyController
   void loadStrategy();
   void loadStrategyFromFile(const std::string & filename);
 
+  void unloadStrategy();
+
   void nextStep();
   void autoStepsOn();
   void autoStepsOff();

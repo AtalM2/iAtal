@@ -130,3 +130,9 @@ StrategyController::setWindow(const std::shared_ptr< MapWindow > & window)
 {
   window_ = window;
 }
+
+void
+StrategyController::unloadStrategy()
+{
+  window_->setStrategyStatusOk(false);
+}
