@@ -10,6 +10,7 @@ from classes import *
 #global
 compteur = 0
 
+
 def init(aMap):
 	global map_ 
 	map_ = aMap
@@ -40,7 +41,8 @@ def strat():
 #		if ugSense!="nothing" :
 #			
 #	elif ugSense=="nothing" :
-		print("change direction ! ")	
+		print("change direction ! ")
+		map_.turnLeft()
 			
 #	print(ugSense)
 	global ended

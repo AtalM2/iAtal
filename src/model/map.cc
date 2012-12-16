@@ -8,6 +8,8 @@ BOOST_PYTHON_MODULE(elements)
     .def("setItem", &Map::setItem)
     .def("setDirection",&Map::setDirection)
     .def("goForward", &Map::goForward)
+    .def("turnRight", &Map::robotTurnRight)
+    .def("turnLeft", &Map::robotTurnLeft)
     .def("hello", &Map::getHello);
 }
 
@@ -57,8 +59,8 @@ std::string Map::getHello()
 
 std::string Map::getItem(Layer::Level level, unsigned int range)
 {
-  unsigned int xTarget = (posXRobot + range) * direction.first;
-  unsigned int yTarget = (posYRobot + range) * direction.second;
+  unsigned int xTarget = posXRobot + (range * direction.first);
+  unsigned int yTarget = posYRobot + (range * direction.second);
   std::string res = "nothing";
   std::cout << xTarget << yTarget << std::endl;
   if ( this->width > xTarget && this->height > yTarget )
@@ -81,6 +83,34 @@ void Map::setDirection(int first, int second)
 {
   direction.first = first;
   direction.second = second;
+}
+
+void Map::robotTurnLeft()
+{
+  if (direction.first == 0)
+    {
+      direction.first = -direction.second;
+      direction.second = 0;
+    }
+  else
+    {
+      direction.second = direction.first;
+      direction.first = 0;
+    }
+}
+
+void Map::robotTurnRight()
+{
+  if (direction.first == 0)
+    {
+      direction.first = direction.second;
+      direction.second = 0;
+    }
+  else
+    {
+      direction.second = -direction.first;
+      direction.first = 0;
+    }
 }
 
 void Map::goForward()

@@ -75,6 +75,10 @@ public:
   // move one tile ahead
   void goForward();
 
+  void robotTurnLeft();
+
+  void robotTurnRight();
+
   Map();
 
   /*!
