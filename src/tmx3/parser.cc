@@ -182,21 +182,21 @@ Parser::parseCsv(std::string data) {
 
   std::vector<unsigned int> intVector;
   int acc = 0;
+  bool conversion_started = false;
   for(std::string::iterator it = data.begin();
       it != data.end();
       it++) {
     try {
       // Converts the current char to an integer.
       acc = (acc * 10) + boost::lexical_cast<int>(*it);
-    } catch(boost::bad_lexical_cast e) { // oops it wasn't a
-      // number after all.
-      // Maybe it was a comma, used to separate fields.
-      if (*it == ',') {
-        // yay, push the accumulated value.
+      conversion_started = true;
+    } catch(boost::bad_lexical_cast e) { // oops it wasn't a numeral.
+      // no? but did we find some?
+      if (conversion_started) {
+        conversion_started = false;
         intVector.push_back(acc);
+        acc = 0;
       }
-      // Reset the accumulator whether it was a comma or junk.
-      acc = 0;
     }
   }
 
