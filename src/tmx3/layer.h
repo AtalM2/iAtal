@@ -11,22 +11,29 @@ public:
 	Layer(unsigned int width, unsigned int height);
 	virtual ~Layer();
 
-	void setTile(unsigned int x, unsigned int y, unsigned int id);
-	unsigned int getTile(unsigned int x, unsigned int y) const;
+	void setTile(unsigned int x,
+		     unsigned int y,
+		     unsigned int id);
+	unsigned int getTile(unsigned int x,
+			     unsigned int y) const;
 
-	std::map<std::string, std::string> getProperties() const;
-	void setProperty(std::string key, std::string value);
-	std::string getProperty(std::string key) const;
+	const std::map<std::string, std::string> &
+	  getProperties() const;
+	void setProperty(const std::string & key,
+			 const std::string & value);
+	const std::string &
+	  getProperty(const std::string & key) const;
 
 	unsigned int getHeight() const;
 
 	unsigned int getWidth() const;
 
-	void setName(std::string name);
-	std::string getName() const;
+	void setName(const std::string & name);
+	const std::string & getName() const;
 
 	void display(std::ostream & out) const;
-	friend std::ostream& operator<<(std::ostream &out, const Layer & layer);
+	friend std::ostream& operator<<(std::ostream &out,
+					const Layer & layer);
 
 private:
 	std::string name_;

@@ -1,5 +1,7 @@
 #include "layer.h"
 
+#include "bad-parameters-exception.h"
+
 Layer::Layer(unsigned int height, unsigned int width) :
     width_(width),
     height_(height),
@@ -28,26 +30,29 @@ Layer::getTile(unsigned int x, unsigned int y) const {
 	}
 }
 
-std::map<std::string, std::string>
+const std::map<std::string, std::string> &
 Layer::getProperties() const {
 	return properties_;
 }
 
 void
-Layer::setProperty(std::string key, std::string value) {
+Layer::setProperty(const std::string & key,
+		   const std::string & value) {
 	properties_[key] = value;
 }
 
-std::string
-Layer::getProperty(std::string key) const {
+const std::string &
+Layer::getProperty(const std::string & key) const {
 	if (key == "") {
-		return "";
+	  throw BadParametersException(
+	    "Empty key given as ID to the layer getProperty method.");
 	}
 	std::map<std::string, std::string>::const_iterator it = properties_.find(key);
 	if (it != properties_.end()) {
 		return it->second;
 	} else {
-		return "";
+	  throw BadParametersException(
+	    "ID given to the layer getProperty method wasn't found.");
 	}
 }
 
@@ -62,11 +67,11 @@ Layer::getWidth() const {
 }
 
 void
-Layer::setName(std::string name) {
+Layer::setName(const std::string & name) {
 	name_ = name;
 }
 
-std::string
+const std::string &
 Layer::getName() const {
 	return name_;
 }
@@ -92,7 +97,7 @@ Layer::display(std::ostream & out) const {
 }
 
 std::ostream &
-operator<<(std::ostream &out, const Layer & layer) {
+operator<<(std::ostream & out, const Layer & layer) {
 	layer.display(out);
 	return out;
 }
