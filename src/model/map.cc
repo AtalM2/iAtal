@@ -52,10 +52,6 @@ Map::Map()
 {
 }
 
-std::string Map::getHello()
-{
-  return "Hello";
-}
 
 std::string Map::getItem(Layer::Level level, unsigned int range)
 {

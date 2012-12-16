@@ -73,8 +73,6 @@ public:
   */
   Layer& getLayer(Layer::Level level);
 
-  //tmp shit
-  std::string getHello();
 
   /*!
     \brief Gets the item on the given layer at the given range (robot dependant)
