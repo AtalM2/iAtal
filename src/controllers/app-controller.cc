@@ -36,3 +36,8 @@ AppController::setWindow(const std::shared_ptr< MapWindow > & window)
 {
   window_ = window;
 }
+const std::shared_ptr< MapWindow > &
+AppController::getWindow()
+{
+  return window_;
+}

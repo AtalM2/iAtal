@@ -84,7 +84,8 @@ main(int argc, char** argv)
       mc.setWindow(window);
       sc.setWindow(window);
       ac.setWindow(window);
-      
+
+      AppController::displayWarning("this", "is sparta");
       if(vm.count("map"))
 	{
 	  mc.loadMapFromFile(vm["map"].as< Glib::ustring >());

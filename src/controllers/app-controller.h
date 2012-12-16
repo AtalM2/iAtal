@@ -19,6 +19,7 @@ class AppController
   }
   
   void setWindow(const std::shared_ptr< MapWindow > & window);
+  const std::shared_ptr< MapWindow > & getWindow();
 
   static int displayWarning(const Glib::ustring & title,
 			    const Glib::ustring & text);
