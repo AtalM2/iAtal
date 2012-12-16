@@ -15,6 +15,18 @@ def init(aMap):
 	map_ = aMap
 
 def robot_init():
+	global northDirection
+	northDirection = direction(0,1)
+	global southDirection
+	southDirection = direction(0,-1)
+	global westDirection
+	westDirection = direction(-1,0)
+	global eastDirection
+	eastDirection = direction(0,1)
+	#direction initiale
+	eastDirection.activate()
+
+
 	global undergroundSensor 
 	undergroundSensor = sensor(map_,enums.Level.Underground, 1)
 	global greenActuator 
@@ -22,9 +34,19 @@ def robot_init():
 
 #stratégie python
 def strat():
-	print(undergroundSensor.activate())
-	greenActuator.activate()
-	print(undergroundSensor.activate())
+	print("debut strat")
+	ugSense = undergroundSensor.activate()
+	print(ugSense)
+	if ugSense=="type:marron" :
+		greenActuator.activate()
+		ugSense = undergroundSensor.activate()
+		print(ugSense)
+		if ugSense!="nothing" :
+			map_.goForward()
+	elif ugSense=="nothing" :
+		print("change direction ! ")	
+			
+	print(ugSense)
 	global ended
 	ended = True
 

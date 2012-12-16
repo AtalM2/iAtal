@@ -21,3 +21,13 @@ class actuator:
 	
 	def activate(self):
 		self.map_.setItem(self.level_, self.range_, self.newContent_)
+
+#defines a direction
+class direction:
+	def __init__(self, first_, second_,):
+		self.map_ = map_
+		self.first_ = first_
+		self.second_ = second_
+	
+	def activate(self):
+		self.map_.setDirection(self.first_, self.second_)
