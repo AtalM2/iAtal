@@ -1,11 +1,12 @@
 // -*- c-basic-offset: 2; -*-
 
-#include <sstream>
-#include <iostream>
 #include <algorithm>
-#include "parser.h"
-#include "tileset.h"
-#include "layer.h"
+#include <iostream>
+#include <sstream>
+
+#include "tmx3/parser.h"
+#include "tmx3/tileset.h"
+#include "tmx3/layer.h"
 
 #include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
