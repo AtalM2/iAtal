@@ -54,6 +54,26 @@ Tileset::getTileWidth() const {
 }
 
 void
+Tileset::setHeight(unsigned int height) {
+	height_ = height;
+}
+
+unsigned int
+Tileset::getHeight() const {
+	return height_;
+}
+
+void
+Tileset::setWidth(unsigned int width) {
+	width_ = width;
+}
+
+unsigned int
+Tileset::getWidth() const {
+	return width_;
+}
+
+void
 Tileset::setName(Glib::ustring name) {
 	name_ = name;
 }
@@ -90,6 +110,13 @@ Tileset::getTile(unsigned int id) const {
 		return Tile();
 	}
 }
+
+unsigned int
+Tileset::getSize() const
+{
+  return tiles_.size();
+}
+
 
 void
 Tileset::display(std::ostream & out) const {

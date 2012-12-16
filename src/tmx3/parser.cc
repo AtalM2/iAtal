@@ -88,6 +88,8 @@ Parser::parseFile(std::string filePath) {
     XMLElement* element = xmlTilesetTmp->FirstChildElement("image");
     
     source = element->Attribute("source");
+    tileset.setHeight(element->IntAttribute("height"));
+    tileset.setWidth(element->IntAttribute("width"));
 
     Glib::RefPtr< const Gdk::Pixbuf > image =
       Gdk::Pixbuf::create_from_file(
@@ -105,9 +107,13 @@ Parser::parseFile(std::string filePath) {
     while (element) {
       Tile tile;
       unsigned int id = (unsigned int) element->IntAttribute("id");
-      XMLElement* xmlTile = element->FirstChildElement("properties")->FirstChildElement("property");
+      XMLElement* xmlTile = 
+	element->FirstChildElement("properties")
+	->FirstChildElement("property");
       while (xmlTile) {
-        tile.setProperty(std::string(xmlTile->Attribute("name")), std::string(xmlTile->Attribute("value")));
+        tile.setProperty(
+	  std::string(xmlTile->Attribute("name")),
+	  std::string(xmlTile->Attribute("value")));
         xmlTile = xmlTile->NextSiblingElement("property");
       }
       tileset.setTile(id, tile);
