@@ -12,6 +12,8 @@ StatusHBox::StatusHBox()
   set_margin_top(5);
   set_margin_bottom(5);
   set_spacing(5);
+  set_valign(Gtk::Align::ALIGN_START);
+  set_halign(Gtk::Align::ALIGN_START);
   
   pack_start(mapLabel_);
   pack_start(mapImage_);

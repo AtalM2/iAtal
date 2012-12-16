@@ -14,6 +14,8 @@ MapArea::MapArea()
   set_margin_right(5);
   set_margin_top(5);
   set_margin_bottom(5);
+  
+  set_halign(Gtk::Align::ALIGN_CENTER);
 }
 
 void
