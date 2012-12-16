@@ -1,6 +1,7 @@
 // -*- c-basic-offset: 2; -*-
 #include "map-area.h"
 
+#include <exception>
 #include <iostream>
 
 #include <gdkmm/general.h> // set_source_pixbuf()
@@ -51,8 +52,22 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 	      Glib::ustring id = layer.getTile(x, y);
 	      if(id != "")
 		{
-		  Glib::RefPtr< const Gdk::Pixbuf > image =
-		    tileset.getImage(id);
+		  Glib::RefPtr< const Gdk::Pixbuf > image;
+		  try
+		    {
+		      image = tileset.getImage(id);
+		    }
+		  catch(const std::exception & e)
+		    {
+		      std::cout << "A problem occured while "
+				<< "drawing the map. It seems "
+				<< "we're trying to draw a non "
+				<< "existing tile:"
+				<< std::endl
+				<< e.what()
+				<< std::endl;
+		      exit(1);
+		    }
 		  Gdk::Cairo::set_source_pixbuf(
 		    cr,
 		    Glib::RefPtr< Gdk::Pixbuf >::cast_const(image),

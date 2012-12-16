@@ -1,6 +1,8 @@
 // -*- c-basic-offset: 2; -*-
 #include "tileset.h"
 
+#include "exceptions/model/bad-parameters-exception.h"
+
 Tileset::Tileset() :
   tilesList_() {
 }
@@ -23,7 +25,8 @@ const
     }
   else
     {
-    throw string("prop non existing");
+      throw BadParametersException(
+	"Trying to access to a non existing property in a tileset.");
     }
   return p;
 }
