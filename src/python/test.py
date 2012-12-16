@@ -3,7 +3,7 @@
 
 import sys
 sys.path.append(".libs")
-#import elements
+import elements
 import enums
 
 #globals
