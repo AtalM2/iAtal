@@ -17,7 +17,7 @@ main(int argc, char **argv)
 
 	Map map;
 	try {
-		map = Parser::parseFile("resources/map.tmx");
+		map = Parser::parseFile("src/tmx/resources/map1.tmx");
 		std::cout << map << std::endl;
 	} catch (Exception e) {
 		std::cout << e.what() << std::endl;
