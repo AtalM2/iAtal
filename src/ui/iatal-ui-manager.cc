@@ -85,7 +85,7 @@ IAtalUIManager::IAtalUIManager()
 			Gtk::Stock::HELP,
 			"About iAtal",
 			"Misc info about iAtal"),
-    sigc::ptr_fun(&AppController::displayAbout) );
+    sigc::mem_fun(ac, &AppController::help) );
 
   insert_action_group(actionGroup);
 
