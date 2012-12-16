@@ -10,6 +10,8 @@
 #include <glibmm/ustring.h>
 
 #include "controllers/app-controller.h"
+#include "controllers/map-controller.h"
+#include "controllers/strategy-controller.h"
 
 MapArea::MapArea()
 {
