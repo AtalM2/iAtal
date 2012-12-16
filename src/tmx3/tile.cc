@@ -1,31 +1,36 @@
 #include "tile.h"
 
+#include "bad-parameters-exception.h"
+
 Tile::Tile() {
 }
 
 Tile::~Tile() {
 }
 
-std::map<std::string, std::string>
+const std::map<std::string, std::string> &
 Tile::getProperties() const {
 	return properties_;
 }
 
 void
-Tile::setProperty(std::string key, std::string value) {
+Tile::setProperty(const std::string & key,
+		  const std::string & value) {
 	properties_[key] = value;
 }
 
-std::string
-Tile::getProperty(std::string key) const {
+const std::string &
+Tile::getProperty(const std::string & key) const {
 	if (key == "") {
-		return "";
+	  throw BadParametersException(
+	    "Empty key given as ID to the tile getProperty method.");
 	}
-	std::map<std::string, std::string>::const_iterator it = properties_.find(key);
+	auto it = properties_.find(key);
 	if (it != properties_.end()) {
 		return it->second;
 	} else {
-		return "";
+	  throw BadParametersException(
+	    "ID given to the tile getProperty method wasn't found.");
 	}
 }
 
@@ -40,7 +45,7 @@ Tile::display(std::ostream & out) const {
 }
 
 std::ostream &
-operator<<(std::ostream &out, const Tile & tile) {
+operator<<(std::ostream & out, const Tile & tile) {
 	tile.display(out);
 	return out;
 }

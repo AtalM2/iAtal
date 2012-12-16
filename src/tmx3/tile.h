@@ -10,12 +10,15 @@ public:
 	Tile();
 	virtual ~Tile();
 
-	std::map<std::string, std::string> getProperties() const;
-	void setProperty(std::string key, std::string value);
-	std::string getProperty(std::string key) const;
+	const std::map<std::string, std::string> &
+	  getProperties() const;
+	void setProperty(const std::string & key,
+			 const std::string & value);
+	const std::string & getProperty(const std::string & key) const;
 
 	void display(std::ostream & out) const;
-	friend std::ostream & operator<<(std::ostream &out, const Tile & tile);
+	friend std::ostream & operator<<(std::ostream & out,
+					 const Tile & tile);
 
 private:
 	std::map<std::string, std::string> properties_;
