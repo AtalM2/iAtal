@@ -76,6 +76,12 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
             //   oss.str());
 
             std::cerr << oss.str();
+
+            // We have no better way (yet) to indicate the user that
+            // something wrong happened.
+            StrategyController::getInstance().unloadStrategy();
+            MapController::getInstance().unloadMap();
+            
               
             return true;
           }
