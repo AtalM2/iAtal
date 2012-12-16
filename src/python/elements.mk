@@ -20,8 +20,10 @@ elements_la_LDFLAGS =	\
 	-module				\
 	$(NULL)
 
-elements_la_SOURCES =	\
-	src/model/map.cc	\
+elements_la_SOURCES =			\
+	src/model/map.cc			\
+	src/model/layer.cc			\
+	src/model/tileset.cc		\
 	$(NULL)
 
 bin_PROGRAMS += \
