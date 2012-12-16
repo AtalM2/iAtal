@@ -11,25 +11,6 @@ BOOST_PYTHON_MODULE(elements)
     .def("turnLeft", &Map::robotTurnLeft);
 }
 
-Map::Map(unsigned int posXRobot,
-	 unsigned int posYRobot,
-	 std::pair<int,int> direction,
-	 unsigned int width,
-         unsigned int height,
-	 unsigned int tileWidth,
-         unsigned int tileHeight)
-  : height(height),
-    width(width),
-    tileHeight(tileHeight),
-    tileWidth(tileWidth),
-    posXRobot(posXRobot),
-    posYRobot(posYRobot),
-    direction(direction),
-    layers_(Layer::Level::LastLevel + 1, Layer(width, height))
-{
-
-}
-
 Map::Map(unsigned int width,
          unsigned int height,
 	 unsigned int tileWidth,
@@ -54,7 +35,10 @@ Map::Map()
 std::string Map::getItem(Layer::Level level, unsigned int range)
 {
   std::string res = "nothing";
-  if ((int)(posXRobot + (range * direction.first)) >= 0 && (int)(posYRobot + (range * direction.second)) >= 0)
+  if (static_cast<int>(posXRobot)
+      + static_cast<int>(range) * direction.first >= 0
+      && static_cast<int>(posYRobot)
+      + static_cast<int>(range) * direction.second >= 0)
   {
     unsigned int xTarget = posXRobot + (range * direction.first);
     unsigned int yTarget = posYRobot + (range * direction.second);
@@ -69,7 +53,9 @@ std::string Map::getItem(Layer::Level level, unsigned int range)
 
 }
 
-void Map::setItem(Layer::Level level, unsigned int range, std::string newTile)
+void Map::setItem(Layer::Level level,
+		  unsigned int range,
+		  std::string newTile)
 {
   int xTarget = (posXRobot + range) * direction.first;
   int yTarget = (posYRobot + range) * direction.second;
@@ -108,12 +94,13 @@ void Map::robotTurnLeft()
 
 void Map::goForward()
 {
-  if ((int)(direction.first + posXRobot) >= 0 && (int)(direction.second + posYRobot) >= 0)
+  if (direction.first + static_cast<int>(posXRobot) >= 0
+      && direction.second + static_cast<int>(posYRobot) >= 0)
   {
     unsigned int moveX = posXRobot + direction.first;
     unsigned int moveY = posYRobot + direction.second;
 
-    if ( (this->width > moveX ) && (this->height > moveY ))
+    if ( this->width > moveX && this->height > moveY )
     {
       posXRobot += direction.first;
       posYRobot += direction.second;
