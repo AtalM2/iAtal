@@ -40,3 +40,4 @@ include test/tmx3/test.mk
 endif
 
 include docs/doxygen.mk
+include docs/man.mk
