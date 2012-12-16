@@ -29,13 +29,11 @@ AM_CPPFLAGS = \
 	$(BOOST_CPPFLAGS) \
 	$(NULL)
 
-include src/model/model.mk
 include src/ui/ui.mk
 include src/python/elements.mk
 include src/tmx3/tmx3.mk
 
 if HAVE_CPPUNIT
-include test/model/test.mk
 include test/python/test.mk
 include test/ui/test.mk
 endif
