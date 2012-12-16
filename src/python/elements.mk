@@ -26,21 +26,6 @@ elements_la_SOURCES =			\
 	src/model/tileset.cc		\
 	$(NULL)
 
-bin_PROGRAMS += \
-	test_python \
-	$(NULL)
-
-test_python_SOURCES =			\
-	src/python/main.cc			\
-	src/python/matrice.cc		\
-	$(NULL)
-
-test_python_LDFLAGS =	\
-	$(AM_LDFLAGS)		\
-	elements.la			\
-	enums.la			\
-	$(NULL)
-
 lib_LTLIBRARIES += \
 	python_hello.la \
 	$(NULL)
