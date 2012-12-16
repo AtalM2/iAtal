@@ -18,7 +18,7 @@ def init(aMap):
 def robot_init():
 	global undergroundSensor 
 	undergroundSensor = sensor(enums.Level.Underground, 1)
-	global bibiActuator 
+	global greenActuator 
 	greenActuator = actuator(enums.Level.Underground, 1, "type:vert")
 
 #stratégie python
