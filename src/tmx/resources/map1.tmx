@@ -119,7 +119,7 @@
   </tile>
   <tile id="24">
    <properties>
-    <property name="Beurk" value=""/>
+    <property name="windows" value=""/>
    </properties>
   </tile>
   <tile id="25">
@@ -129,12 +129,12 @@
   </tile>
   <tile id="26">
    <properties>
-    <property name="Miam" value=""/>
+    <property name="taocp" value=""/>
    </properties>
   </tile>
   <tile id="27">
    <properties>
-    <property name="Miam" value=""/>
+    <property name="latex" value=""/>
    </properties>
   </tile>
   <tile id="28">
