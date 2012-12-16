@@ -296,11 +296,6 @@ MapLoader::handleTileset(Tileset & ts,
 	     ? 1
 	     : (widthPix + spacing) / offsetX);
   
-  std::cout << "width : " << width << std::endl;
-  std::cout << "widthPix : " << widthPix << std::endl;
-  std::cout << "offsetX : " << offsetX << std::endl;
-  std::cout << "offsetY : " << offsetY << std::endl;
-  
 
   Glib::RefPtr<Gdk::Pixbuf> image;
   try

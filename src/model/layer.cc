@@ -18,7 +18,7 @@ BOOST_PYTHON_MODULE(enums)
 
 Layer::Layer(unsigned int width,
              unsigned int height)
-  : tiles_(height, std::vector< Glib::ustring >(width, "toto")),
+  : tiles_(height, std::vector< Glib::ustring >(width)),
     tileset_()
 {
 
