@@ -1,3 +1,5 @@
+// -*- c-basic-offset: 2; -*-
+
 #include <sstream>
 #include <iostream>
 #include <algorithm>
@@ -36,7 +38,7 @@ Parser::parseFile(std::string filePath) {
   if (!width || !height || !tileWidth || !tileHeight) {
     std::ostringstream oss;
     oss << "L'un des attributs (height, width, tileheight, tilewidth) est égal à 0. "
-	<< "La map ne peut pas être créée dans ces conditions";
+        << "La map ne peut pas être créée dans ces conditions";
     throw BadParametersException(oss.str());
   }
 
@@ -65,10 +67,10 @@ Parser::parseFile(std::string filePath) {
     } else {
       source = sourceC;
       try {
-	loadFile(tsxDoc, tmxFileDirectory + "/" + source);
-	tsxFileDirectory = getFileDirectory(tmxFileDirectory + "/" + source);
+        loadFile(tsxDoc, tmxFileDirectory + "/" + source);
+        tsxFileDirectory = getFileDirectory(tmxFileDirectory + "/" + source);
       } catch (Exception e) {
-	throw e;
+        throw e;
       }
       xmlTilesetTmp = tsxDoc.FirstChildElement("tileset");
     }
@@ -87,9 +89,9 @@ Parser::parseFile(std::string filePath) {
 
     Glib::RefPtr< const Gdk::Pixbuf > image =
       Gdk::Pixbuf::create_from_file(
-	tsxFileDirectory + "/" + source,
-	element->IntAttribute("width"),
-	element->IntAttribute("height"));
+        tsxFileDirectory + "/" + source,
+        element->IntAttribute("width"),
+        element->IntAttribute("height"));
 
     // const char* attributeTmp = element->Attribute("trans");
     // image.setTransparency(attributeTmp ? std::string(attributeTmp) : "");
@@ -103,8 +105,8 @@ Parser::parseFile(std::string filePath) {
       unsigned int id = (unsigned int) element->IntAttribute("id");
       XMLElement* xmlTile = element->FirstChildElement("properties")->FirstChildElement("property");
       while (xmlTile) {
-	tile.setProperty(std::string(xmlTile->Attribute("name")), std::string(xmlTile->Attribute("value")));
-	xmlTile = xmlTile->NextSiblingElement("property");
+        tile.setProperty(std::string(xmlTile->Attribute("name")), std::string(xmlTile->Attribute("value")));
+        xmlTile = xmlTile->NextSiblingElement("property");
       }
       tileset.setTile(id, tile);
       element = element->NextSiblingElement("tile");
@@ -129,8 +131,8 @@ Parser::parseFile(std::string filePath) {
     } else {
       std::ostringstream oss;
       oss << "L'encodage "
-	  << xmlData->Attribute("encoding")
-	  << " d'un layer n'est pas supporté";
+          << xmlData->Attribute("encoding")
+          << " d'un layer n'est pas supporté";
       throw BadParametersException(oss.str());
     }
 
@@ -152,14 +154,14 @@ Parser::loadFile(tinyxml2::XMLDocument& tmxDoc, std::string filePath) {
   if (tmxDoc.ErrorID() != XML_SUCCESS) {
     if (tmxDoc.ErrorID() == XML_ERROR_FILE_NOT_FOUND) {
       throw FileNotFoundException("Le fichier TMX "
-				  + filePath
-				  + " n'a pas été trouvé.");
+                                  + filePath
+                                  + " n'a pas été trouvé.");
     } else {
       std::ostringstream error;
       error << "Impossible de charger le fichier TMX. "
-	    << "Erreur numéro : "
-	    << (int) tmxDoc.ErrorID()
-	    << ".";
+            << "Erreur numéro : "
+            << (int) tmxDoc.ErrorID()
+            << ".";
       throw XmlException(error.str());
     }
   }
@@ -190,8 +192,8 @@ Parser::parseCsv(std::string data) {
       // number after all.
       // Maybe it was a comma, used to separate fields.
       if (*it == ',') {
-	// yay, push the accumulated value.
-	intVector.push_back(acc);
+        // yay, push the accumulated value.
+        intVector.push_back(acc);
       }
       // Reset the accumulator whether it was a comma or junk.
       acc = 0;
