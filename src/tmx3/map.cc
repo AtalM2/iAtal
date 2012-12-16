@@ -9,14 +9,14 @@ Map::Map() :
 Map::~Map() {
 }
 
-std::vector<Layer>*
+std::vector<Layer> &
 Map::getLayers() {
-	return &layers_;
+	return layers_;
 }
 
-std::vector<Tileset>*
+std::vector<Tileset> &
 Map::getTilesets() {
-	return &tilesets_;
+	return tilesets_;
 }
 
 std::map<std::string, std::string>
@@ -25,7 +25,7 @@ Map::getProperties() const {
 }
 
 std::string
-Map::getProperty(std::string key) const {
+Map::getProperty(const std::string & key) const {
 	if (key == "") {
 		return "";
 	}
@@ -38,7 +38,8 @@ Map::getProperty(std::string key) const {
 }
 
 void
-Map::setProperty(std::string key, std::string value) {
+Map::setProperty(const std::string & key,
+		 const std::string & value) {
 	properties_[key] = value;
 }
 
@@ -83,7 +84,7 @@ Map::getWidth() const {
 }
 
 void
-Map::setOrientation(std::string orientation) {
+Map::setOrientation(const std::string & orientation) {
 	orientation_ = orientation;
 }
 
@@ -116,7 +117,7 @@ Map::display(std::ostream & out) const {
 }
 
 std::ostream &
-operator<<(std::ostream &out, const Map & map) {
+operator<<(std::ostream & out, const Map & map) {
 	map.display(out);
 	return out;
 }

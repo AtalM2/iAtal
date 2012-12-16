@@ -13,13 +13,15 @@ public:
 	Map();
 	virtual ~Map();
 
-	std::vector<Layer>* getLayers();
+	std::vector<Layer> & getLayers();
 
-	std::vector<Tileset>* getTilesets();
+	std::vector<Tileset> & getTilesets();
 
 	std::map<std::string, std::string> getProperties() const;
-	void setProperty(std::string key, std::string value);
-	std::string getProperty(std::string key) const;
+	
+	void setProperty(const std::string & key,
+			 const std::string & value);
+	std::string getProperty(const std::string & key) const;
 
 	void setTileHeight(unsigned int tileHeight);
 	unsigned int getTileHeight() const;
@@ -33,11 +35,12 @@ public:
 	void setWidth(unsigned int width);
 	unsigned int getWidth() const;
 
-	void setOrientation(std::string orientation);
+	void setOrientation(const std::string & orientation);
 	std::string getOrientation() const;
 
 	void display(std::ostream & out) const;
-	friend std::ostream & operator<<(std::ostream &out, const Map & map);
+	friend std::ostream & operator<<(std::ostream & out,
+					 const Map & map);
 
 private:
 	std::string orientation_;

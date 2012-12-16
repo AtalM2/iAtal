@@ -110,7 +110,7 @@ Parser::parseFile(std::string filePath) {
       element = element->NextSiblingElement("tile");
     }
 
-    map.getTilesets()->push_back(tileset);
+    map.getTilesets().push_back(tileset);
     xmlElement = xmlElement->NextSiblingElement("tileset");
   }
 
@@ -140,7 +140,7 @@ Parser::parseFile(std::string filePath) {
       unsigned int id = data.at(i);
       layer.setTile(x, y, id);
     }
-    map.getLayers()->push_back(layer);
+    map.getLayers().push_back(layer);
     xmlElement = xmlElement->NextSiblingElement("layer");
   }
   return map;
