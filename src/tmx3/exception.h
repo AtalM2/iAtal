@@ -3,24 +3,27 @@
 
 #include <exception>
 
-class Exception : public std::exception {
-public:
+namespace tmx
+{
+  class Exception : public std::exception
+  {
+  public:
 
-	virtual ~Exception() throw () {
-	}
+    virtual ~Exception() throw () { }
 
-	const char* what() const throw () {
-		return message_.c_str();
-	}
+    const char* what() const throw () {
+      return message_.c_str();
+    }
 
-protected:
+  protected:
 
-	Exception(const std::string & message) throw () : message_(message) {
-	}
+    Exception(const std::string & message)
+      throw ()
+      : message_(message) { }
 
-private:
-	const std::string message_;
-};
+  private:
+    const std::string message_;
+  };
+}
 
 #endif // EXCEPTION_H
-
