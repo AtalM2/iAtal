@@ -1,3 +1,7 @@
-man1_MANS = \
-	docs/iatal.1 \
+man_MANS =				\
+	docs/iatal.1		\
+	$(NULL)
+
+EXTRA_DIST +=			\
+	docs/iatal.1		\
 	$(NULL)
