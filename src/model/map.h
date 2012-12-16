@@ -119,6 +119,11 @@ public:
   */
   void setDirection(int x, int y);
 
+  /*!
+    \brief Get the robot direction. Used as a compass.
+
+  */
+  std::string getDirection();
 
 
   /*!

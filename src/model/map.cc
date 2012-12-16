@@ -8,6 +8,7 @@ BOOST_PYTHON_MODULE(elements)
     .def("setItem", &Map::setItem)
     .def("goForward", &Map::goForward)
     .def("setDirection", &Map::setDirection)
+    .def("compass", &Map::getDirection)
     .def("setPosition", &Map::setPosition)
     .def("turnRight", &Map::robotTurnRight)
     .def("turnLeft", &Map::robotTurnLeft);
@@ -49,6 +50,26 @@ void Map::setDirection(int x, int y)
   direction.second = y;
 }
 
+std::string Map::getDirection()
+{
+  if (direction.first == 0 && direction.second == 1)
+  {
+    return "south";
+  }
+  if (direction.first == -1 && direction.second == 0)
+  {
+    return "west";
+  }
+  if (direction.first == 0 && direction.second == -1)
+  {
+    return "north";
+  }
+  if (direction.first == 1 && direction.second == 0)
+  {
+    return "south";
+  }
+  return "";
+}
 
 std::string Map::getItem(Layer::Level level, unsigned int range)
 {

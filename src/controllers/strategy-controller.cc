@@ -112,8 +112,9 @@ StrategyController::autoStepsOn()
   bool ended = boost::python::extract<bool>(endedPy);
   while (!ended)
   {
+
     strat();
-    boost::python::object endedPy = isEnded();
+    endedPy = isEnded();
     ended = boost::python::extract<bool>(endedPy);
   }
 }
