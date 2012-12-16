@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys
-sys.path.append(".libs")
-sys.path.append("./src/python")
 import elements
 import enums
 import os
