@@ -126,15 +126,15 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
       TmxTileset * tmxTileset = NULL;
       Glib::ustring name =
 	Glib::ustring(xmlTilesetTmp->Attribute("name"));
-      if(name == "basement")
+      if(name == "profond")
 	{
 	  tmxTileset = &basementTmxTileset;
 	}
-      else if(name == "ground")
+      else if(name == "surface")
 	{
 	  tmxTileset = &groundTmxTileset;
 	}
-      else if(name == "object")
+      else if(name == "objet")
 	{
 	  tmxTileset = &objectTmxTileset;
 	}
@@ -194,7 +194,7 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
       // unsigned int firstgid = 0;
       // On vérifie le name du layer
       string name = string(xmlElement->Attribute("name"));
-      if(name == "basement")
+      if(name == "underground")
 	{
 	  layer = &map->getLayer(Layer::Underground);
 	  tmxTileset = &basementTmxTileset;
@@ -294,7 +294,13 @@ MapLoader::handleTileset(Tileset & ts,
     widthPix = tmxTs.getWidth(),
     width = (widthPix == tileWidth
 	     ? 1
-	     : (widthPix + 1) / tileWidth);
+	     : (widthPix + spacing) / offsetX);
+  
+  std::cout << "width : " << width << std::endl;
+  std::cout << "widthPix : " << widthPix << std::endl;
+  std::cout << "offsetX : " << offsetX << std::endl;
+  std::cout << "offsetY : " << offsetY << std::endl;
+  
 
   Glib::RefPtr<Gdk::Pixbuf> image;
   try
@@ -321,6 +327,7 @@ MapLoader::handleTileset(Tileset & ts,
     {
       unsigned int index = p.first;
       Glib::ustring property = p.second;
+      std::cout << p.first << "-" << p.second<< std::endl;
       Glib::RefPtr< const Gdk::Pixbuf > tile =
 	Gdk::Pixbuf::create_subpixbuf(image,
 				      ((index - 1) % width) * offsetX,
