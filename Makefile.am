@@ -36,6 +36,7 @@ include src/tmx3/tmx3.mk
 if HAVE_CPPUNIT
 include test/python/test.mk
 include test/ui/test.mk
+include test/tmx3/test.mk
 endif
 
 include docs/doxygen.mk
