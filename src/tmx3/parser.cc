@@ -11,6 +11,7 @@
 #include <boost/lexical_cast.hpp>
 
 using namespace tinyxml2;
+using namespace tmx;
 
 Map
 Parser::parseFile(std::string filePath) {

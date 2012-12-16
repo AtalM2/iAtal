@@ -2,6 +2,8 @@
 
 #include "bad-parameters-exception.h"
 
+using namespace tmx;
+
 Tile::Tile() {
 }
 

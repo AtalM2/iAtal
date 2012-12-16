@@ -2,6 +2,8 @@
 #include <map>
 #include <iostream>
 
+using namespace tmx;
+
 Tileset::Tileset() :
     tiles_() {
 

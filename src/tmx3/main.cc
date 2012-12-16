@@ -7,6 +7,8 @@
 #include "parser.h"
 #include "exception.h"
 
+using namespace tmx;
+
 int
 main(int argc, char **argv)
 {

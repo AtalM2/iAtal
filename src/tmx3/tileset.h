@@ -30,8 +30,8 @@ public:
 	void setFirstgid(unsigned int firstgid);
 	unsigned int getFirstgid() const;
 
-	void setTile(unsigned int id, Tile tile);
-	Tile getTile(unsigned int id) const;
+	void setTile(unsigned int id, tmx::Tile tile);
+	tmx::Tile getTile(unsigned int id) const;
 
 	void display(std::ostream & out) const;
 	friend std::ostream & operator<<(std::ostream &out, const Tileset & tileset);
@@ -43,7 +43,7 @@ private:
 	unsigned int tileHeight_;
 	unsigned int spacing_;
 	Glib::RefPtr< const Gdk::Pixbuf > image_;
-	std::map<unsigned int, Tile> tiles_;
+	std::map<unsigned int, tmx::Tile> tiles_;
 };
 
 #endif	/* TILESET_H */
