@@ -9,6 +9,8 @@
 #include <glibmm/fileutils.h>
 #include <glibmm/ustring.h>
 
+#include "controllers/app-controller.h"
+
 MapArea::MapArea()
 {
   set_margin_left(5);
@@ -59,13 +61,17 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 		    }
 		  catch(const std::exception & e)
 		    {
-		      std::cout << "A problem occured while "
+		      std::ostringstream oss;
+		      oss << "A problem occured while "
 				<< "drawing the map. It seems "
 				<< "we're trying to draw a non "
 				<< "existing tile:"
 				<< std::endl
 				<< e.what()
 				<< std::endl;
+		      AppController::displayWarning(
+			"Fatal Error while drawing map",
+			oss.str());
 		      exit(1);
 		    }
 		  Gdk::Cairo::set_source_pixbuf(
