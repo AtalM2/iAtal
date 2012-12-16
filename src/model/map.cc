@@ -117,13 +117,13 @@ void Map::goForward()
 {
   unsigned int moveX = posXRobot + direction.first;
   unsigned int moveY = posYRobot + direction.second;
-  if ( (this->width > moveX /*&& moveX >= 0*/) && (this->height > moveY /*&& moveY >= 0*/))
+  if ( (this->width > moveX ) && (this->height > moveY ))
   {
     posXRobot += direction.first;
     posYRobot += direction.second;
   }
-
 }
+
 
 Map::~Map()
 {
