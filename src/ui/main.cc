@@ -61,8 +61,7 @@ main(int argc, char** argv)
   Glib::RefPtr<Gtk::Application> app =
     Gtk::Application::create(argc,
 			     argv,
-			     "fr.univnantes.atal.iatal",
-			     Gio::APPLICATION_HANDLES_COMMAND_LINE);
+			     "fr.univnantes.atal.iatal");
   
   
   MapController & mc = MapController::getInstance();
