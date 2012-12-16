@@ -3,15 +3,18 @@
 
 #include "exception.h"
 
-class XmlException : public Exception {
-public:
+namespace tmx
+{
+  class XmlException : public Exception
+  {
+  public:
 
-	XmlException(const std::string & complement) throw ()
-        : Exception("XML error: " + complement) {
-	}
+    XmlException(const std::string & complement)
+      throw ()
+      : Exception("XML error: " + complement) { }
 
-	virtual ~XmlException() throw () {
-	}
-};
+    virtual ~XmlException() throw () { }
+  };
+}
 
 #endif // XML_EXCEPTION_H
