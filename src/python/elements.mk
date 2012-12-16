@@ -49,7 +49,7 @@ cpp_hello_python_SOURCES = \
 	src/python/cpp_hello_python.cc \
 	$(NULL)
 
-cpp_hello_python_LDFLAGS = \
-	$(AM_LDFLAGS) \
-	python_hello.la \
+cpp_hello_python_LDFLAGS =		\
+	$(AM_LDFLAGS)				\
+	src/python/python_hello.cc	\
 	$(NULL)
