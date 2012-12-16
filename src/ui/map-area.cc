@@ -41,50 +41,49 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     map_->getLayer(Layer::Level::Ground),
     map_->getLayer(Layer::Level::Object),
   };
-  
-  std::for_each(
-    layers.begin(),
-    layers.end(),
-    [this, & cr] (const Layer & layer) {
-      Tileset tileset = layer.getTileset();
+
+  for(std::vector< Layer >::const_iterator it = layers.begin();
+      it != layers.end();
+      it++) {
+    Tileset tileset = (*it).getTileset();
       
-      for(unsigned int x = 0; x < map_->width; x++) {
-        for(unsigned int y = 0; y < map_->height; y++) {
+    for(unsigned int x = 0; x < map_->width; x++) {
+      for(unsigned int y = 0; y < map_->height; y++) {
           
-          Glib::ustring id = layer.getTile(x, y);
+        Glib::ustring id = (*it).getTile(x, y);
 	  
-          if(id != "") {
-            Glib::RefPtr< const Gdk::Pixbuf > image;
-            try {
-              image = tileset.getImage(id);
-            } catch(const std::exception & e) {
-              std::ostringstream oss;
+        if(id != "") {
+          Glib::RefPtr< const Gdk::Pixbuf > image;
+          try {
+            image = tileset.getImage(id);
+          } catch(const std::exception & e) {
+            std::ostringstream oss;
               
-              oss << "A problem occured while "
-                  << "drawing the map. It seems "
-                  << "we're trying to draw a non "
-                  << "existing tile:"
-                  << std::endl
-                  << e.what()
-                  << std::endl;
+            oss << "A problem occured while "
+                << "drawing the map. It seems "
+                << "we're trying to draw a non "
+                << "existing tile:"
+                << std::endl
+                << e.what()
+                << std::endl;
               
-              AppController::displayWarning(
-                "Fatal Error while drawing map",
-                oss.str());
+            AppController::displayWarning(
+              "Fatal Error while drawing map",
+              oss.str());
               
-              exit(1);
-            }
-            Gdk::Cairo::set_source_pixbuf(
-              cr,
-              Glib::RefPtr< Gdk::Pixbuf >::cast_const(image),
-              x * map_->tileWidth,
-              y * map_->tileHeight);
-            
-            cr->paint();
+            exit(1);
           }
+          Gdk::Cairo::set_source_pixbuf(
+            cr,
+            Glib::RefPtr< Gdk::Pixbuf >::cast_const(image),
+            x * map_->tileWidth,
+            y * map_->tileHeight);
+            
+          cr->paint();
         }
       }
     }
-    );
+  }
+  
   return true;
 }
