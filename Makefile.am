@@ -1,6 +1,7 @@
 bin_PROGRAMS = $(NULL)
 lib_LTLIBRARIES = $(NULL)
 check_PROGRAMS = $(NULL)
+EXTRA_DIST = $(NULL)
 
 ACLOCAL_AMFLAGS = -I m4
 
