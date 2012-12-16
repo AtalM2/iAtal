@@ -3,13 +3,15 @@
 
 import sys
 sys.path.append(".libs")
+sys.path.append("./src/python")
 import elements
 import enums
+import os
 
-#globals
-ended = False
+from classes import *
+
+#global
 compteur = 0
-map_ = False
 
 def init(aMap):
 	global map_ 
@@ -17,9 +19,9 @@ def init(aMap):
 
 def robot_init():
 	global undergroundSensor 
-	undergroundSensor = sensor(enums.Level.Underground, 1)
+	undergroundSensor = sensor(map_,enums.Level.Underground, 1)
 	global greenActuator 
-	greenActuator = actuator(enums.Level.Underground, 1, "type:vert")
+	greenActuator = actuator(map_,enums.Level.Underground, 1, "type:vert")
 
 #stratégie python
 def strat():
@@ -33,22 +35,3 @@ def strat():
 def isEnded():
 	return ended;
 
-#Defines a sensor.
-class sensor:
-	def __init__(self,level_, range_):
-		self.map_ = map_
-		self.level_ = level_
-		self.range_ = range_
-	def activate(self):
-		return map_.getItem(self.level_ , self.range_)
-
-#defines an actuator
-class actuator:
-	def __init__(self, level_, range_,newContent_):
-		self.map_ = map_
-		self.level_ = level_
-		self.range_ = range_
-		self.newContent_ = newContent_
-	
-	def activate(self):
-		self.map_.setItem(self.level_, self.range_, self.newContent_)
