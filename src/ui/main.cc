@@ -13,29 +13,32 @@
 
 #include "tmx/map-loader.h"
 
-namespace po = boost::program_options;
-
 int
 main(int argc, char** argv)
 {
-  po::options_description desc("Allowed options");
+  boost::program_options::options_description
+    desc("Allowed options");
   desc.add_options()
     ("help,h",
      "Produce help message")
 
     ("map,m",
-     po::value< Glib::ustring >(),
+     boost::program_options::value< Glib::ustring >(),
      "Set the path to the map to use")
 
     ("strategy,s",
-     po::value< Glib::ustring >(),
+     boost::program_options::value< Glib::ustring >(),
      "Set the path to the strategy to use. Requires a map to be set too.")
     ;
-  po::variables_map vm;
+  boost::program_options::variables_map vm;
   try
     {
-      po::store(po::parse_command_line(argc, argv, desc), vm);
-      po::notify(vm);
+      boost::program_options::store(
+	boost::program_options::parse_command_line(argc,
+						   argv,
+						   desc),
+	vm);
+      boost::program_options::notify(vm);
     }
   catch(...)
     {
