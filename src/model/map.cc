@@ -6,7 +6,6 @@ BOOST_PYTHON_MODULE(elements)
   boost::python::class_<Map>("Map")
     .def("getItem", &Map::getItem)
     .def("setItem", &Map::setItem)
-    .def("setDirection",&Map::setDirection)
     .def("goForward", &Map::goForward)
     .def("turnRight", &Map::robotTurnRight)
     .def("turnLeft", &Map::robotTurnLeft);
@@ -78,11 +77,6 @@ void Map::setItem(Layer::Level level, unsigned int range, std::string newTile)
 
 }
 
-void Map::setDirection(int first, int second)
-{
-  direction.first = first;
-  direction.second = second;
-}
 
 void Map::robotTurnRight()
 {
