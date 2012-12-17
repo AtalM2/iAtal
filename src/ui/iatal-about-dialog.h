@@ -3,6 +3,10 @@
 #define IATAL_ABOUT_DIALOG_H
 
 #include <gtkmm.h>
+
+/**
+ * About widget for iAtal. Shown on C-h or through the help menu.
+ */
 class IAtalAboutDialog : public Gtk::AboutDialog
 {
 

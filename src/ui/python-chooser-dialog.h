@@ -4,11 +4,22 @@
 
 #include <gtkmm.h>
 
+/**
+ * File chooser dialog tuned for python strategies.
+ */
 class PythonChooserDialog : public Gtk::FileChooserDialog
 {
 
 public:
+
+  /**
+   * Constructor.
+   */
   PythonChooserDialog();
+
+  /**
+   * Destructor.
+   */
   virtual ~PythonChooserDialog();
 };
 

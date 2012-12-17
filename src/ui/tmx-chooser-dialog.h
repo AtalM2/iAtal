@@ -4,11 +4,21 @@
 
 #include <gtkmm.h>
 
+/**
+ * File chooser dialog tuned for tmx maps.
+ */
 class TmxChooserDialog : public Gtk::FileChooserDialog
 {
 
 public:
+  /**
+   * Constructor.
+   */
   TmxChooserDialog();
+
+  /**
+   * Destructor.
+   */
   virtual ~TmxChooserDialog();
 };
 
