@@ -64,29 +64,12 @@ def strat():
 	cs = compassSensor.activate()
 	ugSense = undergroundSensor.activate()
 	gSense = groundSensor.activate()
-	#print(gSense)
-	oSense = objectSensor.activate()
-	print(oSense)
 	print("Facing " + cs + " in front of : " + gSense)
-	if ((oSense=="word") | (oSense=="windows") | (oSense=="libreoffice") | (oSense=="powerpoint")):
-		print("I've found a WYSIWYG ! Destroy it ! ")
-		destroyer.activate()
-		global compteur
-		compteur = compteur + 1
-		if compteur == 8:
-			global ended
-			ended = True
-			print("Strat end")
-	elif oSense=="latex":
-		loveLatex.activate()
-	elif oSense=="taocp":
-		loveTaocp.activate()
+	#print(gSense)
+	objectHandler()
 	if (gSense!="mur")&(gSense!="nothing"):
 		lookAroundAndChoose()
-		
-#	if ((gSense!="mur") & (ugSense=="sol")):
-#		print("walking...")
-#		walk()
+
 	else:
 		turningLeft = random.choice([True, False])
 		if turningLeft:
@@ -95,16 +78,7 @@ def strat():
 		else:
 			print("turning right...")
 			turnRight()
-#	print("walking...")
 
-#	else:
-#		turningLeft = random.choice([True, False])
-#		if turningLeft:
-#			print("turning left...")
-#			turnLeft()
-#		else:
-#			print("turning right...")
-#			turnRight()
 
 #######################################################################
 #								 				strategy end																	#
@@ -158,9 +132,11 @@ def lookAroundAndChoose():
 	
 	turning = random.choice(turningList)
 	if turning=="F":
+		objectHandler()
 		walk()
 	elif turning=="L":
 		turnLeft()
+		objectHandler()
 		walk()
 	#if turning=="B":
 	#	turnLeft()
@@ -168,8 +144,29 @@ def lookAroundAndChoose():
 	#	walk()
 	elif turning=="R":
 		turnRight()
+		objectHandler()
 		walk()
 	print("walking...")
+
+def objectHandler():
+	oSense = objectSensor.activate()
+	#print(oSense)
+	
+	if ((oSense=="word") | (oSense=="windows") | (oSense=="libreoffice") | (oSense=="powerpoint")):
+		print("I've found a WYSIWYG ! Destroy it ! ")
+		destroyer.activate()
+		global compteur
+		compteur = compteur + 1
+		if compteur == 8:
+			global ended
+			ended = True
+			print("Strat end")
+	elif oSense=="latex":
+		loveLatex.activate()
+	elif oSense=="taocp":
+		loveTaocp.activate()
+
+
 
 '''
 
