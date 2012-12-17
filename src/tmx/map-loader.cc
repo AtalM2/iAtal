@@ -90,9 +90,9 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
 				     tileWidth,
 				     tileHeight);
 
-  TmxTileset basementTmxTileset;
   TmxTileset groundTmxTileset;
-  TmxTileset objectTmxTileset;
+  TmxTileset obstaclesTmxTileset;
+  TmxTileset objectsTmxTileset;
 
   // Récupération des tilesets
   XMLElement* xmlElement = tmx->FirstChildElement("tileset");
@@ -131,17 +131,17 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
       TmxTileset * tmxTileset = NULL;
       Glib::ustring name =
 	Glib::ustring(xmlTilesetTmp->Attribute("name"));
-      if(name == "profond")
-	{
-	  tmxTileset = &basementTmxTileset;
-	}
-      else if(name == "surface")
+      if(name == "ground")
 	{
 	  tmxTileset = &groundTmxTileset;
 	}
-      else if(name == "objet")
+      else if(name == "obstacles")
 	{
-	  tmxTileset = &objectTmxTileset;
+	  tmxTileset = &obstaclesTmxTileset;
+	}
+      else if(name == "objects")
+	{
+	  tmxTileset = &objectsTmxTileset;
 	}
       else
 	{
@@ -199,20 +199,20 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
       // unsigned int firstgid = 0;
       // On vérifie le name du layer
       string name = string(xmlElement->Attribute("name"));
-      if(name == "underground")
+      if(name == "ground")
 	{
 	  layer = &map->getLayer(Layer::Underground);
-	  tmxTileset = &basementTmxTileset;
+	  tmxTileset = &groundTmxTileset;
 	}
-      else if(name == "ground")
+      else if(name == "obstacles")
 	{
 	  layer = &map->getLayer(Layer::Ground);
-	  tmxTileset = &groundTmxTileset;
+	  tmxTileset = &obstaclesTmxTileset;
 	}
       else if(name == "objects")
 	{
 	  layer = &map->getLayer(Layer::Object);
-	  tmxTileset = &objectTmxTileset;
+	  tmxTileset = &objectsTmxTileset;
 	}
       else
 	{
@@ -278,11 +278,11 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
     }
   
   handleTileset(map->getLayer(Layer::Level::Underground).getTileset(),
-		basementTmxTileset);
-  handleTileset(map->getLayer(Layer::Level::Ground).getTileset(),
 		groundTmxTileset);
+  handleTileset(map->getLayer(Layer::Level::Ground).getTileset(),
+		obstaclesTmxTileset);
   handleTileset(map->getLayer(Layer::Level::Object).getTileset(),
-		objectTmxTileset);
+		objectsTmxTileset);
   
   return map;
 }
