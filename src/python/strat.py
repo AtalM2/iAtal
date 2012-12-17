@@ -47,9 +47,12 @@ def strat():
 	ugSense = undergroundSensor()
 	#print(ugSense)
 	oSense = objectSensor()
-	#print(oSense)
-	if oSense!="":
-		print("I've found a " + oSense + " !")
+	print(oSense)
+	if oSense=="windows:":
+		print("I've found a Windows ! Destroy it ! ")
+		windowsActuator()
+		oSense = objectSensor()
+		print(oSense)
 		global ended
 		ended = True
 		print("Strat end")
@@ -103,8 +106,6 @@ def airSensor():
 #actuators
 
 	#underground
-def greenActuator():
-	return actuator(map_,enums.Level.Underground, 1, "type:vert").activate()
 	
 def	brownActuator():
 	return actuator(map_,enums.Level.Underground, 1, "type:marron").activate()
@@ -128,6 +129,9 @@ def	fleurActuator():
 
 def	champiActuator():
 	return actuator(map_,enums.Level.Object, 1, "couleur:rouge").activate()
+
+def windowsActuator():
+	return actuator(map_,enums.Level.Object, 1, "exploded:").activate()
 
 
 #sert à savoir si la strat est finie ou non

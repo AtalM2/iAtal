@@ -97,10 +97,19 @@ void Map::setItem(Layer::Level level,
 		  unsigned int range,
 		  std::string newTile)
 {
-  int xTarget = (posXRobot + range) * direction.first;
-  int yTarget = (posYRobot + range) * direction.second;
-  this->getLayer(level).setTile(xTarget, yTarget, newTile);
+  if (static_cast<int>(posXRobot)
+      + static_cast<int>(range) * direction.first >= 0
+      && static_cast<int>(posYRobot)
+      + static_cast<int>(range) * direction.second >= 0)
+      {
+        unsigned int xTarget = posXRobot + (range * direction.first);
+        unsigned int yTarget = posYRobot + (range * direction.second);
 
+        if ( this->width > xTarget && this->height > yTarget )
+        {
+          this->getLayer(level).setTile(xTarget, yTarget, newTile);
+        }
+      }
 }
 
 void Map::robotTurnRight()
