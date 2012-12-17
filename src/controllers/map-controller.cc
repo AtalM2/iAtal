@@ -98,6 +98,7 @@ MapController::reloadMap()
 {
   if(current_ != "")
     loadMapFromFile(current_);
+  redraw();
 }
 
 void
