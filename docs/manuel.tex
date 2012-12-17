@@ -2,6 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{listings}
+\usepackage[english]{babel}
 
 
 %opening
@@ -263,8 +264,32 @@ described in the tileset used in the map.
 
 \subsubsection{The compass}
 
+The compass is another type of sensor wich is provided by the
+application. Even if you could emulate a compass with python by
+remembering in which direction you started, and updating your current
+direction each time you turn, the compass sensor allows you to get
+your current direction at any time.
+
+You can define a new compass by using this syntax :
+
+\begin{lstlisting}[language=Python]
+  global compassSensor
+  compassSensor = compass(map_)
+\end{lstlisting}
+
 
 \subsubsection{Extending your robot abilities}
+
+Of course, you can add many features to your robot. You could decide
+to extend the sensors and actuators with a battery state, and updating
+it each time you use one of these.
+
+You could also add a memory to your robot, so it can remember the
+paths it took.
+
+You are free and encouraged to extend your robot abilities so it
+reflects as much as possible the abilities and constraints of a real
+robot.
 
 \subsection{Defining a strategy with strat}
 As mentioned above, the editable strat function is the procedure 
