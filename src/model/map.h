@@ -125,6 +125,8 @@ public:
   */
   std::string getDirection();
 
+  void setRobotImage(std::string uri);
+
 
   /*!
     \brief Default destructor.
@@ -140,13 +142,13 @@ public:
     South, //!< Facing south.
     West, //!< Facing west.
     East; //!< Facing east.
-
 protected:
 
  private:
   unsigned int posXRobot; //!< The x postion of the robot.
   unsigned int posYRobot; //!< The y position of the robot.
   std::pair<int,int> direction; //!< The direction of the robot.
+  std::string robotImg;
   std::vector< Layer > layers_; //!< The set of Layer
 };
 

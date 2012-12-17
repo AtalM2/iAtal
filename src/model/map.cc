@@ -8,6 +8,7 @@ BOOST_PYTHON_MODULE(elements)
     .def("setItem", &Map::setItem)
     .def("goForward", &Map::goForward)
     .def("setDirection", &Map::setDirection)
+    .def("setRobotImage", &Map::setRobotImage)
     .def("compass", &Map::getDirection)
     .def("setPosition", &Map::setPosition)
     .def("turnRight", &Map::robotTurnRight)
@@ -49,6 +50,12 @@ void Map::setDirection(int x, int y)
 {
   direction.first = x;
   direction.second = y;
+}
+
+
+void Map::setRobotImage(std::string uri)
+{
+  robotImg = uri;
 }
 
 std::string Map::getDirection()
