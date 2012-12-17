@@ -14,34 +14,27 @@ compteur = 0
 #map_ = False
 ended = False
 
-#map loading
-#global map_ 
-#map_ = loadMap()
-
 def init(aMap):
-	global map_ 
+	global map_
 	map_ = aMap
 
 
-def walk():
-	map_.goForward()
-
-def turnLeft():
-	map_.turnLeft()
-
-def turnRight():
-	map_.turnRight()
-
-
-
 #position and direction initialization
+global x_init
+x_init = 5
+global y_init
+y_init = 10
+
 def robot_init():
 	map_.setDirection(0,1)
-	map_.setPosition(5,10)
+	map_.setPosition(x_init,y_init)
+	print("Starting at ( " + str(x_init) + ", " + str(y_init) + " )")
 
 
 #stratégie python
 def strat():
+	cs = compassSensor(map_)
+	print("Facing " + cs)
 	gSense = groundSensor()
 	#print(gSense)
 	ugSense = undergroundSensor()
@@ -50,24 +43,22 @@ def strat():
 	print(oSense)
 	if oSense=="windows:":
 		print("I've found a Windows ! Destroy it ! ")
-		windowsActuator()
-		oSense = objectSensor()
-		print(oSense)
+		destroyActuator()
 		global ended
 		ended = True
 		print("Strat end")
 
 	if gSense!="":
 		print("walking...")
-		walk()
+		walk(map_)
 	else:
 		turningLeft = random.choice([True, False])
 		if turningLeft:
 			print("turning left...")
-			turnLeft()
+			turnLeft(map_)
 		else:
 			print("turning right...")
-			turnRight()
+			turnRight(map_)
 
 
 
@@ -105,32 +96,12 @@ def airSensor():
 
 #actuators
 
-	#underground
+#underground
+
+#ground
 	
-def	brownActuator():
-	return actuator(map_,enums.Level.Underground, 1, "type:marron").activate()
-
-def	whiteActuator():
-	return actuator(map_,enums.Level.Underground, 1, "type:blanc").activate()
-
-def	blueActuator():
-	return actuator(map_,enums.Level.Underground, 1, "type:bleu").activate()
-
-	#ground
-def	herbeActuator():
-	return actuator(map_,enums.Level.Ground, 1, "type:herbe").activate()
-
-def	eauActuator():
-	return actuator(map_,enums.Level.Ground, 1, "type:eau").activate()
-
-	#object
-def	fleurActuator():
-	return actuator(map_,enums.Level.Object, 1, "type:fleur").activate()
-
-def	champiActuator():
-	return actuator(map_,enums.Level.Object, 1, "couleur:rouge").activate()
-
-def windowsActuator():
+#object
+def destroyActuator():
 	return actuator(map_,enums.Level.Object, 1, "exploded:").activate()
 
 

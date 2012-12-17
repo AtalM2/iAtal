@@ -6,23 +6,21 @@ import os
 
 from classes import *
 
-#global
-compteur = 0
-#map_ = False
-ended = False
 
-#initialization
-#def init(aMap):
-#	global map_ 
-#	map_ = aMap
 
-#def loadMap():
-#	return map_
 
 #movement functions
+def walk(map_):
+	map_.goForward()
 
+def turnLeft(map_):
+	map_.turnLeft()
 
+def turnRight(map_):
+	map_.turnRight()
 
+def compassSensor(map_):
+	return map_.compass()
 
 	
 

@@ -83,7 +83,7 @@ std::string Map::getItem(Layer::Level level, unsigned int range)
     unsigned int xTarget = posXRobot + (range * direction.first);
     unsigned int yTarget = posYRobot + (range * direction.second);
 
-    std::cout << "x:" << xTarget << ",y:" << yTarget << std::endl;
+    //std::cout << "x:" << xTarget << ",y:" << yTarget << std::endl;
     if ( this->width > xTarget && this->height > yTarget )
     {
       res = this->getLayer(level).getTile(xTarget, yTarget);
