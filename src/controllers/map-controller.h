@@ -28,6 +28,7 @@ class MapController
   void loadMapFromFile(const Glib::ustring & filename);
 
   void unloadMap();
+  void reloadMap();
 
   const std::shared_ptr<Map> & getMap();
   
@@ -35,7 +36,7 @@ class MapController
   std::shared_ptr< Map > map_;
   std::shared_ptr< MapArea > mapArea_;
   std::shared_ptr< MapWindow > window_;
-  
+  Glib::ustring current_;
   MapController();
   
   // Don't Implement, singleton

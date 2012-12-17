@@ -100,6 +100,7 @@ StrategyController::rewind()
 {
   if(autoStepsOn_)
     autoStepsOff();
+  MapController::getInstance().reloadMap();
   loadStrategyFromFile(current_);
 }
 

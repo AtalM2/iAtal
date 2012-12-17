@@ -10,6 +10,7 @@
 #include "ui/warning-dialog.h"
 
 MapController::MapController()
+  : current_("")
 {
   
 }
@@ -66,6 +67,7 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
   // Now we don't know if the current strategy is ok or not.
   window_->setStrategyStatusOk(false);
   map_.swap(newMap);
+  current_ = filename;
 }
 
 const std::shared_ptr<Map> &
@@ -86,4 +88,11 @@ MapController::unloadMap()
   window_->setMapStatusOk(false);
   std::shared_ptr< Map > newMap = std::make_shared< Map >();
   window_->setMap(newMap);
+}
+
+void
+MapController::reloadMap()
+{
+  if(current_ != "")
+    loadMapFromFile(current_);
 }
