@@ -12,7 +12,13 @@ IAtalAboutDialog::IAtalAboutDialog()
 	"Hugo Mougard"
 	}),
     documenters_({
-	"Grégoire Jadi"
+      "Rémi Bois",
+	"Grégoire Jadi",
+	"Agathe Mollé",
+	"Joseph Lark",
+	"Noémi Salaün",
+	"Loïc Jankowiak",
+	"Hugo Mougard"
 	  }),
     artists_({
 	"Agathe Mollé"
