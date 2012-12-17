@@ -11,7 +11,9 @@
 
 #include <vector>
 
+#include <gdkmm/pixbuf.h>
 #include <glibmm/ustring.h>
+#include <glibmm/fileutils.h>
 
 #include "layer.h"
 
@@ -134,7 +136,10 @@ public:
     \param east The sprite when the current direction is east
 
   */
-  void setRobotImage(std::string north, std::string west, std::string south, std::string east);
+  void setRobotImages(const std::string & north,
+		      const std::string & south,
+		      const std::string & east,
+		      const std::string & west);
 
 
   /*!
@@ -157,10 +162,9 @@ protected:
   unsigned int posXRobot; //!< The x postion of the robot.
   unsigned int posYRobot; //!< The y position of the robot.
   std::pair<int,int> direction; //!< The direction of the robot.
-  std::string robotImgNorth;//!< The sprite used for the robot when facing north
-  std::string robotImgSouth;//!< The sprite used for the robot when facing south
-  std::string robotImgWest;//!< The sprite used for the robot when facing west
-  std::string robotImgEast;//!< The sprite used for the robot when facing east
+
+  std::map< std::string, Glib::RefPtr<Gdk::Pixbuf > > robotImgs_;//!< The sprite used for the robot. The key is its direction.
+  
   std::vector< Layer > layers_; //!< The set of Layer
 };
 

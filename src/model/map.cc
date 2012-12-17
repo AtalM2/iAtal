@@ -8,7 +8,7 @@ BOOST_PYTHON_MODULE(elements)
     .def("setItem", &Map::setItem)
     .def("goForward", &Map::goForward)
     .def("setDirection", &Map::setDirection)
-    .def("setRobotImage", &Map::setRobotImage)
+    .def("setRobotImage", &Map::setRobotImages)
     .def("compass", &Map::getDirection)
     .def("setPosition", &Map::setPosition)
     .def("turnRight", &Map::robotTurnRight)
@@ -53,12 +53,39 @@ void Map::setDirection(int x, int y)
 }
 
 
-void Map::setRobotImage(std::string north, std::string west, std::string south, std::string east)
+void
+Map::setRobotImages(const std::string & north,
+		    const std::string & south,
+		    const std::string & east,
+		    const std::string & west)
 {
-  robotImgNorth = north;
-  robotImgWest = west;
-  robotImgSouth = south;
-  robotImgEast = east;
+  Glib::RefPtr< Gdk::Pixbuf > imageN,
+    imageS,
+    imageE,
+    imageW;
+  
+  try
+    {
+      imageN = Gdk::Pixbuf::create_from_file(north);
+      imageS = Gdk::Pixbuf::create_from_file(south);
+      imageE = Gdk::Pixbuf::create_from_file(east);
+      imageW = Gdk::Pixbuf::create_from_file(west);
+    }
+  catch (const Glib::FileError & ex)
+    {
+      throw ex;
+    }
+  catch (const Gdk::PixbufError & ex)
+    {
+      throw ex;
+    }
+
+  robotImgs_ = {
+    {"north", imageN},
+    {"south", imageN},
+    {"east", imageN},
+    {"west", imageN}
+  };
 }
 
 std::string Map::getDirection()
