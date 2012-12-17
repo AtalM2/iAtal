@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="surface" tilewidth="64" tileheight="64" spacing="32">
- <image source="surface.png" width="352" height="448"/>
+<tileset name="obstacles" tilewidth="64" tileheight="64" spacing="32">
+ <image source="obstacles.png" width="352" height="448"/>
  <tile id="0">
   <properties>
    <property name="mur" value="0"/>

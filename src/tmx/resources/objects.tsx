@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="objet" tilewidth="64" tileheight="64" spacing="32">
- <image source="objet.png" width="352" height="162"/>
+<tileset name="objects" tilewidth="64" tileheight="64" spacing="32">
+ <image source="objects.png" width="352" height="162"/>
  <tile id="0">
   <properties>
    <property name="exploded" value=""/>

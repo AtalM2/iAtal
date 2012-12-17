@@ -51,8 +51,8 @@ that help it to feel and understand its close environment and
 actuators that allow it to move and to interact with the map.
 
 
-The iAtal program can deal with any map in TMX format. Those maps can
-be created with Tiled %TODO ref%
+The iAtal program deal with maps in TMX format. Those maps can
+be created with Tiled %TODO ref, see chapter...%
 or manually.  You can also create your own exploration strategy, your
 rover's sensors and actuators, thanks to Python.  Those features will
 be detailed further.
@@ -105,9 +105,20 @@ loader is limited to maps with 4 layers or less. Those layers are :
  \item underground
  \item ground
  \item object
- \item air
 \end{itemize}
 \label{avaibleLayers}
+
+iAtal only understands TMX maps with separated tilesets. The tilesets
+are described in TSX files (.tsx). In order to have some clear
+resources, you should use one tileset by layer, and give it the name of
+. For exemple, if your
+map is designed with the layers \textit{ground} and \textit{objects},
+you need to use a tileset for the ground tiles, and another one for
+the objects tiles.
+
+%TODO : limitations map par super mogzor
+
+\subsection{Loading your map}
 
 Once your map is created, you just have to save it, and to load it in
 iAtal.
