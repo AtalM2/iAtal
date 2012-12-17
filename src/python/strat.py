@@ -23,7 +23,7 @@ def init(aMap):
 global x_init
 x_init = 2
 global y_init
-y_init = 1
+y_init = 2
 
 def robot_init():
 	map_.setDirection(0,1)
@@ -57,8 +57,9 @@ def actuators_init():
 	global loveTaocp
 	loveTaocp = actuator(map_,enums.Level.Object, 1, "lovetaocp:")
 
-
-#stratégie python
+#######################################################################
+#								 				python strategy																#
+#######################################################################
 def strat():
 	cs = compassSensor.activate()
 	ugSense = undergroundSensor.activate()
@@ -80,10 +81,12 @@ def strat():
 		loveLatex.activate()
 	elif oSense=="taocp":
 		loveTaocp.activate()
-
-	if ((gSense!="mur") & (ugSense=="sol")):
-		print("walking...")
-		walk()
+	if (gSense!="mur"):
+		lookAroundAndChoose()
+		
+#	if ((gSense!="mur") & (ugSense=="sol")):
+#		print("walking...")
+#		walk()
 	else:
 		turningLeft = random.choice([True, False])
 		if turningLeft:
@@ -92,7 +95,20 @@ def strat():
 		else:
 			print("turning right...")
 			turnRight()
+#	print("walking...")
 
+#	else:
+#		turningLeft = random.choice([True, False])
+#		if turningLeft:
+#			print("turning left...")
+#			turnLeft()
+#		else:
+#			print("turning right...")
+#			turnRight()
+
+#######################################################################
+#								 				strategy end																	#
+#######################################################################
 
 #sert à savoir si la strat est finie ou non
 def isEnded():
@@ -112,8 +128,48 @@ def turnRight():
 	
 
 #user defined
-#def lookAround
+def lookAroundAndChoose():
+	gSense = groundSensor.activate()
+	turningList = list()
+	
+	ugSenseForward = undergroundSensor.activate()
+	gSense = groundSensor.activate()
+	if ((gSense!="mur") & (ugSenseForward=="sol")):
+		turningList.append("F")
+	turnLeft()
+	
+	ugSenseLeft = undergroundSensor.activate()
+	gSense = groundSensor.activate()
+	if ((gSense!="mur") & (ugSenseLeft=="sol")):
+		turningList.append("L")
+	turnLeft()
+	
+	#ugSenseBackward = undergroundSensor.activate()
+	#gSense = groundSensor.activate()
+	#if ((gSense!="mur") & (ugSenseBackward=="sol")):
+	#	turningList.append("B")
+	turnLeft()
 
+	ugSenseRight = undergroundSensor.activate()
+	gSense = groundSensor.activate()
+	if ((gSense!="mur") & (ugSenseRight=="sol")):
+		turningList.append("R")
+	turnLeft()
+
+	turning = random.choice(turningList)
+	if turning=="F":
+		walk()
+	elif turning=="L":
+		turnLeft()
+		walk()
+	#if turning=="B":
+	#	turnLeft()
+	#	turnLeft()
+	#	walk()
+	elif turning=="R":
+		turnRight()
+		walk()
+	print("walking...")
 
 '''
 
