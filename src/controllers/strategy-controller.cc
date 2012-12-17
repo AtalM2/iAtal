@@ -96,11 +96,9 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
 void
 StrategyController::nextStep()
 {
-  boost::python::object endedPy = isEnded_();
-  bool ended = boost::python::extract<bool>(endedPy);
-  if (!ended)
+  if (!isEnded())
   {
-    strat_();
+    strat();
   }
 
 }
@@ -108,14 +106,9 @@ StrategyController::nextStep()
 void
 StrategyController::autoStepsOn()
 {
-  boost::python::object endedPy = isEnded_();
-  bool ended = boost::python::extract<bool>(endedPy);
-  while (!ended)
+  while (!isEnded())
   {
-
-    strat_();
-    endedPy = isEnded_();
-    ended = boost::python::extract<bool>(endedPy);
+    strat();
   }
 }
 
@@ -135,4 +128,17 @@ void
 StrategyController::unloadStrategy()
 {
   window_->setStrategyStatusOk(false);
+}
+
+void
+StrategyController::strat()
+{
+  strat();
+}
+
+bool
+StrategyController::isEnded()
+{
+  boost::python::object endedPy = isEnded_();
+  return boost::python::extract<bool>(endedPy);
 }

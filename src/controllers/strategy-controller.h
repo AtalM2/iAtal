@@ -38,6 +38,9 @@ class StrategyController
 
   StrategyController();
 
+  void strat();
+  bool isEnded();
+
   // Don't Implement, singleton
   StrategyController(const StrategyController &);
 
