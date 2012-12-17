@@ -1,1 +1,2 @@
 README
+Le manuel se trouve au format latex dans le dossier docs. Pour lancer l'application : ./autogen.sh && ./configure && make && ./iatal
