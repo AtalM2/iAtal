@@ -3,8 +3,24 @@
 \usepackage[T1]{fontenc}
 \usepackage{listings}
 \usepackage[english]{babel}
+\usepackage[autolanguage]{numprint}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\lstset{keywordstyle=\color{blue}, stringstyle=\color{brown}}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\graphicspath{{./img/}}
+\DeclareGraphicsExtensions{.png,.jpg}
+\usepackage{libertine}
 
-
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
 %opening
 \title{iAtal Manual}
 \author{Agathe \textsc{Moll\'e} \and Gr\'egoire \textsc{Jadi} \and Hugo \textsc{Mougard} \and Joseph \textsc{Lark} 
@@ -95,8 +111,6 @@ loader is limited to maps with 4 layers or less. Those layers are :
 
 Once your map is created, you just have to save it, and to load it in
 iAtal.
-
-
 
 
 \section{Defining a robot and a strategy with Python}
