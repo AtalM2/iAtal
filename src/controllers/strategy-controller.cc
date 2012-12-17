@@ -26,9 +26,9 @@ StrategyController::loadStrategy()
 
   //Handle the response:
   if(result != Gtk::RESPONSE_OK)
-    {
-      return;
-    }
+  {
+    return;
+  }
 
   loadStrategyFromFile(dialog.get_filename());
 
@@ -38,78 +38,71 @@ void
 StrategyController::loadStrategyFromFile(const std::string & filename)
 {
   try
-    {
-      //loads the python, but doesn't let it handle signals.
-      Py_InitializeEx(0);
+  {
+    //loads the python, but doesn't let it handle signals.
+    Py_InitializeEx(0);
 
-      boost::python::object main = boost::python::import("__main__");
-      py_ = main.attr("__dict__");
+    boost::python::object main = boost::python::import("__main__");
+    py_ = main.attr("__dict__");
 
-      // Makes visible the libraries exposing the C++ API and the python classes
-      exec("import sys\n"
-           "sys.path.append('.libs')\n"
-           "sys.path.append('src/python')\n",
-           py_);
+    // Makes visible the libraries exposing the C++ API and the python classes
+    exec("import sys\n"
+         "sys.path.append('.libs')\n"
+         "sys.path.append('src/python')\n",
+         py_);
 
-      exec_file(boost::python::str(filename), py_, py_);
+    exec_file(boost::python::str(filename), py_, py_);
 
-      boost::python::object init = py_["init"];
-      boost::python::object rinit = py_["robot_init"];
+    boost::python::object init = py_["init"];
+    boost::python::object rinit = py_["robot_init"];
 
-      isEnded_ = py_["isEnded"];
-      strat_ = py_["strat"];
+    isEnded_ = py_["isEnded"];
+    strat_ = py_["strat"];
 
-      //initialisation of the robot and map for python
-      std::shared_ptr< Map > newMap =
-	MapController::getInstance().getMap();
-      init(boost::python::ptr(newMap.get()));
-      rinit();
+    //initialisation of the robot and map for python
+    std::shared_ptr< Map > newMap =
+      MapController::getInstance().getMap();
+    init(boost::python::ptr(newMap.get()));
+    rinit();
 
-      std::cout << "python initialisé" << std::endl;
-      window_->setStrategyStatusOk(true);
-    }
+    std::cout << "python initialisé" << std::endl;
+    window_->setStrategyStatusOk(true);
+  }
   catch(const std::exception & e)
-    {
-      std::ostringstream oss;
-      oss << "There has been an exception during the "
-	  << "loading of the strategy file:"
-	  << std::endl
-	  << e.what()
-	  << std::endl;
-      AppController::displayWarning(
-	"Strategy not loaded.",
-	oss.str());
-      window_->setStrategyStatusOk(false);
-      return;
-    }
+  {
+    std::ostringstream oss;
+    oss << "There has been an exception during the "
+        << "loading of the strategy file:"
+        << std::endl
+        << e.what()
+        << std::endl;
+    AppController::displayWarning(
+      "Strategy not loaded.",
+      oss.str());
+    window_->setStrategyStatusOk(false);
+    return;
+  }
   catch(const boost::python::error_already_set & e)
-    {
-      AppController::displayWarning(
-	"Strategy not loaded.",
-	"The strategy set isn't coherent with the map loaded.");
-      window_->setStrategyStatusOk(false);
-      PyErr_Print();
-      return;
-    }
+  {
+    AppController::displayWarning(
+      "Strategy not loaded.",
+      "The strategy set isn't coherent with the map loaded.");
+    window_->setStrategyStatusOk(false);
+    PyErr_Print();
+    return;
+  }
 }
 
 void
 StrategyController::nextStep()
 {
-  if (!isEnded())
-  {
-    strat();
-  }
-
+  strat();
 }
 
 void
 StrategyController::autoStepsOn()
 {
-  while (!isEnded())
-  {
-    strat();
-  }
+  while(strat());
 }
 
 void
@@ -130,15 +123,38 @@ StrategyController::unloadStrategy()
   window_->setStrategyStatusOk(false);
 }
 
-void
+bool
 StrategyController::strat()
 {
-  strat();
+  if (!isEnded())
+  {
+    try {
+      strat_();
+    } catch (const boost::python::error_already_set & e) {
+      AppController::displayWarning(
+        "Strategy failed.",
+        "A problem occured while running the strategy.");
+      window_->setStrategyStatusOk(false);
+      PyErr_Print();
+      return false;
+    }
+  }
+  return true;
 }
 
 bool
 StrategyController::isEnded()
 {
-  boost::python::object endedPy = isEnded_();
+  boost::python::object endedPy;
+  try {
+    endedPy = isEnded_();
+  } catch (const boost::python::error_already_set & e) {
+    AppController::displayWarning(
+      "Strategy failed.",
+      "A problem occured while testing the end of the strategy.");
+    window_->setStrategyStatusOk(false);
+    PyErr_Print();
+    return true;
+  }
   return boost::python::extract<bool>(endedPy);
 }
