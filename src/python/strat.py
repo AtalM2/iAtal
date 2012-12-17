@@ -109,8 +109,9 @@ def lookAroundAndChoose():
 	ugSenseForward = undergroundSensor.activate()
 	gSense = groundSensor.activate()
 	if ((gSense!="mur") & (ugSenseForward=="sol") & (gSense!="nothing")):
+		#twice so it keeps going more often
 		turningList.append("F")
-		turningList.append("F")#twice so it keeps going more often
+		turningList.append("F")
 	turnLeft()
 	
 	ugSenseLeft = undergroundSensor.activate()
