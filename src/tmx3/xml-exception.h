@@ -5,6 +5,9 @@
 
 namespace tmx
 {
+	/*!
+	  \brief Exception thrown when an error append with Tinyxml2.
+	 */
   class XmlException : public Exception
   {
   public:

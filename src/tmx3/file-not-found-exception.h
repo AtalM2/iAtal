@@ -5,6 +5,9 @@
 
 namespace tmx
 {
+	/*!
+	  \brief Exception thrown when the file doesn't exist.
+	 */
   class FileNotFoundException : public Exception {
   public:
 

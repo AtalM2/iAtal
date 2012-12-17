@@ -5,6 +5,9 @@
 
 namespace tmx
 {
+	/*!
+	  \brief Exception thrown when a bad parameter is finded in the TMX file.
+	 */
   class BadParametersException : public Exception
   {
   public:

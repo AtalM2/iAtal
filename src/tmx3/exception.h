@@ -5,6 +5,9 @@
 
 namespace tmx
 {
+	/*!
+	  \brief Default exception class for the TMX parser library.
+	 */
   class Exception : public std::exception
   {
   public:
