@@ -10,6 +10,7 @@
 #include <boost/lexical_cast.hpp>
 #include <gdkmm/pixbuf.h>
 #include <glibmm/fileutils.h>
+#include <glibmm/miscutils.h>
 
 #include "model/tileset.h"
 
@@ -46,6 +47,8 @@ MapLoader::loadTMXFile(XMLDocument & tmxDoc,
 
 
 std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
+  
+  std::string dir = Glib::path_get_dirname(tmxPath);
   // Charger le fichier TMX	
   XMLDocument tmxDoc;
   try
@@ -110,7 +113,9 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
 	{
 	  try
 	    {
-	      loadTMXFile(tsxDoc, "src/tmx/resources/" + source);
+	      loadTMXFile(tsxDoc,
+			  Glib::build_filename(dir,
+					       source));
 	    }
 	  catch(Exception e)
 	    {
