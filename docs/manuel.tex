@@ -116,7 +116,7 @@ There are two different ways to run the program :
 \begin{itemize}
 \item Whithout any option :
 \begin{lstlisting}[language=sh]
-$ ./ui &
+$ ./ui
 \end{lstlisting}
   The program will then start empty and you will have to set the map
   and the rover strategy later. (See chapter...)
@@ -142,7 +142,7 @@ $ ./ui [-h|--help] [{-m|--map} map_path] [{-s|--strategy} strat_path]
 \subsection{Creating a TMX map}
 
 To create your own map, it is strongly recommended to use the software
-Tiled (ref, doc).  Tiled generates XML files wich are on the TMX
+Tiled\cite{tiled}.  Tiled generates XML files wich are on the TMX
 format, supported by \iAtal{}. However, you should know that \iAtal{} map
 loader is limited to maps with 3 layers. Those layers are :
 \begin{itemize}
@@ -152,14 +152,20 @@ loader is limited to maps with 3 layers. Those layers are :
 \end{itemize}
 \label{avaibleLayers}
 
-iAtal only understands TMX maps with separated tilesets. The tilesets
-are described in TSX files (.tsx). In order to have some clear
-resources, you should use one tileset by layer, and use the same name
-for both. For exemple, if your map is designed with the layers
-\textit{ground} and \textit{objects}, you need to use a tileset for 
-the ground tiles : ground.tsx, and another one for the objects tiles :
-objects.tsx.
+\iAtal{} only understands TMX maps with separated tilesets. The tilesets
+are described in TSX files (.tsx). It is required that both the
+tileset and the layers have the same name (the three names above).
 
+\iAtal{} ignores all the layers or tilesets that are not named
+accordingly to the convention above. It also ignores object groups and
+recognizes 1 property per tile only. That means that above 1 property
+per tile, \iAtal{} has undefined behaviour: it's not clear which one
+it will chose.
+
+The \iAtal{} has released a TMX parsing library that will allow
+\iAtal{} to remove some of those limitations (if not all). Though, due
+to time constraints, the current release is quite strict about what it
+expects as far as TMX maps are concerned.
 
 \subsection{Loading your map}
 

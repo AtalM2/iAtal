@@ -4,6 +4,14 @@
 *.o
 *.la
 *.lo
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+doxygen-doc/
+auto/
 .dirstamp
 .deps/
 .libs/
