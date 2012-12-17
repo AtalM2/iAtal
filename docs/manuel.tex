@@ -1,6 +1,7 @@
 \documentclass[a4paper,11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{listings}
 
 
 %opening
@@ -143,9 +144,9 @@ example of what you can do.
 This action is \emph{mandatory}. You have to specify where your robot
 starts on the map. You have to use the following function :
 
-\begin{verbatim}
+\begin{lstlisting}[language=Python]
 map_.setPosition(xPosition, yPosition)
-\end{verbatim}
+\end{lstlisting}
 
 The xPosition (resp. yPosition) corresponds to the abscissa
 (resp. ordinate) where the robot will be placed at start. These
@@ -177,17 +178,57 @@ defined by these pairs :
 
 You have to use the following function which is \emph{mandatory} :
 
-\begin{verbatim}
+\begin{lstlisting}[language=Python]
 map_.setPosition(x,y)
-\end{verbatim}
+\end{lstlisting}
 
 Where (x,y) is one of the pairs presented in the table \ref{tab:Pypairs}.
 
 \subsubsection{What the robot looks like}
 
-\subsubsection{Actuators}
+In order to represent the robot on the map, you have to give an image
+uri which will reprensent it. Since your robot can face 4 different
+directions, it is asked to give 4 images, one for each direction the
+robot can face. However, you can put 4 times the same picture.
+
+The order for the pictures is north, south, east, west.
+
+You have to use the following function wich is \emph{mandatory} :
+
+\begin{lstlisting}[language=Python]
+map_.setRobotImage(northImg, southImg, eastImg, westImg)
+\end{lstlisting}
+
+Where northImg (resp. southImg, eastImg, westImg) corresponds to the
+image to use when the robot faces north (resp. south, east, west).
 
 \subsubsection{Sensors}
+
+You have to describe the robot's sensors. A sensor is a feature that
+gives the possibility to your robot to have information on its
+environment. Even if you can instantiate and use a sensor from
+everywhere, it is highly recommended to declare it in the robot\_init()
+function (or in a subfunction called by robot\_init()).
+
+A sensor can get an information about a tile at a fixed range, and on
+a precise layer. You can find the list of the avaible layers in
+section REFNEEDED.
+
+For example, it can have access to the tile right in front of the
+robot (range 1), and sense the Object layer (enums.Level.Object).
+
+To declare a sensor, you may use the following syntax :
+
+\begin{lstlisting}[language=Python]
+  global mySensor
+  mySensor = sensor(map_,enums.Level.Object,1)
+\end{lstlisting}
+
+\subsubsection{Actuators}
+
+
+\subsubsection{The compass}
+
 
 \subsubsection{Extending your robot abilities}
 
