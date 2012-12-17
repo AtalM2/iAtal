@@ -73,30 +73,29 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
   current_ = filename;
 }
 
+const std::shared_ptr<Map> &
+MapController::getMap()
+{
+  return map_;
+}
 
-  const std::shared_ptr<Map> &
-    MapController::getMap()
-  {
-    return map_;
-  }
+void
+MapController::setWindow(const std::shared_ptr< MapWindow > & window)
+{
+  window_ = window;
+}
 
-  void
-    MapController::setWindow(const std::shared_ptr< MapWindow > & window)
-  {
-    window_ = window;
-  }
+void
+MapController::unloadMap()
+{
+  window_->setMapStatusOk(false);
+  std::shared_ptr< Map > newMap = std::make_shared< Map >();
+  window_->setMap(newMap);
+}
 
-  void
-    MapController::unloadMap()
-  {
-    window_->setMapStatusOk(false);
-    std::shared_ptr< Map > newMap = std::make_shared< Map >();
-    window_->setMap(newMap);
-  }
-
-  void
-    MapController::reloadMap()
-  {
-    if(current_ != "")
-      loadMapFromFile(current_);
-  }
+void
+MapController::reloadMap()
+{
+  if(current_ != "")
+    loadMapFromFile(current_);
+}
