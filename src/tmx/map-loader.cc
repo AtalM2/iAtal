@@ -159,8 +159,8 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
 	  XMLElement* element =
 	    xmlTilesetTmp->FirstChildElement("image");
 	  tmxTileset->setImage(
-	    Glib::ustring("src/tmx/resources/")
-	    + element->Attribute("source"));
+	    Glib::build_filename(dir,
+				 element->Attribute("source")));
 	  tmxTileset->setHeight(
 	    element->IntAttribute("height"));
 	  tmxTileset->setWidth(
