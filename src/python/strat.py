@@ -9,7 +9,7 @@ import random
 from classes import *
 from init_strat import *
 
-#global
+global compteur
 compteur = 0
 #map_ = False
 ended = False
@@ -22,7 +22,7 @@ def init(aMap):
 
 #position and direction initialization
 global x_init
-x_init = 2
+x_init = 1
 global y_init
 y_init = 1
 
@@ -48,12 +48,15 @@ def strat():
 	oSense = objectSensor()
 	print(oSense)
 	print("Facing " + cs + " in front of : " + gSense)
-	if oSense=="windows":
-		print("I've found a Windows ! Destroy it ! ")
+	if ((oSense!="latex") & (oSense!="") & (oSense!="nothing")):
+		print("I've found a WYSIWYG ! Destroy it ! ")
 		destroyActuator()
-		global ended
-		ended = True
-		print("Strat end")
+		global compteur
+		compteur = compteur + 1
+		if compteur == 4:
+			global ended
+			ended = True
+			print("Strat end")
 
 	if gSense!="mur":
 		print("walking...")
@@ -72,7 +75,7 @@ def strat():
 
 #sensors
 
-	#one tile ahead	
+	#on self
 def undergroundSensorOnSelf():
 	return sensor(map_,enums.Level.Underground, 0).activate()
 
@@ -85,7 +88,7 @@ def objectSensorOnSelf():
 def airSensorOnSelf(): 
 	return sensor(map_,enums.Level.Air, 0).activate()
 
-	#on self
+	#one tile ahead
 def undergroundSensor():
 	return sensor(map_,enums.Level.Underground, 1).activate()
 
@@ -99,7 +102,7 @@ def airSensor():
 	return sensor(map_,enums.Level.Air, 1).activate()
 
 
-
+	
 
 #actuators
 
