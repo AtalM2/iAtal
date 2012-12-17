@@ -81,7 +81,7 @@ def strat():
 		loveLatex.activate()
 	elif oSense=="taocp":
 		loveTaocp.activate()
-	if (gSense!="mur"):
+	if (gSense!="mur")&(gSense!="nothing"):
 		lookAroundAndChoose()
 		
 #	if ((gSense!="mur") & (ugSense=="sol")):
@@ -134,28 +134,28 @@ def lookAroundAndChoose():
 	
 	ugSenseForward = undergroundSensor.activate()
 	gSense = groundSensor.activate()
-	if ((gSense!="mur") & (ugSenseForward=="sol")):
+	if ((gSense!="mur") & (ugSenseForward=="sol") & (gSense!="nothing")):
 		turningList.append("F")
 	turnLeft()
 	
 	ugSenseLeft = undergroundSensor.activate()
 	gSense = groundSensor.activate()
-	if ((gSense!="mur") & (ugSenseLeft=="sol")):
+	if ((gSense!="mur") & (ugSenseLeft=="sol") & (gSense!="nothing")):
 		turningList.append("L")
 	turnLeft()
 	
 	#ugSenseBackward = undergroundSensor.activate()
 	#gSense = groundSensor.activate()
-	#if ((gSense!="mur") & (ugSenseBackward=="sol")):
+	#if ((gSense!="mur") & (ugSenseBackward=="sol") & (gSense!="nothing")):
 	#	turningList.append("B")
 	turnLeft()
 
 	ugSenseRight = undergroundSensor.activate()
 	gSense = groundSensor.activate()
-	if ((gSense!="mur") & (ugSenseRight=="sol")):
+	if ((gSense!="mur") & (ugSenseRight=="sol") & (gSense!="nothing")):
 		turningList.append("R")
 	turnLeft()
-
+	
 	turning = random.choice(turningList)
 	if turning=="F":
 		walk()
