@@ -146,16 +146,19 @@ Tiled (ref, doc).  Tiled generates XML files wich are on the TMX
 format, supported by \iAtal{}. However, you should know that \iAtal{} map
 loader is limited to maps with 3 layers. Those layers are :
 \begin{itemize}
-\item ground
-\item obstacles
-\item objects
+ \item ground
+ \item obstacles
+ \item objects
 \end{itemize}
 \label{avaibleLayers}
 
-\iAtal{} only understands TMX maps with separated tilesets. The tilesets
-are described in TSX files (.tsx). It is required that both the
-tileset and the layers have the same name (the three names above).
-
+iAtal only understands TMX maps with separated tilesets. The tilesets
+are described in TSX files (.tsx). In order to have some clear
+resources, you should use one tileset by layer, and use the same name
+for both. For exemple, if your map is designed with the layers
+\textit{ground} and \textit{objects}, you need to use a tileset for 
+the ground tiles : ground.tsx, and another one for the objects tiles :
+objects.tsx.
 
 
 \subsection{Loading your map}
@@ -163,6 +166,14 @@ tileset and the layers have the same name (the three names above).
 Once your map is created, you just have to save it, and to load it in
 \iAtal{}, through the GUI or thanks to the \textsc{-m} option of the
 CLI.
+ By default,
+the application is given with a map called map.tmx, that you can
+find in the directory src/tmx/resources.
+
+\paragraph[}
+The map loading is necessary to run the program. Of course, if you
+already gave the map path to iAtal thanks to the running options, %see chapter...
+you don't need to repeat it through the loading button.
 
 
 \section{Defining a robot and a strategy with Python}
