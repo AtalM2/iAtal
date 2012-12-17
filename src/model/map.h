@@ -163,7 +163,7 @@ protected:
   unsigned int posYRobot; //!< The y position of the robot.
   std::pair<int,int> direction; //!< The direction of the robot.
 
-  std::map< std::string, Glib::RefPtr<Gdk::Pixbuf > > robotImgs_;//!< The sprite used for the robot. The key is its direction.
+  std::map< std::string, Glib::RefPtr<Gdk::Pixbuf > > robotImgs_;//!< The sprites used for the robot. The key is its direction.
   
   std::vector< Layer > layers_; //!< The set of Layer
 };
