@@ -21,10 +21,18 @@
     linkcolor=blue,
     urlcolor=blue
 }
+
+\newcommand\iAtal{$i$\textsc{Atal}}
+
 %opening
-\title{iAtal Manual}
-\author{Agathe \textsc{Moll\'e} \and Gr\'egoire \textsc{Jadi} \and Hugo \textsc{Mougard} \and Joseph \textsc{Lark} 
-\and Lo\"\i c \textsc{Jankowiak} \and No\'emi \textsc{Sala\"un} \and R\'emi \textsc{Bois}}
+\title{\iAtal{} Manual}
+\author{Agathe \textsc{Mollé}
+  \and Grégoire \textsc{Jadi}
+  \and Hugo \textsc{Mougard}
+  \and Joseph \textsc{Lark} 
+  \and Loïc \textsc{Jankowiak}
+  \and Noémi \textsc{Salaün}
+  \and Rémi \textsc{Bois}}
 \date{\today}
 
 \begin{document}
@@ -36,7 +44,7 @@
 
 
 \section*{Preface}
-This manual documents the use of the application iAtal.  As a
+This manual documents the use of the application \iAtal{}.  As a
 reference manual, it will describe the different features of the
 application. It includes a tutorial in order to help the
 beginners. You will also find an help to compile, install and run the
@@ -44,30 +52,30 @@ program.  All the specific terms will be explained in a glossary.
   %TODO : blablabla, skip chapters blabla
   
 \section*{Introduction}
-The application described here is named iAtal. It's a rover behaviour
+The application described here is named \iAtal{}. It's a rover behaviour
 simulation platform.  A rover is a robot which executes some tasks in
 a self-sufficient way, and in an unknown environment.  It owns sensors
 that help it to feel and understand its close environment and
 actuators that allow it to move and to interact with the map.
 
 
-The iAtal program deal with maps in TMX format. Those maps can
-be created with Tiled %TODO ref, see chapter...%
-or manually.  You can also create your own exploration strategy, your
-rover's sensors and actuators, thanks to Python.  Those features will
-be detailed further.
+The \iAtal{} program can deal with any map in TMX\cite{tmx}
+format. Those maps can be created with Tiled\cite{tiled} or manually.
+You can also create your own exploration strategy, your rover's
+sensors and actuators, thanks to Python.  Those features will be
+detailed further.
 
-\section{How to run iAtal}
+\section{How to run \iAtal{}}
 
 \subsection{Requirements}
 % TODO : Attentes de l’application en terme d’architecture machine et
 % de logiciels pré-installés
 
-\subsection{Installing iAtal}
+\subsection{Installing \iAtal{}}
 % TODO
 
-\subsection{Running iAtal}
-% TODO : façons correctes de lancer iAtal...
+\subsection{Running \iAtal{}}
+% TODO : façons correctes de lancer \iAtal{}...
 There are two different ways to run the program :
 \begin{itemize}
 \item Whithout any option :
@@ -99,7 +107,7 @@ There are two different ways to run the program :
 
 To create your own map, it is strongly recommended to use the software
 Tiled (ref, doc).  Tiled generates XML files wich are on the TMX
-format, supported by iAtal. However, you should know that iAtal map
+format, supported by \iAtal{}. However, you should know that \iAtal{} map
 loader is limited to maps with 4 layers or less. Those layers are :
 \begin{itemize}
  \item underground
@@ -121,7 +129,7 @@ the objects tiles.
 \subsection{Loading your map}
 
 Once your map is created, you just have to save it, and to load it in
-iAtal.
+\iAtal{}.
 
 
 \section{Defining a robot and a strategy with Python}
@@ -377,5 +385,8 @@ that the program will stop the strategy procedure when it is set to
 
 You may want to use this variable with a condition, so that it will
 only trigger the end of the strategy on a given iteration.
+
+\bibliographystyle{plain}
+\bibliography{biblio}
 
 \end{document}
