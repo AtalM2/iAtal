@@ -292,47 +292,58 @@ reflects as much as possible the abilities and constraints of a real
 robot.
 
 \subsection{Defining a strategy with strat}
-As mentioned above, the editable strat function is the procedure 
-that the robot will follow for one iteration of the overall strategy.
-That is to say, defining the sensors, actuators of other available actions 
+
+As mentioned above, the editable strat function is the procedure that
+the robot will follow for one iteration of the overall strategy.  That
+is to say, defining the sensors, actuators of other available actions
 the robot will use and how, from the tile it is currently on.
 
-Some variables can be memorized in order to change the behavior of the robot for a given iteration 
-of the strategy, but every step of the strategy must be defined by the strat function.
+Some variables can be memorized in order to change the behavior of the
+robot for a given iteration of the strategy, but every step of the
+strategy must be defined by the strat function.
 
 \subsubsection{Using the sensors and the actuators}
-The sensors and actuators are called in the strategy by adding .activate() to the method,
-for instance 
+
+The sensors and actuators are called in the strategy by adding
+.activate() to the method, for instance
 \begin{lstlisting}[language=Python]
-  groundSensor.activate() 
+  groundSensor.activate()
 \end{lstlisting}
 will return the information given by the ground sensor.
 
-This is and has to be the only way for the robot to get any information about the map.
+This is and has to be the only way for the robot to get any
+information about the map.
 
 \subsubsection{Some useful functions}
-Other functions than the sensors and actuators are available, but they can't be defined as such
-because they interact with the robot instead of the map. These are the basic movement functions
-to turn left (turnLeft), turn right (turnRight) and move one tile ahead (walk). 
 
-From these basic functions it is possible to build new useful methods, for instance moving two 
-tiles ahead could be defined by two iterations of the basic walk function. 
+Other functions than the sensors and actuators are available, but they
+can't be defined as such because they interact with the robot instead
+of the map. These are the basic movement functions to turn left
+(turnLeft), turn right (turnRight) and move one tile ahead (walk).
 
-Of course, and as it is said before, you can implement many more extended methods this way.
+From these basic functions it is possible to build new useful methods,
+for instance moving two tiles ahead could be defined by two iterations
+of the basic walk function.
+
+Of course, and as it is said before, you can implement many more
+extended methods this way.
 
 \subsection{Specifying the end with isEnded}
-Unless you want to create an infinite loop, your strategy has to have an end. You can set the end of the strategy 
-by using the ended variable to ``True'':
+
+Unless you want to create an infinite loop, your strategy has to have
+an end. You can set the end of the strategy by using the ended
+variable to ``True'':
 
 \begin{lstlisting}[language=Python]
   global ended
   ended = True
 \end{lstlisting}
 
-This strategy ending flag is tested when the iteration is over, so that the program will 
-stop the strategy procedure when it is set to ``True''.
+This strategy ending flag is tested when the iteration is over, so
+that the program will stop the strategy procedure when it is set to
+``True''.
 
-You may want to use this variable with a condition, so that it will only trigger the end of the strategy
-on a given iteration.
+You may want to use this variable with a condition, so that it will
+only trigger the end of the strategy on a given iteration.
 
 \end{document}
