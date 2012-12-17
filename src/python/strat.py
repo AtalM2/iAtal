@@ -71,7 +71,7 @@ def strat():
 		lookAroundAndChoose()
 
 	else:
-		turningLeft = random.choice([True, False])
+		turningLeft = random.choice([True, False,True])
 		if turningLeft:
 			print("turning left...")
 			turnLeft()
@@ -110,6 +110,7 @@ def lookAroundAndChoose():
 	gSense = groundSensor.activate()
 	if ((gSense!="mur") & (ugSenseForward=="sol") & (gSense!="nothing")):
 		turningList.append("F")
+		turningList.append("F")#twice so it keeps going more often
 	turnLeft()
 	
 	ugSenseLeft = undergroundSensor.activate()
