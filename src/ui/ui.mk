@@ -1,8 +1,8 @@
 bin_PROGRAMS += \
-	ui \
+	iatal \
 	$(NULL)
 
-ui_SOURCES = \
+iatal_SOURCES = \
 	src/controllers/app-controller.cc \
 	src/controllers/map-controller.cc \
 	src/controllers/strategy-controller.cc \
@@ -23,6 +23,6 @@ ui_SOURCES = \
 	src/ui/warning-dialog.cc \
 	$(NULL)
 
-ui_CXXFLAGS = \
+iatal_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
 	$(NULL)
