@@ -34,25 +34,21 @@
  <tile id="6">
   <properties>
    <property name="taocp" value=""/>
-   <property name="coeur" value="no"/>
   </properties>
  </tile>
  <tile id="7">
   <properties>
    <property name="latex" value=""/>
-   <property name="love" value="no"/>
   </properties>
  </tile>
  <tile id="10">
   <properties>
-   <property name="taocp" value=""/>
-   <property name="love" value="yes"/>
+   <property name="lovetaocp" value=""/>
   </properties>
  </tile>
  <tile id="11">
   <properties>
-   <property name="latex" value=""/>
-   <property name="love" value="yes"/>
+   <property name="lovelatex" value=""/>
   </properties>
  </tile>
 </tileset>
