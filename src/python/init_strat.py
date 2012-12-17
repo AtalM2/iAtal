@@ -12,22 +12,15 @@ compteur = 0
 ended = False
 
 #initialization
-def init(aMap):
-	global map_ 
-	map_ = aMap
+#def init(aMap):
+#	global map_ 
+#	map_ = aMap
 
-def loadMap()
-	return map_
+#def loadMap():
+#	return map_
 
 #movement functions
-def walk():
-	map_.goForward()
 
-def turnLeft():
-	map_.turnLeft()
-
-def turnRight():
-	map_.turnRight()
 
 
 

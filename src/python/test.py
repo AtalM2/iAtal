@@ -14,8 +14,12 @@ compteur = 0
 ended = False
 
 #map loading
-global map_ 
-	map_ = loadMap()
+#global map_ 
+#map_ = loadMap()
+
+def init(aMap):
+	global map_ 
+	map_ = aMap
 
 #position and direction initialization
 def robot_init():
