@@ -133,7 +133,7 @@ std::string Map::getDirection()
   }
   if (direction.first == 1 && direction.second == 0)
   {
-    return "south";
+    return "east";
   }
   return "";
 }
