@@ -52,6 +52,10 @@ def sensors_init():
 def actuators_init():
 	global destroyer
 	destroyer = actuator(map_,enums.Level.Object, 1, "exploded:")
+	global loveLatex
+	loveLatex = actuator(map_,enums.Level.Object, 1, "lovelatex:")
+	global loveTaocp
+	loveTaocp = actuator(map_,enums.Level.Object, 1, "lovetaocp:")
 
 
 #stratégie python
@@ -72,6 +76,10 @@ def strat():
 			global ended
 			ended = True
 			print("Strat end")
+	elif oSense=="latex":
+		loveLatex.activate()
+	elif oSense=="taocp":
+		loveTaocp.activate()
 
 	if ((gSense!="mur") & (ugSense=="sol")):
 		print("walking...")
