@@ -68,7 +68,7 @@ def strat():
 		destroyer.activate()
 		global compteur
 		compteur = compteur + 1
-		if compteur == 4:
+		if compteur == 8:
 			global ended
 			ended = True
 			print("Strat end")
