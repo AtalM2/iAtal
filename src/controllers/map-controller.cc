@@ -84,4 +84,6 @@ void
 MapController::unloadMap()
 {
   window_->setMapStatusOk(false);
+  std::shared_ptr< Map > newMap = std::make_shared< Map >();
+  window_->setMap(newMap);
 }

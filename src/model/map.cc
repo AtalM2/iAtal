@@ -30,7 +30,8 @@ Map::Map()
   : height(10),
     width(10),
     tileHeight(10),
-    tileWidth(10)
+    tileWidth(10),
+    layers_(Layer::Level::LastLevel + 1, Layer(width, height))
 {
 }
 
