@@ -22,9 +22,9 @@ def init(aMap):
 
 #position and direction initialization
 global x_init
-x_init = 5
+x_init = 2
 global y_init
-y_init = 10
+y_init = 1
 
 def robot_init():
 	map_.setDirection(0,1)
@@ -35,22 +35,38 @@ def robot_init():
 			   base + "donald_dos_droite.png",
 			   base + "donald_face_gauche.png")
 	print("Starting at ( " + str(x_init) + ", " + str(y_init) + " )")
+	sensors_init()
+	actuators_init()
+
+def sensors_init():
+	global undergroundSensor
+	undergroundSensor = sensor(map_, enums.Level.Underground,1)
+	global groundSensor
+	groundSensor = sensor(map_,enums.Level.Ground,1)
+
+	global objectSensor
+	objectSensor = sensor(map_, enums.Level.Object,1)
+
+	global compassSensor
+	compassSensor = compass(map_)
+
+def actuators_init():
+	global destroyer
+	destroyer = actuator(map_,enums.Level.Object, 1, "exploded:")
 
 
 #stratégie python
 def strat():
-	cs = compassSensor(map_)
-	
-	gSense = groundSensor()
+	cs = compassSensor.activate()
+	ugSense = undergroundSensor.activate()
+	gSense = groundSensor.activate()
 	#print(gSense)
-	ugSense = undergroundSensor()
-	#print(ugSense)
-	oSense = objectSensor()
+	oSense = objectSensor.activate()
 	print(oSense)
 	print("Facing " + cs + " in front of : " + gSense)
 	if ((oSense=="word") | (oSense=="windows") | (oSense=="libreoffice") | (oSense=="powerpoint")):
 		print("I've found a WYSIWYG ! Destroy it ! ")
-		destroyActuator()
+		destroyer.activate()
 		global compteur
 		compteur = compteur + 1
 		if compteur == 4:
@@ -60,18 +76,38 @@ def strat():
 
 	if ((gSense!="mur") & (ugSense=="sol")):
 		print("walking...")
-		walk(map_)
+		walk()
 	else:
 		turningLeft = random.choice([True, False])
 		if turningLeft:
 			print("turning left...")
-			turnLeft(map_)
+			turnLeft()
 		else:
 			print("turning right...")
-			turnRight(map_)
+			turnRight()
+
+
+#sert à savoir si la strat est finie ou non
+def isEnded():
+	return ended;
+
+
+#shorthands
+
+def walk():
+	map_.goForward()
+
+def turnLeft():
+	map_.turnLeft()
+
+def turnRight():
+	map_.turnRight()
+	
 
 
 
+
+'''
 
 #sensors
 
@@ -113,8 +149,6 @@ def airSensor():
 #object
 def destroyActuator():
 	return actuator(map_,enums.Level.Object, 1, "exploded:").activate()
+'''
 
-
-#sert à savoir si la strat est finie ou non
-def isEnded():
-	return ended;	
+	

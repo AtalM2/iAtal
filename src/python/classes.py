@@ -8,6 +8,12 @@ class sensor:
 	def activate(self):
 		return self.map_.getItem(self.level_ , self.range_)
 
+class compass:
+	def __init__(self,map_):
+		self.map_ = map_
+	def activate(self):
+		return self.map_.compass()
+
 #defines an actuator
 class actuator:
 	def __init__(self,map_, level_, range_,newContent_):

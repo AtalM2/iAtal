@@ -16,9 +16,5 @@ def turnLeft(map_):
 
 def turnRight(map_):
 	map_.turnRight()
-
-def compassSensor(map_):
-	return map_.compass()
-
 	
 
