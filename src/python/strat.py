@@ -20,12 +20,12 @@ def init(aMap):
 
 #position and direction initialization
 global x_init
-x_init = 2
+x_init = 5
 global y_init
-y_init = 2
+y_init = 11
 
 def robot_init():
-	map_.setDirection(0,1)
+	map_.setDirection(0,-1)
 	map_.setPosition(x_init,y_init)
 	base = "src/tmx/resources/"
 	map_.setRobotImage(base +"donald_dos_gauche.png",
