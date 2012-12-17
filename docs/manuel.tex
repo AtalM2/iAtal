@@ -176,7 +176,7 @@ CLI.
 the application is given with a map called map.tmx, that you can
 find in the directory src/tmx/resources.
 
-\paragraph[}
+\paragraph{}
 The map loading is necessary to run the program. Of course, if you
 already gave the map path to iAtal thanks to the running options, %see chapter...
 you don't need to repeat it through the loading button.
@@ -189,7 +189,20 @@ apply to the selected map. The user will have to implement some
 functions in order to describe how the robot will behave and some of
 its features. These functions have to be located in a file which will
 be given to the application. The table \ref{tab:PyMandatoryFunc}
-presents the mandatory functions to use in the strategy file.
+presents the mandatory functions to use in the strategy file. You will
+also need to import all from the classes module. You will also need
+elements and enums modules. Your imports should be at least :
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{lstlisting}[language=Python]
+      import elements
+      import enums
+      from classes import *
+    \end{lstlisting}
+    \caption{the mandatory imports}
+  \end{center}
+\end{figure}
 
 \begin{table}[h]
   \begin{center}
