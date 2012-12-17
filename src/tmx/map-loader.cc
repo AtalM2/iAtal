@@ -327,7 +327,6 @@ MapLoader::handleTileset(Tileset & ts,
     {
       unsigned int index = p.first;
       Glib::ustring property = p.second;
-      std::cout << p.first << "-" << p.second<< std::endl;
       Glib::RefPtr< const Gdk::Pixbuf > tile =
 	Gdk::Pixbuf::create_subpixbuf(image,
 				      ((index - 1) % width) * offsetX,
