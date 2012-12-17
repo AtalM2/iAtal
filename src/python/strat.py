@@ -28,8 +28,11 @@ y_init = 10
 def robot_init():
 	map_.setDirection(0,1)
 	map_.setPosition(x_init,y_init)
-	currentDir = os.getcwd()
-	map_.setRobotImage(currentDir+"/src/tmx/resources/donald_face_gauche.png")
+	base = "src/tmx/resources/"
+	map_.setRobotImage(base +"donald_dos_gauche.png",
+			   base + "donald_face_gauche.png",
+			   base + "donald_face_droite.png",
+			   base + "donald_dos_droite.png")
 	print("Starting at ( " + str(x_init) + ", " + str(y_init) + " )")
 
 

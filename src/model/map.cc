@@ -53,9 +53,12 @@ void Map::setDirection(int x, int y)
 }
 
 
-void Map::setRobotImage(std::string uri)
+void Map::setRobotImage(std::string north, std::string west, std::string south, std::string east)
 {
-  robotImg = uri;
+  robotImgNorth = north;
+  robotImgWest = west;
+  robotImgSouth = south;
+  robotImgEast = east;
 }
 
 std::string Map::getDirection()

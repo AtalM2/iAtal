@@ -125,7 +125,16 @@ public:
   */
   std::string getDirection();
 
-  void setRobotImage(std::string uri);
+  /*!
+    \brief sets the 4 sprites used to draw the robot
+
+    \param north The sprite when the current direction is north
+    \param west The sprite when the current direction is west
+    \param south The sprite when the current direction is south
+    \param east The sprite when the current direction is east
+
+  */
+  void setRobotImage(std::string north, std::string west, std::string south, std::string east);
 
 
   /*!
@@ -148,7 +157,10 @@ protected:
   unsigned int posXRobot; //!< The x postion of the robot.
   unsigned int posYRobot; //!< The y position of the robot.
   std::pair<int,int> direction; //!< The direction of the robot.
-  std::string robotImg;
+  std::string robotImgNorth;
+  std::string robotImgSouth;
+  std::string robotImgWest;
+  std::string robotImgEast;
   std::vector< Layer > layers_; //!< The set of Layer
 };
 
