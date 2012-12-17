@@ -187,6 +187,7 @@ StrategyController::strat()
       try
 	{
 	  strat_();
+      MapController::getInstance().redraw();
 	}
       catch (const boost::python::error_already_set & e)
 	{
