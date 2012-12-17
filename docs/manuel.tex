@@ -207,7 +207,7 @@ image to use when the robot faces north (resp. south, east, west).
 You have to describe the robot's sensors. A sensor is a feature that
 gives the possibility to your robot to have information on its
 environment. Even if you can instantiate and use a sensor from
-everywhere, it is highly recommended to declare it in the robot\_init()
+anywhere, it is highly recommended to declare it in the robot\_init()
 function (or in a subfunction called by robot\_init()).
 
 A sensor can get an information about a tile at a fixed range, and on
@@ -221,10 +221,44 @@ To declare a sensor, you may use the following syntax :
 
 \begin{lstlisting}[language=Python]
   global mySensor
-  mySensor = sensor(map_,enums.Level.Object,1)
+  mySensor = sensor(map_,enums.Level.Ground,2)
 \end{lstlisting}
 
+Where enums.Level.Object is part of the avaible layers, 2 is the range
+of the sensor (it could be 1, 3, or any positive integer). In this
+example, the sensor gets the tile on the Ground layer at a distance of
+2 tiles ahead of the robot.
+
+Of course, it is recommended to use better names for your
+sensors. Here, we could have called it groundSensor2.
+
 \subsubsection{Actuators}
+
+You have to describe the robot's actuators. An actuator is a feature
+that gives the possibility to your robot to modify its
+environment. Even if you can instantiate and use an actuator from
+anywhere, it is highly recommended to declare it in the robot\_init()
+function (or in a subfunction called by robot\_inti()).
+
+An actuator can modify a tile at a fixed range, on a precise layer and
+in a definite way. You can find the list of the avaible layers in
+section REFNEEDED. An actuator replaces a tile by another tile. The
+new tile must be defined in the tileset of the map. Its name is used
+as the description of the tile.
+
+To declare an actuator, you may use the following syntax :
+
+\begin{lstlisting}[language=Python]
+  global myActuator
+  myActuator = actuator(map_,enums.Level.Object,1, ``toto'')
+\end{lstlisting}
+
+Where enums.Level.Object is part of the avaible layers, 1 is the range
+of the actuator (it could be 2, 3, or any positive integer) and toto
+is the new tile that will replace the current one. In this example,
+when an myActuator is activated, it replaces the tile in front of the
+robot on the Object layer by a tile named ``toto'' which must me
+described in the tileset used in the map.
 
 
 \subsubsection{The compass}
