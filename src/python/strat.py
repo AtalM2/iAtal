@@ -10,7 +10,6 @@ from classes import *
 
 global compteur
 compteur = 0
-#map_ = False
 ended = False
 
 
@@ -65,7 +64,6 @@ def strat():
 	ugSense = undergroundSensor.activate()
 	gSense = groundSensor.activate()
 	print("Facing " + cs + " in front of : " + gSense)
-	#print(gSense)
 	objectHandler()
 	if (gSense!="mur")&(gSense!="nothing"):
 		lookAroundAndChoose()
@@ -150,10 +148,11 @@ def lookAroundAndChoose():
 		walk()
 	print("walking...")
 
+
+#Function to destroy or update objects
 def objectHandler():
 	oSense = objectSensor.activate()
-	#print(oSense)
-	
+
 	if ((oSense=="word") | (oSense=="windows") | (oSense=="libreoffice") | (oSense=="powerpoint")):
 		print("I've found a WYSIWYG ! Destroy it ! ")
 		destroyer.activate()
@@ -169,49 +168,3 @@ def objectHandler():
 		loveTaocp.activate()
 
 
-
-'''
-
-#sensors
-
-	#on self
-def undergroundSensorOnSelf():
-	return sensor(map_,enums.Level.Underground, 0).activate()
-
-def groundSensorOnSelf():
-	return sensor(map_,enums.Level.Ground, 0).activate()
-
-def objectSensorOnSelf():
-	return sensor(map_,enums.Level.Object, 0).activate()
-
-def airSensorOnSelf(): 
-	return sensor(map_,enums.Level.Air, 0).activate()
-
-	#one tile ahead
-def undergroundSensor():
-	return sensor(map_,enums.Level.Underground, 1).activate()
-
-def groundSensor():
-	return sensor(map_,enums.Level.Ground, 1).activate()
-
-def objectSensor():
-	return sensor(map_,enums.Level.Object, 1).activate()
-
-def airSensor(): 
-	return sensor(map_,enums.Level.Air, 1).activate()
-
-
-	
-
-#actuators
-
-#underground
-
-#ground
-	
-#object
-def destroyActuator():
-	return actuator(map_,enums.Level.Object, 1, "exploded:").activate()
-'''
-
-	
