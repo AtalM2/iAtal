@@ -59,6 +59,7 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
           try {
             image = tileset.getImage(id);
           } catch(const std::exception & e) {
+	    
             std::ostringstream oss;
               
             oss << "A problem occured while "
@@ -66,25 +67,28 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
                 << "we're trying to draw a non "
                 << "existing tile:"
                 << std::endl
+		<< std::endl
                 << e.what()
-                << std::endl;
-
-            // Do not work, I don't know why but I think it's because
-            // it's possible to use widget (i.e. others signals) while
-            // in a signal handler.
-            
-            // AppController::displayWarning(
-            //   "Fatal Error while drawing map",
-            //   oss.str());
-
-            std::cerr << oss.str();
+                << std::endl
+		<< std::endl
+		<< "The map has been reloaded but not "
+		<< "the faulty strategy.";
+	    
+	    Glib::signal_idle().connect(
+	      sigc::bind(
+		sigc::bind_return(
+		  sigc::ptr_fun(
+		    &AppController::displayWarning),
+		  false),
+		"Fatal error while drawing the map",
+		oss.str()));
 
             // We have no better way (yet) to indicate the user that
             // something wrong happened.
-            StrategyController::getInstance().unloadStrategy();
-            MapController::getInstance().unloadMap();
+            StrategyController::getInstance().endStrategy(true);
+            MapController::getInstance().reloadMap();
             
-              
+	    
             return true;
           }
           Gdk::Cairo::set_source_pixbuf(

@@ -142,31 +142,32 @@ StrategyController::autoStepsOff()
 }
 
 void
-StrategyController::endStrategy()
+StrategyController::endStrategy(bool onError)
 {
   if(autoStepsOn_)
     autoStepsOff();
-  window_->setPathSensitivity(
-    "/ToolBar/StrategyNextStep",
-    false);
-  window_->setPathSensitivity(
-    "/ToolBar/StrategyAutoStepsOn",
-    false);
-  window_->setPathSensitivity(
-    "/ToolBar/StrategyAutoStepsOff",
-    false);
+  if(onError)
+    {
+      window_->setStrategyStatusOk(false);
+    }
+  else
+    {
+      window_->setPathSensitivity(
+	"/ToolBar/StrategyNextStep",
+	false);
+      window_->setPathSensitivity(
+	"/ToolBar/StrategyAutoStepsOn",
+	false);
+      window_->setPathSensitivity(
+	"/ToolBar/StrategyAutoStepsOff",
+	false);
+    }
 }
 
 void
 StrategyController::setWindow(const std::shared_ptr< MapWindow > & window)
 {
   window_ = window;
-}
-
-void
-StrategyController::unloadStrategy()
-{
-  window_->setStrategyStatusOk(false);
 }
 
 bool
@@ -183,9 +184,8 @@ StrategyController::strat()
 	  AppController::displayWarning(
 	    "Strategy failed.",
 	    "A problem occured while running the strategy.");
-	  window_->setStrategyStatusOk(false);
 	  PyErr_Print();
-	  endStrategy();
+	  endStrategy(true);
 	  return false;
 	}
       if(!isEnded())
@@ -193,7 +193,7 @@ StrategyController::strat()
 	  return true;
 	}
     }
-  endStrategy();
+  endStrategy(false);
   return false;
 }
 
@@ -207,7 +207,7 @@ StrategyController::isEnded()
     AppController::displayWarning(
       "Strategy failed.",
       "A problem occured while testing the end of the strategy.");
-    window_->setStrategyStatusOk(false);
+    endStrategy(true);
     PyErr_Print();
     return true;
   }

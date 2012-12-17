@@ -46,12 +46,14 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
     {
       AppController::displayWarning("Map loading failed.",
 				    e.what());
+      unloadMap();
       return;
     }
   catch(const Glib::Exception & e)
     {
       AppController::displayWarning("Map loading failed.",
 				    e.what());
+      unloadMap();
       return;
     }
   catch(...)
@@ -59,6 +61,7 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
       AppController::displayWarning(
 	"Map loading failed.",
 	"Please see the supported format in the manual");
+      unloadMap();
       return;
     }
   window_->setMap(newMap);
@@ -70,29 +73,30 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
   current_ = filename;
 }
 
-const std::shared_ptr<Map> &
-MapController::getMap()
-{
-  return map_;
-}
 
-void
-MapController::setWindow(const std::shared_ptr< MapWindow > & window)
-{
-  window_ = window;
-}
+  const std::shared_ptr<Map> &
+    MapController::getMap()
+  {
+    return map_;
+  }
 
-void
-MapController::unloadMap()
-{
-  window_->setMapStatusOk(false);
-  std::shared_ptr< Map > newMap = std::make_shared< Map >();
-  window_->setMap(newMap);
-}
+  void
+    MapController::setWindow(const std::shared_ptr< MapWindow > & window)
+  {
+    window_ = window;
+  }
 
-void
-MapController::reloadMap()
-{
-  if(current_ != "")
-    loadMapFromFile(current_);
-}
+  void
+    MapController::unloadMap()
+  {
+    window_->setMapStatusOk(false);
+    std::shared_ptr< Map > newMap = std::make_shared< Map >();
+    window_->setMap(newMap);
+  }
+
+  void
+    MapController::reloadMap()
+  {
+    if(current_ != "")
+      loadMapFromFile(current_);
+  }

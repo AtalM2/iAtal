@@ -23,8 +23,7 @@ class StrategyController
   void loadStrategy();
   void loadStrategyFromFile(const std::string & filename);
 
-  void unloadStrategy();
-  void endStrategy();
+  void endStrategy(bool onError);
   
   void rewind();
   void nextStep();
