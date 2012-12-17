@@ -25,7 +25,7 @@ class StatusHBox : public Gtk::HBox
   /**
    * Display the correct image to represent the map status.
    * 
-   * \param ok The availability of the map
+   * \param ok The availability of the map.x
    */
   void setMapStatusOk(bool ok);
 
