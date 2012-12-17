@@ -48,7 +48,7 @@ def strat():
 	#print(ugSense)
 	oSense = objectSensor()
 	#print(oSense)
-	if ugSense=="sol:":
+	if gSense!="":
 		if oSense!="":
 			print("I've found a " + oSense + " !")
 			global ended
@@ -57,7 +57,7 @@ def strat():
 		print("walking...")
 		walk()
 	else:
-		turningLeft = random.choice([True, False])	
+		turningLeft = random.choice([True, False])
 		if turningLeft:
 			print("turning left...")
 			turnLeft()
