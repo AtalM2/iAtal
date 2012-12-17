@@ -157,10 +157,10 @@ protected:
   unsigned int posXRobot; //!< The x postion of the robot.
   unsigned int posYRobot; //!< The y position of the robot.
   std::pair<int,int> direction; //!< The direction of the robot.
-  std::string robotImgNorth;
-  std::string robotImgSouth;
-  std::string robotImgWest;
-  std::string robotImgEast;
+  std::string robotImgNorth;//!< The sprite used for the robot when facing north
+  std::string robotImgSouth;//!< The sprite used for the robot when facing south
+  std::string robotImgWest;//!< The sprite used for the robot when facing west
+  std::string robotImgEast;//!< The sprite used for the robot when facing east
   std::vector< Layer > layers_; //!< The set of Layer
 };
 
