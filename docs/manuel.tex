@@ -96,26 +96,94 @@ This section will describe how to define a robot and a strategy to
 apply to the selected map. The user will have to implement some
 functions in order to describe how the robot will behave and some of
 its features. These functions have to be located in a file which will
-be given to the application. Three functions are mandatory :
+be given to the application. The table \ref{tab:PyMandatoryFunc}
+presents the mandatory functions to use in the strategy file.
 
-\begin{tabular}[h]{|c|r|}
-  \hline
-  Name && Purpose \\
-  \hline
-  robot\_init && blah \\
-  strat && blah \\
-  isEnded && blah \\
-  \hline 
-\end{tabular}
+\begin{table}[h]
+  \begin{center}
+    \begin{tabular}{|c|p{10cm}|}
+      \hline
+      Name & Purpose \\
+      \hline
+      robot\_init & Sets the start position, the direction faced by the
+      robot and the sprites used to represent it \\
+      \hline
+      strat & Describes an iteration of the strategy used. Sensors and
+      actuators are used here. The robot may move or perform some
+      actions in each iteration. \\
+      \hline
+      isEnded & Function returning True when the strategy is finished
+      (the robot completed its job) or False if more iterations are to
+      come.\\ 
+      \hline 
+    \end{tabular}
+    \caption{\label{tab:PyMandatoryFunc} The mandatory functions}
+  \end{center}
+\end{table}
 
 \subsection{Defining a robot with robot\_init}
 
+The robot\_init function sets some informations such as the direction
+faced by the robot at start, the position of the robot at start, and
+the sprites used to draw the robot. These 3 actions use the global
+map\_ variable. These three actions should be performed (or else the
+program may be malfunctionning), but some other actions could be
+performed such as the description and initialization of the sensors
+and actuators of your robot. You could also decide to give some
+extra-features to your robot such as a battery-state, this is the
+right place to define it, semantically (defining your actuators,
+sensors or extra-features somewhere else in the file is still
+possible).
 
+We will now see the basic actions that must be performed and some
+example of what you can do.
 
 \subsubsection{Where the robot starts}
 
-\subsubsection{What the robot looks like}
+This action is \emph{mandatory}. You have to specify where your robot
+starts on the map. You have to use the following function :
 
+\begin{verbatim}
+map_.setPosition(xPosition, yPosition)
+\end{verbatim}
+
+The xPosition (resp. yPosition) corresponds to the abscissa
+(resp. ordinate) where the robot will be placed at start. These
+coordinates refer to the TMX map loaded. The (0,0) box is located on
+the top-left of the TMX map.
+
+You also have to specify in which direction the robot watches. Only
+maps with 4 directions are currently supported. These directions are
+defined by these pairs :
+
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Pair & Meaning \\
+  \hline
+  (1,0) & East \\
+  (0,-1) & North \\
+  (-1,0) & West \\
+  (0,1) & South \\
+  \hline
+\end{tabular} 
+\caption{\label{tab:Pypairs} The avaible pairs to describe a
+  direction}
+\end{center}
+\end{table}
+
+
+You have to use the following function which is \emph{mandatory} :
+
+\begin{verbatim}
+map_.setPosition(x,y)
+\end{verbatim}
+
+Where (x,y) is one of the pairs presented in the table \ref{tab:Pypairs}.
+
+\subsubsection{What the robot looks like}
 
 \subsubsection{Actuators}
 
@@ -130,7 +198,7 @@ be given to the application. Three functions are mandatory :
 
 \subsubsection{Some useful functions}
 
-\subsubsection{Specifying the end}
+\subsection{Specifying the end with isEnded}
 
 
 
