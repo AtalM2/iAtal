@@ -99,3 +99,9 @@ MapController::reloadMap()
   if(current_ != "")
     loadMapFromFile(current_);
 }
+
+void
+MapController::redraw()
+{
+  window_->queue_draw();
+}

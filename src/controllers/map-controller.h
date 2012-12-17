@@ -30,11 +30,12 @@ class MapController
   void unloadMap();
   void reloadMap();
 
+  void redraw();
+
   const std::shared_ptr<Map> & getMap();
   
  private:
   std::shared_ptr< Map > map_;
-  std::shared_ptr< MapArea > mapArea_;
   std::shared_ptr< MapWindow > window_;
   Glib::ustring current_;
   MapController();
