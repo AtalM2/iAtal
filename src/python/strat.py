@@ -31,9 +31,9 @@ def robot_init():
 	map_.setPosition(x_init,y_init)
 	base = "src/tmx/resources/"
 	map_.setRobotImage(base +"donald_dos_gauche.png",
-			   base + "donald_face_gauche.png",
 			   base + "donald_face_droite.png",
-			   base + "donald_dos_droite.png")
+			   base + "donald_dos_droite.png",
+			   base + "donald_face_gauche.png")
 	print("Starting at ( " + str(x_init) + ", " + str(y_init) + " )")
 
 
