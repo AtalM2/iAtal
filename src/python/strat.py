@@ -22,9 +22,9 @@ def init(aMap):
 
 #position and direction initialization
 global x_init
-x_init = 1
+x_init = 5
 global y_init
-y_init = 1
+y_init = 10
 
 def robot_init():
 	map_.setDirection(0,1)
@@ -58,7 +58,7 @@ def strat():
 			ended = True
 			print("Strat end")
 
-	if gSense!="mur":
+	if ((gSense!="mur") & (ugSense=="sol")):
 		print("walking...")
 		walk(map_)
 	else:
