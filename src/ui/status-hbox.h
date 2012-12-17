@@ -24,11 +24,15 @@ class StatusHBox : public Gtk::HBox
   
   /**
    * Display the correct image to represent the map status.
+   * 
+   * \param ok The availability of the map
    */
   void setMapStatusOk(bool ok);
 
   /**
    * Display the correct image to represent the strategy status.
+   * 
+   * \param ok The availability of the strategy.
    */
   void setStrategyStatusOk(bool ok);
   

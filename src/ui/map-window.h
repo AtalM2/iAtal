@@ -29,23 +29,32 @@ public:
   /**
    * Sets the status, menu and toolbar items correctly to indicate the
    * availability of the map.
+   * 
+   * \param ok The availability of the map.
    */
   void setMapStatusOk(bool ok);
 
   /**
    * Sets the status, menu and toolbar items correctly to indicate the
    * availability of the strategy.
+   * 
+   * \param ok The availability of the strategy.
    */
   void setStrategyStatusOk(bool ok);
   
   /**
    * Swaps the map used for the UI.
+   * 
+   * \param map The new map to use.
    */
   void setMap(const std::shared_ptr< Map > & map);
   
   /**
    * Sets whether or not a certain item in the menu and toolbar is
    * sensitive.
+   * 
+   * \param path The path to consider in the menu hierarchy.
+   * \param sensitivity Whether to activate or deactivate path.
    */
   void setPathSensitivity(const Glib::ustring & path,
 			  bool sensitivity);
