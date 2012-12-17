@@ -94,9 +94,9 @@ Map::setRobotImages(const std::string & north,
 
   robotImgs_ = {
     {"north", imageN},
-    {"south", imageN},
-    {"east", imageN},
-    {"west", imageN}
+    {"south", imageS},
+    {"east", imageE},
+    {"west", imageW}
   };
 }
 
