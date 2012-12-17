@@ -30,11 +30,14 @@ class StrategyController
   void autoStepsOn();
   void autoStepsOff();
   
+  bool shouldShowRobot();
+  
  private:
   std::shared_ptr< MapWindow > window_;
   sigc::connection timeout_;
   Glib::ustring current_;
-  bool autoStepsOn_;
+  bool autoStepsOn_,
+    showRobot_;
 
   boost::python::object py_;
   boost::python::object strat_;

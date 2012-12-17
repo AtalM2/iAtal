@@ -116,6 +116,13 @@ public:
   void setPosition(unsigned int x, unsigned y);
 
   /*!
+    \brief gets the position of the robot
+
+  */
+  std::pair< unsigned int, unsigned int >
+    getPosition() const;
+  
+  /*!
     \brief Sets the robot direction. Used in initialization.
 
   */
@@ -125,7 +132,7 @@ public:
     \brief Get the robot direction. Used as a compass.
 
   */
-  std::string getDirection();
+  std::string getDirection() const;
 
   /*!
     \brief sets the 4 sprites used to draw the robot
@@ -141,6 +148,11 @@ public:
 		      const std::string & east,
 		      const std::string & west);
 
+  /*!
+    \brief Get the robot image depending on its direction.
+
+  */
+  Glib::RefPtr< const Gdk::Pixbuf > getRobotImage() const;
 
   /*!
     \brief Default destructor.
@@ -163,7 +175,10 @@ protected:
   unsigned int posYRobot; //!< The y position of the robot.
   std::pair<int,int> direction; //!< The direction of the robot.
 
-  std::map< std::string, Glib::RefPtr<Gdk::Pixbuf > > robotImgs_;//!< The sprites used for the robot. The key is its direction.
+  std::map<
+    std::string,
+    Glib::RefPtr< const Gdk::Pixbuf >
+    > robotImgs_;//!< The sprites used for the robot. The key is its direction.
   
   std::vector< Layer > layers_; //!< The set of Layer
 };

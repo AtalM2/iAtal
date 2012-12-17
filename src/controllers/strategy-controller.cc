@@ -11,7 +11,8 @@
 #include "ui/warning-dialog.h"
 
 StrategyController::StrategyController()
-  : autoStepsOn_(false)
+  : autoStepsOn_(false),
+    showRobot_(false)
 {
 
 }
@@ -69,6 +70,7 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
       std::cout << "python initialisé" << std::endl;
       window_->setStrategyStatusOk(true);
       current_ = filename;
+      showRobot_ = true;
     }
   catch(const std::exception & e)
     {
@@ -102,6 +104,12 @@ StrategyController::rewind()
     autoStepsOff();
   MapController::getInstance().reloadMap();
   loadStrategyFromFile(current_);
+}
+
+bool
+StrategyController::shouldShowRobot()
+{
+  return showRobot_;
 }
 
 void
@@ -149,6 +157,7 @@ StrategyController::endStrategy(bool onError)
   if(onError)
     {
       window_->setStrategyStatusOk(false);
+      showRobot_ = false;
     }
   else
     {

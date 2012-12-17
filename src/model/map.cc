@@ -1,6 +1,8 @@
 // -*- c-basic-offset: 2; -*-
 #include "map.h"
 
+#include "exceptions/model/bad-parameters-exception.h"
+
 BOOST_PYTHON_MODULE(elements)
 {
   boost::python::class_<Map>("Map")
@@ -46,6 +48,16 @@ void Map::setPosition(unsigned int x, unsigned y)
     }
 }
 
+std::pair< unsigned int, unsigned int >
+Map::getPosition()
+  const
+{
+  return std::pair< unsigned int, unsigned int>(
+    posXRobot,
+    posYRobot
+  );
+}
+
 void Map::setDirection(int x, int y)
 {
   direction.first = x;
@@ -59,7 +71,7 @@ Map::setRobotImages(const std::string & north,
 		    const std::string & east,
 		    const std::string & west)
 {
-  Glib::RefPtr< Gdk::Pixbuf > imageN,
+  Glib::RefPtr< const Gdk::Pixbuf > imageN,
     imageS,
     imageE,
     imageW;
@@ -88,7 +100,23 @@ Map::setRobotImages(const std::string & north,
   };
 }
 
+Glib::RefPtr< const Gdk::Pixbuf >
+Map::getRobotImage()
+  const
+{
+  Glib::RefPtr< const Gdk::Pixbuf > p;
+  auto it = robotImgs_.find(getDirection());
+  if (it == robotImgs_.end())
+    {
+      throw BadParametersException(
+	"the key given to obtain the robot's image isn't a direction.");
+    }
+  return it->second;
+}
+
+
 std::string Map::getDirection()
+  const
 {
   if (direction.first == 0 && direction.second == 1)
   {

@@ -44,7 +44,7 @@ MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     map_->getLayer(Layer::Level::Ground),
     map_->getLayer(Layer::Level::Object),
   };
-
+  
   for(std::vector< Layer >::const_iterator it = layers.begin();
       it != layers.end();
       it++) {
@@ -103,6 +103,18 @@ MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
       }
     }
   }
+  
+  if(StrategyController::getInstance().shouldShowRobot())
+    {
+      auto p = map_->getPosition();
+      Gdk::Cairo::set_source_pixbuf(
+	cr,
+	Glib::RefPtr< Gdk::Pixbuf >::cast_const(map_->getRobotImage()),
+	p.first * map_->tileWidth,
+	p.second * map_->tileHeight);
+      
+      cr->paint();
+    }
   
   return true;
 }
