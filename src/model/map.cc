@@ -2,6 +2,7 @@
 #include "map.h"
 
 #include "exceptions/model/bad-parameters-exception.h"
+#include <boost/algorithm/string.hpp>
 
 BOOST_PYTHON_MODULE(elements)
 {
@@ -151,7 +152,10 @@ std::string Map::getItem(Layer::Level level, unsigned int range)
     //std::cout << "x:" << xTarget << ",y:" << yTarget << std::endl;
     if ( this->width > xTarget && this->height > yTarget )
     {
-      res = this->getLayer(level).getTile(xTarget, yTarget);
+      std::vector<string> toks;
+      std::string gotString = this->getLayer(level).getTile(xTarget, yTarget);
+      boost::split(toks,gotString,boost::is_any_of(":"));
+      res = toks[0];
     }
   }
   return res;

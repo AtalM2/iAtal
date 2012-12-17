@@ -14,6 +14,7 @@ compteur = 0
 #map_ = False
 ended = False
 
+
 def init(aMap):
 	global map_
 	map_ = aMap
@@ -21,9 +22,9 @@ def init(aMap):
 
 #position and direction initialization
 global x_init
-x_init = 5
+x_init = 2
 global y_init
-y_init = 10
+y_init = 1
 
 def robot_init():
 	map_.setDirection(0,1)
@@ -39,21 +40,22 @@ def robot_init():
 #stratégie python
 def strat():
 	cs = compassSensor(map_)
-	print("Facing " + cs)
+	
 	gSense = groundSensor()
 	#print(gSense)
 	ugSense = undergroundSensor()
 	#print(ugSense)
 	oSense = objectSensor()
 	print(oSense)
-	if oSense=="windows:":
+	print("Facing " + cs + " in front of : " + gSense)
+	if oSense=="windows":
 		print("I've found a Windows ! Destroy it ! ")
 		destroyActuator()
 		global ended
 		ended = True
 		print("Strat end")
 
-	if gSense!="":
+	if gSense!="mur":
 		print("walking...")
 		walk(map_)
 	else:

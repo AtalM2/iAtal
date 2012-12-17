@@ -7,8 +7,6 @@ import os
 from classes import *
 
 
-
-
 #movement functions
 def walk(map_):
 	map_.goForward()
