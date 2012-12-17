@@ -26,4 +26,3 @@ elements_la_SOURCES =			\
 	src/model/tileset.cc		\
 	$(NULL)
 
-
