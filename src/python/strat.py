@@ -48,7 +48,7 @@ def strat():
 	oSense = objectSensor()
 	print(oSense)
 	print("Facing " + cs + " in front of : " + gSense)
-	if ((oSense!="latex") & (oSense!="") & (oSense!="nothing")):
+	if ((oSense=="word") | (oSense=="windows") | (oSense=="libreoffice") | (oSense=="powerpoint")):
 		print("I've found a WYSIWYG ! Destroy it ! ")
 		destroyActuator()
 		global compteur
