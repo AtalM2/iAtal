@@ -24,13 +24,18 @@ class StrategyController
   void loadStrategyFromFile(const std::string & filename);
 
   void unloadStrategy();
-
+  void endStrategy();
+  
+  void rewind();
   void nextStep();
   void autoStepsOn();
   void autoStepsOff();
   
  private:
   std::shared_ptr< MapWindow > window_;
+  sigc::connection timeout_;
+  Glib::ustring current_;
+  bool autoStepsOn_;
 
   boost::python::object py_;
   boost::python::object strat_;

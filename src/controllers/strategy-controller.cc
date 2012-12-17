@@ -11,6 +11,7 @@
 #include "ui/warning-dialog.h"
 
 StrategyController::StrategyController()
+  : autoStepsOn_(false)
 {
 
 }
@@ -26,9 +27,9 @@ StrategyController::loadStrategy()
 
   //Handle the response:
   if(result != Gtk::RESPONSE_OK)
-  {
-    return;
-  }
+    {
+      return;
+    }
 
   loadStrategyFromFile(dialog.get_filename());
 
@@ -38,59 +39,68 @@ void
 StrategyController::loadStrategyFromFile(const std::string & filename)
 {
   try
-  {
-    //loads the python, but doesn't let it handle signals.
-    Py_InitializeEx(0);
+    {
+      //loads the python, but doesn't let it handle signals.
+      Py_InitializeEx(0);
 
-    boost::python::object main = boost::python::import("__main__");
-    py_ = main.attr("__dict__");
+      boost::python::object main = boost::python::import("__main__");
+      py_ = main.attr("__dict__");
 
-    // Makes visible the libraries exposing the C++ API and the python classes
-    exec("import sys\n"
-         "sys.path.append('.libs')\n"
-         "sys.path.append('src/python')\n",
-         py_);
+      // Makes visible the libraries exposing the C++ API and the python classes
+      exec("import sys\n"
+	   "sys.path.append('.libs')\n"
+	   "sys.path.append('src/python')\n",
+	   py_);
 
-    exec_file(boost::python::str(filename), py_, py_);
+      exec_file(boost::python::str(filename), py_, py_);
 
-    boost::python::object init = py_["init"];
-    boost::python::object rinit = py_["robot_init"];
+      boost::python::object init = py_["init"];
+      boost::python::object rinit = py_["robot_init"];
 
-    isEnded_ = py_["isEnded"];
-    strat_ = py_["strat"];
+      isEnded_ = py_["isEnded"];
+      strat_ = py_["strat"];
 
-    //initialisation of the robot and map for python
-    std::shared_ptr< Map > newMap =
-      MapController::getInstance().getMap();
-    init(boost::python::ptr(newMap.get()));
-    rinit();
+      //initialisation of the robot and map for python
+      std::shared_ptr< Map > newMap =
+	MapController::getInstance().getMap();
+      init(boost::python::ptr(newMap.get()));
+      rinit();
 
-    std::cout << "python initialisé" << std::endl;
-    window_->setStrategyStatusOk(true);
-  }
+      std::cout << "python initialisé" << std::endl;
+      window_->setStrategyStatusOk(true);
+      current_ = filename;
+    }
   catch(const std::exception & e)
-  {
-    std::ostringstream oss;
-    oss << "There has been an exception during the "
-        << "loading of the strategy file:"
-        << std::endl
-        << e.what()
-        << std::endl;
-    AppController::displayWarning(
-      "Strategy not loaded.",
-      oss.str());
-    window_->setStrategyStatusOk(false);
-    return;
-  }
+    {
+      std::ostringstream oss;
+      oss << "There has been an exception during the "
+	  << "loading of the strategy file:"
+	  << std::endl
+	  << e.what()
+	  << std::endl;
+      AppController::displayWarning(
+	"Strategy not loaded.",
+	oss.str());
+      window_->setStrategyStatusOk(false);
+      return;
+    }
   catch(const boost::python::error_already_set & e)
-  {
-    AppController::displayWarning(
-      "Strategy not loaded.",
-      "The strategy set isn't coherent with the map loaded.");
-    window_->setStrategyStatusOk(false);
-    PyErr_Print();
-    return;
-  }
+    {
+      AppController::displayWarning(
+	"Strategy not loaded.",
+	"The strategy set isn't coherent with the map loaded.");
+      window_->setStrategyStatusOk(false);
+      PyErr_Print();
+      return;
+    }
+}
+
+void
+StrategyController::rewind()
+{
+  if(autoStepsOn_)
+    autoStepsOff();
+  loadStrategyFromFile(current_);
 }
 
 void
@@ -102,13 +112,48 @@ StrategyController::nextStep()
 void
 StrategyController::autoStepsOn()
 {
-  while(strat());
+  sigc::slot<bool> strat = sigc::mem_fun(
+    *this,
+    &StrategyController::strat);
+  timeout_ = Glib::signal_timeout().connect(
+    strat,
+    300);
+  window_->setPathSensitivity(
+    "/ToolBar/StrategyAutoStepsOn",
+    false);
+  window_->setPathSensitivity(
+    "/ToolBar/StrategyAutoStepsOff",
+    true);
+  autoStepsOn_ = true;
 }
 
 void
 StrategyController::autoStepsOff()
 {
+  timeout_.disconnect();
+  window_->setPathSensitivity(
+    "/ToolBar/StrategyAutoStepsOn",
+    true);
+  window_->setPathSensitivity(
+    "/ToolBar/StrategyAutoStepsOff",
+    false);
+  autoStepsOn_ = false;
+}
 
+void
+StrategyController::endStrategy()
+{
+  if(autoStepsOn_)
+    autoStepsOff();
+  window_->setPathSensitivity(
+    "/ToolBar/StrategyNextStep",
+    false);
+  window_->setPathSensitivity(
+    "/ToolBar/StrategyAutoStepsOn",
+    false);
+  window_->setPathSensitivity(
+    "/ToolBar/StrategyAutoStepsOff",
+    false);
 }
 
 void
@@ -127,19 +172,28 @@ bool
 StrategyController::strat()
 {
   if (!isEnded())
-  {
-    try {
-      strat_();
-    } catch (const boost::python::error_already_set & e) {
-      AppController::displayWarning(
-        "Strategy failed.",
-        "A problem occured while running the strategy.");
-      window_->setStrategyStatusOk(false);
-      PyErr_Print();
-      return false;
+    {
+      try
+	{
+	  strat_();
+	}
+      catch (const boost::python::error_already_set & e)
+	{
+	  AppController::displayWarning(
+	    "Strategy failed.",
+	    "A problem occured while running the strategy.");
+	  window_->setStrategyStatusOk(false);
+	  PyErr_Print();
+	  endStrategy();
+	  return false;
+	}
+      if(!isEnded())
+	{
+	  return true;
+	}
     }
-  }
-  return true;
+  endStrategy();
+  return false;
 }
 
 bool

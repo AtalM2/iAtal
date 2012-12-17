@@ -55,7 +55,13 @@ IAtalUIManager::IAtalUIManager()
   // Strategy menu:
   actionGroup->add(
     Gtk::Action::create("StrategyMenu", "Strategy"));
-
+  actionGroup->add(
+    Gtk::Action::create("StrategyRewind",
+			Gtk::Stock::MEDIA_PREVIOUS,
+			"_Rewind",
+			"Reload the strategy"),
+    sigc::mem_fun(sc, &StrategyController::rewind));
+  
   actionGroup->add(
     Gtk::Action::create("StrategyNextStep",
 			Gtk::Stock::MEDIA_PLAY,
@@ -100,6 +106,7 @@ IAtalUIManager::IAtalUIManager()
     "   <menuitem action='FileQuit'/>"
     "  </menu>"
     "  <menu action='StrategyMenu'>"
+    "   <menuitem action='StrategyRewind'/>"
     "   <menuitem action='StrategyNextStep'/>"
     "   <menuitem action='StrategyAutoStepsOn'/>"
     "   <menuitem action='StrategyAutoStepsOff'/>"
@@ -112,6 +119,7 @@ IAtalUIManager::IAtalUIManager()
     "  <toolitem action='FileOpenMap'/>"
     "  <toolitem action='FileOpenStrategy'/>"
     "  <separator/>"
+    "  <toolitem action='StrategyRewind'/>"
     "  <toolitem action='StrategyNextStep'/>"
     "  <toolitem action='StrategyAutoStepsOn'/>"
     "  <toolitem action='StrategyAutoStepsOff'/>"
@@ -130,6 +138,8 @@ IAtalUIManager::IAtalUIManager()
     }
 
   setPathSensitivity("/ToolBar/FileOpenStrategy", false);
+  
+  setPathSensitivity("/ToolBar/StrategyRewind", false);
   setPathSensitivity("/ToolBar/StrategyNextStep", false);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOn", false);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOff", false);

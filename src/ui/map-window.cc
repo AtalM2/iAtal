@@ -52,6 +52,8 @@ void
 MapWindow::setStrategyStatusOk(bool ok)
 {
   hBox_.setStrategyStatusOk(ok);
+  setPathSensitivity("/ToolBar/StrategyRewind",
+		     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOn",
 		     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOff",
