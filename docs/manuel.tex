@@ -7,7 +7,10 @@
 \usepackage{amsmath}
 \usepackage{listings}
 \usepackage{xcolor}
-\lstset{keywordstyle=\color{blue}, stringstyle=\color{brown}}
+\lstset{%
+  basicstyle=\footnotesize,%
+  keywordstyle=\color{blue},%
+  stringstyle=\color{brown}}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \graphicspath{{./img/}}
@@ -15,16 +18,16 @@
 \usepackage{libertine}
 
 \hypersetup{
-    colorlinks,
-    citecolor=blue,
-    filecolor=blue,
-    linkcolor=blue,
-    urlcolor=blue
+  colorlinks,
+  citecolor=blue,
+  filecolor=blue,
+  linkcolor=blue,
+  urlcolor=blue
 }
 
 \newcommand\iAtal{$i$\textsc{Atal}}
 
-%opening
+% opening
 \title{\iAtal{} Manual}
 \author{Agathe \textsc{Mollé}
   \and Grégoire \textsc{Jadi}
@@ -49,8 +52,8 @@ reference manual, it will describe the different features of the
 application. It includes a tutorial in order to help the
 beginners. You will also find an help to compile, install and run the
 program.  All the specific terms will be explained in a glossary.
-  %TODO : blablabla, skip chapters blabla
-  
+% TODO : blablabla, skip chapters blabla
+
 \section*{Introduction}
 The application described here is named \iAtal{}. It's a rover behaviour
 simulation platform.  A rover is a robot which executes some tasks in
@@ -68,27 +71,60 @@ detailed further.
 \section{How to run \iAtal{}}
 
 \subsection{Requirements}
-% TODO : Attentes de l’application en terme d’architecture machine et
-% de logiciels pré-installés
+First and foremost, \iAtal{} is intended to run on an Unix-like
+system. It uses extensively linux-centric libraries such as gtkmm and
+the glib.
+
+You can try to install it and run it on Windows since the GTK+
+libraries have been ported back there, but no support is provided in
+this manual or anywhere else in the documentation to do so.
+
+Be aware of \iAtal{} dependencies. In the listing below, the dev
+suffixes are only needed if you compile the application. To run it,
+the standard packages are fine enough.
+
+The following listing gives the package names for a Debian setup (so
+Ubuntu is good to go too). They should be similar enough in the
+distribution you use.
+
+\begin{itemize}
+\item the GTK+ library for C++ version 3.0 or higher with the headers
+  for development. (\texttt{gtkmm-3.0-dev})
+\item the Boost library (\texttt{libboost-all-dev})
+\item CppUnit to run the unit tests
+\item Doxygen to generate the documentation
+\end{itemize}
 
 \subsection{Installing \iAtal{}}
-% TODO
+The install process is GNU compliant:
+\begin{lstlisting}[language=sh]
+$ sh autogen.sh
+$ ./configure
+$ make
+\end{lstlisting}
+
+The \texttt{configure} script can in particular be called with an
+option to use python 3.2 instead of python 2.7 if you prefer the latter:
+
+\begin{lstlisting}[language=sh]
+$ ./configure --with-python-3.2
+\end{lstlisting}
 
 \subsection{Running \iAtal{}}
 % TODO : façons correctes de lancer \iAtal{}...
 There are two different ways to run the program :
 \begin{itemize}
 \item Whithout any option :
-\begin{verbatim}
-	.\ui
-\end{verbatim}
+\begin{lstlisting}[language=sh]
+$ ./ui &
+\end{lstlisting}
   The program will then start empty and you will have to set the map
   and the rover strategy later. (See chapter...)
   
 \item Directly with a personnalised map and/or exploration strategy :
-\begin{verbatim}
-	.\ui [-h|--help] [{-m|--map} map_path] [{-s|--strategy} strat_path]
-\end{verbatim}
+\begin{lstlisting}[language=sh]
+$ ./ui [-h|--help] [{-m|--map} map_path] [{-s|--strategy} strat_path]
+\end{lstlisting}
   Description of these options :
   \begin{itemize}
   \item \verb!-h! or \verb!--help! : Produce help message
@@ -108,28 +144,25 @@ There are two different ways to run the program :
 To create your own map, it is strongly recommended to use the software
 Tiled (ref, doc).  Tiled generates XML files wich are on the TMX
 format, supported by \iAtal{}. However, you should know that \iAtal{} map
-loader is limited to maps with 4 layers or less. Those layers are :
+loader is limited to maps with 3 layers. Those layers are :
 \begin{itemize}
- \item underground
- \item ground
- \item object
+\item ground
+\item obstacles
+\item objects
 \end{itemize}
 \label{avaibleLayers}
 
-iAtal only understands TMX maps with separated tilesets. The tilesets
-are described in TSX files (.tsx). In order to have some clear
-resources, you should use one tileset by layer, and give it the name of
-. For exemple, if your
-map is designed with the layers \textit{ground} and \textit{objects},
-you need to use a tileset for the ground tiles, and another one for
-the objects tiles.
+\iAtal{} only understands TMX maps with separated tilesets. The tilesets
+are described in TSX files (.tsx). It is required that both the
+tileset and the layers have the same name (the three names above).
 
-%TODO : limitations map par super mogzor
+
 
 \subsection{Loading your map}
 
 Once your map is created, you just have to save it, and to load it in
-\iAtal{}.
+\iAtal{}, through the GUI or thanks to the \textsc{-m} option of the
+CLI.
 
 
 \section{Defining a robot and a strategy with Python}
@@ -145,18 +178,18 @@ presents the mandatory functions to use in the strategy file.
   \begin{center}
     \begin{tabular}{|c|p{10cm}|}
       \hline
-      Name & Purpose \\
+      Name        & Purpose                      \\
       \hline
       robot\_init & Sets the start position, the direction faced by the
       robot and the sprites used to represent it \\
       \hline
-      strat & Describes an iteration of the strategy used. Sensors and
+      strat       & Describes an iteration of the strategy used. Sensors and
       actuators are used here. The robot may move or perform some
-      actions in each iteration. \\
+      actions in each iteration.                 \\
       \hline
-      isEnded & Function returning True when the strategy is finished
+      isEnded     & Function returning True when the strategy is finished
       (the robot completed its job) or False if more iterations are to
-      come.\\ 
+      come.                                      \\ 
       \hline 
     \end{tabular}
     \caption{\label{tab:PyMandatoryFunc} The mandatory functions}
@@ -200,20 +233,20 @@ defined by these pairs :
 
 
 \begin{table}[h]
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Pair & Meaning \\
-  \hline
-  (1,0) & East \\
-  (0,-1) & North \\
-  (-1,0) & West \\
-  (0,1) & South \\
-  \hline
-\end{tabular} 
-\caption{\label{tab:Pypairs} The avaible pairs to describe a
-  direction}
-\end{center}
+  \begin{center}
+    \begin{tabular}{|c|c|}
+      \hline
+      Pair   & Meaning \\
+      \hline
+      (1,0)  & East    \\
+      (0,-1) & North   \\
+      (-1,0) & West    \\
+      (0,1)  & South   \\
+      \hline
+    \end{tabular} 
+    \caption{\label{tab:Pypairs} The avaible pairs to describe a
+      direction}
+  \end{center}
 \end{table}
 
 
