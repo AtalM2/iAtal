@@ -48,12 +48,13 @@ def strat():
 	#print(ugSense)
 	oSense = objectSensor()
 	#print(oSense)
+	if oSense!="":
+		print("I've found a " + oSense + " !")
+		global ended
+		ended = True
+		print("Strat end")
+
 	if gSense!="":
-		if oSense!="":
-			print("I've found a " + oSense + " !")
-			global ended
-			ended = True
-			print("Strat end")
 		print("walking...")
 		walk()
 	else:
