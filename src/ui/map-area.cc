@@ -36,7 +36,8 @@ MapArea::~MapArea()
 {
 }
 
-bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
+bool
+MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
 {
   std::vector< Layer > layers = {
     map_->getLayer(Layer::Level::Underground),
@@ -67,21 +68,21 @@ bool MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
                 << "we're trying to draw a non "
                 << "existing tile:"
                 << std::endl
-		<< std::endl
+                << std::endl
                 << e.what()
                 << std::endl
-		<< std::endl
-		<< "The map has been reloaded but not "
-		<< "the faulty strategy.";
+                << std::endl
+                << "The map has been reloaded but not "
+                << "the faulty strategy.";
 	    
-	    Glib::signal_idle().connect(
-	      sigc::bind(
-		sigc::bind_return(
-		  sigc::ptr_fun(
-		    &AppController::displayWarning),
-		  false),
-		"Fatal error while drawing the map",
-		oss.str()));
+            Glib::signal_idle().connect(
+              sigc::bind(
+                sigc::bind_return(
+                  sigc::ptr_fun(
+                    &AppController::displayWarning),
+                  false),
+                "Fatal error while drawing the map",
+                oss.str()));
 
             // We have no better way (yet) to indicate the user that
             // something wrong happened.
