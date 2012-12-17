@@ -297,9 +297,18 @@ that the robot will follow for one iteration of the overall strategy.
 That is to say, defining the sensors, actuators of other available actions 
 the robot will use and how, from the tile it is currently on.
 
+Some variables can be memorized in order to change the behavior of the robot for a given iteration 
+of the strategy, but every step of the strategy must be defined by the strat function.
+
 \subsubsection{Using the sensors and the actuators}
-Sensors 
+The sensors and actuators are called in the strategy by adding .activate() to the method,
+for instance groundSensor.activate() will return the information given by the ground sensor.
+
+This is and has to be the only way for the robot to get any information about the map.
+
 \subsubsection{Some useful functions}
+Other functions than the sensors and actuators are available, but they can't be defined as such
+because they interact with the robot instead of the map. These are the movement functions and a compass.
 
 \subsection{Specifying the end with isEnded}
 
