@@ -7,7 +7,6 @@ import os
 import random
 
 from classes import *
-from init_strat import *
 
 global compteur
 compteur = 0
