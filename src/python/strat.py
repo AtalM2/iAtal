@@ -78,7 +78,7 @@ def strat():
 			print("Strat end")
 	elif oSense=="latex":
 		loveLatex.activate()
-	elif oSense=="taocp":
+	elif oSense=="taocp":
 		loveTaocp.activate()
 
 	if ((gSense!="mur") & (ugSense=="sol")):
@@ -111,7 +111,8 @@ def turnRight():
 	map_.turnRight()
 	
 
-
+#user defined
+#def lookAround
 
 
 '''
