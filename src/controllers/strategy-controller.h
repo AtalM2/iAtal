@@ -33,8 +33,8 @@ class StrategyController
   std::shared_ptr< MapWindow > window_;
 
   boost::python::object py_;
-  boost::python::object strat;
-  boost::python::object isEnded;
+  boost::python::object strat_;
+  boost::python::object isEnded_;
 
   StrategyController();
 

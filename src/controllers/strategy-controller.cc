@@ -56,8 +56,8 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
       boost::python::object init = py_["init"];
       boost::python::object rinit = py_["robot_init"];
 
-      isEnded = py_["isEnded"];
-      strat = py_["strat"];
+      isEnded_ = py_["isEnded"];
+      strat_ = py_["strat"];
 
       //initialisation of the robot and map for python
       std::shared_ptr< Map > newMap =
@@ -96,11 +96,11 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
 void
 StrategyController::nextStep()
 {
-  boost::python::object endedPy = isEnded();
+  boost::python::object endedPy = isEnded_();
   bool ended = boost::python::extract<bool>(endedPy);
   if (!ended)
   {
-    strat();
+    strat_();
   }
 
 }
@@ -108,13 +108,13 @@ StrategyController::nextStep()
 void
 StrategyController::autoStepsOn()
 {
-  boost::python::object endedPy = isEnded();
+  boost::python::object endedPy = isEnded_();
   bool ended = boost::python::extract<bool>(endedPy);
   while (!ended)
   {
 
-    strat();
-    endedPy = isEnded();
+    strat_();
+    endedPy = isEnded_();
     ended = boost::python::extract<bool>(endedPy);
   }
 }
