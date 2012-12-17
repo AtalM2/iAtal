@@ -308,7 +308,11 @@ This is and has to be the only way for the robot to get any information about th
 
 \subsubsection{Some useful functions}
 Other functions than the sensors and actuators are available, but they can't be defined as such
-because they interact with the robot instead of the map. These are the movement functions and a compass.
+because they interact with the robot instead of the map. These are the basic movement functions
+to turn left (turnLeft), turn right (turnRight) and move one tile ahead (walk). From these basic 
+functions it is possible to build new useful methods, for instance moving two tiles ahead could 
+be defined by two iterations of the basic walk function. Of course, and as it is said before, 
+you can implement many more extended methods this way.
 
 \subsection{Specifying the end with isEnded}
 
