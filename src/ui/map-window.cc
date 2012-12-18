@@ -6,7 +6,7 @@ MapWindow::MapWindow()
     uiManager_(IAtalUIManager::create())
 {
   set_title("iAtal");
-  set_icon_from_file(UI_DATADIR "img/icon.png");
+  set_icon_from_file(UI_DATADIR "icon.png");
   
   add_accel_group(uiManager_->get_accel_group());
   
