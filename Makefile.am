@@ -3,6 +3,8 @@ lib_LTLIBRARIES = $(NULL)
 check_PROGRAMS = $(NULL)
 EXTRA_DIST = $(NULL)
 
+iataldir = $(datadir)/$(PACKAGE)
+
 ACLOCAL_AMFLAGS = -I m4
 
 AM_CXXFLAGS = \
