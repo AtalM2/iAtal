@@ -1,3 +1,12 @@
+imgdir = $(iataldir)/img
+
+img_DATA =						\
+	src/ui/img/black.png		\
+	src/ui/img/icon.png			\
+	src/ui/img/red.png			\
+	src/ui/img/white.png		\
+	$(NULL)
+
 bin_PROGRAMS += \
 	iatal \
 	$(NULL)
@@ -25,4 +34,9 @@ iatal_SOURCES = \
 
 iatal_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
+	$(NULL)
+
+iatal_CPPFLAGS =				\
+	$(AM_CPPFLAGS)				\
+	-DUI_DATADIR=\"$(imgdir)/\"	\
 	$(NULL)
