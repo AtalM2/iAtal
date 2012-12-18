@@ -7,6 +7,13 @@ img_DATA =						\
 	src/ui/img/white.png		\
 	$(NULL)
 
+pythondir = $(iataldir)/python
+
+python_DATA =					\
+	src/python/classes.py		\
+	src/python/init_strat.py	\
+	$(NULL)
+
 bin_PROGRAMS += \
 	iatal \
 	$(NULL)
@@ -36,7 +43,9 @@ iatal_CXXFLAGS = \
 	$(AM_CXXFLAGS) \
 	$(NULL)
 
-iatal_CPPFLAGS =				\
-	$(AM_CPPFLAGS)				\
-	-DUI_DATADIR=\"$(imgdir)/\"	\
+iatal_CPPFLAGS =						\
+	$(AM_CPPFLAGS)						\
+	-DUI_DATADIR=\"$(imgdir)/\"			\
+	-DLIBDIR=\"$(libdir)/\"				\
+	-DPYTHON_DATADIR=\"$(pythondir)/\"	\
 	$(NULL)
