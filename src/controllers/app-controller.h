@@ -24,35 +24,39 @@
 
 #include <gtkmm.h>
 
-class MapWindow;
-
-class AppController
+namespace iatal
 {
-public:
-  static AppController & getInstance()
-  {
-    static AppController instance;
-    return instance;
-  }
-  
-  void setWindow(const std::shared_ptr< MapWindow > & window);
-  const std::shared_ptr< MapWindow > & getWindow();
+  class MapWindow;
 
-  static int displayWarning(const Glib::ustring & title,
-                            const Glib::ustring & text);
+  class AppController
+  {
+  public:
+    static AppController & getInstance()
+    {
+      static AppController instance;
+      return instance;
+    }
   
-  void quit();
-  void help();
+    void setWindow(const std::shared_ptr< MapWindow > & window);
+    const std::shared_ptr< MapWindow > & getWindow();
+
+    static int displayWarning(const Glib::ustring & title,
+			      const Glib::ustring & text);
   
-private:
-  std::shared_ptr< MapWindow > window_;
+    void quit();
+    void help();
   
-  AppController();
+  private:
+    std::shared_ptr< MapWindow > window_;
   
-  // Don't Implement, singleton
-  AppController(const AppController &);
+    AppController();
   
-  // Don't implement, singleton
-  void operator=(const AppController &);
-};
+    // Don't Implement, singleton
+    AppController(const AppController &);
+  
+    // Don't implement, singleton
+    void operator=(const AppController &);
+  };
+}
+
 #endif // APP_CONTROLLER_H

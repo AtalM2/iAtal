@@ -22,59 +22,62 @@
 
 #include <gtkmm.h>
 
-/**
- * Container that's used in iAtal to handle the status of the map and
- * strategy related information.
- */
-class StatusHBox : public Gtk::HBox
+namespace iatal
 {
+  /**
+   * Container that's used in iAtal to handle the status of the map and
+   * strategy related information.
+   */
+  class StatusHBox : public Gtk::HBox
+  {
 
-public:
-  /**
-   * Constructor.
-   */
-  StatusHBox();
-
-  /**
-   * Destructor.
-   */
-  virtual ~StatusHBox();
-  
-  /**
-   * Display the correct image to represent the map status.
-   * 
-   * \param ok The availability of the map.x
-   */
-  void setMapStatusOk(bool ok);
-
-  /**
-   * Display the correct image to represent the strategy status.
-   * 
-   * \param ok The availability of the strategy.
-   */
-  void setStrategyStatusOk(bool ok);
-  
-private:
-
-  /**
-   * Image of the map status.
-   */
-  Gtk::Image mapImage_,
-    
+  public:
     /**
-     * Image of the strategy status.
+     * Constructor.
      */
-    strategyImage_;
+    StatusHBox();
 
-  /**
-   * Label of the map status.
-   */
-  Gtk::Label mapLabel_,
-    
     /**
-     * Label of the strategy status.
+     * Destructor.
      */
-    strategyLabel_;
-};
+    virtual ~StatusHBox();
+  
+    /**
+     * Display the correct image to represent the map status.
+     * 
+     * \param ok The availability of the map.x
+     */
+    void setMapStatusOk(bool ok);
+
+    /**
+     * Display the correct image to represent the strategy status.
+     * 
+     * \param ok The availability of the strategy.
+     */
+    void setStrategyStatusOk(bool ok);
+  
+  private:
+
+    /**
+     * Image of the map status.
+     */
+    Gtk::Image mapImage_,
+    
+      /**
+       * Image of the strategy status.
+       */
+      strategyImage_;
+
+    /**
+     * Label of the map status.
+     */
+    Gtk::Label mapLabel_,
+    
+      /**
+       * Label of the strategy status.
+       */
+      strategyLabel_;
+  };
+}
 
 #endif // STATUS_HBOX_H

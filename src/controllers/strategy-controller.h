@@ -25,52 +25,56 @@
 
 #include <glibmm/ustring.h>
 
-class MapWindow;
-
-class StrategyController
+namespace iatal
 {
-public:
-  static StrategyController & getInstance()
+  class MapWindow;
+
+  class StrategyController
   {
-    static StrategyController instance;
-    return instance;
-  }
+  public:
+    static StrategyController & getInstance()
+    {
+      static StrategyController instance;
+      return instance;
+    }
   
-  void setWindow(const std::shared_ptr< MapWindow > & window);
+    void setWindow(const std::shared_ptr< MapWindow > & window);
 
-  void loadStrategy();
-  void loadStrategyFromFile(const std::string & filename);
+    void loadStrategy();
+    void loadStrategyFromFile(const std::string & filename);
 
-  void endStrategy(bool onError);
+    void endStrategy(bool onError);
   
-  void rewind();
-  void nextStep();
-  void autoStepsOn();
-  void autoStepsOff();
+    void rewind();
+    void nextStep();
+    void autoStepsOn();
+    void autoStepsOff();
   
-  bool shouldShowRobot();
+    bool shouldShowRobot();
   
-private:
-  std::shared_ptr< MapWindow > window_;
-  sigc::connection timeout_;
-  Glib::ustring current_;
-  bool autoStepsOn_,
-    showRobot_;
+  private:
+    std::shared_ptr< MapWindow > window_;
+    sigc::connection timeout_;
+    Glib::ustring current_;
+    bool autoStepsOn_,
+      showRobot_;
 
-  boost::python::object py_;
-  boost::python::object strat_;
-  boost::python::object isEnded_;
+    boost::python::object py_;
+    boost::python::object strat_;
+    boost::python::object isEnded_;
 
-  StrategyController();
+    StrategyController();
 
-  bool strat();
-  bool isEnded();
+    bool strat();
+    bool isEnded();
 
-  // Don't Implement, singleton
-  StrategyController(const StrategyController &);
+    // Don't Implement, singleton
+    StrategyController(const StrategyController &);
 
-  // Don't Implement, singleton
-  void operator=(const StrategyController &); // Don't implement, singleton
+    // Don't Implement, singleton
+    void operator=(const StrategyController &); // Don't implement, singleton
 
-};
+  };
+}
+
 #endif // STRATEGY_CONTROLLER_H

@@ -25,6 +25,8 @@
 
 #include <iostream>
 
+using namespace iatal;
+
 AppController::AppController()
 {
   

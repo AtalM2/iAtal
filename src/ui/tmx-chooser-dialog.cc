@@ -19,6 +19,8 @@
 
 #include "ui/tmx-chooser-dialog.h"
 
+using namespace iatal;
+
 TmxChooserDialog::TmxChooserDialog()
   : Gtk::FileChooserDialog("Please choose a map file to load",
                            Gtk::FILE_CHOOSER_ACTION_OPEN)

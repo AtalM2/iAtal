@@ -22,46 +22,49 @@
 
 #include <gtkmm.h>
 
-/**
- * About widget for iAtal. Shown on C-h or through the help menu.
- */
-class IAtalAboutDialog : public Gtk::AboutDialog
+namespace iatal
 {
+  /**
+   * About widget for iAtal. Shown on C-h or through the help menu.
+   */
+  class IAtalAboutDialog : public Gtk::AboutDialog
+  {
 
-public:
+  public:
   
-  /**
-   * Constructor.
-   * 
-   * Sets all the interesting values to build the about dialog.
-   */
-  IAtalAboutDialog();
+    /**
+     * Constructor.
+     * 
+     * Sets all the interesting values to build the about dialog.
+     */
+    IAtalAboutDialog();
 
-  /**
-   * Destructor.
-   */
-  virtual ~IAtalAboutDialog();
+    /**
+     * Destructor.
+     */
+    virtual ~IAtalAboutDialog();
   
-private:
-
-  /**
-   * vector containing the name of the persons that have been involved
-   * in the programming of iAtal.
-   */
-  std::vector< Glib::ustring > authors_,
+  private:
 
     /**
      * vector containing the name of the persons that have been involved
-     * in the documentation realization.
+     * in the programming of iAtal.
      */
-    documenters_,
+    std::vector< Glib::ustring > authors_,
 
-    /**
-     * vector containing the name of the persons that have been involved
-     * in the artworks realization.
-     */
-    artists_;
+      /**
+       * vector containing the name of the persons that have been involved
+       * in the documentation realization.
+       */
+      documenters_,
 
-};
+      /**
+       * vector containing the name of the persons that have been involved
+       * in the artworks realization.
+       */
+      artists_;
+
+  };
+}
 
 #endif // IATAL_ABOUT_DIALOG_H

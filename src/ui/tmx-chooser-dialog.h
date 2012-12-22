@@ -22,22 +22,25 @@
 
 #include <gtkmm.h>
 
-/**
- * File chooser dialog tuned for tmx maps.
- */
-class TmxChooserDialog : public Gtk::FileChooserDialog
+namespace iatal
 {
-
-public:
   /**
-   * Constructor.
+   * File chooser dialog tuned for tmx maps.
    */
-  TmxChooserDialog();
+  class TmxChooserDialog : public Gtk::FileChooserDialog
+  {
 
-  /**
-   * Destructor.
-   */
-  virtual ~TmxChooserDialog();
-};
+  public:
+    /**
+     * Constructor.
+     */
+    TmxChooserDialog();
+
+    /**
+     * Destructor.
+     */
+    virtual ~TmxChooserDialog();
+  };
+}
 
 #endif // TMX_CHOOSER_DIALOG_H

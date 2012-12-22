@@ -27,6 +27,8 @@
 #include "ui/python-chooser-dialog.h"
 #include "ui/warning-dialog.h"
 
+using namespace iatal;
+
 StrategyController::StrategyController()
   : autoStepsOn_(false),
     showRobot_(false)
@@ -79,7 +81,7 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
     strat_ = py_["strat"];
 
     //initialisation of the robot and map for python
-    std::shared_ptr< iatal::Map > newMap =
+    std::shared_ptr< Map > newMap =
       MapController::getInstance().getMap();
     init(boost::python::ptr(newMap.get()));
     rinit();

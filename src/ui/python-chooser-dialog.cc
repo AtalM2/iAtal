@@ -19,6 +19,8 @@
 
 #include "ui/python-chooser-dialog.h"
 
+using namespace iatal;
+
 PythonChooserDialog::PythonChooserDialog()
   : Gtk::FileChooserDialog("Please choose a strategy file to load",
                            Gtk::FILE_CHOOSER_ACTION_OPEN)

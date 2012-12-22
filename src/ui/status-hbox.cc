@@ -19,6 +19,8 @@
 
 #include "ui/status-hbox.h"
 
+using namespace iatal;
+
 StatusHBox::StatusHBox()
   : mapImage_(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),
     strategyImage_(Gtk::Stock::NO, Gtk::ICON_SIZE_MENU),

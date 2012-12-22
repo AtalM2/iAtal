@@ -31,6 +31,8 @@
 
 #include "tmx/map-loader.h"
 
+using namespace iatal;
+
 int on_cmd(const Glib::RefPtr<Gio::ApplicationCommandLine> &,
            Glib::RefPtr<Gtk::Application> &app) {
   app->activate();

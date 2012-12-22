@@ -21,6 +21,8 @@
 
 #include "config.h"
 
+using namespace iatal;
+
 IAtalAboutDialog::IAtalAboutDialog()
   : authors_({
       "Rémi Bois",

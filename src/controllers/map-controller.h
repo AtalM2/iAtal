@@ -27,40 +27,43 @@
 #include "tmx/map-loader.h"
 #include "ui/map-area.h"
 
-
-class MapWindow;
-
-class MapController
+namespace iatal
 {
-public:
-  static MapController & getInstance()
+  class MapWindow;
+
+  class MapController
   {
-    static MapController instance;
-    return instance;
-  }
+  public:
+    static MapController & getInstance()
+    {
+      static MapController instance;
+      return instance;
+    }
   
-  void setWindow(const std::shared_ptr< MapWindow > & window);
+    void setWindow(const std::shared_ptr< MapWindow > & window);
 
-  void loadMap();
-  void loadMapFromFile(const Glib::ustring & filename);
+    void loadMap();
+    void loadMapFromFile(const Glib::ustring & filename);
 
-  void unloadMap();
-  void reloadMap();
+    void unloadMap();
+    void reloadMap();
 
-  void redraw();
+    void redraw();
 
-  const std::shared_ptr< iatal::Map > & getMap();
+    const std::shared_ptr< Map > & getMap();
   
-private:
-  std::shared_ptr< iatal::Map > map_;
-  std::shared_ptr< MapWindow > window_;
-  Glib::ustring current_;
-  MapController();
+  private:
+    std::shared_ptr< Map > map_;
+    std::shared_ptr< MapWindow > window_;
+    Glib::ustring current_;
+    MapController();
   
-  // Don't Implement, singleton
-  MapController(const MapController &);
+    // Don't Implement, singleton
+    MapController(const MapController &);
   
-  // Don't implement, singleton
-  void operator=(const MapController &);
-};
+    // Don't implement, singleton
+    void operator=(const MapController &);
+  };
+}
+
 #endif // MAP_CONTROLLER_H

@@ -25,6 +25,8 @@
 #include "controllers/strategy-controller.h"
 #include "exceptions/model/bad-parameters-exception.h"
 
+using namespace iatal;
+
 Glib::RefPtr< IAtalUIManager >
 IAtalUIManager::create()
 {

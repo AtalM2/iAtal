@@ -22,23 +22,26 @@
 
 #include <gtkmm.h>
 
-/**
- * File chooser dialog tuned for python strategies.
- */
-class PythonChooserDialog : public Gtk::FileChooserDialog
+namespace iatal
 {
-
-public:
-
   /**
-   * Constructor.
+   * File chooser dialog tuned for python strategies.
    */
-  PythonChooserDialog();
+  class PythonChooserDialog : public Gtk::FileChooserDialog
+  {
 
-  /**
-   * Destructor.
-   */
-  virtual ~PythonChooserDialog();
-};
+  public:
+
+    /**
+     * Constructor.
+     */
+    PythonChooserDialog();
+
+    /**
+     * Destructor.
+     */
+    virtual ~PythonChooserDialog();
+  };
+}
 
 #endif // PYTHON_CHOOSER_DIALOG_H

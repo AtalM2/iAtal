@@ -93,7 +93,7 @@ namespace iatal
       \param layer An integer which denotes the chosen level.
       \return The selected Layer.
     */
-    iatal::Layer& getLayer(iatal::Layer::Level level);
+    Layer& getLayer(Layer::Level level);
 
 
     /*!
@@ -102,7 +102,7 @@ namespace iatal
       \param level The level of the layer
       \param range The distance from the robot
     */
-    std::string getItem(iatal::Layer::Level level,
+    std::string getItem(Layer::Level level,
                         unsigned int range);
 
     /*!
@@ -112,7 +112,7 @@ namespace iatal
       \param range The distance from the robot
       \param newTile The string defining the new tile to put.
     */
-    void setItem(iatal::Layer::Level level,
+    void setItem(Layer::Level level,
                  unsigned int range,
                  std::string newTile);
 
@@ -203,7 +203,7 @@ namespace iatal
       Glib::RefPtr< const Gdk::Pixbuf >
       > robotImgs_;//!< The sprites used for the robot. The key is its direction.
   
-    std::vector< iatal::Layer > layers_; //!< The set of Layer
+    std::vector< Layer > layers_; //!< The set of Layer
   };
 }
 

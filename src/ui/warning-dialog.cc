@@ -19,6 +19,8 @@
 
 #include "warning-dialog.h"
 
+using namespace iatal;
+
 WarningDialog::WarningDialog(
   const Glib::ustring & title,
   const Glib::ustring & text)
