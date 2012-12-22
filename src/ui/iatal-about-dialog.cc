@@ -48,7 +48,7 @@ IAtalAboutDialog::IAtalAboutDialog()
 {
   set_program_name(PACKAGE_NAME);
   set_version(PACKAGE_VERSION);
-  set_copyright("Copyright © 2012 Master ATAL");
+  set_copyright(PACKAGE_COPYRIGHT);
   set_license_type(Gtk::License::LICENSE_GPL_3_0);
   set_website(PACKAGE_URL);
   set_website_label(PACKAGE_NAME + Glib::ustring(" homepage"));

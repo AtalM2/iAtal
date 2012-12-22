@@ -31,6 +31,8 @@
 
 #include "tmx/map-loader.h"
 
+#include "config.h"
+
 using namespace iatal;
 
 int on_cmd(const Glib::RefPtr<Gio::ApplicationCommandLine> &,
@@ -46,7 +48,10 @@ main(int argc, char** argv)
     desc("Allowed options");
   desc.add_options()
     ("help,h",
-     "Produce help message")
+     "Display help message")
+
+    ("version",
+     "Display version and licensing information")
 
     ("map,m",
      boost::program_options::value< Glib::ustring >(),
@@ -71,6 +76,34 @@ main(int argc, char** argv)
     std::cerr << "Incorrect syntax. Use -h to see allowed options."
               << std::endl;
     return 1;
+  }
+  if(vm.count("version"))
+  {
+    std::ostringstream oss;
+    oss << "Welcome to "
+	<< PACKAGE_NAME
+	<< " (version "
+	<< PACKAGE_VERSION
+	<< ", using Python version "
+	<< PYTHON_VERSION
+	<< ")"
+	<< std::endl
+	<< PACKAGE_COPYRIGHT
+	<< std::endl
+	<< PACKAGE_NAME
+	<< " comes with ABSOLUTELY NO WARRANTY. This is free software,"
+	<< std::endl
+	<< "and you are welcome to redistribute it under certain conditions."
+	<< std::endl
+	<< "Please visit "
+	<< PACKAGE_URL
+	<< " for details."
+	<< std::endl
+	<< std::endl
+	<< "For help, use --help."
+	<< std::endl;
+    std::cout << oss.str() << std::endl;
+    return 0;
   }
   if(vm.count("help"))
   {

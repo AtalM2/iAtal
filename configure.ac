@@ -8,6 +8,9 @@ AC_INIT([iAtal],
         [m1infoatal+bugreport@sympa.etu.univ-nantes.prive],
 	[iatal],
 	[https://github.com/AtalM1/iAtal])
+AC_DEFINE([PACKAGE_COPYRIGHT],
+  ["Copyright 2012 Master ATAL"],
+  [Contains the version of the python we'll link to])
 AC_CONFIG_SRCDIR([src/ui/main.cc])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([subdir-objects])
