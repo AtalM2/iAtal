@@ -22,12 +22,15 @@
 
 #include "exceptions/exception.h"
 
-class BadParametersException : public Exception 
+namespace iatal
 {
-public:
-  BadParametersException(const Glib::ustring & complement) throw()
-    : Exception("Bad parameters: " + complement) {}
-  virtual ~BadParametersException() throw () {}
-};
+  class BadParametersException : public Exception 
+  {
+  public:
+    BadParametersException(const Glib::ustring & complement) throw()
+      : Exception("Bad parameters: " + complement) {}
+    virtual ~BadParametersException() throw () {}
+  };
+}
 
 #endif // BAD_PARAMETERS_EXCEPTION_H

@@ -91,7 +91,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(std::string tmxPath) {
         << "tileHeight or tileWidth parsed was zero. "
         << "The map creation can go smoothly only if "
         << "this doesn't happen.";
-	throw BadParametersException(oss.str());
+    throw iatal::BadParametersException(oss.str());
   }
 
   // Vérification que la map est de type orthogonal
