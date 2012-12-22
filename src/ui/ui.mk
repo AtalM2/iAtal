@@ -11,7 +11,6 @@ pythondir = $(iataldir)/python
 
 python_DATA =					\
 	src/python/classes.py		\
-	src/python/init_strat.py	\
 	$(NULL)
 
 bin_PROGRAMS += \
