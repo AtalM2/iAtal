@@ -96,7 +96,7 @@ main(int argc, char** argv)
 	}
       return app->run(*window);
     }
-  catch(exception e)
+  catch(std::exception e)
     {
       std::cerr << e.what() << std::endl;
       return 1;

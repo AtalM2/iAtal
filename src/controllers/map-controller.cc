@@ -42,7 +42,7 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
     {
       newMap = MapLoader::loadTmx(filename);
     }
-  catch(const exception & e)
+  catch(const std::exception & e)
     {
       AppController::displayWarning("Map loading failed.",
 				    e.what());

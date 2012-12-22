@@ -7,8 +7,6 @@
 #include <gdkmm/pixbuf.h>
 #include <glibmm/ustring.h>
 
-using namespace std;
-
 /*!
   \brief A Tileset stores the properties of each tiles in a dedicated
   Layer.
@@ -52,7 +50,7 @@ public:
   
 private:
 
- map< Glib::ustring, Glib::RefPtr< const Gdk::Pixbuf > >
+ std::map< Glib::ustring, Glib::RefPtr< const Gdk::Pixbuf > >
    tilesList_; //!< map<reference, image>
 };
 

@@ -27,7 +27,7 @@ public:
     \param tmxPath Le chemin du fichier TMX.
     \return La Map générée.
   */
-  static std::shared_ptr< Map > loadTmx(string tmxPath);
+  static std::shared_ptr< Map > loadTmx(std::string tmxPath);
 
 private:
   static void loadTMXFile(XMLDocument & tmxDoc,
