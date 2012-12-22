@@ -32,10 +32,10 @@ class MapController
 
   void redraw();
 
-  const std::shared_ptr<Map> & getMap();
+  const std::shared_ptr< iatal::Map > & getMap();
   
  private:
-  std::shared_ptr< Map > map_;
+  std::shared_ptr< iatal::Map > map_;
   std::shared_ptr< MapWindow > window_;
   Glib::ustring current_;
   MapController();

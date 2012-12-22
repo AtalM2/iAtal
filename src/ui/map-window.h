@@ -47,7 +47,7 @@ public:
    * 
    * \param map The new map to use.
    */
-  void setMap(const std::shared_ptr< Map > & map);
+  void setMap(const std::shared_ptr< iatal::Map > & map);
   
   /**
    * Sets whether or not a certain item in the menu and toolbar is

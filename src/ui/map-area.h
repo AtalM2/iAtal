@@ -26,7 +26,7 @@ class MapArea : public Gtk::DrawingArea
    * 
    * \param map The new map to use.
    */
-  void setMap(const std::shared_ptr< Map > & map);
+  void setMap(const std::shared_ptr< iatal::Map > & map);
 
   /**
    * Destructor.
@@ -44,7 +44,7 @@ class MapArea : public Gtk::DrawingArea
   /**
    * Pointer to the map displayed.
    */
-  std::shared_ptr< Map > map_;
+  std::shared_ptr< iatal::Map > map_;
 };
 
 #endif // MAP_AREA_H

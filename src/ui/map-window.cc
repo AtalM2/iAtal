@@ -1,6 +1,8 @@
 // -*- c-basic-offset: 2; -*-
 #include "map-window.h"
 
+using namespace iatal;
+
 MapWindow::MapWindow()
   : mapLoaded_(false),
     uiManager_(IAtalUIManager::create())

@@ -9,6 +9,8 @@
 #include "ui/tmx-chooser-dialog.h"
 #include "ui/warning-dialog.h"
 
+using namespace iatal;
+
 MapController::MapController()
   : current_("")
 {

@@ -62,7 +62,7 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
       strat_ = py_["strat"];
 
       //initialisation of the robot and map for python
-      std::shared_ptr< Map > newMap =
+      std::shared_ptr< iatal::Map > newMap =
 	MapController::getInstance().getMap();
       init(boost::python::ptr(newMap.get()));
       rinit();

@@ -46,7 +46,7 @@ MapLoader::loadTMXFile(XMLDocument & tmxDoc,
 }
 
 
-std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
+std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
   
   std::string dir = Glib::path_get_dirname(tmxPath);
   // Charger le fichier TMX	
@@ -85,10 +85,10 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
     }
 
   // Création de l'objet Map
-  auto map = std::make_shared< Map >(width,
-				     height,
-				     tileWidth,
-				     tileHeight);
+  auto map = std::make_shared< iatal::Map >(width,
+					    height,
+					    tileWidth,
+					    tileHeight);
 
   TmxTileset groundTmxTileset;
   TmxTileset obstaclesTmxTileset;
