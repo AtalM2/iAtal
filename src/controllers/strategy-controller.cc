@@ -1,4 +1,21 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
+
+//  Copyright (C) 2012
+
+// This file is part of iAtal.
+
+// iAtal is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// iAtal is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with iAtal.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ui/map-window.h"
 
@@ -9,6 +26,8 @@
 #include "controllers/strategy-controller.h"
 #include "ui/python-chooser-dialog.h"
 #include "ui/warning-dialog.h"
+
+using namespace iatal;
 
 StrategyController::StrategyController()
   : autoStepsOn_(false),
@@ -28,9 +47,9 @@ StrategyController::loadStrategy()
 
   //Handle the response:
   if(result != Gtk::RESPONSE_OK)
-    {
-      return;
-    }
+  {
+    return;
+  }
 
   loadStrategyFromFile(dialog.get_filename());
 
@@ -40,61 +59,61 @@ void
 StrategyController::loadStrategyFromFile(const std::string & filename)
 {
   try
-    {
-      //loads the python, but doesn't let it handle signals.
-      Py_InitializeEx(0);
+  {
+    //loads the python, but doesn't let it handle signals.
+    Py_InitializeEx(0);
 
-      boost::python::object main = boost::python::import("__main__");
-      py_ = main.attr("__dict__");
+    boost::python::object main = boost::python::import("__main__");
+    py_ = main.attr("__dict__");
 
-      // Makes visible the libraries exposing the C++ API and the python classes
-      exec("import sys\n"
-           "sys.path.append('" LIBDIR "')\n"
-           "sys.path.append('" PYTHON_DATADIR "')\n",
-           py_);
+    // Makes visible the libraries exposing the C++ API and the python classes
+    py_["sys"] = boost::python::import("sys");
+    exec("sys.path.append('" LIBDIR "')\n"
+         "sys.path.append('" PYTHON_DATADIR "')\n",
+         py_);
 
-      exec_file(boost::python::str(filename), py_, py_);
+    exec_file(boost::python::str(filename), py_, py_);
 
-      boost::python::object init = py_["init"];
-      boost::python::object rinit = py_["robot_init"];
+    boost::python::object init = py_["init"];
+    boost::python::object rinit = py_["robot_init"];
 
-      isEnded_ = py_["isEnded"];
-      strat_ = py_["strat"];
+    isEnded_ = py_["isEnded"];
+    strat_ = py_["strat"];
 
-      //initialisation of the robot and map for python
-      std::shared_ptr< Map > newMap =
-	MapController::getInstance().getMap();
-      init(boost::python::ptr(newMap.get()));
-      rinit();
+    //initialisation of the robot and map for python
+    std::shared_ptr< Map > newMap =
+      MapController::getInstance().getMap();
+    init(boost::python::ptr(newMap.get()));
+    rinit();
 
-      std::cout << "python initialisé" << std::endl;
-      window_->setStrategyStatusOk(true);
-      current_ = filename;
-      showRobot_ = true;
-    }
+    std::cout << "python initialisé" << std::endl;
+    window_->setStrategyStatusOk(true);
+    current_ = filename;
+    showRobot_ = true;
+  }
   catch(const std::exception & e)
-    {
-      std::ostringstream oss;
-      oss << "There has been an exception during the "
-	  << "loading of the strategy file:"
-	  << std::endl
-	  << e.what()
-	  << std::endl;
-      AppController::displayWarning(
-	"Strategy not loaded.",
-	oss.str());
-      window_->setStrategyStatusOk(false);
-      return;
-    }
+  {
+    std::ostringstream oss;
+    oss << "There has been an exception during the "
+        << "loading of the strategy file:"
+        << std::endl
+        << e.what()
+        << std::endl;
+    AppController::displayWarning(
+      "Strategy not loaded.",
+      oss.str());
+    window_->setStrategyStatusOk(false);
+    return;
+  }
   catch(const boost::python::error_already_set & e)
-    {
-      AppController::displayWarning(
-	"Strategy not loaded.",
-	"The strategy set isn't coherent with the map loaded.");
-      window_->setStrategyStatusOk(false);
-      PyErr_Print();
-      return;
-    }
+  {
+    AppController::displayWarning(
+      "Strategy not loaded.",
+      "The strategy set isn't coherent with the map loaded.");
+    window_->setStrategyStatusOk(false);
+    PyErr_Print();
+    return;
+  }
 }
 
 void
@@ -155,22 +174,22 @@ StrategyController::endStrategy(bool onError)
   if(autoStepsOn_)
     autoStepsOff();
   if(onError)
-    {
-      window_->setStrategyStatusOk(false);
-      showRobot_ = false;
-    }
+  {
+    window_->setStrategyStatusOk(false);
+    showRobot_ = false;
+  }
   else
-    {
-      window_->setPathSensitivity(
-	"/ToolBar/StrategyNextStep",
-	false);
-      window_->setPathSensitivity(
-	"/ToolBar/StrategyAutoStepsOn",
-	false);
-      window_->setPathSensitivity(
-	"/ToolBar/StrategyAutoStepsOff",
-	false);
-    }
+  {
+    window_->setPathSensitivity(
+      "/ToolBar/StrategyNextStep",
+      false);
+    window_->setPathSensitivity(
+      "/ToolBar/StrategyAutoStepsOn",
+      false);
+    window_->setPathSensitivity(
+      "/ToolBar/StrategyAutoStepsOff",
+      false);
+  }
 }
 
 void
@@ -183,13 +202,13 @@ bool
 StrategyController::strat()
 {
   if (!isEnded())
-    {
-      try
+  {
+    try
 	{
 	  strat_();
       MapController::getInstance().redraw();
 	}
-      catch (const boost::python::error_already_set & e)
+    catch (const boost::python::error_already_set & e)
 	{
 	  AppController::displayWarning(
 	    "Strategy failed.",
@@ -198,11 +217,11 @@ StrategyController::strat()
 	  endStrategy(true);
 	  return false;
 	}
-      if(!isEnded())
+    if(!isEnded())
 	{
 	  return true;
 	}
-    }
+  }
   endStrategy(false);
   return false;
 }

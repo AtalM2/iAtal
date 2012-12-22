@@ -5,7 +5,12 @@ AC_PREREQ([2.68])
 
 AC_INIT([iAtal],
         [0.1],
-        [m1infoatal+bugreport@sympa.etu.univ-nantes.prive])
+        [m1infoatal+bugreport@sympa.etu.univ-nantes.prive],
+	[iatal],
+	[https://github.com/AtalM1/iAtal])
+AC_DEFINE([PACKAGE_COPYRIGHT],
+  ["Copyright 2012 Master ATAL"],
+  [Contains the copyright notice, defined here to be consistent with the other package macros])
 AC_CONFIG_SRCDIR([src/ui/main.cc])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([subdir-objects])
@@ -71,7 +76,7 @@ m4_pattern_allow([AM_PATH_PYTHON])
 if test "x$force_py32" = "xyes"; then
   PKG_CHECK_MODULES([python], [python-3.2 >= 3.2],
     [PYTHON_VERSION="3.2"],
-    [AC_MSG_WARN([You've ask to use Python-3.2 but it can not be found.])])
+    [AC_MSG_WARN([You've asked to use Python-3.2 but it can not be found.])])
 fi
 
 AS_IF([test "x$PYTHON_VERSION" != "x3.2"],
@@ -79,8 +84,9 @@ AS_IF([test "x$PYTHON_VERSION" != "x3.2"],
     [PYTHON_VERSION="2.7"],
     [PKG_CHECK_MODULES([python], [python-3.2 >= 3.2],
       [PYTHON_VERSION="3.2"],
-      [AC_MSG_ERROR([Neither Python-2.7 or Python-3.2 have been found.])])])])
-      
+      [AC_MSG_ERROR([Neither Python-2.7 nor Python-3.2 have been found.])])])])
+
+
 AC_MSG_RESULT([using Python-$PYTHON_VERSION])
 if test "x$PYTHON_VERSION" = "x3.2"; then
   PYTHON_LDFLAGS=-lboost_python-py32
@@ -88,6 +94,11 @@ else
   PYTHON_LDFLAGS=-lboost_python
 fi
 AC_SUBST(PYTHON_LDFLAGS)
+
+AM_PATH_PYTHON
+AC_DEFINE_UNQUOTED([PYTHON_VERSION],
+  ["$PYTHON_VERSION"],
+  [Contains the version of the python we'll link to])
 
 # Boost configuration
 # https://github.com/tsuna/boost.m4/

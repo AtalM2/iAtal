@@ -1,4 +1,22 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
+
+//  Copyright (C) 2012
+
+// This file is part of iAtal.
+
+// iAtal is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// iAtal is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with iAtal.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "map-area.h"
 
 #include <exception>
@@ -12,6 +30,8 @@
 #include "controllers/app-controller.h"
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
+
+using namespace iatal;
 
 MapArea::MapArea()
 {
@@ -45,7 +65,7 @@ MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     map_->getLayer(Layer::Level::Object),
   };
   
-  for(std::vector< Layer >::const_iterator it = layers.begin();
+  for(std::vector< Layer >::iterator it = layers.begin();
       it != layers.end();
       it++) {
     Tileset tileset = (*it).getTileset();
@@ -105,18 +125,18 @@ MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
   }
   
   if(StrategyController::getInstance().shouldShowRobot())
-    {
-      auto p = map_->getPosition();
-      Gdk::Cairo::set_source_pixbuf(
-	cr,
-	Glib::RefPtr< Gdk::Pixbuf >::cast_const(map_->getRobotImage()),
-	p.first * map_->tileWidth +
-	(map_->tileWidth - map_->getRobotImage()->get_width()) / 2,
-	p.second * map_->tileHeight +
-	(map_->tileHeight - map_->getRobotImage()->get_height()) / 2);
+  {
+    auto p = map_->getPosition();
+    Gdk::Cairo::set_source_pixbuf(
+      cr,
+      Glib::RefPtr< Gdk::Pixbuf >::cast_const(map_->getRobotImage()),
+      p.first * map_->tileWidth +
+      (map_->tileWidth - map_->getRobotImage()->get_width()) / 2,
+      p.second * map_->tileHeight +
+      (map_->tileHeight - map_->getRobotImage()->get_height()) / 2);
       
-      cr->paint();
-    }
+    cr->paint();
+  }
   
   return true;
 }

@@ -1,4 +1,22 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
+
+//  Copyright (C) 2012
+
+// This file is part of iAtal.
+
+// iAtal is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// iAtal is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with iAtal.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "map-controller.h"
 
 #include <iostream>
@@ -8,6 +26,8 @@
 #include "ui/map-area.h"
 #include "ui/tmx-chooser-dialog.h"
 #include "ui/warning-dialog.h"
+
+using namespace iatal;
 
 MapController::MapController()
   : current_("")
@@ -26,9 +46,9 @@ MapController::loadMap()
 
   //Handle the response:
   if(result != Gtk::RESPONSE_OK)
-    {
-      return;
-    }
+  {
+    return;
+  }
   
   loadMapFromFile(dialog.get_filename());
   
@@ -39,31 +59,31 @@ MapController::loadMapFromFile(const Glib::ustring & filename)
 {
   std::shared_ptr< Map > newMap;
   try
-    {
-      newMap = MapLoader::loadTmx(filename);
-    }
-  catch(const exception & e)
-    {
-      AppController::displayWarning("Map loading failed.",
-				    e.what());
-      unloadMap();
-      return;
-    }
+  {
+    newMap = MapLoader::loadTmx(filename);
+  }
+  catch(const std::exception & e)
+  {
+    AppController::displayWarning("Map loading failed.",
+                                  e.what());
+    unloadMap();
+    return;
+  }
   catch(const Glib::Exception & e)
-    {
-      AppController::displayWarning("Map loading failed.",
-				    e.what());
-      unloadMap();
-      return;
-    }
+  {
+    AppController::displayWarning("Map loading failed.",
+                                  e.what());
+    unloadMap();
+    return;
+  }
   catch(...)
-    {
-      AppController::displayWarning(
-	"Map loading failed.",
-	"Please see the supported format in the manual");
-      unloadMap();
-      return;
-    }
+  {
+    AppController::displayWarning(
+      "Map loading failed.",
+      "Please see the supported format in the manual");
+    unloadMap();
+    return;
+  }
   window_->setMap(newMap);
   window_->resize(1, 1);
   window_->setMapStatusOk(true);
