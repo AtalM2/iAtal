@@ -194,24 +194,24 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
   while (xmlElement)
     {
       TmxTileset* tmxTileset = NULL;
-      Layer* layer = NULL;
+      iatal::Layer* layer = NULL;
       bool ok = true;
       // unsigned int firstgid = 0;
       // On vérifie le name du layer
       string name = string(xmlElement->Attribute("name"));
       if(name == "ground")
 	{
-	  layer = &map->getLayer(Layer::Underground);
+	  layer = &map->getLayer(iatal::Layer::Underground);
 	  tmxTileset = &groundTmxTileset;
 	}
       else if(name == "obstacles")
 	{
-	  layer = &map->getLayer(Layer::Ground);
+	  layer = &map->getLayer(iatal::Layer::Ground);
 	  tmxTileset = &obstaclesTmxTileset;
 	}
       else if(name == "objects")
 	{
-	  layer = &map->getLayer(Layer::Object);
+	  layer = &map->getLayer(iatal::Layer::Object);
 	  tmxTileset = &objectsTmxTileset;
 	}
       else
@@ -277,11 +277,14 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
       xmlElement = xmlElement->NextSiblingElement("layer");
     }
   
-  handleTileset(map->getLayer(Layer::Level::Underground).getTileset(),
+  handleTileset(map->getLayer(iatal::Layer::Level::Underground)
+		.getTileset(),
 		groundTmxTileset);
-  handleTileset(map->getLayer(Layer::Level::Ground).getTileset(),
+  handleTileset(map->getLayer(iatal::Layer::Level::Ground)
+		.getTileset(),
 		obstaclesTmxTileset);
-  handleTileset(map->getLayer(Layer::Level::Object).getTileset(),
+  handleTileset(map->getLayer(iatal::Layer::Level::Object)
+		.getTileset(),
 		objectsTmxTileset);
   
   return map;

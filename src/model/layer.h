@@ -13,102 +13,104 @@
 
 #include "tileset.h"
 
-/*!
-  \brief A Layer is composed of a matrix of tiles and a Tileset.
-
-  Each tile of the matrix is a reference to a tile in the Tileset.
-
-  Thus, the real properties are stored in the Tileset rather than in
-  the matrix itself.
-
-  There are two reasons to do so:
-  - That's how TMX stores data so it's easier to do it the same way.
-  - It takes less space in memory at the cost of another indirection.
-*/
-class Layer {
- public:
-
+namespace iatal
+{
   /*!
-    \brief Construct a Layer of the given size.
+    \brief A Layer is composed of a matrix of tiles and a Tileset.
 
-    \param width The width of the Layer.
-    \param height The height of the Layer.
+    Each tile of the matrix is a reference to a tile in the Tileset.
+
+    Thus, the real properties are stored in the Tileset rather than in
+    the matrix itself.
+
+    There are two reasons to do so:
+    - That's how TMX stores data so it's easier to do it the same way.
+    - It takes less space in memory at the cost of another indirection.
   */
-  Layer(unsigned int width, unsigned int height);
+  class Layer {
+  public:
 
-  /*!
-    \brief Default destructor.
+    /*!
+      \brief Construct a Layer of the given size.
 
-  */
-  virtual ~Layer();
+      \param width The width of the Layer.
+      \param height The height of the Layer.
+    */
+    Layer(unsigned int width, unsigned int height);
 
-  /*!
-    \brief Returns a reference to the tile at the given position.
+    /*!
+      \brief Default destructor.
 
-    The reference can be used to fetch the real tile in the Tileset of
-    the Layer.
+    */
+    virtual ~Layer();
+
+    /*!
+      \brief Returns a reference to the tile at the given position.
+
+      The reference can be used to fetch the real tile in the Tileset of
+      the Layer.
     
-    \param x The x-coordinate or abscissa.
-    \param y The y-coordinate or ordinate.
-    \return The reference of the current tile.
-  */
-  Glib::ustring getTile(unsigned int x, unsigned int y) const;
+      \param x The x-coordinate or abscissa.
+      \param y The y-coordinate or ordinate.
+      \return The reference of the current tile.
+    */
+    Glib::ustring getTile(unsigned int x, unsigned int y) const;
 
-  /*!
-    \brief Change the reference of the tile at the given position.
+    /*!
+      \brief Change the reference of the tile at the given position.
 
-    The reference has to be valid, that is, it must exist in the
-    Tileset of the Layer.
+      The reference has to be valid, that is, it must exist in the
+      Tileset of the Layer.
 
-    \param x The x-coordinate or abscissa.
-    \param y The y-coordinate or ordinate.
-    \param tile The new reference of the current tile.
-  */
-  void setTile(unsigned int x, unsigned int y, Glib::ustring tile);
+      \param x The x-coordinate or abscissa.
+      \param y The y-coordinate or ordinate.
+      \param tile The new reference of the current tile.
+    */
+    void setTile(unsigned int x, unsigned int y, Glib::ustring tile);
 
-  /*!
-    \brief Returns the Tileset of the Layer.
+    /*!
+      \brief Returns the Tileset of the Layer.
 
-    \return The Tileset of the Layer.
-  */
-  Tileset & getTileset();
-
-
+      \return The Tileset of the Layer.
+    */
+    Tileset & getTileset();
 
 
-  /*!
-    \brief An an enumeration used to select a Layer in a Map.
 
-  */
+
+    /*!
+      \brief An an enumeration used to select a Layer in a Map.
+
+    */
   
-  /*
-   * If you modify this enum by adding or removing Level, DO NOT
-   * FORGET TO UPDATE LastLevel if needed.
-   *
-   * Moreover, the elements have to be in the ascending order withtout
-   * "holes", and the first element has to be 0.
-   */
-  typedef enum
-  {
-    Underground = 0,          //!< The Underground Level
-    Ground = 1,               //!< The Ground Level
-    Air = 2,                  //!< The Air Level
-    Object = 3,               //!< The Object Level
-    LastLevel = Object        //!< Equal to the last level of the enum
-  } Level;
+    /*
+     * If you modify this enum by adding or removing Level, DO NOT
+     * FORGET TO UPDATE LastLevel if needed.
+     *
+     * Moreover, the elements have to be in the ascending order withtout
+     * "holes", and the first element has to be 0.
+     */
+    typedef enum
+    {
+      Underground = 0,          //!< The Underground Level
+      Ground = 1,               //!< The Ground Level
+      Air = 2,                  //!< The Air Level
+      Object = 3,               //!< The Object Level
+      LastLevel = Object        //!< Equal to the last level of the enum
+    } Level;
 
 	
-  /*!
-   * get from enum
-   * 
-   */
-  Level identity_(Level x);
+    /*!
+     * get from enum
+     * 
+     */
+    Level identity_(Level x);
 
 
- private:
-  std::vector< std::vector< Glib::ustring > > tiles_; //!< The matrix of tiles.
-  Tileset tileset_; //!< The Tileset attached to the Layer.
+  private:
+    std::vector< std::vector< Glib::ustring > > tiles_; //!< The matrix of tiles.
+    Tileset tileset_; //!< The Tileset attached to the Layer.
 
-};
-
+  };
+}
 #endif // LAYER_H

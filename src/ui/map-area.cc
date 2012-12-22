@@ -13,6 +13,8 @@
 #include "controllers/map-controller.h"
 #include "controllers/strategy-controller.h"
 
+using namespace iatal;
+
 MapArea::MapArea()
 {
   set_margin_left(5);

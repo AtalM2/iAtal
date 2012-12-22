@@ -1,6 +1,8 @@
 // -*- c-basic-offset: 2; -*-
 #include "layer.h"
 
+using namespace iatal;
+
 Layer::Level Layer::identity_(Layer::Level x)
 {
   return x;

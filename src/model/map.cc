@@ -4,6 +4,8 @@
 #include "exceptions/model/bad-parameters-exception.h"
 #include <boost/algorithm/string.hpp>
 
+using namespace iatal;
+
 BOOST_PYTHON_MODULE(elements)
 {
   boost::python::class_<Map>("Map")

@@ -73,7 +73,7 @@ public:
     \param layer An integer which denotes the chosen level.
     \return The selected Layer.
   */
-  Layer& getLayer(Layer::Level level);
+  iatal::Layer& getLayer(iatal::Layer::Level level);
 
 
   /*!
@@ -82,7 +82,8 @@ public:
     \param level The level of the layer
     \param range The distance from the robot
   */
-  std::string getItem(Layer::Level level, unsigned int range);
+  std::string getItem(iatal::Layer::Level level,
+		      unsigned int range);
 
   /*!
     \brief Sets the item on the given layer at the given range (robot dependant)
@@ -91,7 +92,9 @@ public:
     \param range The distance from the robot
     \param newTile The string defining the new tile to put.
    */
-  void setItem(Layer::Level level, unsigned int range, std::string newTile);
+  void setItem(iatal::Layer::Level level,
+	       unsigned int range,
+	       std::string newTile);
 
   /*!
     \brief The robot makes one step in front of himself
@@ -180,7 +183,7 @@ protected:
     Glib::RefPtr< const Gdk::Pixbuf >
     > robotImgs_;//!< The sprites used for the robot. The key is its direction.
   
-  std::vector< Layer > layers_; //!< The set of Layer
+  std::vector< iatal::Layer > layers_; //!< The set of Layer
 };
 
 #endif // MAP_H
