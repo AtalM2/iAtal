@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -33,7 +33,7 @@
 class MapArea : public Gtk::DrawingArea
 {
 
- public:
+public:
   /**
    * Constructor, sets the proper spacing and align properties.
    */
@@ -51,14 +51,14 @@ class MapArea : public Gtk::DrawingArea
    */
   virtual ~MapArea();
 
- protected:
+protected:
   /**
    * Redefinition of the on_draw method. Goes through the model and
    * updates the drawing area accordingly.
    */
   virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
   
- private:
+private:
   /**
    * Pointer to the map displayed.
    */

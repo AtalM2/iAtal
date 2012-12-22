@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -28,7 +28,7 @@
 class IAtalAboutDialog : public Gtk::AboutDialog
 {
 
- public:
+public:
   
   /**
    * Constructor.
@@ -42,7 +42,7 @@ class IAtalAboutDialog : public Gtk::AboutDialog
    */
   virtual ~IAtalAboutDialog();
   
- private:
+private:
 
   /**
    * vector containing the name of the persons that have been involved
@@ -50,16 +50,16 @@ class IAtalAboutDialog : public Gtk::AboutDialog
    */
   std::vector< Glib::ustring > authors_,
 
-  /**
-   * vector containing the name of the persons that have been involved
-   * in the documentation realization.
-   */
+    /**
+     * vector containing the name of the persons that have been involved
+     * in the documentation realization.
+     */
     documenters_,
 
-  /**
-   * vector containing the name of the persons that have been involved
-   * in the artworks realization.
-   */
+    /**
+     * vector containing the name of the persons that have been involved
+     * in the artworks realization.
+     */
     artists_;
 
 };

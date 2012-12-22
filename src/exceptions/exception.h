@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -34,12 +34,12 @@
   class NewException : public Exception
   {
   public:
-    NewException(const Glib::ustring & complement) throw()
-      : Exception("New exception: " + complement) {}
-    virtual ~NewException() throw () {}
+  NewException(const Glib::ustring & complement) throw()
+  : Exception("New exception: " + complement) {}
+  virtual ~NewException() throw () {}
   };
   @endverbatim
-  */
+*/
 class Exception : public std::exception
 {
 public:
@@ -47,14 +47,14 @@ public:
   /*!
     \brief Default destructor.
 
-    */
+  */
   virtual ~Exception() throw() {}
 
   /*!
     \brief Returns a description of the Exception.
 
     \return A string describing the Exception.
-    */
+  */
   const char* what() const throw() { return message_.c_str(); }
 
 protected:
@@ -67,7 +67,7 @@ protected:
     customized description.
 
     \param m An informative message describing the Exception.
-    */
+  */
   Exception(const Glib::ustring & m) throw() : message_(m) {}
 	
 private:

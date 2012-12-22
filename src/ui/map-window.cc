@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -32,10 +32,10 @@ MapWindow::MapWindow()
   
   
   vBox_.pack_start(uiManager_->getMenuBar(),
-		   Gtk::PACK_SHRINK);
+                   Gtk::PACK_SHRINK);
 
   vBox_.pack_start(uiManager_->getToolBar(),
-		   Gtk::PACK_SHRINK);
+                   Gtk::PACK_SHRINK);
 
   vBox_.pack_start(hBox_);
 
@@ -54,16 +54,16 @@ MapWindow::setMap(const std::shared_ptr< Map > & map)
 {
   area_.setMap(map);
   if(!mapLoaded_)
-    {
-      vBox_.pack_start(area_);
-      area_.show();
-      mapLoaded_ = true;
-    }
+  {
+    vBox_.pack_start(area_);
+    area_.show();
+    mapLoaded_ = true;
+  }
 }
 
 void
 MapWindow::setPathSensitivity(const Glib::ustring & path,
-			      bool sensitivity)
+                              bool sensitivity)
 {
   uiManager_->setPathSensitivity(path, sensitivity);
 }
@@ -73,13 +73,13 @@ MapWindow::setStrategyStatusOk(bool ok)
 {
   hBox_.setStrategyStatusOk(ok);
   setPathSensitivity("/ToolBar/StrategyRewind",
-		     ok);
+                     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOn",
-		     ok);
+                     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOff",
-		     false);
+                     false);
   setPathSensitivity("/ToolBar/StrategyNextStep",
-		     ok);
+                     ok);
 }
 
 void
@@ -87,5 +87,5 @@ MapWindow::setMapStatusOk(bool ok)
 {
   hBox_.setMapStatusOk(ok);
   setPathSensitivity("/ToolBar/FileOpenStrategy",
-		     ok);
+                     ok);
 }

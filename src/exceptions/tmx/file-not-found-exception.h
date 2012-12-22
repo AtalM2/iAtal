@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 

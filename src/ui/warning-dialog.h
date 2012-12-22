@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -28,7 +28,7 @@
 class WarningDialog : public Gtk::MessageDialog
 {
 
- public:
+public:
   /**
    * Constructor.
    * 
@@ -40,7 +40,7 @@ class WarningDialog : public Gtk::MessageDialog
    * what is the next step.
    */
   WarningDialog(const Glib::ustring & title,
-		const Glib::ustring & text);
+                const Glib::ustring & text);
   /**
    * Destructor.
    */

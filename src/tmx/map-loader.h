@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -49,9 +49,9 @@ public:
 
 private:
   static void loadTMXFile(XMLDocument & tmxDoc,
-			  const Glib::ustring & filepath);
+                          const Glib::ustring & filepath);
   static void handleTileset(iatal::Tileset & ts,
-			    const TmxTileset & tmxTs);
+                            const TmxTileset & tmxTs);
   static XMLElement* loadTsx(XMLElement* tsxElement);
 
 };

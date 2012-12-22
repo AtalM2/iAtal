@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -22,25 +22,25 @@
 IAtalAboutDialog::IAtalAboutDialog()
   : authors_({
       "Rémi Bois",
-	"Grégoire Jadi",
-	"Agathe Mollé",
-	"Joseph Lark",
-	"Noémi Salaün",
-	"Loïc Jankowiak",
-	"Hugo Mougard"
-	}),
+        "Grégoire Jadi",
+        "Agathe Mollé",
+        "Joseph Lark",
+        "Noémi Salaün",
+        "Loïc Jankowiak",
+        "Hugo Mougard"
+        }),
     documenters_({
-      "Rémi Bois",
-	"Grégoire Jadi",
-	"Agathe Mollé",
-	"Joseph Lark",
-	"Noémi Salaün",
-	"Loïc Jankowiak",
-	"Hugo Mougard"
-	  }),
+        "Rémi Bois",
+          "Grégoire Jadi",
+          "Agathe Mollé",
+          "Joseph Lark",
+          "Noémi Salaün",
+          "Loïc Jankowiak",
+          "Hugo Mougard"
+          }),
     artists_({
-	"Agathe Mollé"
-	  })
+        "Agathe Mollé"
+          })
 {
   set_program_name("iAtal");
   set_version("1.0.0");

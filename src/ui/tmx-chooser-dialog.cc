@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -21,13 +21,13 @@
 
 TmxChooserDialog::TmxChooserDialog()
   : Gtk::FileChooserDialog("Please choose a map file to load",
-			   Gtk::FILE_CHOOSER_ACTION_OPEN)
+                           Gtk::FILE_CHOOSER_ACTION_OPEN)
 {
   //Add response buttons the the dialog:
   add_button(Gtk::Stock::CANCEL,
-	     Gtk::RESPONSE_CANCEL);
+             Gtk::RESPONSE_CANCEL);
   add_button(Gtk::Stock::OPEN,
-	     Gtk::RESPONSE_OK);
+             Gtk::RESPONSE_OK);
   
   //Add filters, so that only certain file types can be selected:
   Glib::RefPtr<Gtk::FileFilter> filter_tmx =

@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -28,5 +28,5 @@
 void
 ParserTest::parseCsvTest()
 {
-    // waiting Parser namespace
+  // waiting Parser namespace
 }

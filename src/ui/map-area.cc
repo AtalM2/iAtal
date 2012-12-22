@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -125,18 +125,18 @@ MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
   }
   
   if(StrategyController::getInstance().shouldShowRobot())
-    {
-      auto p = map_->getPosition();
-      Gdk::Cairo::set_source_pixbuf(
-	cr,
-	Glib::RefPtr< Gdk::Pixbuf >::cast_const(map_->getRobotImage()),
-	p.first * map_->tileWidth +
-	(map_->tileWidth - map_->getRobotImage()->get_width()) / 2,
-	p.second * map_->tileHeight +
-	(map_->tileHeight - map_->getRobotImage()->get_height()) / 2);
+  {
+    auto p = map_->getPosition();
+    Gdk::Cairo::set_source_pixbuf(
+      cr,
+      Glib::RefPtr< Gdk::Pixbuf >::cast_const(map_->getRobotImage()),
+      p.first * map_->tileWidth +
+      (map_->tileWidth - map_->getRobotImage()->get_width()) / 2,
+      p.second * map_->tileHeight +
+      (map_->tileHeight - map_->getRobotImage()->get_height()) / 2);
       
-      cr->paint();
-    }
+    cr->paint();
+  }
   
   return true;
 }

@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -40,7 +40,7 @@ BOOST_PYTHON_MODULE(elements)
 
 Map::Map(unsigned int width,
          unsigned int height,
-	 unsigned int tileWidth,
+         unsigned int tileWidth,
          unsigned int tileHeight)
   : height(height),
     width(width),
@@ -63,10 +63,10 @@ Map::Map()
 void Map::setPosition(unsigned int x, unsigned y)
 {
   if (width > x && height > y)
-    {
-      posXRobot = x;
-      posYRobot = y;
-    }
+  {
+    posXRobot = x;
+    posYRobot = y;
+  }
 }
 
 std::pair< unsigned int, unsigned int >
@@ -76,7 +76,7 @@ Map::getPosition()
   return std::pair< unsigned int, unsigned int>(
     posXRobot,
     posYRobot
-  );
+    );
 }
 
 void Map::setDirection(int x, int y)
@@ -88,9 +88,9 @@ void Map::setDirection(int x, int y)
 
 void
 Map::setRobotImages(const std::string & north,
-		    const std::string & south,
-		    const std::string & east,
-		    const std::string & west)
+                    const std::string & south,
+                    const std::string & east,
+                    const std::string & west)
 {
   Glib::RefPtr< const Gdk::Pixbuf > imageN,
     imageS,
@@ -98,20 +98,20 @@ Map::setRobotImages(const std::string & north,
     imageW;
   
   try
-    {
-      imageN = Gdk::Pixbuf::create_from_file(north);
-      imageS = Gdk::Pixbuf::create_from_file(south);
-      imageE = Gdk::Pixbuf::create_from_file(east);
-      imageW = Gdk::Pixbuf::create_from_file(west);
-    }
+  {
+    imageN = Gdk::Pixbuf::create_from_file(north);
+    imageS = Gdk::Pixbuf::create_from_file(south);
+    imageE = Gdk::Pixbuf::create_from_file(east);
+    imageW = Gdk::Pixbuf::create_from_file(west);
+  }
   catch (const Glib::FileError & ex)
-    {
-      throw ex;
-    }
+  {
+    throw ex;
+  }
   catch (const Gdk::PixbufError & ex)
-    {
-      throw ex;
-    }
+  {
+    throw ex;
+  }
 
   robotImgs_ = {
     {"north", imageN},
@@ -128,10 +128,10 @@ Map::getRobotImage()
   Glib::RefPtr< const Gdk::Pixbuf > p;
   auto it = robotImgs_.find(getDirection());
   if (it == robotImgs_.end())
-    {
-      throw BadParametersException(
-	"the key given to obtain the robot's image isn't a direction.");
-    }
+  {
+    throw BadParametersException(
+      "the key given to obtain the robot's image isn't a direction.");
+  }
   return it->second;
 }
 
@@ -174,7 +174,7 @@ std::string Map::getItem(Layer::Level level, unsigned int range)
     {
       std::vector< std::string > toks;
       std::string gotString =
-	this->getLayer(level).getTile(xTarget, yTarget);
+        this->getLayer(level).getTile(xTarget, yTarget);
       boost::split(toks,gotString,boost::is_any_of(":"));
       res = toks[0];
     }
@@ -184,50 +184,50 @@ std::string Map::getItem(Layer::Level level, unsigned int range)
 }
 
 void Map::setItem(Layer::Level level,
-		  unsigned int range,
-		  std::string newTile)
+                  unsigned int range,
+                  std::string newTile)
 {
   if (static_cast<int>(posXRobot)
       + static_cast<int>(range) * direction.first >= 0
       && static_cast<int>(posYRobot)
       + static_cast<int>(range) * direction.second >= 0)
-      {
-        unsigned int xTarget = posXRobot + (range * direction.first);
-        unsigned int yTarget = posYRobot + (range * direction.second);
+  {
+    unsigned int xTarget = posXRobot + (range * direction.first);
+    unsigned int yTarget = posYRobot + (range * direction.second);
 
-        if ( this->width > xTarget && this->height > yTarget )
-        {
-          this->getLayer(level).setTile(xTarget, yTarget, newTile);
-        }
-      }
+    if ( this->width > xTarget && this->height > yTarget )
+    {
+      this->getLayer(level).setTile(xTarget, yTarget, newTile);
+    }
+  }
 }
 
 void Map::robotTurnRight()
 {
   if (direction.first == 0)
-    {
-      direction.first = -direction.second;
-      direction.second = 0;
-    }
+  {
+    direction.first = -direction.second;
+    direction.second = 0;
+  }
   else
-    {
-      direction.second = direction.first;
-      direction.first = 0;
-    }
+  {
+    direction.second = direction.first;
+    direction.first = 0;
+  }
 }
 
 void Map::robotTurnLeft()
 {
   if (direction.first == 0)
-    {
-      direction.first = direction.second;
-      direction.second = 0;
-    }
+  {
+    direction.first = direction.second;
+    direction.second = 0;
+  }
   else
-    {
-      direction.second = -direction.first;
-      direction.first = 0;
-    }
+  {
+    direction.second = -direction.first;
+    direction.first = 0;
+  }
 }
 
 void Map::goForward()

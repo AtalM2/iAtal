@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -75,9 +75,9 @@ public:
    * \param sensitivity Whether to activate or deactivate path.
    */
   void setPathSensitivity(const Glib::ustring & path,
-			  bool sensitivity);
+                          bool sensitivity);
   
- private:
+private:
 
   /**
    * Flag indicating if a map is currently loaded.

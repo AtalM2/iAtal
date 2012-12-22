@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -29,7 +29,7 @@
 class StatusHBox : public Gtk::HBox
 {
 
- public:
+public:
   /**
    * Constructor.
    */
@@ -54,7 +54,7 @@ class StatusHBox : public Gtk::HBox
    */
   void setStrategyStatusOk(bool ok);
   
- private:
+private:
 
   /**
    * Image of the map status.

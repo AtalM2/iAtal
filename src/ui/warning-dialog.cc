@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -23,9 +23,9 @@ WarningDialog::WarningDialog(
   const Glib::ustring & title,
   const Glib::ustring & text)
   : Gtk::MessageDialog(title,
-		       false,
-		       Gtk::MESSAGE_WARNING,
-		       Gtk::BUTTONS_CLOSE)
+                       false,
+                       Gtk::MESSAGE_WARNING,
+                       Gtk::BUTTONS_CLOSE)
 
 {
   set_secondary_text(text);

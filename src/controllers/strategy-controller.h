@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -29,7 +29,7 @@ class MapWindow;
 
 class StrategyController
 {
- public:
+public:
   static StrategyController & getInstance()
   {
     static StrategyController instance;
@@ -50,7 +50,7 @@ class StrategyController
   
   bool shouldShowRobot();
   
- private:
+private:
   std::shared_ptr< MapWindow > window_;
   sigc::connection timeout_;
   Glib::ustring current_;

@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -24,15 +24,15 @@
 #include "exceptions/tmx/utils-exceptions.h"
 
 class ParserTest : public CppUnit::TestFixture {
-    CPPUNIT_TEST_SUITE(ParserTest);
+  CPPUNIT_TEST_SUITE(ParserTest);
 
-    CPPUNIT_TEST(parseCsvTest);
+  CPPUNIT_TEST(parseCsvTest);
     
-    CPPUNIT_TEST_SUITE_END();
+  CPPUNIT_TEST_SUITE_END();
 
 public:
 
-    void parseCsvTest();
+  void parseCsvTest();
 };
 
 #endif /* _PARSERTEST_H_ */

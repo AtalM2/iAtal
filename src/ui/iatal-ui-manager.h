@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -28,7 +28,7 @@
 class IAtalUIManager : public Gtk::UIManager
 {
 
- public:
+public:
   /**
    * Glib style create, returns a RefPtr containing our newly made
    * objetc. It's the only method that should call the constructor to
@@ -65,7 +65,7 @@ class IAtalUIManager : public Gtk::UIManager
    * \param sensitivity The action to perform: enable or disable.
    */
   void setPathSensitivity(const Glib::ustring & path,
-			  bool sensitivity);
+                          bool sensitivity);
 
 protected:
   /**

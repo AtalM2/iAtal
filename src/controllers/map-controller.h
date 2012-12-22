@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -32,7 +32,7 @@ class MapWindow;
 
 class MapController
 {
- public:
+public:
   static MapController & getInstance()
   {
     static MapController instance;
@@ -51,7 +51,7 @@ class MapController
 
   const std::shared_ptr< iatal::Map > & getMap();
   
- private:
+private:
   std::shared_ptr< iatal::Map > map_;
   std::shared_ptr< MapWindow > window_;
   Glib::ustring current_;

@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -28,7 +28,7 @@ class MapWindow;
 
 class AppController
 {
- public:
+public:
   static AppController & getInstance()
   {
     static AppController instance;
@@ -39,12 +39,12 @@ class AppController
   const std::shared_ptr< MapWindow > & getWindow();
 
   static int displayWarning(const Glib::ustring & title,
-			    const Glib::ustring & text);
+                            const Glib::ustring & text);
   
   void quit();
   void help();
   
- private:
+private:
   std::shared_ptr< MapWindow > window_;
   
   AppController();

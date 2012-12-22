@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -66,7 +66,7 @@ namespace iatal
       \param image The new image of the selected tile.
     */
     void setImage(Glib::ustring tile,
-		  Glib::RefPtr< const Gdk::Pixbuf > image);
+                  Glib::RefPtr< const Gdk::Pixbuf > image);
   
   private:
 

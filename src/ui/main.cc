@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -32,9 +32,9 @@
 #include "tmx/map-loader.h"
 
 int on_cmd(const Glib::RefPtr<Gio::ApplicationCommandLine> &,
-  Glib::RefPtr<Gtk::Application> &app) {
-    app->activate();
-    return 0;
+           Glib::RefPtr<Gtk::Application> &app) {
+  app->activate();
+  return 0;
 }
 
 int
@@ -56,37 +56,37 @@ main(int argc, char** argv)
     ;
   boost::program_options::variables_map vm;
   try
-    {
-      boost::program_options::store(
-	boost::program_options::parse_command_line(argc,
-						   argv,
-						   desc),
-	vm);
-      boost::program_options::notify(vm);
-    }
+  {
+    boost::program_options::store(
+      boost::program_options::parse_command_line(argc,
+                                                 argv,
+                                                 desc),
+      vm);
+    boost::program_options::notify(vm);
+  }
   catch(...)
-    {
-      std::cerr << "Incorrect syntax. Use -h to see allowed options."
-		<< std::endl;
-      return 1;
-    }
+  {
+    std::cerr << "Incorrect syntax. Use -h to see allowed options."
+              << std::endl;
+    return 1;
+  }
   if(vm.count("help"))
-    {
-      std::cout << desc << std::endl;
-      return 0;
-    }
+  {
+    std::cout << desc << std::endl;
+    return 0;
+  }
   if(vm.count("strategy") && !vm.count("map"))
-    {
-      std::cerr << "Setting a map is required if you set a strategy."
-	       << std::endl;
-      return 1;
-    }
+  {
+    std::cerr << "Setting a map is required if you set a strategy."
+              << std::endl;
+    return 1;
+  }
 
   Glib::RefPtr<Gtk::Application> app =
     Gtk::Application::create(argc,
-			     argv,
-			     "fr.univnantes.atal.iatal",
-			     Gio::APPLICATION_HANDLES_COMMAND_LINE);
+                             argv,
+                             "fr.univnantes.atal.iatal",
+                             Gio::APPLICATION_HANDLES_COMMAND_LINE);
   
   app->signal_command_line().connect(
     sigc::bind(sigc::ptr_fun(on_cmd), app), false);
@@ -96,27 +96,27 @@ main(int argc, char** argv)
   AppController & ac = AppController::getInstance();
   
   try
-    {
-      auto window =
-        std::make_shared< MapWindow >();
-      mc.setWindow(window);
-      sc.setWindow(window);
-      ac.setWindow(window);
+  {
+    auto window =
+      std::make_shared< MapWindow >();
+    mc.setWindow(window);
+    sc.setWindow(window);
+    ac.setWindow(window);
 
-      if(vm.count("map"))
+    if(vm.count("map"))
 	{
 	  mc.loadMapFromFile(vm["map"].as< Glib::ustring >());
 	  if(vm.count("strategy"))
-	    {
-	      sc.loadStrategyFromFile(
-		vm["strategy"].as< Glib::ustring >());
-	    }
+      {
+        sc.loadStrategyFromFile(
+          vm["strategy"].as< Glib::ustring >());
+      }
 	}
-      return app->run(*window);
-    }
+    return app->run(*window);
+  }
   catch(std::exception e)
-    {
-      std::cerr << e.what() << std::endl;
-      return 1;
-    }
+  {
+    std::cerr << e.what() << std::endl;
+    return 1;
+  }
 }

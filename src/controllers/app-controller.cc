@@ -1,4 +1,4 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
 
 //  Copyright (C) 2012
 
@@ -32,10 +32,10 @@ AppController::AppController()
 
 int
 AppController::displayWarning(const Glib::ustring & title,
-			      const Glib::ustring & text)
+                              const Glib::ustring & text)
 {
   WarningDialog dialog(title,
-		       text);
+                       text);
   return dialog.run();
 }
 
