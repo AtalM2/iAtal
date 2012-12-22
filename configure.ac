@@ -5,7 +5,9 @@ AC_PREREQ([2.68])
 
 AC_INIT([iAtal],
         [0.1],
-        [m1infoatal+bugreport@sympa.etu.univ-nantes.prive])
+        [m1infoatal+bugreport@sympa.etu.univ-nantes.prive],
+	[iatal],
+	[https://github.com/AtalM1/iAtal])
 AC_CONFIG_SRCDIR([src/ui/main.cc])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([subdir-objects])

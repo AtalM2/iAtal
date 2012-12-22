@@ -1,6 +1,8 @@
 // -*- c-basic-offset: 2; -*-
 #include "iatal-about-dialog.h"
 
+#include "config.h"
+
 IAtalAboutDialog::IAtalAboutDialog()
   : authors_({
       "Rémi Bois",
@@ -24,12 +26,12 @@ IAtalAboutDialog::IAtalAboutDialog()
 	"Agathe Mollé"
 	  })
 {
-  set_program_name("iAtal");
-  set_version("1.0.0");
+  set_program_name(PACKAGE_NAME);
+  set_version(PACKAGE_VERSION);
   set_copyright("Copyright © 2012 Master ATAL");
   set_license_type(Gtk::License::LICENSE_GPL_3_0);
-  set_website("http://atal.univ-nantes.fr/");
-  set_website_label("ATAL website");
+  set_website(PACKAGE_URL);
+  set_website_label("iAtal homepage");
   set_authors(authors_);
   set_documenters(documenters_);
   set_artists(artists_);
