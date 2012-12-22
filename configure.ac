@@ -10,7 +10,7 @@ AC_INIT([iAtal],
 	[https://github.com/AtalM1/iAtal])
 AC_DEFINE([PACKAGE_COPYRIGHT],
   ["Copyright 2012 Master ATAL"],
-  [Contains the version of the python we'll link to])
+  [Contains the copyright notice, defined here to be consistent with the other package macros])
 AC_CONFIG_SRCDIR([src/ui/main.cc])
 AC_CONFIG_HEADERS([config.h])
 AM_INIT_AUTOMAKE([subdir-objects])
