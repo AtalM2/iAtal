@@ -32,7 +32,7 @@ public:
 private:
   static void loadTMXFile(XMLDocument & tmxDoc,
 			  const Glib::ustring & filepath);
-  static void handleTileset(Tileset & ts,
+  static void handleTileset(iatal::Tileset & ts,
 			    const TmxTileset & tmxTs);
   static XMLElement* loadTsx(XMLElement* tsxElement);
 

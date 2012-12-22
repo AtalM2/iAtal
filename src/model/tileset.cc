@@ -3,17 +3,22 @@
 
 #include "exceptions/model/bad-parameters-exception.h"
 
+using namespace iatal;
+
 Tileset::Tileset() :
-  tilesList_() {
+  tilesList_()
+{
+  
 }
 
-Tileset::~Tileset() {
+Tileset::~Tileset()
+{
   
 }
 
 Glib::RefPtr< const Gdk::Pixbuf >
 Tileset::getImage(Glib::ustring tile)
-const
+  const
 {
   Glib::RefPtr< const Gdk::Pixbuf > p;
   std::map< Glib::ustring,
@@ -21,7 +26,7 @@ const
 	    >::const_iterator it = tilesList_.find(tile);
   if (it != tilesList_.end())
     {
-    p = it->second;
+      p = it->second;
     }
   else
     {

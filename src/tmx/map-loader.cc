@@ -291,7 +291,7 @@ std::shared_ptr< Map > MapLoader::loadTmx(string tmxPath) {
 }
 
 void
-MapLoader::handleTileset(Tileset & ts,
+MapLoader::handleTileset(iatal::Tileset & ts,
 			 const TmxTileset & tmxTs)
 {
   unsigned int tileHeight = tmxTs.getTileHeight(),
