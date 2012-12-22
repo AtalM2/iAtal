@@ -1,4 +1,22 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
+
+//  Copyright (C) 2012
+
+// This file is part of iAtal.
+
+// iAtal is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// iAtal is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with iAtal.  If not, see <http://www.gnu.org/licenses/>.
+
 #include "map-window.h"
 
 using namespace iatal;
@@ -14,10 +32,10 @@ MapWindow::MapWindow()
   
   
   vBox_.pack_start(uiManager_->getMenuBar(),
-		   Gtk::PACK_SHRINK);
+                   Gtk::PACK_SHRINK);
 
   vBox_.pack_start(uiManager_->getToolBar(),
-		   Gtk::PACK_SHRINK);
+                   Gtk::PACK_SHRINK);
 
   vBox_.pack_start(hBox_);
 
@@ -36,16 +54,16 @@ MapWindow::setMap(const std::shared_ptr< Map > & map)
 {
   area_.setMap(map);
   if(!mapLoaded_)
-    {
-      vBox_.pack_start(area_);
-      area_.show();
-      mapLoaded_ = true;
-    }
+  {
+    vBox_.pack_start(area_);
+    area_.show();
+    mapLoaded_ = true;
+  }
 }
 
 void
 MapWindow::setPathSensitivity(const Glib::ustring & path,
-			      bool sensitivity)
+                              bool sensitivity)
 {
   uiManager_->setPathSensitivity(path, sensitivity);
 }
@@ -55,13 +73,13 @@ MapWindow::setStrategyStatusOk(bool ok)
 {
   hBox_.setStrategyStatusOk(ok);
   setPathSensitivity("/ToolBar/StrategyRewind",
-		     ok);
+                     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOn",
-		     ok);
+                     ok);
   setPathSensitivity("/ToolBar/StrategyAutoStepsOff",
-		     false);
+                     false);
   setPathSensitivity("/ToolBar/StrategyNextStep",
-		     ok);
+                     ok);
 }
 
 void
@@ -69,5 +87,5 @@ MapWindow::setMapStatusOk(bool ok)
 {
   hBox_.setMapStatusOk(ok);
   setPathSensitivity("/ToolBar/FileOpenStrategy",
-		     ok);
+                     ok);
 }

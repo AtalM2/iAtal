@@ -1,4 +1,22 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
+
+//  Copyright (C) 2012
+
+// This file is part of iAtal.
+
+// iAtal is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// iAtal is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with iAtal.  If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef IATAL_ABOUT_DIALOG_H
 #define IATAL_ABOUT_DIALOG_H
 
@@ -10,7 +28,7 @@
 class IAtalAboutDialog : public Gtk::AboutDialog
 {
 
- public:
+public:
   
   /**
    * Constructor.
@@ -24,7 +42,7 @@ class IAtalAboutDialog : public Gtk::AboutDialog
    */
   virtual ~IAtalAboutDialog();
   
- private:
+private:
 
   /**
    * vector containing the name of the persons that have been involved
@@ -32,16 +50,16 @@ class IAtalAboutDialog : public Gtk::AboutDialog
    */
   std::vector< Glib::ustring > authors_,
 
-  /**
-   * vector containing the name of the persons that have been involved
-   * in the documentation realization.
-   */
+    /**
+     * vector containing the name of the persons that have been involved
+     * in the documentation realization.
+     */
     documenters_,
 
-  /**
-   * vector containing the name of the persons that have been involved
-   * in the artworks realization.
-   */
+    /**
+     * vector containing the name of the persons that have been involved
+     * in the artworks realization.
+     */
     artists_;
 
 };

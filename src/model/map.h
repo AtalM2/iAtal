@@ -1,4 +1,22 @@
-// -*- c-basic-offset: 2; -*-
+// -*- c-basic-offset: 2; c-indentation-style: ellemtel; -*-
+
+//  Copyright (C) 2012
+
+// This file is part of iAtal.
+
+// iAtal is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+
+// iAtal is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+
+// You should have received a copy of the GNU General Public License
+// along with iAtal.  If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef MAP_H
 #define MAP_H
 
@@ -35,12 +53,12 @@ namespace iatal
       \param height the height of the map.
     */
     Map(unsigned int posXRobot,
-	unsigned int posYRobot,
-	std::pair<int,int> direction,
-	unsigned int width,
-	unsigned int height,
-	unsigned int tileWidth,
-	unsigned int tileHeight);
+        unsigned int posYRobot,
+        std::pair<int,int> direction,
+        unsigned int width,
+        unsigned int height,
+        unsigned int tileWidth,
+        unsigned int tileHeight);
 
 
     /*!
@@ -50,9 +68,9 @@ namespace iatal
       \param height the height of the map.
     */
     Map(unsigned int width,
-	unsigned int height,
-	unsigned int tileWidth,
-	unsigned int tileHeight);
+        unsigned int height,
+        unsigned int tileWidth,
+        unsigned int tileHeight);
 
 
     /*!
@@ -85,7 +103,7 @@ namespace iatal
       \param range The distance from the robot
     */
     std::string getItem(iatal::Layer::Level level,
-			unsigned int range);
+                        unsigned int range);
 
     /*!
       \brief Sets the item on the given layer at the given range (robot dependant)
@@ -95,8 +113,8 @@ namespace iatal
       \param newTile The string defining the new tile to put.
     */
     void setItem(iatal::Layer::Level level,
-		 unsigned int range,
-		 std::string newTile);
+                 unsigned int range,
+                 std::string newTile);
 
     /*!
       \brief The robot makes one step in front of himself
@@ -149,9 +167,9 @@ namespace iatal
 
     */
     void setRobotImages(const std::string & north,
-			const std::string & south,
-			const std::string & east,
-			const std::string & west);
+                        const std::string & south,
+                        const std::string & east,
+                        const std::string & west);
 
     /*!
       \brief Get the robot image depending on its direction.
