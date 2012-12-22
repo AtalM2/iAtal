@@ -45,7 +45,7 @@ MapArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr)
     map_->getLayer(Layer::Level::Object),
   };
   
-  for(std::vector< Layer >::const_iterator it = layers.begin();
+  for(std::vector< Layer >::iterator it = layers.begin();
       it != layers.end();
       it++) {
     Tileset tileset = (*it).getTileset();

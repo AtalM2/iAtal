@@ -1,18 +1,21 @@
 // -*- c-basic-offset: 2; -*-
 #include "layer.h"
 
-Layer::Level Layer::identity_(Layer::Level x) { return x; }
+Layer::Level Layer::identity_(Layer::Level x)
+{
+  return x;
+}
 
 BOOST_PYTHON_MODULE(enums)
 {
-    boost::python::enum_<Layer::Level>("Level")
-        .value("Underground", Layer::Level::Underground)
-        .value("Ground", Layer::Level::Ground)
-        .value("Air", Layer::Level::Air)
-        .value("Object", Layer::Level::Object)
-        .export_values();
+  boost::python::enum_<Layer::Level>("Level")
+    .value("Underground", Layer::Level::Underground)
+    .value("Ground", Layer::Level::Ground)
+    .value("Air", Layer::Level::Air)
+    .value("Object", Layer::Level::Object)
+    .export_values();
 
-    boost::python::def("identity", &Layer::identity_);
+  boost::python::def("identity", &Layer::identity_);
 
 }
 
@@ -47,7 +50,6 @@ Layer::setTile(unsigned int x,
 
 Tileset &
 Layer::getTileset()
-  const
 {
-  return (Tileset &) tileset_;
+  return tileset_;
 }

@@ -26,7 +26,7 @@
   - It takes less space in memory at the cost of another indirection.
 */
 class Layer {
-public:
+ public:
 
   /*!
     \brief Construct a Layer of the given size.
@@ -71,7 +71,7 @@ public:
 
     \return The Tileset of the Layer.
   */
-  Tileset & getTileset() const;
+  Tileset & getTileset();
 
 
 
@@ -98,14 +98,14 @@ public:
   } Level;
 
 	
-	/*!
-	 * get from enum
-	 * 
-	 */
-	Level identity_(Level x);
+  /*!
+   * get from enum
+   * 
+   */
+  Level identity_(Level x);
 
 
-private:
+ private:
   std::vector< std::vector< Glib::ustring > > tiles_; //!< The matrix of tiles.
   Tileset tileset_; //!< The Tileset attached to the Layer.
 
