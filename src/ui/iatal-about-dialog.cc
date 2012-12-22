@@ -49,7 +49,7 @@ IAtalAboutDialog::IAtalAboutDialog()
   set_copyright("Copyright © 2012 Master ATAL");
   set_license_type(Gtk::License::LICENSE_GPL_3_0);
   set_website(PACKAGE_URL);
-  set_website_label("iAtal homepage");
+  set_website_label(PACKAGE_NAME + Glib::ustring(" homepage"));
   set_authors(authors_);
   set_documenters(documenters_);
   set_artists(artists_);
