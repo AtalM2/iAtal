@@ -18,7 +18,6 @@
 #include "tmx/tmx-tileset.h"
 
 using namespace tinyxml2;
-using namespace std;
 
 void
 MapLoader::loadTMXFile(XMLDocument & tmxDoc,
@@ -35,7 +34,7 @@ MapLoader::loadTMXFile(XMLDocument & tmxDoc,
 	}
       else
 	{
-	  ostringstream error;
+	  std::ostringstream error;
 	  error << "TinyXML2 hasn't been able to load the TMX"
 		<< "file. The TMX error number is: "
 		<< static_cast<int>(tmxDoc.ErrorID())
@@ -46,7 +45,7 @@ MapLoader::loadTMXFile(XMLDocument & tmxDoc,
 }
 
 
-std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
+std::shared_ptr< iatal::Map > MapLoader::loadTmx(std::string tmxPath) {
   
   std::string dir = Glib::path_get_dirname(tmxPath);
   // Charger le fichier TMX	
@@ -69,7 +68,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
 
   if(!width || !height || !tileWidth || !tileHeight)
     {
-      ostringstream oss;
+      std::ostringstream oss;
       oss << "One of the map height, width, "
 	  << "tileHeight or tileWidth parsed was zero. "
 	  << "The map creation can go smoothly only if "
@@ -78,7 +77,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
     }
 
   // Vérification que la map est de type orthogonal
-  if (string(tmx->Attribute("orientation")) != "orthogonal")
+  if (std::string(tmx->Attribute("orientation")) != "orthogonal")
     {
       throw TmxException(
 	"The TMX orientation must be orthogonal.");
@@ -101,7 +100,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
       bool ok = true;
       XMLElement* xmlTilesetTmp;
       unsigned int firstGid = xmlElement->IntAttribute("firstgid");
-      string source = xmlElement->Attribute("source");
+      std::string source = xmlElement->Attribute("source");
 
       // Récupération du type de tileset (externe ou interne)
       XMLDocument tsxDoc;
@@ -169,7 +168,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
 	  // Parcourt de la liste des tiles définies dans le tileset
 	  while (element)
 	    {
-	      string id = element->Attribute("id");
+	      std::string id = element->Attribute("id");
 	      unsigned int idInt =
 		boost::lexical_cast<unsigned int>(id) + 1;
 	      XMLElement* xmlTile =
@@ -178,9 +177,9 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
 		->FirstChildElement("property");
 	      tmxTileset
 		->setProperty(idInt,
-			      string(xmlTile->Attribute("name"))
+			      std::string(xmlTile->Attribute("name"))
 			      + ":"
-			      + string(
+			      + std::string(
 				xmlTile->Attribute("value")));
 	      element =
 		element->NextSiblingElement("tile");
@@ -198,7 +197,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
       bool ok = true;
       // unsigned int firstgid = 0;
       // On vérifie le name du layer
-      string name = string(xmlElement->Attribute("name"));
+      std::string name(xmlElement->Attribute("name"));
       if(name == "ground")
 	{
 	  layer = &map->getLayer(iatal::Layer::Underground);
@@ -232,7 +231,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
 	    }
 	  XMLElement* xmlData = xmlElement->FirstChildElement("data");
 	  // On vérifie que l'encodage est supporté
-	  if (string(xmlData->Attribute("encoding")) != "csv")
+	  if (std::string(xmlData->Attribute("encoding")) != "csv")
 	    {
 	      throw TmxException(
 		"The encoding "
@@ -256,7 +255,7 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
 			   data.begin(),
 			   ' ');
 	  
-	  std::vector< string > dataVector;
+	  std::vector< std::string > dataVector;
 	  boost::split(dataVector, data, boost::is_any_of(","));
 	  
 	  
@@ -264,13 +263,13 @@ std::shared_ptr< iatal::Map > MapLoader::loadTmx(string tmxPath) {
 	    {
 	      unsigned int y = i / map->width;
 	      unsigned int x = i % map->width;
-	      string id = dataVector.at(i);
+	      std::string id(dataVector.at(i));
 	      unsigned int idInt =
 		static_cast<unsigned int>(std::stoi(id));
 	      idInt = idInt
 		? idInt - tmxTileset->getFirstGid() + 1
 		: idInt;
-	      string property = tmxTileset->getProperty(idInt);
+	      std::string property(tmxTileset->getProperty(idInt));
 	      layer->setTile(x, y, property);
 	    }
 	}
