@@ -48,9 +48,9 @@ StrategyController::loadStrategyFromFile(const std::string & filename)
       py_ = main.attr("__dict__");
 
       // Makes visible the libraries exposing the C++ API and the python classes
-      exec("import sys\n"
-	   "sys.path.append('.libs')\n"
-	   "sys.path.append('src/python')\n",
+      py_["sys"] = boost::python::import("sys");
+      exec("sys.path.append('.libs')\n"
+           "sys.path.append('src/python')\n",
 	   py_);
 
       exec_file(boost::python::str(filename), py_, py_);
