@@ -49,3 +49,8 @@ ui
 
 *.pyc
 iatal
+
+GPATH
+GRTAGS
+GSYMS
+GTAGS
