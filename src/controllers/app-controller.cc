@@ -41,12 +41,14 @@ AppController::displayWarning(const Glib::ustring & title,
   return dialog.run();
 }
 
-void AppController::quit()
+void
+AppController::quit()
 {
   window_->hide();
 }
 
-void AppController::help()
+void
+AppController::help()
 {
   IAtalAboutDialog dialog;
 }
@@ -56,6 +58,7 @@ AppController::setWindow(const std::shared_ptr< MapWindow > & window)
 {
   window_ = window;
 }
+
 const std::shared_ptr< MapWindow > &
 AppController::getWindow()
 {

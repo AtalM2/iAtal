@@ -41,7 +41,7 @@ namespace iatal
     const std::shared_ptr< MapWindow > & getWindow();
 
     static int displayWarning(const Glib::ustring & title,
-			      const Glib::ustring & text);
+                              const Glib::ustring & text);
   
     void quit();
     void help();
